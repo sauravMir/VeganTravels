@@ -74,8 +74,8 @@ public class GuestAdapter extends BaseAdapter {
         }
 
         holder.tvGstName.setText(guestList.get(i).getGuestName());
-        holder.tvCabinNo.setText(guestList.get(i).getCabinNo());
-        holder.tvGstNumber.setText(guestList.get(i).getNumberOfGuest());
+        holder.tvCabinNo.setText("Cabin: "+guestList.get(i).getCabinNo());
+        holder.tvGstNumber.setText("Guest: "+guestList.get(i).getNumberOfGuest());
         holder.tvExcursion.setText(guestList.get(i).getExcursion());
         holder.tvPaymentStatus.setText(guestList.get(i).getPaymentStatus());
 

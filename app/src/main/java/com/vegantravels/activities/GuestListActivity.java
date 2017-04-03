@@ -34,6 +34,10 @@ public class GuestListActivity extends BaseActivity {
         Guest guest3 = new Guest(4, "Milan", "3", "AXZ", "108", "Paid");
         Guest guest4 = new Guest(5, "Jhon", "3", "AXZ", "108", "Paid");
         Guest guest5 = new Guest(6, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest6 = new Guest(7, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest7 = new Guest(8, "Milan", "3", "AXZ", "108", "Due");
+        Guest guest8 = new Guest(9, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest9 = new Guest(10, "Milan", "3", "AXZ", "108", "Paid");
 
         guestList = new ArrayList<>();
         guestList.add(guest);
@@ -42,6 +46,10 @@ public class GuestListActivity extends BaseActivity {
         guestList.add(guest3);
         guestList.add(guest4);
         guestList.add(guest5);
+        guestList.add(guest6);
+        guestList.add(guest7);
+        guestList.add(guest8);
+        guestList.add(guest9);
         guestAdapter = new GuestAdapter(activity, guestList);
         lvGuest.setAdapter(guestAdapter);
         
