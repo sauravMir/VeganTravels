@@ -1,5 +1,6 @@
 package com.vegantravels.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity {
     MainActivity activity;
     // retro Call back Interface
     APIInterface apiInterface;
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,37 +44,45 @@ public class MainActivity extends BaseActivity {
         fillDummmyData();
 
     }
-void parsingCruisesList(){
-    Call<Cruises> call = apiInterface.getCruizeList();
-    call.enqueue(new Callback<Cruises>() {
-        @Override
-        public void onResponse(Call<Cruises> call, Response<Cruises> response) {
 
-        Log.d("TAG",response.code()+"");
-            Cruises resource = response.body();
-  /*  
-            Integer text = resource.page;
-            Integer total = resource.total;
-            Integer totalPages = resource.totalPages;
-            List<MultipleResource.Datum> datumList = resource.data;
-
-            displayResponse += text + " Page\n" + total + " Total\n" + totalPages + " Total Pages\n";
-
-            for (MultipleResource.Datum datum : datumList) {
-                displayResponse += datum.id + " " + datum.name + " " + datum.pantoneValue + " " + datum.year + "\n";
+    void parsingCruisesList() {
+        showProgressDialog();
+        Call<List<Cruises>> call = apiInterface.getCruizeList();
+        call.enqueue(new Callback<List<Cruises>>() {
+            @Override
+            public void onResponse(Call<List<Cruises>> call, Response<List<Cruises>> response) {
+                hideProgressDialog();
+                for (Cruises cruises : response.body()) {
+                    System.out.println(cruises.toString());
+                    Cruises cruises1 = new Cruises();
+                    cruises1.setCruiseID(cruises.getCruiseID());
+                    cruises1.setCruiseName(cruises.getCruiseName());
+                    cruises1.setShipName(cruises.getShipName());
+                    cruises1.setDateFrom(cruises.getDateFrom());
+                    cruises1.setDateTo(cruises.getDateTo());
+                    cruisesList.add(cruises1);
+                }
             }
 
-            responseText.setText(displayResponse);*/
+            @Override
+            public void onFailure(Call<List<Cruises>> call, Throwable t) {
+                hideProgressDialog();
+                System.out.println(t.getMessage());
+            }
+        });
+    }
 
-        }
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.show();
+    }
 
-        @Override
-        public void onFailure(Call<Cruises> call, Throwable t) {
-            call.cancel();
-        }
-    });
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.hide();
+    }
 
-}
     private void fillDummmyData() {
 
         Cruises cruises = new Cruises(String.valueOf(1), "cruise 1", "ship 1", "2-2-2017", "12.00pm");
