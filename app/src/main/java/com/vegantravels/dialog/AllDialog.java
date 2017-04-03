@@ -87,5 +87,34 @@ public class AllDialog {
 
 
 
+    public void dialogForSearch() {
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.setContentView(R.layout.dialog_search);
+        dialog.setCancelable(false);
+
+        EditText edtCabinNumber = (EditText) dialog.findViewById(R.id.edtCabinNumber);
+        EditText edtCabinName = (EditText) dialog.findViewById(R.id.edtCabinName);
+        ImageButton btnCancel = (ImageButton) dialog.findViewById(R.id.btnCancel);
+        ImageButton btnOk = (ImageButton) dialog.findViewById(R.id.btnOk);
+
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+
+    }
+
 
 }

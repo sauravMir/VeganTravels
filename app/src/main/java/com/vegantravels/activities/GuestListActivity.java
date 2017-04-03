@@ -63,7 +63,7 @@ public class GuestListActivity extends BaseActivity {
         ibtnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //allDialog.dialogForSearch();
+                allDialog.dialogForSearch();
             }
         });
 
