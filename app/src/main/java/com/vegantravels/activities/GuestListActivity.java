@@ -1,6 +1,9 @@
 package com.vegantravels.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.vegantravels.R;
@@ -52,6 +55,13 @@ public class GuestListActivity extends BaseActivity {
         guestList.add(guest9);
         guestAdapter = new GuestAdapter(activity, guestList);
         lvGuest.setAdapter(guestAdapter);
-        
+        lvGuest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(activity, AddExcursionActivity.class));
+                finish();
+            }
+        });
+
     }
 }
