@@ -10,24 +10,17 @@
         android:id="@+id/linearLayout"
         android:layout_width="@dimen/three_hundred_twenty"
         android:layout_height="@dimen/three_hundred_fifty"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/twenty"
+        android:layout_centerInParent="true"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
-        android:weightSum="1.1">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
-
+        android:weightSum=".9">
 
         <Button
             android:id="@+id/btnAddExcursion"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
-            android:background="@color/app_color"
+            android:background="@drawable/top_cell"
             android:gravity="center"
             android:text="Add Excursion"
             android:textColor="@color/white" />
@@ -41,46 +34,41 @@
             android:id="@+id/tvGuestDetail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
             android:gravity="left"
             android:text="Guest Details"
             android:textAlignment="gravity"
-            android:textColor="@color/blueDeep"
-            android:textSize="@dimen/twenty"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
 
         <TextView
             android:id="@+id/tvGuestName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
             android:gravity="left"
             android:text="Millen, Mike"
             android:textAlignment="gravity"
-            android:textColor="@color/blueDeep"
-            android:textSize="@dimen/twenty"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
 
         <TextView
             android:id="@+id/tvCabinNo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
             android:gravity="left"
             android:text="Cabin 888"
             android:textAlignment="gravity"
-            android:textColor="@color/blueDeep"
-            android:textSize="@dimen/twenty"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <View
@@ -115,15 +103,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
-            android:background="@color/app_color"
+            android:background="@drawable/bottom_cell"
             android:gravity="center"
             android:text="Confirm"
             android:textColor="@color/white" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
 
     </LinearLayout>
 
