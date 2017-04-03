@@ -7,6 +7,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.vegantravels.R;
@@ -62,6 +64,7 @@ public class AllDialog {
 
         ImageButton btnCancelPayment = (ImageButton) dialog.findViewById(R.id.btnCancelPayment);
         ImageButton btnOkPayment = (ImageButton) dialog.findViewById(R.id.btnOkPayment);
+       final RadioGroup rdGrp=(RadioGroup)dialog.findViewById(R.id.rdGrp);
 
         btnCancelPayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +75,8 @@ public class AllDialog {
         btnOkPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int selectedId=rdGrp.getCheckedRadioButtonId();
+                RadioButton radioButton =(RadioButton)dialog.findViewById(selectedId);
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);

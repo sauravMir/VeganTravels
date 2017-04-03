@@ -12,35 +12,44 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_margin="@dimen/ten"
             android:layout_weight=".10"
-            android:background="@drawable/cell_bg"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:background="@drawable/top_cell">
 
             <TextView
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight=".70"
-                android:gravity="left|center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="Cruise List"
-                android:textSize="@dimen/fifteen" />
+                android:text="@string/cruise_list"
+                android:textColor="@color/white"
+                android:textSize="@dimen/thirty" />
 
             <ImageButton
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight=".30"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
                 android:background="@color/transparent"
                 android:padding="@dimen/ten"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_search"
-                android:layout_gravity="center"/>
-
-        </LinearLayout>
+                android:src="@android:drawable/ic_menu_search"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/ibtnBack"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:padding="@dimen/ten"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_back" />
+        </RelativeLayout>
 
 
         <ListView

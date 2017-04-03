@@ -3,22 +3,19 @@ package com.vegantravels.activities;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
 import com.vegantravels.model.Cruises;
-import com.vegantravels.model.Guest;
-import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +31,7 @@ public class MainActivity extends BaseActivity {
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
+    private ImageButton ibtnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +39,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
+        ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
 
@@ -88,16 +87,16 @@ public class MainActivity extends BaseActivity {
 
     private void fillDummmyData() {
 
-        final Cruises cruises = new Cruises(String.valueOf(1), "cruise 1", "ship 1", "2-2-2017", "12.00pm");
-        Cruises cruises1 = new Cruises(String.valueOf(2), "cruise 2", "ship 2", "2-2-2017", "12.00pm");
-        Cruises cruises2 = new Cruises(String.valueOf(3), "cruise 3", "ship 3", "2-2-2017", "12.00pm");
-        Cruises cruises3 = new Cruises(String.valueOf(4), "cruise 4", "ship 4", "2-2-2017", "12.00pm");
-        Cruises cruises4 = new Cruises(String.valueOf(5), "cruise 5", "ship 5", "2-2-2017", "12.00pm");
-        Cruises cruises5 = new Cruises(String.valueOf(6), "cruise 6", "ship 6", "2-2-2017", "12.00pm");
-        Cruises cruises6 = new Cruises(String.valueOf(7), "cruise 7", "ship 7", "2-2-2017", "12.00pm");
-        Cruises cruises7 = new Cruises(String.valueOf(8), "cruise 8", "ship 8", "2-2-2017", "12.00pm");
-        Cruises cruises8 = new Cruises(String.valueOf(9), "cruise 9", "ship 9", "2-2-2017", "12.00pm");
-        Cruises cruises9 = new Cruises(String.valueOf(10), "cruise 10", "ship 10", "2-2-2017", "12.00pm");
+        final Cruises cruises = new Cruises(String.valueOf(1), "Cruise 1", "Ship 1", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises1 = new Cruises(String.valueOf(2), "Cruise 2", "Ship 2", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises2 = new Cruises(String.valueOf(3), "Cruise 3", "Ship 3", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises3 = new Cruises(String.valueOf(4), "Cruise 4", "Ship 4", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises4 = new Cruises(String.valueOf(5), "Cruise 5", "Ship 5", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises5 = new Cruises(String.valueOf(6), "Cruise 6", "Ship 6", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises6 = new Cruises(String.valueOf(7), "Cruise 7", "Ship 7", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises7 = new Cruises(String.valueOf(8), "Cruise 8", "Ship 8", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises8 = new Cruises(String.valueOf(9), "Cruise 9", "Ship 9", "Form: 2-2-2017", "To: 10-2-2017");
+        Cruises cruises9 = new Cruises(String.valueOf(10), "Cruise 10", "Ship 10", "Form: 2-2-2017", "To: 10-2-2017");
 
         cruisesList = new ArrayList<>();
         cruisesList.add(cruises);
@@ -124,8 +123,15 @@ public class MainActivity extends BaseActivity {
                 finishActivity();
             }
         });
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishActivity();
+            }
+        });
     }
-    public void finishActivity(){
+
+    public void finishActivity() {
         finish();
     }
 }
