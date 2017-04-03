@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 /**
  * Created by RAFI on 9/29/2016.
@@ -29,10 +31,10 @@ public class BaseActivity extends Activity {
     }
 
     // for centrally handled String type by Rokan
-   /* @Override
+    @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }*/
+    }
 
     @Override
     protected void onResume() {
