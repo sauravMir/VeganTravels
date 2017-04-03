@@ -58,7 +58,7 @@ public class GuestListActivity extends BaseActivity {
         lvGuest.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(activity, AddExcursionActivity.class));
+                startActivity(new Intent(activity, ViewExcursionActivity.class));
                 finish();
             }
         });

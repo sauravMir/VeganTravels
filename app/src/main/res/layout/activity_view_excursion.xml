@@ -13,74 +13,99 @@
         android:layout_centerInParent="true"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum=".9">
 
-        <TextView
+        <Button
             android:id="@+id/btnAddExcursion"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".2"
+            android:layout_weight=".1"
+            android:background="@drawable/top_cell"
             android:gravity="center"
-            android:text="New participent"
-            android:textSize="@dimen/twenty"
-            android:textColor="@color/black" />
+            android:text="Add Excursion"
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".05" />
 
-        <EditText
+        <TextView
+            android:id="@+id/tvGuestDetail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:gravity="left"
-            android:hint="Cabin no"
+            android:text="Guest Details"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
 
-        <EditText
+        <TextView
+            android:id="@+id/tvGuestName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:gravity="left"
-            android:hint="Last name"
+            android:text="Millen, Mike"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
 
-        <EditText
+        <TextView
+            android:id="@+id/tvCabinNo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:gravity="left"
-            android:hint="First name"
+            android:text="Cabin 888"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".2" />
+            android:layout_weight=".05" />
+
+        <Spinner
+            android:id="@+id/spnExcursion"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <Spinner
+            android:id="@+id/spnGuestNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
 
         <Button
-            android:id="@+id/btnDone"
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
             android:background="@drawable/bottom_cell"
             android:gravity="center"
-            android:text="Done"
+            android:text="Confirm"
             android:textColor="@color/white" />
 
     </LinearLayout>
