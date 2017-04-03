@@ -77,6 +77,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             case R.id.btnAddExcursion:
                 Intent intent = new Intent(activity, AddExcussionActivity.class);
                 startActivity(intent);
+                finishTheActivity();
+                
                 break;
             case R.id.btnConfirm:
                 allDialog.confirmDialog("Are you sure? You want to confirm");
