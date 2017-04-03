@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import com.vegantravels.R;
 
-public class AddExcursionActivity extends BaseActivity {
+public class AddParticipantActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_excursion);
+        setContentView(R.layout.activity_add_participant);
     }
 }
