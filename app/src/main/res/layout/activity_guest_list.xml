@@ -24,16 +24,18 @@
                 android:layout_weight=".70"
                 android:gravity="left|center"
                 android:padding="@dimen/ten"
-                android:text="Cruise List" />
+                android:text="Cruise List"
+                android:textSize="@dimen/fifteen" />
 
             <ImageButton
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight=".30"
                 android:background="@color/transparent"
-                android:padding="@dimen/five"
+                android:padding="@dimen/ten"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_search" />
+                android:src="@drawable/ic_search"
+                android:layout_gravity="center"/>
         </LinearLayout>
 
         <ListView
