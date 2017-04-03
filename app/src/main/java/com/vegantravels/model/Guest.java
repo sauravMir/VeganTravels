@@ -8,11 +8,20 @@ public class Guest {
     private int guestID;
     private String guestName;
     private String numberOfGuest;
+    private String excursion;
+    private String cabinNo;
+    private String paymentStatus;
 
-    public Guest(int guestID, String guestName, String numberOfGuest) {
+    public Guest(int guestID, String guestName, String numberOfGuest, String excursion, String cabinNo, String paymentStatus) {
         this.guestID = guestID;
         this.guestName = guestName;
         this.numberOfGuest = numberOfGuest;
+        this.excursion = excursion;
+        this.cabinNo = cabinNo;
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Guest() {
     }
 
     public int getGuestID() {
@@ -37,5 +46,29 @@ public class Guest {
 
     public void setNumberOfGuest(String numberOfGuest) {
         this.numberOfGuest = numberOfGuest;
+    }
+
+    public String getExcursion() {
+        return excursion;
+    }
+
+    public void setExcursion(String excursion) {
+        this.excursion = excursion;
+    }
+
+    public String getCabinNo() {
+        return cabinNo;
+    }
+
+    public void setCabinNo(String cabinNo) {
+        this.cabinNo = cabinNo;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }
