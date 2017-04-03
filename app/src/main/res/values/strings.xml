@@ -15,6 +15,7 @@
     <string name="pleaseWait">Please Wait...</string>
     <string name="guest_list">Guest List</string>
     <string name="cruise_list">Cruise List</string>
+    <string name="shore_excursion_management">"Shore Excursion\nManagement"</string>
 
 
     <array name="excursions">
