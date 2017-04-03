@@ -34,7 +34,7 @@
     <color name="transActivityColor">#E64A4D54</color>
     <color name="transActivityOffColor">#80000000</color>
     <color name="transparent_blue">#330000FF</color>
-    <color name="iPhone_transpar">#D9F9F9F9</color>
+    <color name="iPhone_transpar">#8CF9F9F9</color>
     <color name="background_content">#ff454344</color>
     <color name="custom_progress_background">#ff3c3a3b</color>
     <color name="custom_progress_red_header">#ffcc0000</color>
