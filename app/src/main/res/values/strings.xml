@@ -12,6 +12,7 @@
     <string name="guest4">4</string>
     <string name="ex0">Select Excursion</string>
     <string name="guest0">Select Guest</string>
+    <string name="pleaseWait">Please Wait...</string>
 
 
     <array name="excursions">
