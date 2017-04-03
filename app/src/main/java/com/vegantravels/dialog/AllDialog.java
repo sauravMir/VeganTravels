@@ -46,12 +46,40 @@ public class AllDialog {
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
+
+
     }
 
     /// payment dialog
     public void paymentDialog() {
 
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.payment_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                paymentDialog();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+
+
+
     }
+
 
 
 }
