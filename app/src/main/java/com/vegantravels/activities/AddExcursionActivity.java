@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.vegantravels.R;
 
-public class AddExcursionActivity extends Activity {
+public class AddExcursionActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

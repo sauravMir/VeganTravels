@@ -14,25 +14,7 @@
         android:layout_marginTop="@dimen/twenty"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
-        android:weightSum="1">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".45" />
-
-        <TextView
-            android:id="@+id/tvLogintxt"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".1"
-            android:gravity="center"
-            android:text="login"
-            android:textAlignment="center"
-            android:textColor="@color/blueDeep"
-            android:textSize="@dimen/twenty"
-            android:textStyle="bold" />
-
+        android:weightSum="1.1">
 
         <View
             android:layout_width="match_parent"
@@ -40,92 +22,104 @@
             android:layout_weight=".05" />
 
 
-        <EditText
-            android:id="@+id/etUserName"
+        <Button
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_marginLeft="@dimen/five"
-            android:layout_weight=".15"
-            android:backgroundTint="@color/blueDeep"
-            android:gravity="left"
-            android:hint="user_email"
-            android:inputType="textEmailAddress"
-            android:textAlignment="gravity"
-            android:textColor="@color/blueDeep"
-            android:textColorHint="@color/blueDeep"
-            android:textSize="@dimen/twenty" />
-
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_marginLeft="@dimen/five"
-            android:layout_weight=".15"
-            android:backgroundTint="@color/blueDeep"
-            android:gravity="left"
-            android:hint="password"
-            android:inputType="textPassword"
-            android:textAlignment="gravity"
-            android:textColor="@color/blueDeep"
-            android:textColorHint="@color/blueDeep"
-            android:textSize="@dimen/twenty" />
+            android:layout_weight=".1"
+            android:background="@color/blueDeep"
+            android:gravity="center"
+            android:text="Add Excursion"
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:text="Guest Details"
+            android:textAlignment="gravity"
+            android:textColor="@color/blueDeep"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:text="Millen, Mike"
+            android:textAlignment="gravity"
+            android:textColor="@color/blueDeep"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:text="Cabin 888"
+            android:textAlignment="gravity"
+            android:textColor="@color/blueDeep"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
             android:layout_weight=".1" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:background="@color/blueDeep"
+            android:gravity="center"
+            android:text="Confirm"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
     </LinearLayout>
-
-
-    <ImageButton
-        android:id="@+id/ibtnLogin"
-        android:layout_width="@dimen/fifty"
-        android:layout_height="@dimen/fifty"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/three_hundred_fifty"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_checked" />
-
-
-    <TextView
-        android:id="@+id/tvForgotTxt"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/fifty"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/seventy"
-        android:gravity="center"
-        android:text="forgot_password"
-        android:textColor="@color/white"
-        android:textSize="@dimen/twenty" />
-
-
-    <TextView
-        android:id="@+id/tvRegister"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/fifty"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/fifteen"
-        android:background="@color/blueDeep"
-        android:gravity="center"
-        android:text="sign_up"
-        android:textColor="@color/white"
-        android:textSize="@dimen/twenty"
-        android:textStyle="bold" />
-
-    <ImageButton
-        android:id="@+id/ibtnPropic"
-        android:layout_width="@dimen/hundred"
-        android:layout_height="@dimen/hundred"
-        android:layout_alignTop="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:layout_weight=".3"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_checked" />
 
 
 </RelativeLayout>

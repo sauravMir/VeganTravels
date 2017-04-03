@@ -10,7 +10,7 @@ import com.vegantravels.model.Cruises;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private ListView lvCruises;
     private CruisesAdapter cruisesAdapter;
