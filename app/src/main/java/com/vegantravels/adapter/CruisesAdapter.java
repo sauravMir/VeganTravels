@@ -58,12 +58,18 @@ public class CruisesAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.cruise_cell, null);
             holder.tvCruiseName = (TextView) convertView.findViewById(R.id.tvCruiseName);
+            holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
+            holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
+            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             convertView.setTag(holder);
 
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
+        holder.tvCruiseName.setText(cruisesList.get(i).getCruiseName());
+        holder.tvShipName.setText(cruisesList.get(i).getShipName());
+        holder.tvDate.setText(cruisesList.get(i).getDate());
+        holder.tvTime.setText(cruisesList.get(i).getTime());
 
         return convertView;
     }

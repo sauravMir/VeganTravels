@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="@dimen/three_hundred_fifty"
+    android:layout_height="@dimen/three_hundred_fifty"
+    android:background="@drawable/dialog_bg"
+    android:layout_margin="@dimen/thirty">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2">
-        <TextView
-            android:id="@+id/tvCruiseName"
-            android:layout_width="@dimen/zero"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvCruiseName"
+        android:layout_width="@dimen/hundred"
+        android:layout_height="@dimen/seventy"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="@dimen/hundred"
+        android:layout_height="@dimen/seventy"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/tvShipName"
+        android:layout_width="@dimen/hundred"
+        android:layout_height="@dimen/seventy"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="@dimen/hundred"
+        android:layout_height="@dimen/seventy"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
 </RelativeLayout>
