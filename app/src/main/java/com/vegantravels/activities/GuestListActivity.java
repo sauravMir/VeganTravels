@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
 import com.vegantravels.dialog.AllDialog;
+import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.model.Guest;
 import com.vegantravels.retroapi.APIInterface;
 
@@ -63,7 +64,7 @@ public class GuestListActivity extends BaseActivity {
 
     }
 
-    
+
     private void fillDummyData() {
         Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
         Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
@@ -136,7 +137,8 @@ public class GuestListActivity extends BaseActivity {
     public void showProgressDialog() {
         progressDialog = new ProgressDialog(activity);
         progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
-        progressDialog.show();
+        DialogNavBarHide.navBarHide(activity, progressDialog);
+
     }
 
     public void hideProgressDialog() {

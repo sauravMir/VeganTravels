@@ -118,8 +118,7 @@ public class AllDialog {
             }
         });
 
-        dialog.show();
-
+        DialogNavBarHide.navBarHide(activity, dialog);
     }
 
 
