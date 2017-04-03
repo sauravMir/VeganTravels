@@ -2,9 +2,12 @@ package com.vegantravels.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 
 import com.vegantravels.R;
@@ -18,11 +21,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class AddExcussionActivity extends Activity {
+public class AddExcussionActivity extends BaseActivity {
     AddExcussionActivity activity;
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
+    Button btnDone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,16 @@ public class AddExcussionActivity extends Activity {
         setContentView(R.layout.activity_add_excussion);
 
         activity = this;
+        btnDone = (Button) findViewById(R.id.btnDone);
+        btnDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ViewExcursionActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         //        APIClient.getClient().create(APIInterface.class);
     }
 

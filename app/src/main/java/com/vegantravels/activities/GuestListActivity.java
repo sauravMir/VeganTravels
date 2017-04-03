@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
+import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
 import com.vegantravels.retroapi.APIClient;
@@ -28,22 +30,33 @@ public class GuestListActivity extends BaseActivity {
     private GuestAdapter guestAdapter;
     GuestListActivity activity;
     private ArrayList<Guest> guestList;
+    private AllDialog allDialog;
 
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
     String cruiseId;
+    ImageButton ibtnSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_list);
         activity = this;
+        allDialog = new AllDialog(activity);
         lvGuest = (ListView) findViewById(R.id.lvGuest);
+        ibtnSearch = (ImageButton) findViewById(R.id.ibtnSearch);
         cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
+
+        ibtnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allDialog.dialogForSearch();
+            }
+        });
 
     }
 
