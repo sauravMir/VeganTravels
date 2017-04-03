@@ -11,141 +11,56 @@
         android:weightSum="1">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".8"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_weight=".1"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
                 android:text="Payment"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fifteen" />
+                android:textSize="@dimen/twenty" />
+
 
             <RadioGroup
-                android:id="@+id/rdGrp"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero"
-                android:layout_weight=".9"
-                android:weightSum=".8">
+                android:id="@+id/myRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/zero"
-                    android:layout_marginLeft="@dimen/twenty"
-                    android:layout_weight=".2"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                <RadioButton
+                    android:id="@+id/sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paid already" />
 
-                    <RadioButton
-                        android:id="@+id/rdPaid"
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:checked="false" />
+                <RadioButton
+                    android:id="@+id/vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash on Board" />
 
-                    <TextView
+                <RadioButton
+                    android:id="@+id/silent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Credit card" />
 
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:gravity="left|center"
-                        android:text="Paid already"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/twenty" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/zero"
-                    android:layout_marginLeft="@dimen/twenty"
-                    android:layout_weight=".2"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <RadioButton
-                        android:id="@+id/rdCashBord"
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:checked="false" />
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:gravity="left|center"
-                        android:text="Cash on board"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/twenty" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/zero"
-                    android:layout_marginLeft="@dimen/twenty"
-                    android:layout_weight=".2"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <RadioButton
-                        android:id="@+id/rdCaditCard"
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:checked="false" />
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:gravity="left|center"
-                        android:text="Credit card"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/twenty" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/zero"
-                    android:layout_marginLeft="@dimen/twenty"
-                    android:layout_weight=".2"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <RadioButton
-                        android:id="@+id/rdComplementary"
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".2"
-                        android:checked="false" />
-
-                    <TextView
-                        android:layout_width="@dimen/zero"
-                        android:layout_height="match_parent"
-                        android:layout_weight=".8"
-                        android:gravity="left|center"
-                        android:text="Complementary"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/twenty" />
-
-
-                </LinearLayout>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Complementary" />
 
             </RadioGroup>
 
-        </LinearLayout>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
