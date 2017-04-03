@@ -3,6 +3,7 @@ package com.vegantravels.retroapi;
 
 import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
+import com.vegantravels.model.GuestDetails;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public interface APIInterface {
 
     @GET("/api/getGuestList?")
     Call<List<Guest>> getGuestList(@Query("cruizeId") String cruizeId);
+
+    @GET("/api/getGuestDetails?")
+    Call<GuestDetails> getGuestDetails(@Query("guestId") String guestId);
 
  /*   @FormUrlEncoded
     @POST("/api/users?")

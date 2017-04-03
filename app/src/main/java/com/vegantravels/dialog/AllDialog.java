@@ -43,10 +43,10 @@ public class AllDialog {
             @Override
             public void onClick(View v) {
                 paymentDialog();
+                dialog.dismiss();
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
-
 
     }
 
@@ -76,9 +76,7 @@ public class AllDialog {
         DialogNavBarHide.navBarHide(activity, dialog);
 
 
-
     }
-
 
 
 }

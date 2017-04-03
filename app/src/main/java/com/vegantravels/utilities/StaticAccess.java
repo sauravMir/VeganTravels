@@ -27,4 +27,17 @@ public class StaticAccess {
  public static final String KEY_CABIN_NO = "cabinNo";
  public static final String KEY_PAYMENT_STATUS = "paymentStatus";
 
+    //Guest detail Key
+//    public static final String KEY_CRUISES_ID = "cruiseId";
+
+
+    //excursion  Key
+ public static final String KEY_EXCURSION_ID = "id";
+ public static final String KEY_EXCURSION_NAME = "excursionName";
+
+    //Number0fGuest  Key
+ public static final String KEY_GUEST_NUMBER_ID = "id";
+ public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
+
+
 }

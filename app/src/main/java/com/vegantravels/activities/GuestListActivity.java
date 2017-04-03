@@ -33,6 +33,7 @@ public class GuestListActivity extends BaseActivity {
     String cruiseId;
     private ImageButton ibtnBack;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class GuestListActivity extends BaseActivity {
         lvGuest = (ListView) findViewById(R.id.lvGuest);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
 //        cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
+
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
