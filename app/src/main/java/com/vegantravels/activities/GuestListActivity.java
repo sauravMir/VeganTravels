@@ -1,12 +1,10 @@
 package com.vegantravels.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
-import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
 
 import java.util.ArrayList;
@@ -25,8 +23,27 @@ public class GuestListActivity extends BaseActivity {
         setContentView(R.layout.activity_guest_list);
         activity = this;
         lvGuest = (ListView) findViewById(R.id.lvGuest);
+        fillDummyData();
+
+    }
+
+    private void fillDummyData() {
+        Guest guest = new Guest(1, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest1 = new Guest(2, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest2 = new Guest(3, "Sam", "3", "AXZ", "108", "Due");
+        Guest guest3 = new Guest(4, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest4 = new Guest(5, "Jhon", "3", "AXZ", "108", "Paid");
+        Guest guest5 = new Guest(6, "Milan", "3", "AXZ", "108", "Paid");
+
         guestList = new ArrayList<>();
+        guestList.add(guest);
+        guestList.add(guest1);
+        guestList.add(guest2);
+        guestList.add(guest3);
+        guestList.add(guest4);
+        guestList.add(guest5);
         guestAdapter = new GuestAdapter(activity, guestList);
         lvGuest.setAdapter(guestAdapter);
+        
     }
 }
