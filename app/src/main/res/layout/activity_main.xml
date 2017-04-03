@@ -15,11 +15,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".10">
+            android:layout_weight=".10"
+            android:background="@drawable/dialog_bg"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_margin="@dimen/ten">
 
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".70"
+                android:text="Cruise List"
+                android:gravity="left|center"
+                android:padding="@dimen/ten"/>
+
+            <ImageButton
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".30"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_menu_search" />
         </LinearLayout>
 
-        
+
         <ListView
             android:id="@+id/lvCruises"
             android:layout_width="match_parent"
