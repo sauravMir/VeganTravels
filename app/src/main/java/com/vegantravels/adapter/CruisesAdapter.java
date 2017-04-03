@@ -68,8 +68,8 @@ public class CruisesAdapter extends BaseAdapter {
         }
         holder.tvCruiseName.setText(cruisesList.get(i).getCruiseName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
-        holder.tvDate.setText(cruisesList.get(i).getDate());
-        holder.tvTime.setText(cruisesList.get(i).getTime());
+        holder.tvDate.setText(cruisesList.get(i).getDateFrom());
+        holder.tvTime.setText(cruisesList.get(i).getDateTo());
 
         return convertView;
     }
