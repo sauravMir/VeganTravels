@@ -31,16 +31,16 @@ public class GuestListActivity extends BaseActivity {
     }
 
     private void fillDummyData() {
-        Guest guest = new Guest(1, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest1 = new Guest(2, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest2 = new Guest(3, "Sam", "3", "AXZ", "108", "Due");
-        Guest guest3 = new Guest(4, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest4 = new Guest(5, "Jhon", "3", "AXZ", "108", "Paid");
-        Guest guest5 = new Guest(6, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest6 = new Guest(7, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest7 = new Guest(8, "Milan", "3", "AXZ", "108", "Due");
-        Guest guest8 = new Guest(9, "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest9 = new Guest(10, "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest2 = new Guest(String.valueOf(3), String.valueOf(1), "Sam", "3", "AXZ", "108", "Due");
+        Guest guest3 = new Guest(String.valueOf(4), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest4 = new Guest(String.valueOf(5), String.valueOf(1), "Jhon", "3", "AXZ", "108", "Paid");
+        Guest guest5 = new Guest(String.valueOf(6), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest6 = new Guest(String.valueOf(7), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest7 = new Guest(String.valueOf(8), String.valueOf(1), "Milan", "3", "AXZ", "108", "Due");
+        Guest guest8 = new Guest(String.valueOf(9), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest9 = new Guest(String.valueOf(10), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
 
         guestList = new ArrayList<>();
         guestList.add(guest);
@@ -64,4 +64,5 @@ public class GuestListActivity extends BaseActivity {
         });
 
     }
+    
 }
