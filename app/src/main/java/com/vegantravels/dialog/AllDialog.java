@@ -20,6 +20,7 @@ public class AllDialog {
         this.activity = activity;
     }
 
+    ///confirm dialog
     public void confirmDialog(String title) {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
@@ -41,10 +42,16 @@ public class AllDialog {
         btnOkPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                paymentDialog();
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
     }
+
+    /// payment dialog
+    public void paymentDialog() {
+
+    }
+
 
 }
