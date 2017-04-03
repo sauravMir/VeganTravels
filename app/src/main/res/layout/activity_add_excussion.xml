@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_bg">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="@dimen/three_hundred_twenty"
+        android:layout_height="@dimen/four_hundred_fifty"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_bg"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="New Excursion"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="Excursion title"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="From Date"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="To date"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="Time"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="Price"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".1"
+            android:gravity="left"
+            android:hint="Guest limit"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1" />
+
+        <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:background="@drawable/bottom_cell"
+            android:gravity="center"
+            android:text="Done"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
