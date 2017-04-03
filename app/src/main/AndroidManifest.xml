@@ -21,7 +21,7 @@
         <activity android:name=".activities.GuestListActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.AddParticipantActivity" />
-        <activity android:name=".activities.AddExcussionActivity"/>
+        <activity android:name=".activities.AddExcussionActivity" />
     </application>
 
 </manifest>
