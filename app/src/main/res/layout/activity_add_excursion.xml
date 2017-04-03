@@ -4,7 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mlogin">
+    android:background="@drawable/list_bg">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -87,8 +87,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".1"
-            />
+            android:layout_weight=".1" />
 
         <View
             android:layout_width="match_parent"
