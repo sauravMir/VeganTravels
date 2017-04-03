@@ -1,5 +1,6 @@
 package com.vegantravels.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +9,18 @@ import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
+import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
+import com.vegantravels.retroapi.APIClient;
+import com.vegantravels.retroapi.APIInterface;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GuestListActivity extends BaseActivity {
 
@@ -19,13 +29,19 @@ public class GuestListActivity extends BaseActivity {
     GuestListActivity activity;
     private ArrayList<Guest> guestList;
 
-
+    // retro Call back Interface
+    APIInterface apiInterface;
+    ProgressDialog progressDialog;
+String cruiseId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_list);
         activity = this;
         lvGuest = (ListView) findViewById(R.id.lvGuest);
+        cruiseId=getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
+        //Connection Https or http Instances
+//        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
 
     }
@@ -59,10 +75,46 @@ public class GuestListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(activity, ViewExcursionActivity.class));
-                finish();
+                finishActivity();
             }
         });
 
     }
-    
+
+    void parsingGuestList() {
+        showProgressDialog();
+
+        Call<List<Guest>> call = apiInterface.getGuestList(cruiseId);
+        call.enqueue(new Callback<List<Guest>>() {
+            @Override
+            public void onResponse(Call<List<Guest>> call, Response<List<Guest>> response) {
+                hideProgressDialog();
+                for (Guest mGuest : response.body()) {
+                    System.out.println(mGuest.toString());
+//                    Guest cruises1 = new Cruises();
+                    guestList.add(mGuest);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Guest>> call, Throwable t) {
+                hideProgressDialog();
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+    public void finishActivity(){
+        finish();
+    }
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.hide();
+    }
 }

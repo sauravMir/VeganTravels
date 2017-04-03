@@ -11,8 +11,10 @@ import android.widget.ListView;
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
 import com.vegantravels.model.Cruises;
+import com.vegantravels.model.Guest;
 import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,8 @@ public class MainActivity extends BaseActivity {
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         //Connection Https or http Instances
-        APIClient.getClient().create(APIInterface.class);
+//        APIClient.getClient().create(APIInterface.class);
+
         fillDummmyData();
 
     }
@@ -85,7 +88,7 @@ public class MainActivity extends BaseActivity {
 
     private void fillDummmyData() {
 
-        Cruises cruises = new Cruises(String.valueOf(1), "cruise 1", "ship 1", "2-2-2017", "12.00pm");
+        final Cruises cruises = new Cruises(String.valueOf(1), "cruise 1", "ship 1", "2-2-2017", "12.00pm");
         Cruises cruises1 = new Cruises(String.valueOf(2), "cruise 2", "ship 2", "2-2-2017", "12.00pm");
         Cruises cruises2 = new Cruises(String.valueOf(3), "cruise 3", "ship 3", "2-2-2017", "12.00pm");
         Cruises cruises3 = new Cruises(String.valueOf(4), "cruise 4", "ship 4", "2-2-2017", "12.00pm");
@@ -112,9 +115,17 @@ public class MainActivity extends BaseActivity {
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(MainActivity.this, GuestListActivity.class));
-                finish();
+            /*    startActivity(new Intent(MainActivity.this, GuestListActivity.class));
+                finish();*/
+                Intent intentGuest = new Intent(activity, GuestListActivity.class);
+                intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruises.getCruiseID());
+                startActivity(intentGuest);
+                finishActivity();
             }
         });
+    }
+    public void finishActivity(){
+        finish();
     }
 }
