@@ -1,7 +1,9 @@
 package com.vegantravels.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.vegantravels.R;
@@ -49,7 +51,15 @@ public class MainActivity extends BaseActivity {
         cruisesList.add(cruises7);
         cruisesList.add(cruises8);
         cruisesList.add(cruises9);
-        cruisesAdapter=new CruisesAdapter(this,cruisesList);
+        cruisesAdapter = new CruisesAdapter(this, cruisesList);
         lvCruises.setAdapter(cruisesAdapter);
+        lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(MainActivity.this, GuestListActivity.class));
+                finish();
+                
+            }
+        });
     }
 }
