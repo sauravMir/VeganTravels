@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">VeganTravels</string>
+    <string name="ex1">Excursion 1</string>
+    <string name="ex2">Excursion 2</string>
+    <string name="ex3">Excursion 3</string>
+    <string name="ex4">Excursion 4</string>
+    <string name="ex5">Excursion 5</string>
+    <string name="ex6">Excursion 6</string>
+    <string name="guest1">1</string>
+    <string name="guest2">2</string>
+    <string name="guest3">3</string>
+    <string name="guest4">4</string>
+    <string name="guest5">5</string>
+    <string name="guest6">6</string>
+    <string name="ex0">Select Excursion</string>
+    <string name="guest0">Select Guest</string>
+
+
+    <array name="excursions">
+        <item>@string/ex0</item>
+        <item>@string/ex1</item>
+        <item>@string/ex2</item>
+        <item>@string/ex3</item>
+        <item>@string/ex4</item>
+        <item>@string/ex5</item>
+        <item>@string/ex6</item>
+
+    </array>
+    <array name="noOfGuest">
+        <item>@string/guest0</item>
+        <item>@string/guest1</item>
+        <item>@string/guest2</item>
+        <item>@string/guest3</item>
+        <item>@string/guest4</item>
+        <item>@string/guest5</item>
+        <item>@string/guest6</item>
+
+    </array>
 </resources>
