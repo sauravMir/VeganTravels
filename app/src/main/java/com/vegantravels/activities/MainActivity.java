@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(MainActivity.this, GuestListActivity.class));
                 finish();
-                
+
             }
         });
     }
