@@ -17,7 +17,7 @@
             android:layout_height="@dimen/zero"
             android:layout_margin="@dimen/ten"
             android:layout_weight=".10"
-            android:background="@drawable/dialog_bg"
+            android:background="@drawable/cell_bg"
             android:orientation="horizontal"
             android:weightSum="1">
 

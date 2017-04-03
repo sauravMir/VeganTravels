@@ -13,8 +13,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".10">
+            android:layout_margin="@dimen/ten"
+            android:layout_weight=".10"
+            android:background="@drawable/cell_bg"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".70"
+                android:gravity="left|center"
+                android:padding="@dimen/ten"
+                android:text="Cruise List" />
+
+            <ImageButton
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".30"
+                android:background="@color/transparent"
+                android:padding="@dimen/five"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_search" />
         </LinearLayout>
 
         <ListView
