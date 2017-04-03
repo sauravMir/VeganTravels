@@ -48,7 +48,6 @@ public class AllDialog {
         });
         DialogNavBarHide.navBarHide(activity, dialog);
 
-
     }
 
     /// payment dialog
