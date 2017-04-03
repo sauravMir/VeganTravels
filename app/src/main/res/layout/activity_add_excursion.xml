@@ -23,10 +23,11 @@
 
 
         <Button
+            android:id="@+id/btnAddExcursion"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
-            android:background="@color/blueDeep"
+            android:background="@color/app_color"
             android:gravity="center"
             android:text="Add Excursion"
             android:textColor="@color/white" />
@@ -37,6 +38,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvGuestDetail"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
@@ -53,6 +55,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvGuestName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
@@ -69,6 +72,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvCabinNo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
@@ -85,6 +89,7 @@
             android:layout_weight=".05" />
 
         <Spinner
+            android:id="@+id/spnExcursion"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1" />
@@ -95,6 +100,7 @@
             android:layout_weight=".05" />
 
         <Spinner
+            android:id="@+id/spnGuestNumber"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1" />
@@ -105,10 +111,11 @@
             android:layout_weight=".05" />
 
         <Button
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
-            android:background="@color/blueDeep"
+            android:background="@color/app_color"
             android:gravity="center"
             android:text="Confirm"
             android:textColor="@color/white" />
