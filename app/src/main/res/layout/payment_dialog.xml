@@ -43,10 +43,11 @@
                     android:weightSum="1">
 
                     <RadioButton
+                        android:id="@+id/rdPaid"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight=".2"
-                        android:checked="false"/>
+                        android:checked="false" />
 
                     <TextView
 
@@ -70,10 +71,11 @@
                     android:weightSum="1">
 
                     <RadioButton
+                        android:id="@+id/rdCashBord"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight=".2"
-                        android:checked="false"/>
+                        android:checked="false" />
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -96,10 +98,11 @@
                     android:weightSum="1">
 
                     <RadioButton
+                        android:id="@+id/rdCaditCard"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight=".2"
-                        android:checked="false"/>
+                        android:checked="false" />
 
                     <TextView
                         android:layout_width="@dimen/zero"
@@ -122,10 +125,11 @@
                     android:weightSum="1">
 
                     <RadioButton
+                        android:id="@+id/rdComplementary"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight=".2"
-                        android:checked="false"/>
+                        android:checked="false" />
 
                     <TextView
                         android:layout_width="@dimen/zero"
