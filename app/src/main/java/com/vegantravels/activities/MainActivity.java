@@ -17,11 +17,13 @@ public class MainActivity extends BaseActivity {
     private ListView lvCruises;
     private CruisesAdapter cruisesAdapter;
     private ArrayList<Cruises> cruisesList;
+    MainActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         fillDummmyData();
 

@@ -45,23 +45,40 @@ public class GuestAdapter extends BaseAdapter {
 
     static class ViewHolder {
 
+        TextView tvGstName;
+        TextView tvCabinNo;
+        TextView tvGstNumber;
+        TextView tvExcursion;
+        TextView tvPaymentStatus;
+
     }
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
-        CruisesAdapter.ViewHolder holder = null;
+        GuestAdapter.ViewHolder holder = null;
         if (convertView == null) {
-            holder = new CruisesAdapter.ViewHolder();
+            holder = new GuestAdapter.ViewHolder();
             convertView = layoutInflater.inflate(R.layout.guest_cell, null);
-            holder.tvCruiseName = (TextView) convertView.findViewById(R.id.tvCruiseName);
-            holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
-            holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
-            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
+
+            holder.tvGstName = (TextView) convertView.findViewById(R.id.tvGstName);
+            holder.tvCabinNo = (TextView) convertView.findViewById(R.id.tvCabinNo);
+            holder.tvGstNumber = (TextView) convertView.findViewById(R.id.tvGstNumber);
+            holder.tvExcursion = (TextView) convertView.findViewById(R.id.tvExcursion);
+            holder.tvPaymentStatus = (TextView) convertView.findViewById(R.id.tvPaymentStatus);
+
+
             convertView.setTag(holder);
 
         } else {
-            holder = (CruisesAdapter.ViewHolder) convertView.getTag();
+            holder = (GuestAdapter.ViewHolder) convertView.getTag();
         }
+
+        holder.tvGstName.setText(guestList.get(i).getGuestName());
+        holder.tvCabinNo.setText(guestList.get(i).getCabinNo());
+        holder.tvGstNumber.setText(guestList.get(i).getNumberOfGuest());
+        holder.tvExcursion.setText(guestList.get(i).getExcursion());
+        holder.tvPaymentStatus.setText(guestList.get(i).getPaymentStatus());
+
         return convertView;
     }
 }
