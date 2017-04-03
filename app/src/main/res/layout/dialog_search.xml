@@ -36,7 +36,7 @@
                     android:layout_height="@dimen/zero"
                     android:layout_weight="0.3"
                     android:gravity="left"
-                    android:hint="cabin_name"
+                    android:hint="@string/cabin_name"
                     android:padding="@dimen/five"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/twenty" />
@@ -47,7 +47,7 @@
                     android:layout_height="@dimen/zero"
                     android:layout_weight="0.3"
                     android:gravity="left"
-                    android:hint="cabin_number"
+                    android:hint="@string/cabin_number"
                     android:inputType="number"
                     android:padding="@dimen/five"
                     android:textColor="@android:color/black"
