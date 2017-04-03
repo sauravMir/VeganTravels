@@ -10,11 +10,9 @@ import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
-
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.model.Guest;
 import com.vegantravels.retroapi.APIInterface;
-import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +48,8 @@ public class GuestListActivity extends BaseActivity {
         lvGuest = (ListView) findViewById(R.id.lvGuest);
 
         ibtnSearch = (ImageButton) findViewById(R.id.ibtnSearch);
-        cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
-
-        ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
 //        cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
-
-
+        ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
@@ -69,6 +63,7 @@ public class GuestListActivity extends BaseActivity {
 
     }
 
+    
     private void fillDummyData() {
         Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
         Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
