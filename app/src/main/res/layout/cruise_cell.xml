@@ -21,20 +21,27 @@
             android:orientation="vertical"
             android:weightSum="1">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero"
+                android:layout_weight=".2" />
+
             <TextView
                 android:id="@+id/tvCruiseName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".3"
+                android:layout_weight=".2"
                 android:gravity="left|center"
                 android:text="Name"
-                android:textSize="@dimen/eighteen" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvShipName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".3"
+                android:layout_weight=".2"
                 android:gravity="left|center"
                 android:text="ship name"
                 android:textSize="@dimen/fifteen" />
@@ -55,23 +62,40 @@
             android:orientation="vertical"
             android:weightSum="1">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero"
+                android:layout_weight=".2" />
+
             <TextView
                 android:id="@+id/tvDate"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
+                android:layout_weight=".2"
                 android:gravity="right|center"
                 android:text="date"
-                android:textSize="@dimen/eighteen" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero"
+                android:layout_weight=".2" />
 
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
+                android:layout_weight=".2"
                 android:gravity="right|center"
                 android:text="time"
                 android:textSize="@dimen/fifteen" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero"
+                android:layout_weight=".2" />
 
 
         </LinearLayout>
