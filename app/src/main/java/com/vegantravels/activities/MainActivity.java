@@ -2,6 +2,7 @@ package com.vegantravels.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -9,8 +10,17 @@ import android.widget.ListView;
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
 import com.vegantravels.model.Cruises;
+import com.vegantravels.retroapi.APIClient;
+import com.vegantravels.retroapi.APIInterface;
 
 import java.util.ArrayList;
+import java.util.List;
+
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class MainActivity extends BaseActivity {
 
@@ -18,17 +28,50 @@ public class MainActivity extends BaseActivity {
     private CruisesAdapter cruisesAdapter;
     private ArrayList<Cruises> cruisesList;
     MainActivity activity;
-
+    // retro Call back Interface
+    APIInterface apiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
+        //Connection Https or http Instances
+        APIClient.getClient().create(APIInterface.class);
         fillDummmyData();
 
     }
+void parsingCruisesList(){
+    Call<Cruises> call = apiInterface.getCruizeList();
+    call.enqueue(new Callback<Cruises>() {
+        @Override
+        public void onResponse(Call<Cruises> call, Response<Cruises> response) {
 
+        Log.d("TAG",response.code()+"");
+            Cruises resource = response.body();
+  /*  
+            Integer text = resource.page;
+            Integer total = resource.total;
+            Integer totalPages = resource.totalPages;
+            List<MultipleResource.Datum> datumList = resource.data;
+
+            displayResponse += text + " Page\n" + total + " Total\n" + totalPages + " Total Pages\n";
+
+            for (MultipleResource.Datum datum : datumList) {
+                displayResponse += datum.id + " " + datum.name + " " + datum.pantoneValue + " " + datum.year + "\n";
+            }
+
+            responseText.setText(displayResponse);*/
+
+        }
+
+        @Override
+        public void onFailure(Call<Cruises> call, Throwable t) {
+            call.cancel();
+        }
+    });
+
+}
     private void fillDummmyData() {
 
         Cruises cruises = new Cruises(String.valueOf(1), "cruise 1", "ship 1", "2-2-2017", "12.00pm");
@@ -60,7 +103,6 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(MainActivity.this, GuestListActivity.class));
                 finish();
-
             }
         });
     }
