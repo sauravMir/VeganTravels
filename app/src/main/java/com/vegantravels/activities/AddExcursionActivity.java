@@ -1,7 +1,9 @@
-package com.vegantravels;
+package com.vegantravels.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.vegantravels.R;
 
 public class AddExcursionActivity extends Activity {
 
