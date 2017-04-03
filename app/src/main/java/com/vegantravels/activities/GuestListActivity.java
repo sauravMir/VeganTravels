@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestAdapter;
-import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
-import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
-import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +30,17 @@ public class GuestListActivity extends BaseActivity {
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
-String cruiseId;
+    String cruiseId;
+    private ImageButton ibtnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_list);
         activity = this;
         lvGuest = (ListView) findViewById(R.id.lvGuest);
-        cruiseId=getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
+        ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+//        cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
@@ -47,16 +48,16 @@ String cruiseId;
     }
 
     private void fillDummyData() {
-        Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest2 = new Guest(String.valueOf(3), String.valueOf(1), "Sam", "3", "AXZ", "108", "Due");
-        Guest guest3 = new Guest(String.valueOf(4), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest4 = new Guest(String.valueOf(5), String.valueOf(1), "Jhon", "3", "AXZ", "108", "Paid");
-        Guest guest5 = new Guest(String.valueOf(6), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest6 = new Guest(String.valueOf(7), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest7 = new Guest(String.valueOf(8), String.valueOf(1), "Milan", "3", "AXZ", "108", "Due");
-        Guest guest8 = new Guest(String.valueOf(9), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
-        Guest guest9 = new Guest(String.valueOf(10), String.valueOf(1), "Milan", "3", "AXZ", "108", "Paid");
+        Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest2 = new Guest(String.valueOf(3), String.valueOf(1), "Sam", "3", "Excursion: Budapest", "108", "Due");
+        Guest guest3 = new Guest(String.valueOf(4), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest4 = new Guest(String.valueOf(5), String.valueOf(1), "Jhon", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest5 = new Guest(String.valueOf(6), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Due");
+        Guest guest6 = new Guest(String.valueOf(7), String.valueOf(1), "Riston", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest7 = new Guest(String.valueOf(8), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Due");
+        Guest guest8 = new Guest(String.valueOf(9), String.valueOf(1), "Abraham", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest9 = new Guest(String.valueOf(10), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
 
         guestList = new ArrayList<>();
         guestList.add(guest);
@@ -78,7 +79,13 @@ String cruiseId;
                 finishActivity();
             }
         });
-
+        ibtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(activity, MainActivity.class));
+                finishActivity();
+            }
+        });
     }
 
     void parsingGuestList() {
@@ -104,9 +111,11 @@ String cruiseId;
             }
         });
     }
-    public void finishActivity(){
+
+    public void finishActivity() {
         finish();
     }
+
     public void showProgressDialog() {
         progressDialog = new ProgressDialog(activity);
         progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
@@ -117,4 +126,6 @@ String cruiseId;
         if (progressDialog != null)
             progressDialog.hide();
     }
+
+
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private Spinner spnGuestNumber;
     private ViewExcursionActivity activity;
     private AllDialog allDialog;
+    private ImageButton ibtnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,12 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         tvCabinNo = (TextView) findViewById(R.id.tvCabinNo);
         spnExcursion = (Spinner) findViewById(R.id.spnExcursion);
         spnGuestNumber = (Spinner) findViewById(R.id.spnGuestNumber);
+        ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
 
 
         btnAddExcursion.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
+        ibtnBack.setOnClickListener(this);
 
 
         fillExcursionData();
@@ -77,6 +81,16 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             case R.id.btnConfirm:
                 allDialog.confirmDialog("Are you sure? You want to confirm");
                 break;
+            case R.id.ibtnBack:
+                Intent guestintent = new Intent(activity, GuestListActivity.class);
+                startActivity(guestintent);
+                finishTheActivity();
+                break;
         }
+    }
+
+
+    private void finishTheActivity() {
+        finish();
     }
 }
