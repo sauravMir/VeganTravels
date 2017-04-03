@@ -65,6 +65,13 @@ public class AllDialog {
         ImageButton btnCancelPayment = (ImageButton) dialog.findViewById(R.id.btnCancelPayment);
         ImageButton btnOkPayment = (ImageButton) dialog.findViewById(R.id.btnOkPayment);
        final RadioGroup rdGrp=(RadioGroup)dialog.findViewById(R.id.rdGrp);
+        RadioButton rdPaid = (RadioButton) dialog.findViewById(R.id.rdPaid);
+        RadioButton rdCashBord = (RadioButton) dialog.findViewById(R.id.rdCashBord);
+        RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rdCaditCard);
+        RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rdComplementary);
+
+        
+
 
         btnCancelPayment.setOnClickListener(new View.OnClickListener() {
             @Override
