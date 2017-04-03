@@ -32,14 +32,15 @@ public class GuestListActivity extends BaseActivity {
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
-String cruiseId;
+    String cruiseId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_list);
         activity = this;
         lvGuest = (ListView) findViewById(R.id.lvGuest);
-        cruiseId=getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
+        cruiseId = getIntent().getExtras().getString(StaticAccess.KEY_CRUISES_ID);
         //Connection Https or http Instances
 //        APIClient.getClient().create(APIInterface.class);
         fillDummyData();
@@ -104,9 +105,11 @@ String cruiseId;
             }
         });
     }
-    public void finishActivity(){
+
+    public void finishActivity() {
         finish();
     }
+
     public void showProgressDialog() {
         progressDialog = new ProgressDialog(activity);
         progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
