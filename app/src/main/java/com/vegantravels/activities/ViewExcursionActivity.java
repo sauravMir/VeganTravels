@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.dialog.AllDialog;
 
 public class ViewExcursionActivity extends BaseActivity implements View.OnClickListener {
 
@@ -20,12 +21,14 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private Spinner spnExcursion;
     private Spinner spnGuestNumber;
     private ViewExcursionActivity activity;
+    private AllDialog allDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_excursion);
         activity = this;
+        allDialog = new AllDialog(activity);
         bindingViews();
     }
 
@@ -72,6 +75,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 startActivity(intent);
                 break;
             case R.id.btnConfirm:
+                allDialog.confirmDialog("Are you sure? You want to confirm");
                 break;
         }
     }

@@ -43,6 +43,7 @@ public class AllDialog {
             @Override
             public void onClick(View v) {
                 paymentDialog();
+                dialog.dismiss();
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
@@ -58,28 +59,25 @@ public class AllDialog {
         dialog.setContentView(R.layout.payment_dialog);
         dialog.setCancelable(true);
 
-        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
-        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
-        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        ImageButton btnCancelPayment = (ImageButton) dialog.findViewById(R.id.btnCancelPayment);
+        ImageButton btnOkPayment = (ImageButton) dialog.findViewById(R.id.btnOkPayment);
 
-        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+        btnCancelPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
-        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+        btnOkPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentDialog();
+
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
 
 
-
     }
-
 
 
 }

@@ -3,7 +3,9 @@ package com.vegantravels.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+
 import android.util.Log;
+
 
 import com.vegantravels.R;
 import com.vegantravels.model.GuestDetails;
@@ -15,19 +17,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class AddExcussionActivity extends Activity {
     AddExcussionActivity activity;
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_excussion);
-        activity=this;
+
+        activity = this;
         //        APIClient.getClient().create(APIInterface.class);
     }
-    void getGuestDetails(){
+
+    void getGuestDetails() {
         /**
          GET List Resources
          **/
@@ -37,7 +43,7 @@ public class AddExcussionActivity extends Activity {
             public void onResponse(Call<GuestDetails> call, Response<GuestDetails> response) {
 
 
-                Log.d("TAG",response.code()+"");
+                Log.d("TAG", response.code() + "");
 
                 String displayResponse = "";
 
@@ -50,13 +56,12 @@ public class AddExcussionActivity extends Activity {
                 List<GuestDetails.NumberOfGuest> numberOfGuestList = resource.numberOfGuests;
 
                 for (GuestDetails.Excursion excursion : excursionList) {
-                    displayResponse += excursion.id + " " + excursion.excursionName ;
+                    displayResponse += excursion.id + " " + excursion.excursionName;
                 }
 
                 for (GuestDetails.NumberOfGuest numberOfGuest : numberOfGuestList) {
-                    displayResponse += numberOfGuest.id + " " + numberOfGuest.guestName ;
+                    displayResponse += numberOfGuest.id + " " + numberOfGuest.guestName;
                 }
-
 
 
             }
@@ -66,5 +71,6 @@ public class AddExcussionActivity extends Activity {
                 call.cancel();
             }
         });
+
     }
 }
