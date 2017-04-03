@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
             android:layout_weight=".5"
             android:orientation="vertical"
             android:weightSum="1">
@@ -24,20 +25,24 @@
                 android:id="@+id/tvCruiseName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:gravity="left|center"
                 android:text="Name"
-                android:textSize="@dimen/eighteen"
-                android:textStyle="bold" />
+                android:textSize="@dimen/eighteen" />
 
             <TextView
                 android:id="@+id/tvShipName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:gravity="left|center"
-                android:textSize="@dimen/fifteen"
-                android:text="ship name" />
+                android:text="ship name"
+                android:textSize="@dimen/fifteen" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero"
+                android:layout_weight=".4" />
 
 
         </LinearLayout>
@@ -45,6 +50,7 @@
         <LinearLayout
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
             android:layout_weight=".5"
             android:orientation="vertical"
             android:weightSum="1">
@@ -54,19 +60,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
                 android:layout_weight=".5"
-                android:textSize="@dimen/eighteen"
                 android:gravity="right|center"
                 android:text="date"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/eighteen" />
 
             <TextView
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
                 android:layout_weight=".5"
-                android:textSize="@dimen/fifteen"
                 android:gravity="right|center"
-                android:text="time" />
+                android:text="time"
+                android:textSize="@dimen/fifteen" />
 
 
         </LinearLayout>
