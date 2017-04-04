@@ -33,7 +33,8 @@
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
                     android:layout_weight=".25"
-                    android:hint="Cabin No" />
+                    android:text="Cabin No"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:layout_width="@dimen/zero"
@@ -101,10 +102,10 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/fifteen"
                 android:background="@color/transparent"
                 android:gravity="right|center"
                 android:text="Export" />
-
 
         </LinearLayout>
 
