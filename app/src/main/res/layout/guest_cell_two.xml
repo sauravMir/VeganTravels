@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/five"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/tvGuestName"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/two"
+            android:text="Mike Miler"
+            android:textSize="@dimen/twenty" />
+
+        <TextView
+            android:id="@+id/tvGuestNo"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="2"
+            android:textSize="@dimen/twenty" />
+
+        <TextView
+            android:id="@+id/tvShipName"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/two"
+            android:text="ABC"
+            android:textSize="@dimen/twenty" />
+
+        <TextView
+            android:id="@+id/tvExcursionName"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/two"
+            android:text="AZ3"
+            android:textSize="@dimen/twenty" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_delete"
+            android:gravity="center"
+            android:padding="@dimen/two"
+            android:text="Delete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty" />
+    </LinearLayout>
+
+
+</RelativeLayout>
