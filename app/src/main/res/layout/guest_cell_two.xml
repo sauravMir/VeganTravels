@@ -19,7 +19,7 @@
             android:gravity="center_vertical"
             android:padding="@dimen/two"
             android:text="Mike Miler"
-            android:textSize="@dimen/twenty" />
+            android:textSize="@dimen/fifteen" />
 
         <TextView
             android:id="@+id/tvGuestNo"
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="2"
-            android:textSize="@dimen/twenty" />
+            android:textSize="@dimen/fifteen" />
 
         <TextView
             android:id="@+id/tvShipName"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:padding="@dimen/two"
             android:text="ABC"
-            android:textSize="@dimen/twenty" />
+            android:textSize="@dimen/fifteen" />
 
         <TextView
             android:id="@+id/tvExcursionName"
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:padding="@dimen/two"
             android:text="AZ3"
-            android:textSize="@dimen/twenty" />
+            android:textSize="@dimen/fifteen" />
 
         <Button
             android:id="@+id/btnDelete"
@@ -60,7 +60,7 @@
             android:padding="@dimen/two"
             android:text="Delete"
             android:textColor="@color/white"
-            android:textSize="@dimen/twenty" />
+            android:textSize="@dimen/fifteen" />
     </LinearLayout>
 
 
