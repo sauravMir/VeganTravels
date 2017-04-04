@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
-    private ImageButton ibtnBack;
+    private ImageButton ibtnBack, ibtnAddCruize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity {
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
         //Connection Https or http Instances
 //        apiInterface =  APIClient.getClient().create(APIInterface.class);
 
@@ -127,6 +128,15 @@ public class MainActivity extends BaseActivity {
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finishActivity();
+            }
+        });
+
+        ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, AddCruizeActivity.class);
+                startActivity(intent);
                 finishActivity();
             }
         });

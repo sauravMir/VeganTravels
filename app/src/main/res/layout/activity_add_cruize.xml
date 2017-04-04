@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_bg_blue">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="@dimen/three_hundred_twenty"
+        android:layout_height="@dimen/three_hundred_fifty"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_bg"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/btnAddExcursion"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:gravity="center"
+            android:text="New Cruize"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".05" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="Cruize Name"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="Ship name"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="Date From"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="Date To"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".15"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:text="Upload Cabin"
+                android:textSize="@dimen/twenty" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:text="Cabin"
+                android:textSize="@dimen/twenty" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:background="@drawable/bottom_cell"
+            android:gravity="center"
+            android:text="Done"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
