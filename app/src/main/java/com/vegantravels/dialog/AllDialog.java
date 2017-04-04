@@ -114,7 +114,7 @@ public class AllDialog {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                paymentCompletionDialog(" Payment success. Do you want to add another for cabin");
                 dialog.dismiss();
             }
         });
@@ -122,5 +122,34 @@ public class AllDialog {
         DialogNavBarHide.navBarHide(activity, dialog);
     }
 
+
+    ///payment success dialog
+    public void paymentCompletionDialog(String text) {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText(text);
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+
+    }
 
 }
