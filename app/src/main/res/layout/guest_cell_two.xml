@@ -50,7 +50,6 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
             android:layout_weight="1"
-
             android:background="@drawable/cell_bg_guest"
             android:orientation="vertical">
 
