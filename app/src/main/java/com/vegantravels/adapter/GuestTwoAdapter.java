@@ -75,10 +75,9 @@ public class GuestTwoAdapter extends BaseAdapter {
         }
 
         holder.tvGuestName.setText(guestList.get(i).getGuestName());
-        holder.tvGuestNo.setText("Guest: " + guestList.get(i).getNumberOfGuest());
-        holder.tvShipName.setText("Ship" + String.valueOf(i));
+        holder.tvGuestNo.setText(guestList.get(i).getNumberOfGuest());
+        holder.tvShipName.setText(String.valueOf(i));
         holder.tvExcursionName.setText(guestList.get(i).getExcursion());
-//        holder.btnDelete.setText(guestList.get(i).getPaymentStatus());
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
