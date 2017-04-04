@@ -1,7 +1,8 @@
 package com.vegantravels.activities;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,13 +14,13 @@ import com.vegantravels.model.Guest;
 
 import java.util.ArrayList;
 
-public class GuestListTwoActivity extends BaseActivity {
+public class GuestListTwoActivity extends BaseActivity implements View.OnClickListener {
 
     private ArrayList<Guest> guestList;
     private GuestTwoAdapter adapter;
     private GuestListTwoActivity activity;
     private EditText edtCabinNo, edtGuestName, edtPeopleNumber, edtPaymentStatus;
-    private ImageButton ibtnGuestSearch;
+    private ImageButton ibtnGuestSearch, ibtnBackGuestlist;
     private ListView lstGuest;
     private Button btnExportGuest;
 
@@ -71,12 +72,26 @@ public class GuestListTwoActivity extends BaseActivity {
         edtPeopleNumber = (EditText) findViewById(R.id.edtPeopleNumber);
         edtPaymentStatus = (EditText) findViewById(R.id.edtPaymentStatus);
         ibtnGuestSearch = (ImageButton) findViewById(R.id.ibtnGuestSearch);
+        ibtnBackGuestlist = (ImageButton) findViewById(R.id.ibtnBackGuestlist);
         btnExportGuest = (Button) findViewById(R.id.btnExportGuest);
-
+        ibtnBackGuestlist.setOnClickListener(this);
     }
 
 
     public void finishActivity() {
         finish();
     }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.ibtnBackGuestlist:
+                startActivity(new Intent(activity, GuestListActivity.class));
+                finishActivity();
+                break;
+        }
+    }
+
+    
 }
