@@ -42,7 +42,9 @@ public class Generator {
      */
     private static void addTables(Schema schema) {
         /* entities */
-        Entity user = addUser(schema);
+        Entity user = addCriuze(schema);
+        Entity excursion = addExcursion(schema);
+        Entity guest = addGuest(schema);
     }
 
     /**
@@ -50,17 +52,36 @@ public class Generator {
      *
      * @return DBUser entity
      */
-    private static Entity addUser(Schema schema) {
-        Entity user = schema.addEntity("User");
-        user.addIdProperty().primaryKey().autoincrement();
-        user.addStringProperty("name").notNull();
-        user.addIntProperty("age").notNull();
-        user.addStringProperty("password").notNull();
-        user.addStringProperty("proPic").notNull();
-        user.addIntProperty("point").notNull();
-        user.addBooleanProperty("active").notNull();
-        return user;
+    private static Entity addCriuze(Schema schema) {
+        Entity cruize = schema.addEntity("Criuze");
+        cruize.addIdProperty().primaryKey().autoincrement();
+        cruize.addStringProperty("cruizeName").notNull();
+        cruize.addStringProperty("shipName").notNull();
+        cruize.addDateProperty("dateFrom").notNull();
+        cruize.addDateProperty("dateTo").notNull();
+        cruize.addLongProperty("cruizeKey").notNull();
+        return cruize;
     }
 
+    private static Entity addExcursion(Schema schema) {
+        Entity excursion = schema.addEntity("Excursion");
+        excursion.addIdProperty().primaryKey().autoincrement();
+        excursion.addDateProperty("dateFrom").notNull();
+        excursion.addDateProperty("dateTo").notNull();
+        excursion.addStringProperty("excursioneName").notNull();
+        excursion.addLongProperty("pricePerPerson").notNull();
+        excursion.addIntProperty("maxGuest").notNull();
+        excursion.addLongProperty("cruizeKey").notNull();
+        return excursion;
+    }
+
+    private static Entity addGuest(Schema schema) {
+        Entity guest = schema.addEntity("Guest");
+        guest.addIdProperty().primaryKey().autoincrement();
+        guest.addStringProperty("guestName").notNull();
+        guest.addStringProperty("cabin").notNull();
+        guest.addLongProperty("guestKey").notNull();
+        return guest;
+    }
 
 }
