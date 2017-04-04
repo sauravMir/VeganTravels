@@ -6,7 +6,7 @@ package com.vegantravels.utilities;
 
 public class StaticAccess {
     //Root Url
-    public static final String RootUrl = "";
+    public static final String RootUrl = "https://reqres.in";
 
 
 

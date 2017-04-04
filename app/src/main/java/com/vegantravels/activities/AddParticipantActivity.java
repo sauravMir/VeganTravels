@@ -24,7 +24,7 @@ public class AddParticipantActivity extends BaseActivity {
         setContentView(R.layout.activity_add_participant);
         activity = this;
         //Connection Https or http Instances
-//        APIClient.getClient().create(APIInterface.class);
+//        apiInterface =  APIClient.getClient().create(APIInterface.class);
 
     }
 
@@ -35,6 +35,7 @@ public class AddParticipantActivity extends BaseActivity {
         callParticipant.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
+                hideProgressDialog();
                 Participant participant = (Participant) response.body();
                 Toast.makeText(activity, participant.getParticipantName(), Toast.LENGTH_SHORT).show();
             }
@@ -42,7 +43,18 @@ public class AddParticipantActivity extends BaseActivity {
             @Override
             public void onFailure(Call call, Throwable t) {
                 call.cancel();
+                hideProgressDialog();
             }
         });
+    }
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 }

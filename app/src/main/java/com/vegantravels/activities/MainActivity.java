@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
 import com.vegantravels.model.Cruises;
+import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -41,7 +42,7 @@ public class MainActivity extends BaseActivity {
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         //Connection Https or http Instances
-//        APIClient.getClient().create(APIInterface.class);
+//        apiInterface =  APIClient.getClient().create(APIInterface.class);
 
         fillDummmyData();
 
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity {
 
     public void hideProgressDialog() {
         if (progressDialog != null)
-            progressDialog.hide();
+            progressDialog.dismiss();
     }
 
     private void fillDummmyData() {

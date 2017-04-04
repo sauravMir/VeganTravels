@@ -13,6 +13,7 @@ import android.widget.Button;
 import com.vegantravels.R;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
+import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
 
 import java.util.List;
@@ -45,7 +46,22 @@ public class AddExcussionActivity extends BaseActivity {
             }
         });
 
-        //        APIClient.getClient().create(APIInterface.class);
+        //Connection Https or http Instances
+        apiInterface =  APIClient.getClient().create(APIInterface.class);
+
+        showProgressDialog();
+        Guest guest = new Guest();
+        guest.setCruiseID("1");
+        guest.setGuestID("1");
+        guest.setCabinNo("88800");
+        guest.setExcursion("hello");
+        guest.setGuestName("Reaz");
+        guest.setNumberOfGuest("4");
+        guest.setPaymentStatus("3");
+
+        getGuestPaymentMethodAdd(guest);
+
+
     }
 
     void getGuestDetails() {
@@ -90,8 +106,6 @@ public class AddExcussionActivity extends BaseActivity {
     }
 
 
-
-
     void getGuestPaymentMethodAdd(Guest guest) {
         /**
          POST Methods For guest Payment and All details from details
@@ -102,7 +116,7 @@ public class AddExcussionActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Guest> call, Response<Guest> response) {
 
-
+                hideProgressDialog();
                 Log.d("TAG", response.code() + "");
 
                 String displayResponse = "";
@@ -110,20 +124,28 @@ public class AddExcussionActivity extends BaseActivity {
                 Guest resource = response.body();
 
 
-
             }
 
             @Override
             public void onFailure(Call<Guest> call, Throwable t) {
                 call.cancel();
+                hideProgressDialog();
             }
         });
 
     }
 
 
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.show();
+    }
 
-
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
 
 
 }
