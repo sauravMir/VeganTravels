@@ -6,12 +6,12 @@
     android:background="@drawable/cell_bg">
 
 
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
         android:weightSum="1">
-
 
         <LinearLayout
             android:layout_width="@dimen/zero"
@@ -34,7 +34,7 @@
                 android:gravity="left|center"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_weight=".2"
                 android:gravity="left|center"
                 android:text="ship name"
-                android:textSize="@dimen/fifteen" />
+                android:textSize="@dimen/twelve" />
 
 
             <TextView
@@ -54,7 +54,7 @@
                 android:layout_weight=".2"
                 android:gravity="left|center"
                 android:text="ship name"
-                android:textSize="@dimen/fifteen" />
+                android:textSize="@dimen/twelve" />
 
 
             <View
@@ -86,7 +86,7 @@
                 android:gravity="right|center"
                 android:text="date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/twenty"
+                android:textSize="@dimen/fifteen"
                 android:textStyle="bold" />
 
             <View
@@ -101,7 +101,7 @@
                 android:layout_weight=".2"
                 android:gravity="right|center"
                 android:text="time"
-                android:textSize="@dimen/fifteen" />
+                android:textSize="@dimen/twelve" />
 
             <View
                 android:layout_width="match_parent"
