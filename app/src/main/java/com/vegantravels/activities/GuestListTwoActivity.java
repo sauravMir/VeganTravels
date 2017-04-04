@@ -13,7 +13,7 @@ import com.vegantravels.model.Guest;
 
 import java.util.ArrayList;
 
-public class GuestListTwoActivity extends Activity {
+public class GuestListTwoActivity extends BaseActivity {
 
     private ArrayList<Guest> guestList;
     private GuestTwoAdapter adapter;
@@ -35,16 +35,16 @@ public class GuestListTwoActivity extends Activity {
 
     private void fillDummyData() {
 
-        Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest2 = new Guest(String.valueOf(3), String.valueOf(1), "Sam", "3", "Excursion: Budapest", "108", "Due");
-        Guest guest3 = new Guest(String.valueOf(4), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest4 = new Guest(String.valueOf(5), String.valueOf(1), "Jhon", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest5 = new Guest(String.valueOf(6), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Due");
-        Guest guest6 = new Guest(String.valueOf(7), String.valueOf(1), "Riston", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest7 = new Guest(String.valueOf(8), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Due");
-        Guest guest8 = new Guest(String.valueOf(9), String.valueOf(1), "Abraham", "3", "Excursion: Budapest", "108", "Paid");
-        Guest guest9 = new Guest(String.valueOf(10), String.valueOf(1), "Milan", "3", "Excursion: Budapest", "108", "Paid");
+        Guest guest = new Guest(String.valueOf(1), String.valueOf(1), "Milan", "3", "Budapest", "108", "Paid");
+        Guest guest1 = new Guest(String.valueOf(2), String.valueOf(1), "Milan", "3", "Budapest", "108", "Paid");
+        Guest guest2 = new Guest(String.valueOf(3), String.valueOf(1), "Sam", "3", "Budapest", "108", "Due");
+        Guest guest3 = new Guest(String.valueOf(4), String.valueOf(1), "Milan", "3", "Budapest", "108", "Paid");
+        Guest guest4 = new Guest(String.valueOf(5), String.valueOf(1), "Jhon", "3", "Budapest", "108", "Paid");
+        Guest guest5 = new Guest(String.valueOf(6), String.valueOf(1), "Milan", "3", "Budapest", "108", "Due");
+        Guest guest6 = new Guest(String.valueOf(7), String.valueOf(1), "Riston", "3", "Budapest", "108", "Paid");
+        Guest guest7 = new Guest(String.valueOf(8), String.valueOf(1), "Milan", "3", "Budapest", "108", "Due");
+        Guest guest8 = new Guest(String.valueOf(9), String.valueOf(1), "Abraham", "3", "Budapest", "108", "Paid");
+        Guest guest9 = new Guest(String.valueOf(10), String.valueOf(1), "Milan", "3", "Budapest", "108", "Paid");
 
         guestList = new ArrayList<>();
         guestList.add(guest);

@@ -16,7 +16,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("font/rancho3.ttf")
+                .setDefaultFontPath("font/roboto.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

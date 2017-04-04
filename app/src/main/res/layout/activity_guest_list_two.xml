@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.vegantravels.activities.GuestListTwoActivity">
+    android:background="@drawable/list_bg_blue">
 
 
     <LinearLayout
@@ -25,13 +25,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
-                android:orientation="horizontal"
+                android:layout_weight=".7"
+                android:orientation="vertical"
                 android:weightSum="1">
 
                 <LinearLayout
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
                     android:layout_weight=".25"
                     android:orientation="horizontal">
 
@@ -53,8 +53,8 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
                     android:layout_weight=".25"
                     android:orientation="horizontal">
 
@@ -76,8 +76,8 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
                     android:layout_weight=".25"
                     android:orientation="horizontal">
 
@@ -99,8 +99,8 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="@dimen/zero"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zero"
                     android:layout_weight=".25"
                     android:orientation="horizontal">
 
@@ -127,7 +127,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".5"
+                android:layout_weight=".3"
                 android:gravity="right"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -135,14 +135,14 @@
                 <View
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
-                    android:layout_weight=".6" />
+                    android:layout_weight=".7" />
 
                 <ImageButton
                     android:id="@+id/ibtnGuestSearch"
                     android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
                     android:layout_gravity="right"
-                    android:layout_weight=".2"
+                    android:layout_weight=".1"
                     android:background="@color/transparent"
                     android:padding="@dimen/five"
                     android:scaleType="fitCenter"
@@ -155,7 +155,7 @@
                     android:gravity="left|center"
                     android:text="Search"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/twenty" />
+                    android:textSize="@dimen/fifteen" />
 
 
             </LinearLayout>
@@ -167,8 +167,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".6"
-            android:padding="@dimen/five"
             android:orientation="vertical"
+            android:padding="@dimen/five"
             android:weightSum="1">
 
             <LinearLayout
@@ -225,7 +225,8 @@
                 android:id="@+id/lstGuest"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".8" />
+                android:layout_weight=".8"
+                android:dividerHeight="@dimen/ten" />
 
 
         </LinearLayout>
