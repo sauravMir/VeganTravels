@@ -154,6 +154,60 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return cruises;
     }
+    @Override
+    public synchronized ArrayList<Criuze> listCriuzes() {
+        List<Criuze> users = null;
+        try {
+            openReadableDb();
+            CriuzeDao userDao = daoSession.getCriuzeDao();
+            users = userDao.loadAll();
 
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (users != null) {
+            return new ArrayList<>(users);
+        }
+        return null;
+    }
+
+    
+    @Override
+    public synchronized Long updateCriuze(Criuze criuze) {
+        Long userKey = null;
+        try {
+            if (criuze != null) {
+                openWritableDb();
+                daoSession.update(criuze);
+               /* Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                userKey = criuze.getKey();*/
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return userKey;
+    }
+
+    @Override
+    public synchronized Criuze updateUsers(Criuze criuze) {
+
+        try {
+            if (criuze != null) {
+                openWritableDb();
+                daoSession.update(criuze);
+//                Log.d(TAG, "Updated user: " + Criuze.g() + " from the schema.");
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return criuze;
+    }
 
 }

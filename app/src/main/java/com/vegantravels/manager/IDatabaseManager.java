@@ -3,6 +3,8 @@ package com.vegantravels.manager;
 
 import com.vegantravels.dao.Criuze;
 
+import java.util.ArrayList;
+
 /**
  * Interface that provides methods for managing the database inside the Application.
  *
@@ -27,5 +29,9 @@ public interface IDatabaseManager {
      */
     Criuze insertCruises(Criuze cruises);
 
+    ArrayList<Criuze> listCriuzes() ;
 
+    Long updateCriuze(Criuze criuze);
+
+    Criuze updateUsers(Criuze criuze);
 }
