@@ -2,6 +2,7 @@ package com.vegantravels.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.GuestListTwoActivity;
 
 /**
  * Created by Rakib on 4/3/2017.
@@ -114,7 +116,9 @@ public class AllDialog {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentCompletionDialog(" Payment success. Do you want to add another for cabin");
+                Intent intent = new Intent(activity, GuestListTwoActivity.class);
+                activity.startActivity(intent);
+
                 dialog.dismiss();
             }
         });
