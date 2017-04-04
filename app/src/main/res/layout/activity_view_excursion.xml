@@ -3,7 +3,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/list_bg">
+    android:background="@drawable/list_bg_blue">
 
     <LinearLayout
         android:id="@+id/linearLayout"
