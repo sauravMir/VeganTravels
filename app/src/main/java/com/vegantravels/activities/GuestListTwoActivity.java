@@ -2,6 +2,10 @@ package com.vegantravels.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestTwoAdapter;
@@ -14,6 +18,10 @@ public class GuestListTwoActivity extends Activity {
     private ArrayList<Guest> guestList;
     private GuestTwoAdapter adapter;
     private GuestListTwoActivity activity;
+    private EditText edtCabinNo, edtGuestName, edtPeopleNumber, edtPaymentStatus;
+    private ImageButton ibtnGuestSearch;
+    private ListView lstGuest;
+    private Button btnExportGuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +29,7 @@ public class GuestListTwoActivity extends Activity {
         setContentView(R.layout.activity_guest_list_two);
         activity = this;
         //bind lv id here
+        findviewById();
         fillDummyData();
     }
 
@@ -50,6 +59,19 @@ public class GuestListTwoActivity extends Activity {
         guestList.add(guest9);
         adapter = new GuestTwoAdapter(activity, guestList);
         /// set lv adapter here
+        lstGuest.setAdapter(adapter);
+
+    }
+
+    public void findviewById() {
+
+        lstGuest = (ListView) findViewById(R.id.lstGuest);
+        edtCabinNo = (EditText) findViewById(R.id.edtCabinNo);
+        edtGuestName = (EditText) findViewById(R.id.edtGuestName);
+        edtPeopleNumber = (EditText) findViewById(R.id.edtPeopleNumber);
+        edtPaymentStatus = (EditText) findViewById(R.id.edtPaymentStatus);
+        ibtnGuestSearch = (ImageButton) findViewById(R.id.ibtnGuestSearch);
+        btnExportGuest = (Button) findViewById(R.id.btnExportGuest);
 
     }
 

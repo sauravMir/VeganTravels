@@ -90,6 +90,7 @@
                         android:textSize="@dimen/fifteen" />
 
                     <EditText
+                        android:id="@+id/edtPeopleNumber"
                         android:layout_width="@dimen/zero"
                         android:layout_height="match_parent"
                         android:layout_weight=".6"
@@ -166,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".6"
+            android:padding="@dimen/five"
             android:orientation="vertical"
             android:weightSum="1">
 
