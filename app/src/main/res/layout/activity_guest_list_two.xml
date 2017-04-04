@@ -15,33 +15,12 @@
         android:paddingRight="@dimen/five"
         android:weightSum="1">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_weight=".1"
-            android:background="@drawable/top_cell">
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/zero"
+           android:layout_weight=".1"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:padding="@dimen/ten"
-                android:text="@string/guest_list"
-                android:textColor="@color/white"
-                android:textSize="@dimen/thirty" />
 
-            <ImageButton
-                android:id="@+id/ibtnBackGuestlist"
-                android:layout_width="@dimen/fifty"
-                android:layout_height="@dimen/fifty"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@color/transparent"
-                android:padding="@dimen/ten"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_back" />
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,7 +48,7 @@
                         android:layout_weight=".4"
                         android:gravity="bottom"
                         android:text="Cabin No"
-                        android:textSize="@dimen/fifteen" />
+                        android:textSize="@dimen/twelve" />
 
                     <EditText
                         android:id="@+id/edtCabinNo"
@@ -92,7 +71,7 @@
                         android:layout_weight=".4"
                         android:gravity="bottom"
                         android:text="name"
-                        android:textSize="@dimen/fifteen" />
+                        android:textSize="@dimen/twelve" />
 
                     <EditText
                         android:id="@+id/edtGuestName"
@@ -115,7 +94,7 @@
                         android:layout_weight=".4"
                         android:gravity="bottom"
                         android:text="Number of people"
-                        android:textSize="@dimen/fifteen" />
+                        android:textSize="@dimen/twelve" />
 
                     <EditText
                         android:id="@+id/edtPeopleNumber"
@@ -139,7 +118,7 @@
                         android:layout_weight=".4"
                         android:gravity="bottom"
                         android:text="Payment status"
-                        android:textSize="@dimen/fifteen" />
+                        android:textSize="@dimen/twelve" />
 
                     <EditText
                         android:id="@+id/edtPaymentStatus"
@@ -183,7 +162,7 @@
                     android:gravity="left|center"
                     android:text="Search"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
 
 
             </LinearLayout>
@@ -202,7 +181,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".15"
+                android:layout_weight=".12"
                 android:orientation="horizontal"
                 android:weightSum="5">
 
@@ -211,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Guest Name"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
 
                 <TextView
                     android:layout_width="@dimen/zero"
@@ -219,7 +198,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Number of people"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
 
                 <TextView
                     android:layout_width="@dimen/zero"
@@ -228,7 +207,7 @@
                     android:gravity="center"
                     android:padding="@dimen/two"
                     android:text="Ship name"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
 
                 <TextView
                     android:layout_width="@dimen/zero"
@@ -237,7 +216,7 @@
                     android:gravity="center"
                     android:padding="@dimen/two"
                     android:text="Excursion"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
 
                 <TextView
                     android:layout_width="@dimen/zero"
@@ -246,14 +225,14 @@
                     android:gravity="center"
                     android:padding="@dimen/two"
                     android:text="Action"
-                    android:textSize="@dimen/fifteen" />
+                    android:textSize="@dimen/twelve" />
             </LinearLayout>
 
             <ListView
                 android:id="@+id/lstGuest"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/zero"
-                android:layout_weight=".85"
+                android:layout_weight=".88"
                 android:dividerHeight="@dimen/ten" />
 
         </LinearLayout>
@@ -281,5 +260,32 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty"
+        android:background="@drawable/top_cell">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="@dimen/ten"
+            android:text="@string/guest_list"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty_five" />
+
+        <ImageButton
+            android:id="@+id/ibtnBackGuestlist"
+            android:layout_width="@dimen/fifty"
+            android:layout_height="@dimen/fifty"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:padding="@dimen/ten"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_back" />
+    </RelativeLayout>
 
 </RelativeLayout>

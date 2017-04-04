@@ -34,7 +34,7 @@
                 android:gravity="left|center"
                 android:text="Name"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fifteen"
+                android:textSize="@dimen/twelve"
                 android:textStyle="bold" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:gravity="right|center"
                 android:text="date"
                 android:textColor="@color/black"
-                android:textSize="@dimen/fifteen"
+                android:textSize="@dimen/twelve"
                 android:textStyle="bold" />
 
             <View

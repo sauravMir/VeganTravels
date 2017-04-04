@@ -53,7 +53,7 @@
             android:text="Millen, Mike"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/fifteen"
+            android:textSize="@dimen/twelve"
             android:textStyle="normal" />
 
 
@@ -67,7 +67,7 @@
             android:text="Cabin 888"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/fifteen"
+            android:textSize="@dimen/twelve"
             android:textStyle="normal" />
 
         <View
