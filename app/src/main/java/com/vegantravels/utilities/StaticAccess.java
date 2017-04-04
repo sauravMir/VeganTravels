@@ -11,17 +11,17 @@ public class StaticAccess {
 
 
     // Cruises Keys
-    public static final String KEY_CRUISES_ID = "cruiseId";
-    public static final String KEY_CRUISES_NAME = "cruiseName";
-    public static final String KEY_SHIP_NAME = "shipName";
-    public static final String KEY_DATE_FROM = "dateFrom";
-    public static final String KEY_DATE_TO = "dateTo";
+    public static final String KEY_CRUISES_ID = "id";
+    public static final String KEY_CRUISES_NAME = "name";
+    public static final String KEY_SHIP_NAME = "ship_name";
+    public static final String KEY_DATE_FROM = "from";
+    public static final String KEY_DATE_TO = "to";
 
 
     //Guest Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";
  public static final String KEY_GUEST_ID = "guestID";
- public static final String KEY_GUEST_Name = "guestName";
+ public static final String KEY_GUEST_NAME = "guestName";
  public static final String KEY_NUMBER_GUEST = "numberOfGuest";
  public static final String KEY_EXCURSION = "excursion";
  public static final String KEY_CABIN_NO = "cabinNo";
@@ -39,5 +39,10 @@ public class StaticAccess {
  public static final String KEY_GUEST_NUMBER_ID = "id";
  public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
 
+    //Participant
 
+    public static final String KEY_PARTICIPANT_GUEST_ID = "id";
+    public static final String KEY_PARTICIPANT_GUEST_NAME = "guestName";
+    public static final String KEY_PARTICIPANT_GUEST_FIRST_NAME = "guestFName";
+    public static final String KEY_PARTICIPANT_GUEST_LAST_NAME = "guestLName";
 }

@@ -10,7 +10,7 @@ import com.vegantravels.utilities.StaticAccess;
 public class Guest {
     @SerializedName(StaticAccess.KEY_GUEST_ID)
     private String guestID;
-    @SerializedName(StaticAccess.KEY_GUEST_Name)
+    @SerializedName(StaticAccess.KEY_GUEST_NAME)
     private String guestName;
     @SerializedName(StaticAccess.KEY_NUMBER_GUEST)
     private String numberOfGuest;

@@ -11,6 +11,7 @@ import android.widget.Button;
 
 
 import com.vegantravels.R;
+import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
 import com.vegantravels.retroapi.APIInterface;
 
@@ -87,4 +88,42 @@ public class AddExcussionActivity extends BaseActivity {
         });
 
     }
+
+
+
+
+    void getGuestPaymentMethodAdd(Guest guest) {
+        /**
+         POST Methods For guest Payment and All details from details
+         **/
+
+        Call<Guest> call = apiInterface.guestDetailAdd(guest);
+        call.enqueue(new Callback<Guest>() {
+            @Override
+            public void onResponse(Call<Guest> call, Response<Guest> response) {
+
+
+                Log.d("TAG", response.code() + "");
+
+                String displayResponse = "";
+
+                Guest resource = response.body();
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Guest> call, Throwable t) {
+                call.cancel();
+            }
+        });
+
+    }
+
+
+
+
+
+
 }

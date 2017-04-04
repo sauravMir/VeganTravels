@@ -4,11 +4,14 @@ package com.vegantravels.retroapi;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
+import com.vegantravels.model.Participant;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -28,6 +31,15 @@ public interface APIInterface {
 
     @GET("/api/getGuestDetails?")
     Call<GuestDetails> getGuestDetails(@Query("guestId") String guestId);
+
+    @POST("/api/participant")
+    Call<Participant> createUser(@Body Participant participant);
+
+
+    @POST("/api/guestDetailAdd")
+    Call<Guest> guestDetailAdd(@Body Guest guest);
+
+
 
  /*   @FormUrlEncoded
     @POST("/api/users?")
