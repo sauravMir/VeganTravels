@@ -1,30 +1,21 @@
 package com.vegantravels.manager;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.util.Log;
-
 
 import com.vegantravels.dao.Criuze;
 import com.vegantravels.dao.CriuzeDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
-import com.vegantravels.model.Cruises;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.greenrobot.dao.async.AsyncOperation;
 import de.greenrobot.dao.async.AsyncOperationListener;
 import de.greenrobot.dao.async.AsyncSession;
-import de.greenrobot.dao.query.QueryBuilder;
 
 /**
  * @author Octa
@@ -154,6 +145,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return cruises;
     }
+
     @Override
     public synchronized ArrayList<Criuze> listCriuzes() {
         List<Criuze> users = null;
@@ -172,7 +164,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         return null;
     }
 
-    
+
     @Override
     public synchronized Long updateCriuze(Criuze criuze) {
         Long userKey = null;

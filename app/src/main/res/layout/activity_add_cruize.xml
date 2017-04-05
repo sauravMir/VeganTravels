@@ -21,7 +21,7 @@
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
             android:gravity="center"
-            android:text="New Cruize"
+            android:text="New Cruise"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty" />
 
@@ -36,7 +36,7 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left"
-            android:hint="Cruize Name"
+            android:hint="Cruise Name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty"

@@ -34,4 +34,5 @@ public interface IDatabaseManager {
     Long updateCriuze(Criuze criuze);
 
     Criuze updateUsers(Criuze criuze);
+
 }

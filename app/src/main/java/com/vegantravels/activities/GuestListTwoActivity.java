@@ -77,7 +77,6 @@ public class GuestListTwoActivity extends BaseActivity implements View.OnClickLi
         ibtnBackGuestlist.setOnClickListener(this);
     }
 
-
     public void finishActivity() {
         finish();
     }
@@ -93,5 +92,5 @@ public class GuestListTwoActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
-    
+
 }
