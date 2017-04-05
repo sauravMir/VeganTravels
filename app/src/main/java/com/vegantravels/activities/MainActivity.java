@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
+import com.vegantravels.model.CruiseJson;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
@@ -43,20 +44,24 @@ public class MainActivity extends BaseActivity {
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
         //Connection Https or http Instances
-//        apiInterface =  APIClient.getClient().create(APIInterface.class);
+        apiInterface =  APIClient.getClient().create(APIInterface.class);
 
+//
+        parsingCruisesList();
         fillDummmyData();
-
     }
 
     void parsingCruisesList() {
+        cruisesList=new ArrayList<>();
         showProgressDialog();
-        Call<List<Cruises>> call = apiInterface.getCruizeList();
-        call.enqueue(new Callback<List<Cruises>>() {
+        Call<CruiseJson> call = apiInterface.getCruizeList();
+        call.enqueue(new Callback<CruiseJson>() {
             @Override
-            public void onResponse(Call<List<Cruises>> call, Response<List<Cruises>> response) {
+            public void onResponse(Call<CruiseJson> call, Response<CruiseJson> response) {
                 hideProgressDialog();
-                for (Cruises cruises : response.body()) {
+               CruiseJson cruiseJson= response.body();
+
+           for (Cruises cruises : cruiseJson.mCruiseList ) {
                     System.out.println(cruises.toString());
                     Cruises cruises1 = new Cruises();
                     cruises1.setCruiseID(cruises.getCruiseID());
@@ -69,7 +74,7 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Cruises>> call, Throwable t) {
+            public void onFailure(Call<CruiseJson> call, Throwable t) {
                 hideProgressDialog();
                 System.out.println(t.getMessage());
             }
@@ -89,7 +94,7 @@ public class MainActivity extends BaseActivity {
 
     private void fillDummmyData() {
 
-        final Cruises cruises = new Cruises(String.valueOf(1), "Cruise 1", "Ship 1", "Form: 2-2-2017", "To: 10-2-2017");
+/*        final Cruises cruises = new Cruises(String.valueOf(1), "Cruise 1", "Ship 1", "Form: 2-2-2017", "To: 10-2-2017");
         Cruises cruises1 = new Cruises(String.valueOf(2), "Cruise 2", "Ship 2", "Form: 2-2-2017", "To: 10-2-2017");
         Cruises cruises2 = new Cruises(String.valueOf(3), "Cruise 3", "Ship 3", "Form: 2-2-2017", "To: 10-2-2017");
         Cruises cruises3 = new Cruises(String.valueOf(4), "Cruise 4", "Ship 4", "Form: 2-2-2017", "To: 10-2-2017");
@@ -110,7 +115,7 @@ public class MainActivity extends BaseActivity {
         cruisesList.add(cruises6);
         cruisesList.add(cruises7);
         cruisesList.add(cruises8);
-        cruisesList.add(cruises9);
+        cruisesList.add(cruises9);*/
         cruisesAdapter = new CruisesAdapter(this, cruisesList);
         lvCruises.setAdapter(cruisesAdapter);
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -120,7 +125,7 @@ public class MainActivity extends BaseActivity {
                 finish();*/
                 Intent intentGuest = new Intent(activity, GuestListActivity.class);
                 intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruises.getCruiseID());
+                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(i).getCruiseID());
                 startActivity(intentGuest);
                 finishActivity();
             }

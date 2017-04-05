@@ -22,6 +22,7 @@ public class APIClient {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
 
+
         retrofit = new Retrofit.Builder()
                 .baseUrl(StaticAccess.RootUrl)
                 .addConverterFactory(GsonConverterFactory.create())

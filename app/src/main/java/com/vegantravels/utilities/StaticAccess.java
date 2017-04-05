@@ -6,12 +6,13 @@ package com.vegantravels.utilities;
 
 public class StaticAccess {
     //Root Url
-    public static final String RootUrl = "https://reqres.in";
+    public static final String RootUrl = "http://dmaverick.com/cruize/public/";
 
 
 
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
+    public static final String KEY_CRUISES_JSON_ARRAY = "cruizes";
     public static final String KEY_CRUISES_NAME = "name";
     public static final String KEY_SHIP_NAME = "ship_name";
     public static final String KEY_DATE_FROM = "from";

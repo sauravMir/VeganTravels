@@ -1,6 +1,7 @@
 package com.vegantravels.retroapi;
 
 
+import com.vegantravels.model.CruiseJson;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
@@ -11,6 +12,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -20,8 +22,10 @@ import retrofit2.http.Query;
 
 public interface APIInterface {
 
-    @GET("/api/getCruizeList")
-    Call<List<Cruises>> getCruizeList();
+
+
+    @GET("api/cruizes")
+    Call<CruiseJson> getCruizeList();
 
  /*   @POST("/api/users")
     Call<User> createUser(@Body User user);*/
