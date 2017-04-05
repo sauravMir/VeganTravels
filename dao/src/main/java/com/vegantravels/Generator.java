@@ -42,9 +42,12 @@ public class Generator {
      */
     private static void addTables(Schema schema) {
         /* entities */
-        Entity user = addCriuze(schema);
-        Entity excursion = addExcursion(schema);
-        Entity guest = addGuest(schema);
+        addCriuze(schema);
+        addCriuzeTemporary(schema);
+        addExcursion(schema);
+        addExcursionTemporary(schema);
+        addGuest(schema);
+        addGuestTemporary(schema);
     }
 
     /**
@@ -54,6 +57,17 @@ public class Generator {
      */
     private static Entity addCriuze(Schema schema) {
         Entity cruize = schema.addEntity("Criuze");
+        cruize.addIdProperty().primaryKey().autoincrement();
+        cruize.addStringProperty("cruizeName").notNull();
+        cruize.addStringProperty("shipName").notNull();
+        cruize.addDateProperty("dateFrom").notNull();
+        cruize.addDateProperty("dateTo").notNull();
+        cruize.addLongProperty("cruizeKey").notNull();
+        return cruize;
+    }
+
+    private static Entity addCriuzeTemporary(Schema schema) {
+        Entity cruize = schema.addEntity("CriuzeTemporary");
         cruize.addIdProperty().primaryKey().autoincrement();
         cruize.addStringProperty("cruizeName").notNull();
         cruize.addStringProperty("shipName").notNull();
@@ -75,8 +89,30 @@ public class Generator {
         return excursion;
     }
 
+    private static Entity addExcursionTemporary(Schema schema) {
+        Entity excursion = schema.addEntity("ExcursionTemporary");
+        excursion.addIdProperty().primaryKey().autoincrement();
+        excursion.addDateProperty("dateFrom").notNull();
+        excursion.addDateProperty("dateTo").notNull();
+        excursion.addStringProperty("excursioneName").notNull();
+        excursion.addLongProperty("pricePerPerson").notNull();
+        excursion.addIntProperty("maxGuest").notNull();
+        excursion.addLongProperty("cruizeKey").notNull();
+        return excursion;
+    }
+
+
     private static Entity addGuest(Schema schema) {
         Entity guest = schema.addEntity("Guest");
+        guest.addIdProperty().primaryKey().autoincrement();
+        guest.addStringProperty("guestName").notNull();
+        guest.addStringProperty("cabin").notNull();
+        guest.addLongProperty("guestKey").notNull();
+        return guest;
+    }
+
+    private static Entity addGuestTemporary(Schema schema) {
+        Entity guest = schema.addEntity("GuestTemporary");
         guest.addIdProperty().primaryKey().autoincrement();
         guest.addStringProperty("guestName").notNull();
         guest.addStringProperty("cabin").notNull();

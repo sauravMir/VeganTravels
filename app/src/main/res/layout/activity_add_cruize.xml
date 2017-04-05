@@ -94,7 +94,6 @@
                 android:background="@color/transparent"
                 android:gravity="center"
                 android:text="Upload Cabin"
-                android:onClick="setXLS"
                 android:textSize="@dimen/fifteen" />
 
             <TextView

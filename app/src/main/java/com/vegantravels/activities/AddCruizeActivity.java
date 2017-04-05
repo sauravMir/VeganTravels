@@ -57,15 +57,15 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            /*case R.id.btnCabinUpload:
+            case R.id.btnCabinUpload:
                 Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
                 setXLS();
-                break;*/
+                break;
         }
     }
 
 
-    public void setXLS(View view) {
+    public void setXLS() {
         try {
             AssetManager assetManager = getAssets();
             InputStream inputStream = assetManager.open("abc.xls");
@@ -82,11 +82,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 }
                 values = values + "\n";
             }
-            edtCruzeName.setText(values);
-           // tvCabinUpload.setText(values);
+            tvCabinUpload.setText(values);
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
