@@ -18,6 +18,9 @@ public class StaticAccess {
     public static final String KEY_DATE_FROM = "from";
     public static final String KEY_DATE_TO = "to";
 
+    /// Date picker
+    public static final String DATE_FROM = "Date from";
+    public static final String DATE_to = "Date to";
 
     //Guest Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";

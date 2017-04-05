@@ -1,5 +1,6 @@
 package com.vegantravels.activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,10 +17,13 @@ import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import jxl.Cell;
 import jxl.Sheet;
@@ -31,9 +36,11 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private DatabaseManager databaseManager;
     private Button btnCabinUpload, btnDone;
     private TextView tvCabinUpload;
-    private EditText edtCruzeName, edtShipName, edtDateFrom, edtDateTo;
+    private EditText edtCruzeName, edtShipName;
+    private TextView tvDateFrom, tvDateTo;
     private Criuzes_TMP aCruize;
     private ImageButton ibtnBackCruize;
+    AllDialog allDialog;
 
     @Override
 
@@ -43,8 +50,11 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         activity = this;
         progressDialog = new ProgressDialog(activity);
         databaseManager = new DatabaseManager(activity);
+        allDialog = new AllDialog(activity);
 
         findViewById();
+
+
     }
 
     private void findViewById() {
@@ -55,14 +65,16 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         //edtext
         edtCruzeName = (EditText) findViewById(R.id.edtCruzeName);
         edtShipName = (EditText) findViewById(R.id.edtShipName);
-        edtDateFrom = (EditText) findViewById(R.id.edtDateFrom);
-        edtDateTo = (EditText) findViewById(R.id.edtDateTo);
+        tvDateFrom = (TextView) findViewById(R.id.tvDateFrom);
+        tvDateTo = (TextView) findViewById(R.id.tvDateTo);
         ibtnBackCruize = (ImageButton) findViewById(R.id.ibtnBackCruize);
 
         //listner
         btnCabinUpload.setOnClickListener(this);
         btnDone.setOnClickListener(this);
         ibtnBackCruize.setOnClickListener(this);
+        tvDateFrom.setOnClickListener(this);
+        tvDateTo.setOnClickListener(this);
     }
 
     @Override
@@ -73,7 +85,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 setXLS();
                 break;
             case R.id.btnDone:
-                if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && edtDateFrom.length() > 0 && edtDateTo.length() > 0) {
+                if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
                     addNewCruize();
                 } else {
                     Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
@@ -83,6 +95,14 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 startActivity(new Intent(activity, MainActivity.class));
                 finishTheActivity();
                 break;
+            case R.id.tvDateFrom:
+                allDialog.setDate(tvDateFrom);
+                break;
+
+            case R.id.tvDateTo:
+                allDialog.setDate(tvDateTo);
+                break;
+
         }
     }
 
@@ -92,8 +112,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         aCruize = new Criuzes_TMP();
         aCruize.setName(edtCruzeName.getText().toString());
         aCruize.setShipName(edtShipName.getText().toString());
-        aCruize.setFrom(edtDateFrom.getText().toString());
-        aCruize.setTo(edtDateTo.getText().toString());
+        aCruize.setFrom(tvDateFrom.getText().toString());
+        aCruize.setTo(tvDateTo.getText().toString());
         // aCruize.setCruizeKey(cruizeKey);
         // trigger asynctask to insert cruize in temo table
         new NewCruiseAsyncTask().execute();
@@ -161,4 +181,6 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             super.onPostExecute(aVoid);
         }
     }
+
+
 }

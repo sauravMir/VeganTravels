@@ -39,7 +39,7 @@
             android:hint="Cruise Name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <EditText
@@ -52,33 +52,31 @@
             android:hint="Ship name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
-        <EditText
-            android:id="@+id/edtDateFrom"
+        <TextView
+            android:id="@+id/tvDateFrom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left"
-            android:hint="Date From"
+            android:text="Date From"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
-        <EditText
-            android:id="@+id/edtDateTo"
+        <TextView
+            android:id="@+id/tvDateTo"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left"
-            android:hint="Date To"
+            android:text="Date To"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <LinearLayout

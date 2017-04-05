@@ -1,11 +1,13 @@
 package com.vegantravels.dialog;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListTwoActivity;
+
+import java.util.Calendar;
 
 /**
  * Created by Rakib on 4/3/2017.
@@ -73,7 +77,6 @@ public class AllDialog {
         RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rdCaditCard);
         RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rdComplementary);*/
 
-        
 
         btnCancelPayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +95,6 @@ public class AllDialog {
 
 
     }
-
-
 
 
     public void dialogForSearch() {
@@ -154,6 +155,24 @@ public class AllDialog {
         });
         DialogNavBarHide.navBarHide(activity, dialog);
 
+    }
+
+
+    public void setDate(final TextView txt) {
+
+        final Calendar calendar = Calendar.getInstance();
+        int yy = calendar.get(Calendar.YEAR);
+        int mm = calendar.get(Calendar.MONTH);
+        int dd = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePicker = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String date = "Date: " + String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
+                txt.setText(date);
+            }
+        }, yy, mm, dd);
+
+        DialogNavBarHide.navBarHide(activity, datePicker);
     }
 
 }
