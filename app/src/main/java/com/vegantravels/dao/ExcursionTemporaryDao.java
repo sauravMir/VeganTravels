@@ -24,8 +24,8 @@ public class ExcursionTemporaryDao extends AbstractDao<ExcursionTemporary, Long>
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property DateFrom = new Property(1, java.util.Date.class, "dateFrom", false, "DATE_FROM");
-        public final static Property DateTo = new Property(2, java.util.Date.class, "dateTo", false, "DATE_TO");
+        public final static Property DateFrom = new Property(1, String.class, "dateFrom", false, "DATE_FROM");
+        public final static Property DateTo = new Property(2, String.class, "dateTo", false, "DATE_TO");
         public final static Property ExcursioneName = new Property(3, String.class, "excursioneName", false, "EXCURSIONE_NAME");
         public final static Property PricePerPerson = new Property(4, long.class, "pricePerPerson", false, "PRICE_PER_PERSON");
         public final static Property MaxGuest = new Property(5, int.class, "maxGuest", false, "MAX_GUEST");
@@ -46,8 +46,8 @@ public class ExcursionTemporaryDao extends AbstractDao<ExcursionTemporary, Long>
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"EXCURSION_TEMPORARY\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"DATE_FROM\" INTEGER NOT NULL ," + // 1: dateFrom
-                "\"DATE_TO\" INTEGER NOT NULL ," + // 2: dateTo
+                "\"DATE_FROM\" TEXT NOT NULL ," + // 1: dateFrom
+                "\"DATE_TO\" TEXT NOT NULL ," + // 2: dateTo
                 "\"EXCURSIONE_NAME\" TEXT NOT NULL ," + // 3: excursioneName
                 "\"PRICE_PER_PERSON\" INTEGER NOT NULL ," + // 4: pricePerPerson
                 "\"MAX_GUEST\" INTEGER NOT NULL ," + // 5: maxGuest
@@ -69,8 +69,8 @@ public class ExcursionTemporaryDao extends AbstractDao<ExcursionTemporary, Long>
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getDateFrom().getTime());
-        stmt.bindLong(3, entity.getDateTo().getTime());
+        stmt.bindString(2, entity.getDateFrom());
+        stmt.bindString(3, entity.getDateTo());
         stmt.bindString(4, entity.getExcursioneName());
         stmt.bindLong(5, entity.getPricePerPerson());
         stmt.bindLong(6, entity.getMaxGuest());
@@ -88,8 +88,8 @@ public class ExcursionTemporaryDao extends AbstractDao<ExcursionTemporary, Long>
     public ExcursionTemporary readEntity(Cursor cursor, int offset) {
         ExcursionTemporary entity = new ExcursionTemporary( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            new java.util.Date(cursor.getLong(offset + 1)), // dateFrom
-            new java.util.Date(cursor.getLong(offset + 2)), // dateTo
+            cursor.getString(offset + 1), // dateFrom
+            cursor.getString(offset + 2), // dateTo
             cursor.getString(offset + 3), // excursioneName
             cursor.getLong(offset + 4), // pricePerPerson
             cursor.getInt(offset + 5), // maxGuest
@@ -102,8 +102,8 @@ public class ExcursionTemporaryDao extends AbstractDao<ExcursionTemporary, Long>
     @Override
     public void readEntity(Cursor cursor, ExcursionTemporary entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setDateFrom(new java.util.Date(cursor.getLong(offset + 1)));
-        entity.setDateTo(new java.util.Date(cursor.getLong(offset + 2)));
+        entity.setDateFrom(cursor.getString(offset + 1));
+        entity.setDateTo(cursor.getString(offset + 2));
         entity.setExcursioneName(cursor.getString(offset + 3));
         entity.setPricePerPerson(cursor.getLong(offset + 4));
         entity.setMaxGuest(cursor.getInt(offset + 5));

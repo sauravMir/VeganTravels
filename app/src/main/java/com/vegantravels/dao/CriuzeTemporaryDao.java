@@ -26,8 +26,8 @@ public class CriuzeTemporaryDao extends AbstractDao<CriuzeTemporary, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property CruizeName = new Property(1, String.class, "cruizeName", false, "CRUIZE_NAME");
         public final static Property ShipName = new Property(2, String.class, "shipName", false, "SHIP_NAME");
-        public final static Property DateFrom = new Property(3, java.util.Date.class, "dateFrom", false, "DATE_FROM");
-        public final static Property DateTo = new Property(4, java.util.Date.class, "dateTo", false, "DATE_TO");
+        public final static Property DateFrom = new Property(3, String.class, "dateFrom", false, "DATE_FROM");
+        public final static Property DateTo = new Property(4, String.class, "dateTo", false, "DATE_TO");
         public final static Property CruizeKey = new Property(5, long.class, "cruizeKey", false, "CRUIZE_KEY");
     };
 
@@ -47,8 +47,8 @@ public class CriuzeTemporaryDao extends AbstractDao<CriuzeTemporary, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"CRUIZE_NAME\" TEXT NOT NULL ," + // 1: cruizeName
                 "\"SHIP_NAME\" TEXT NOT NULL ," + // 2: shipName
-                "\"DATE_FROM\" INTEGER NOT NULL ," + // 3: dateFrom
-                "\"DATE_TO\" INTEGER NOT NULL ," + // 4: dateTo
+                "\"DATE_FROM\" TEXT NOT NULL ," + // 3: dateFrom
+                "\"DATE_TO\" TEXT NOT NULL ," + // 4: dateTo
                 "\"CRUIZE_KEY\" INTEGER NOT NULL );"); // 5: cruizeKey
     }
 
@@ -69,8 +69,8 @@ public class CriuzeTemporaryDao extends AbstractDao<CriuzeTemporary, Long> {
         }
         stmt.bindString(2, entity.getCruizeName());
         stmt.bindString(3, entity.getShipName());
-        stmt.bindLong(4, entity.getDateFrom().getTime());
-        stmt.bindLong(5, entity.getDateTo().getTime());
+        stmt.bindString(4, entity.getDateFrom());
+        stmt.bindString(5, entity.getDateTo());
         stmt.bindLong(6, entity.getCruizeKey());
     }
 
@@ -87,8 +87,8 @@ public class CriuzeTemporaryDao extends AbstractDao<CriuzeTemporary, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // cruizeName
             cursor.getString(offset + 2), // shipName
-            new java.util.Date(cursor.getLong(offset + 3)), // dateFrom
-            new java.util.Date(cursor.getLong(offset + 4)), // dateTo
+            cursor.getString(offset + 3), // dateFrom
+            cursor.getString(offset + 4), // dateTo
             cursor.getLong(offset + 5) // cruizeKey
         );
         return entity;
@@ -100,8 +100,8 @@ public class CriuzeTemporaryDao extends AbstractDao<CriuzeTemporary, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setCruizeName(cursor.getString(offset + 1));
         entity.setShipName(cursor.getString(offset + 2));
-        entity.setDateFrom(new java.util.Date(cursor.getLong(offset + 3)));
-        entity.setDateTo(new java.util.Date(cursor.getLong(offset + 4)));
+        entity.setDateFrom(cursor.getString(offset + 3));
+        entity.setDateTo(cursor.getString(offset + 4));
         entity.setCruizeKey(cursor.getLong(offset + 5));
      }
     

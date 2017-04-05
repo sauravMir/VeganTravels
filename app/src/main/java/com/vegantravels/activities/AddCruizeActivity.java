@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCabinUpload:
-                Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
                 setXLS();
                 break;
         }
@@ -82,6 +83,9 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 }
                 values = values + "\n";
             }
+            Log.d("values", values);
+            Toast.makeText(activity, values, Toast.LENGTH_SHORT).show();
+
             tvCabinUpload.setText(values);
 
         } catch (Exception e) {

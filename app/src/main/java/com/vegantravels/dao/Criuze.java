@@ -12,9 +12,9 @@ public class Criuze {
     /** Not-null value. */
     private String shipName;
     /** Not-null value. */
-    private java.util.Date dateFrom;
+    private String dateFrom;
     /** Not-null value. */
-    private java.util.Date dateTo;
+    private String dateTo;
     private long cruizeKey;
 
     public Criuze() {
@@ -24,7 +24,7 @@ public class Criuze {
         this.id = id;
     }
 
-    public Criuze(Long id, String cruizeName, String shipName, java.util.Date dateFrom, java.util.Date dateTo, long cruizeKey) {
+    public Criuze(Long id, String cruizeName, String shipName, String dateFrom, String dateTo, long cruizeKey) {
         this.id = id;
         this.cruizeName = cruizeName;
         this.shipName = shipName;
@@ -62,22 +62,22 @@ public class Criuze {
     }
 
     /** Not-null value. */
-    public java.util.Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDateFrom(java.util.Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
     /** Not-null value. */
-    public java.util.Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDateTo(java.util.Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
 

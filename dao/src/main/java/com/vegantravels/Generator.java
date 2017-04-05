@@ -60,8 +60,8 @@ public class Generator {
         cruize.addIdProperty().primaryKey().autoincrement();
         cruize.addStringProperty("cruizeName").notNull();
         cruize.addStringProperty("shipName").notNull();
-        cruize.addDateProperty("dateFrom").notNull();
-        cruize.addDateProperty("dateTo").notNull();
+        cruize.addStringProperty("dateFrom").notNull();
+        cruize.addStringProperty("dateTo").notNull();
         cruize.addLongProperty("cruizeKey").notNull();
         return cruize;
     }
@@ -71,8 +71,8 @@ public class Generator {
         cruize.addIdProperty().primaryKey().autoincrement();
         cruize.addStringProperty("cruizeName").notNull();
         cruize.addStringProperty("shipName").notNull();
-        cruize.addDateProperty("dateFrom").notNull();
-        cruize.addDateProperty("dateTo").notNull();
+        cruize.addStringProperty("dateFrom").notNull();
+        cruize.addStringProperty("dateTo").notNull();
         cruize.addLongProperty("cruizeKey").notNull();
         return cruize;
     }
@@ -80,8 +80,8 @@ public class Generator {
     private static Entity addExcursion(Schema schema) {
         Entity excursion = schema.addEntity("Excursion");
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addDateProperty("dateFrom").notNull();
-        excursion.addDateProperty("dateTo").notNull();
+        excursion.addStringProperty("dateFrom").notNull();
+        excursion.addStringProperty("dateTo").notNull();
         excursion.addStringProperty("excursioneName").notNull();
         excursion.addLongProperty("pricePerPerson").notNull();
         excursion.addIntProperty("maxGuest").notNull();
@@ -92,8 +92,8 @@ public class Generator {
     private static Entity addExcursionTemporary(Schema schema) {
         Entity excursion = schema.addEntity("ExcursionTemporary");
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addDateProperty("dateFrom").notNull();
-        excursion.addDateProperty("dateTo").notNull();
+        excursion.addStringProperty("dateFrom").notNull();
+        excursion.addStringProperty("dateTo").notNull();
         excursion.addStringProperty("excursioneName").notNull();
         excursion.addLongProperty("pricePerPerson").notNull();
         excursion.addIntProperty("maxGuest").notNull();

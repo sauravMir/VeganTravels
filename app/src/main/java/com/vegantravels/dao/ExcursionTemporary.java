@@ -8,9 +8,9 @@ public class ExcursionTemporary {
 
     private Long id;
     /** Not-null value. */
-    private java.util.Date dateFrom;
+    private String dateFrom;
     /** Not-null value. */
-    private java.util.Date dateTo;
+    private String dateTo;
     /** Not-null value. */
     private String excursioneName;
     private long pricePerPerson;
@@ -24,7 +24,7 @@ public class ExcursionTemporary {
         this.id = id;
     }
 
-    public ExcursionTemporary(Long id, java.util.Date dateFrom, java.util.Date dateTo, String excursioneName, long pricePerPerson, int maxGuest, long cruizeKey) {
+    public ExcursionTemporary(Long id, String dateFrom, String dateTo, String excursioneName, long pricePerPerson, int maxGuest, long cruizeKey) {
         this.id = id;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
@@ -43,22 +43,22 @@ public class ExcursionTemporary {
     }
 
     /** Not-null value. */
-    public java.util.Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDateFrom(java.util.Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
     /** Not-null value. */
-    public java.util.Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
     /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDateTo(java.util.Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
 
