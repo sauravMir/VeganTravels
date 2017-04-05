@@ -2,6 +2,7 @@ package com.vegantravels.manager;
 
 
 import com.vegantravels.dao.Criuze;
+import com.vegantravels.dao.CriuzeTemporary;
 
 import java.util.ArrayList;
 
@@ -25,14 +26,21 @@ public interface IDatabaseManager {
     /**
      * Insert a user into the DB
      *
-     * @param  cruises be inserted
+     * @param cruises be inserted
      */
     Criuze insertCruises(Criuze cruises);
 
-    ArrayList<Criuze> listCriuzes() ;
+    ArrayList<Criuze> listCriuzes();
 
     Long updateCriuze(Criuze criuze);
 
-    Criuze updateUsers(Criuze criuze);
+    /// temporary cruize methods
+    CriuzeTemporary insertCriuzeTemporary(CriuzeTemporary criuzeTemporary);
+
+    ArrayList<CriuzeTemporary> listCriuzeTemporary();
+
+    Long updateCriuzeTemporary(CriuzeTemporary criuzeTemporary);
+
+    Criuze updateCruize(Criuze criuze);
 
 }

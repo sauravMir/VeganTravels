@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteException;
 
 import com.vegantravels.dao.Criuze;
 import com.vegantravels.dao.CriuzeDao;
+import com.vegantravels.dao.CriuzeTemporary;
+import com.vegantravels.dao.CriuzeTemporaryDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
 
@@ -129,15 +131,15 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     /***************************************
-     * USER Table Operation
+     * CRUIZE Table Operation
      ************************************/
     @Override
     public synchronized Criuze insertCruises(Criuze cruises) {
         try {
             if (cruises != null) {
                 openWritableDb();
-                CriuzeDao userDao = daoSession.getCriuzeDao();
-                userDao.insert(cruises);
+                CriuzeDao cruizeDao = daoSession.getCriuzeDao();
+                cruizeDao.insert(cruises);
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -148,18 +150,18 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     @Override
     public synchronized ArrayList<Criuze> listCriuzes() {
-        List<Criuze> users = null;
+        List<Criuze> listCriuzes = null;
         try {
             openReadableDb();
-            CriuzeDao userDao = daoSession.getCriuzeDao();
-            users = userDao.loadAll();
+            CriuzeDao cruizeDao = daoSession.getCriuzeDao();
+            listCriuzes = cruizeDao.loadAll();
 
             daoSession.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (users != null) {
-            return new ArrayList<>(users);
+        if (listCriuzes != null) {
+            return new ArrayList<>(listCriuzes);
         }
         return null;
     }
@@ -167,13 +169,13 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     @Override
     public synchronized Long updateCriuze(Criuze criuze) {
-        Long userKey = null;
+        Long criuzeKey = null;
         try {
             if (criuze != null) {
                 openWritableDb();
                 daoSession.update(criuze);
-               /* Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
-                userKey = criuze.getKey();*/
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                criuzeKey = criuze.getCruizeKey();
                 daoSession.clear();
             }
 
@@ -181,11 +183,66 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             e.printStackTrace();
 
         }
-        return userKey;
+        return criuzeKey;
+    }
+
+    /***************************************
+     * Cruize Temporary Table Operation
+     ************************************/
+    @Override
+    public CriuzeTemporary insertCriuzeTemporary(CriuzeTemporary criuzeTemporary) {
+        try {
+            if (criuzeTemporary != null) {
+                openWritableDb();
+                CriuzeTemporaryDao cruzeTempDao = daoSession.getCriuzeTemporaryDao();
+                cruzeTempDao.insert(criuzeTemporary);
+                daoSession.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return criuzeTemporary;
     }
 
     @Override
-    public synchronized Criuze updateUsers(Criuze criuze) {
+    public ArrayList<CriuzeTemporary> listCriuzeTemporary() {
+        List<CriuzeTemporary> cruizTempoList = null;
+        try {
+            openReadableDb();
+            CriuzeTemporaryDao cruzeTempDao = daoSession.getCriuzeTemporaryDao();
+            cruizTempoList = cruzeTempDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (cruizTempoList != null) {
+            return new ArrayList<>(cruizTempoList);
+        }
+        return null;
+    }
+
+    @Override
+    public Long updateCriuzeTemporary(CriuzeTemporary criuzeTemporary) {
+        Long criuzeTemporaryKey = null;
+        try {
+            if (criuzeTemporary != null) {
+                openWritableDb();
+                daoSession.update(criuzeTemporary);
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                criuzeTemporaryKey = criuzeTemporary.getCruizeKey();
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return criuzeTemporaryKey;
+    }
+
+    @Override
+    public synchronized Criuze updateCruize(Criuze criuze) {
 
         try {
             if (criuze != null) {
