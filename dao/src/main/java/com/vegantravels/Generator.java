@@ -45,7 +45,7 @@ public class Generator {
         addCriuze(schema);
         addCriuzeTemp(schema);
 
-        addCabinTemp(schema);
+        addCabin(schema);
         addCabinTemp(schema);
 
         addExcursion(schema);

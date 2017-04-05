@@ -11,7 +11,7 @@ import de.greenrobot.dao.internal.DaoConfig;
 
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.Criuzes_TMP;
-import com.vegantravels.dao.Cabins_TMP;
+import com.vegantravels.dao.Cabins;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Excursions;
 import com.vegantravels.dao.Excursions_TMP;
@@ -20,7 +20,7 @@ import com.vegantravels.dao.Guests_TMP;
 
 import com.vegantravels.dao.CriuzesDao;
 import com.vegantravels.dao.Criuzes_TMPDao;
-import com.vegantravels.dao.Cabins_TMPDao;
+import com.vegantravels.dao.CabinsDao;
 import com.vegantravels.dao.Cabins_TMPDao;
 import com.vegantravels.dao.ExcursionsDao;
 import com.vegantravels.dao.Excursions_TMPDao;
@@ -31,13 +31,14 @@ import com.vegantravels.dao.Guests_TMPDao;
 
 /**
  * {@inheritDoc}
- *
+ * 
  * @see de.greenrobot.dao.AbstractDaoSession
  */
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig criuzesDaoConfig;
     private final DaoConfig criuzes_TMPDaoConfig;
+    private final DaoConfig cabinsDaoConfig;
     private final DaoConfig cabins_TMPDaoConfig;
     private final DaoConfig excursionsDaoConfig;
     private final DaoConfig excursions_TMPDaoConfig;
@@ -46,6 +47,7 @@ public class DaoSession extends AbstractDaoSession {
 
     private final CriuzesDao criuzesDao;
     private final Criuzes_TMPDao criuzes_TMPDao;
+    private final CabinsDao cabinsDao;
     private final Cabins_TMPDao cabins_TMPDao;
     private final ExcursionsDao excursionsDao;
     private final Excursions_TMPDao excursions_TMPDao;
@@ -62,9 +64,11 @@ public class DaoSession extends AbstractDaoSession {
         criuzes_TMPDaoConfig = daoConfigMap.get(Criuzes_TMPDao.class).clone();
         criuzes_TMPDaoConfig.initIdentityScope(type);
 
+        cabinsDaoConfig = daoConfigMap.get(CabinsDao.class).clone();
+        cabinsDaoConfig.initIdentityScope(type);
+
         cabins_TMPDaoConfig = daoConfigMap.get(Cabins_TMPDao.class).clone();
         cabins_TMPDaoConfig.initIdentityScope(type);
-
 
         excursionsDaoConfig = daoConfigMap.get(ExcursionsDao.class).clone();
         excursionsDaoConfig.initIdentityScope(type);
@@ -80,6 +84,7 @@ public class DaoSession extends AbstractDaoSession {
 
         criuzesDao = new CriuzesDao(criuzesDaoConfig, this);
         criuzes_TMPDao = new Criuzes_TMPDao(criuzes_TMPDaoConfig, this);
+        cabinsDao = new CabinsDao(cabinsDaoConfig, this);
         cabins_TMPDao = new Cabins_TMPDao(cabins_TMPDaoConfig, this);
         excursionsDao = new ExcursionsDao(excursionsDaoConfig, this);
         excursions_TMPDao = new Excursions_TMPDao(excursions_TMPDaoConfig, this);
@@ -88,18 +93,18 @@ public class DaoSession extends AbstractDaoSession {
 
         registerDao(Criuzes.class, criuzesDao);
         registerDao(Criuzes_TMP.class, criuzes_TMPDao);
-        registerDao(Cabins_TMP.class, cabins_TMPDao);
+        registerDao(Cabins.class, cabinsDao);
         registerDao(Cabins_TMP.class, cabins_TMPDao);
         registerDao(Excursions.class, excursionsDao);
         registerDao(Excursions_TMP.class, excursions_TMPDao);
         registerDao(Guests.class, guestsDao);
         registerDao(Guests_TMP.class, guests_TMPDao);
     }
-
+    
     public void clear() {
         criuzesDaoConfig.getIdentityScope().clear();
         criuzes_TMPDaoConfig.getIdentityScope().clear();
-        cabins_TMPDaoConfig.getIdentityScope().clear();
+        cabinsDaoConfig.getIdentityScope().clear();
         cabins_TMPDaoConfig.getIdentityScope().clear();
         excursionsDaoConfig.getIdentityScope().clear();
         excursions_TMPDaoConfig.getIdentityScope().clear();
@@ -113,6 +118,14 @@ public class DaoSession extends AbstractDaoSession {
 
     public Criuzes_TMPDao getCriuzes_TMPDao() {
         return criuzes_TMPDao;
+    }
+
+    public CabinsDao getCabinsDao() {
+        return cabinsDao;
+    }
+
+    public Cabins_TMPDao getCabins_TMPDao() {
+        return cabins_TMPDao;
     }
 
     public ExcursionsDao getExcursionsDao() {

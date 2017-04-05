@@ -10,7 +10,7 @@ import de.greenrobot.dao.identityscope.IdentityScopeType;
 
 import com.vegantravels.dao.CriuzesDao;
 import com.vegantravels.dao.Criuzes_TMPDao;
-import com.vegantravels.dao.Cabins_TMPDao;
+import com.vegantravels.dao.CabinsDao;
 import com.vegantravels.dao.Cabins_TMPDao;
 import com.vegantravels.dao.ExcursionsDao;
 import com.vegantravels.dao.Excursions_TMPDao;
@@ -28,7 +28,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(SQLiteDatabase db, boolean ifNotExists) {
         CriuzesDao.createTable(db, ifNotExists);
         Criuzes_TMPDao.createTable(db, ifNotExists);
-        Cabins_TMPDao.createTable(db, ifNotExists);
+        CabinsDao.createTable(db, ifNotExists);
         Cabins_TMPDao.createTable(db, ifNotExists);
         ExcursionsDao.createTable(db, ifNotExists);
         Excursions_TMPDao.createTable(db, ifNotExists);
@@ -40,7 +40,7 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void dropAllTables(SQLiteDatabase db, boolean ifExists) {
         CriuzesDao.dropTable(db, ifExists);
         Criuzes_TMPDao.dropTable(db, ifExists);
-        Cabins_TMPDao.dropTable(db, ifExists);
+        CabinsDao.dropTable(db, ifExists);
         Cabins_TMPDao.dropTable(db, ifExists);
         ExcursionsDao.dropTable(db, ifExists);
         Excursions_TMPDao.dropTable(db, ifExists);
@@ -79,7 +79,7 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(CriuzesDao.class);
         registerDaoClass(Criuzes_TMPDao.class);
-        registerDaoClass(Cabins_TMPDao.class);
+        registerDaoClass(CabinsDao.class);
         registerDaoClass(Cabins_TMPDao.class);
         registerDaoClass(ExcursionsDao.class);
         registerDaoClass(Excursions_TMPDao.class);

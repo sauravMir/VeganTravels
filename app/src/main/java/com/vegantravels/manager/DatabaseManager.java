@@ -243,7 +243,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         return criuzeTemporaryKey;
     }
 
-    
+
     @Override
     public Guests_TMP insertGuestTemporary(Guests_TMP guests_tmp) {
         return null;
