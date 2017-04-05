@@ -19,6 +19,7 @@
             android:background="@drawable/top_cell">
 
             <TextView
+                android:id="@+id/tvCruiseList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -28,11 +29,13 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/thirty" />
 
+
             <ImageButton
                 android:id="@+id/ibtnAddCruize"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
-                android:layout_alignParentRight="true"
+
+                android:layout_toRightOf="@+id/tvCruiseList"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@color/transparent"
@@ -40,9 +43,22 @@
                 android:src="@android:drawable/ic_input_add"
                 android:visibility="visible" />
             <ImageButton
+                android:id="@+id/ibtnSync"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:background="@color/transparent"
+                android:layout_toRightOf="@+id/ibtnAddCruize"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_popup_sync"
+                android:visibility="visible" />
+            <ImageButton
                 android:id="@+id/ibtnBack"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
+                android:layout_alignLeft="@+id/ibtnSync"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparent"

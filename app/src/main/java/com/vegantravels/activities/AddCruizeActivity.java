@@ -11,9 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.itextpdf.text.pdf.codec.Base64;
 import com.vegantravels.R;
-import com.vegantravels.asynctask.GenericsAsyncTask;
+import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 
@@ -28,9 +27,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private ProgressDialog progressDialog;
     private AddCruizeActivity activity;
     private DatabaseManager databaseManager;
-    private Button btnCabinUpload;
+    private Button btnCabinUpload, btnDone;
     private TextView tvCabinUpload;
-    EditText edtCruzeName;
+    private EditText edtCruzeName, edtShipName, edtDateFrom, edtDateTo;
+    private Criuzes_TMP aCruize;
 
     @Override
 
@@ -40,20 +40,25 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         activity = this;
         progressDialog = new ProgressDialog(activity);
         databaseManager = new DatabaseManager(activity);
-        btnCabinUpload = (Button) findViewById(R.id.btnCabinUpload);
-        tvCabinUpload = (TextView) findViewById(R.id.tvCabinUpload);
-        edtCruzeName = (EditText) findViewById(R.id.edtCruzeName);
-        btnCabinUpload.setOnClickListener(this);
-        //findViewById();
-//        GenericsAsyncTask cruisesGenericsAsyncTask = new GenericsAsyncTask(activity, null, "inserting");
+
+        findViewById();
     }
 
-   /* private void findViewById() {
+    private void findViewById() {
+        //button
         btnCabinUpload = (Button) findViewById(R.id.btnCabinUpload);
         tvCabinUpload = (TextView) findViewById(R.id.tvCabinUpload);
-        btnCabinUpload.setOnClickListener(this);
+        btnDone = (Button) findViewById(R.id.btnDone);
+        //edtext
+        edtCruzeName = (EditText) findViewById(R.id.edtCruzeName);
+        edtShipName = (EditText) findViewById(R.id.edtShipName);
+        edtDateFrom = (EditText) findViewById(R.id.edtDateFrom);
+        edtDateTo = (EditText) findViewById(R.id.edtDateTo);
 
-    }*/
+        //listner
+        btnCabinUpload.setOnClickListener(this);
+        btnDone.setOnClickListener(this);
+    }
 
     @Override
     public void onClick(View v) {
@@ -62,7 +67,28 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 //Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
                 setXLS();
                 break;
+            case R.id.btnDone:
+                if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && edtDateFrom.length() > 0 && edtDateTo.length() > 0) {
+                    addNewCruize();
+                } else {
+                    Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
+    }
+
+    private void addNewCruize() {
+        /// insert new cruize tempo here....
+        long cruizeKey = System.currentTimeMillis();
+        aCruize = new Criuzes_TMP();
+        aCruize.setName(edtCruzeName.getText().toString());
+        aCruize.setShipName(edtShipName.getText().toString());
+        aCruize.setFrom(edtDateFrom.getText().toString());
+        aCruize.setTo(edtDateTo.getText().toString());
+       // aCruize.setCruizeKey(cruizeKey);
+        // trigger asynctask to insert cruize in temo table
+        new NewCruiseAsyncTask().execute();
+
     }
 
 
@@ -94,6 +120,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     }
 
     class NewCruiseAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean success = false;
 
         @Override
         protected void onPreExecute() {
@@ -107,12 +134,17 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
+            if (aCruize != null) {
+                databaseManager.insertCriuzeTemporary(aCruize);
+                success = true;
+            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressDialog.show();
+            progressDialog.dismiss();
+            Toast.makeText(activity, "insert Success", Toast.LENGTH_SHORT).show();
             super.onPostExecute(aVoid);
         }
     }

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteException;
 
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.CriuzesDao;
+import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.dao.Criuzes_TMPDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
 
@@ -44,7 +46,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     /**
      * Constructs a new DatabaseManager with the specified arguments.
      *
-     * @param context The Android {@link android.content.Context}.
+     * @param context The Android {@link Context}.
      */
     public DatabaseManager(final Context context) {
         this.context = context;
@@ -53,7 +55,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     /**
-     * @param context The Android {@link android.content.Context}.
+     * @param context The Android {@link Context}.
      * @return this.instance
      */
     public static DatabaseManager getInstance(Context context) {
@@ -129,15 +131,15 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     /***************************************
-     * USER Table Operation
+     * CRUIZE Table Operation
      ************************************/
     @Override
     public synchronized Criuzes insertCruises(Criuzes cruises) {
         try {
             if (cruises != null) {
                 openWritableDb();
-                CriuzesDao userDao = daoSession.getCriuzesDao();
-                userDao.insert(cruises);
+                CriuzesDao cruizeDao = daoSession.getCriuzesDao();
+                cruizeDao.insert(cruises);
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -148,18 +150,18 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     @Override
     public synchronized ArrayList<Criuzes> listCriuzes() {
-        List<Criuzes> users = null;
+        List<Criuzes> listCriuzes = null;
         try {
             openReadableDb();
-            CriuzesDao userDao = daoSession.getCriuzesDao();
-            users = userDao.loadAll();
+            CriuzesDao cruizeDao = daoSession.getCriuzesDao();
+            listCriuzes = cruizeDao.loadAll();
 
             daoSession.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (users != null) {
-            return new ArrayList<>(users);
+        if (listCriuzes != null) {
+            return new ArrayList<>(listCriuzes);
         }
         return null;
     }
@@ -167,13 +169,13 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     @Override
     public synchronized Long updateCriuze(Criuzes criuze) {
-        Long userKey = null;
+        Long criuzeKey = null;
         try {
             if (criuze != null) {
                 openWritableDb();
                 daoSession.update(criuze);
-               /* Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
-                userKey = criuze.getKey();*/
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                //criuzeKey = criuze.getCruizeKey();
                 daoSession.clear();
             }
 
@@ -181,11 +183,66 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             e.printStackTrace();
 
         }
-        return userKey;
+        return criuzeKey;
+    }
+
+    /***************************************
+     * Cruize Temporary Table Operation
+     ************************************/
+    @Override
+    public Criuzes_TMP insertCriuzeTemporary(Criuzes_TMP criuzeTemporary) {
+        try {
+            if (criuzeTemporary != null) {
+                openWritableDb();
+                Criuzes_TMPDao cruzeTempDao = daoSession.getCriuzes_TMPDao();
+                cruzeTempDao.insert(criuzeTemporary);
+                daoSession.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return criuzeTemporary;
     }
 
     @Override
-    public synchronized Criuzes updateUsers(Criuzes criuze) {
+    public ArrayList<Criuzes_TMP> listCriuzeTemporary() {
+        List<Criuzes_TMP> cruizTempoList = null;
+        try {
+            openReadableDb();
+            Criuzes_TMPDao cruzeTempDao = daoSession.getCriuzes_TMPDao();
+            cruizTempoList = cruzeTempDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (cruizTempoList != null) {
+            return new ArrayList<>(cruizTempoList);
+        }
+        return null;
+    }
+
+    @Override
+    public Long updateCriuzeTemporary(Criuzes_TMP criuzeTemporary) {
+        Long criuzeTemporaryKey = null;
+        try {
+            if (criuzeTemporary != null) {
+                openWritableDb();
+                daoSession.update(criuzeTemporary);
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                //criuzeTemporaryKey = criuzeTemporary.getCruizeKey();
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return criuzeTemporaryKey;
+    }
+
+    @Override
+    public synchronized Criuzes updateCruize(Criuzes criuze) {
 
         try {
             if (criuze != null) {

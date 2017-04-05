@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dialog.DialogNavBarHide;
-import com.vegantravels.manager.DatabaseManager;
 
 /**
  * Created by Rakib on 4/5/2017.
