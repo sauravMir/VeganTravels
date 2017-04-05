@@ -69,7 +69,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     public void setXLS() {
         try {
             AssetManager assetManager = getAssets();
-            InputStream inputStream = assetManager.open("abc.xls");
+            InputStream inputStream = assetManager.open("client.xls");
             Workbook workbook = Workbook.getWorkbook(inputStream);
             Sheet sheet = workbook.getSheet(0);
             int row = sheet.getRows();
@@ -77,13 +77,13 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             String values = "";
 
             for (int i = 0; i < row; i++) {
-                for (int j = 0; i < col; j++) {
+                for (int j = 0; j < col; j++) {
                     Cell cell = sheet.getCell(j, i);
                     values = values + cell.getContents();
                 }
                 values = values + "\n";
             }
-            Log.d("values", values);
+            Log.d(values, values);
             Toast.makeText(activity, values, Toast.LENGTH_SHORT).show();
 
             tvCabinUpload.setText(values);

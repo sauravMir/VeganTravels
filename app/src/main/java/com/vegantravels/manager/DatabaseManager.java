@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
-import com.vegantravels.dao.Criuze;
-import com.vegantravels.dao.CriuzeDao;
+import com.vegantravels.dao.Criuzes;
+import com.vegantravels.dao.CriuzesDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
 
@@ -132,11 +132,11 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
      * USER Table Operation
      ************************************/
     @Override
-    public synchronized Criuze insertCruises(Criuze cruises) {
+    public synchronized Criuzes insertCruises(Criuzes cruises) {
         try {
             if (cruises != null) {
                 openWritableDb();
-                CriuzeDao userDao = daoSession.getCriuzeDao();
+                CriuzesDao userDao = daoSession.getCriuzesDao();
                 userDao.insert(cruises);
                 daoSession.clear();
             }
@@ -147,11 +147,11 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
-    public synchronized ArrayList<Criuze> listCriuzes() {
-        List<Criuze> users = null;
+    public synchronized ArrayList<Criuzes> listCriuzes() {
+        List<Criuzes> users = null;
         try {
             openReadableDb();
-            CriuzeDao userDao = daoSession.getCriuzeDao();
+            CriuzesDao userDao = daoSession.getCriuzesDao();
             users = userDao.loadAll();
 
             daoSession.clear();
@@ -166,7 +166,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
 
     @Override
-    public synchronized Long updateCriuze(Criuze criuze) {
+    public synchronized Long updateCriuze(Criuzes criuze) {
         Long userKey = null;
         try {
             if (criuze != null) {
@@ -185,7 +185,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
-    public synchronized Criuze updateUsers(Criuze criuze) {
+    public synchronized Criuzes updateUsers(Criuzes criuze) {
 
         try {
             if (criuze != null) {

@@ -43,11 +43,16 @@ public class Generator {
     private static void addTables(Schema schema) {
         /* entities */
         addCriuze(schema);
-        addCriuzeTemporary(schema);
+        addCriuzeTemp(schema);
+
+        addCabinTemp(schema);
+        addCabinTemp(schema);
+
         addExcursion(schema);
-        addExcursionTemporary(schema);
+        addExcursionTemp(schema);
+
         addGuest(schema);
-        addGuestTemporary(schema);
+        addGuestTemp(schema);
     }
 
     /**
@@ -56,67 +61,109 @@ public class Generator {
      * @return DBUser entity
      */
     private static Entity addCriuze(Schema schema) {
-        Entity cruize = schema.addEntity("Criuze");
+        Entity cruize = schema.addEntity(StaticAccess.Table_CRUIZE);
         cruize.addIdProperty().primaryKey().autoincrement();
-        cruize.addStringProperty("cruizeName").notNull();
-        cruize.addStringProperty("shipName").notNull();
-        cruize.addStringProperty("dateFrom").notNull();
-        cruize.addStringProperty("dateTo").notNull();
-        cruize.addLongProperty("cruizeKey").notNull();
+        cruize.addStringProperty(StaticAccess.Column_name).notNull();
+        cruize.addStringProperty(StaticAccess.Column_shipName).notNull();
+        cruize.addStringProperty(StaticAccess.Column_from).notNull();
+        cruize.addStringProperty(StaticAccess.Column_to).notNull();
+        cruize.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        cruize.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return cruize;
     }
 
-    private static Entity addCriuzeTemporary(Schema schema) {
-        Entity cruize = schema.addEntity("CriuzeTemporary");
+    private static Entity addCriuzeTemp(Schema schema) {
+        Entity cruize = schema.addEntity(StaticAccess.Table_CRUIZE_TMP);
         cruize.addIdProperty().primaryKey().autoincrement();
-        cruize.addStringProperty("cruizeName").notNull();
-        cruize.addStringProperty("shipName").notNull();
-        cruize.addStringProperty("dateFrom").notNull();
-        cruize.addStringProperty("dateTo").notNull();
-        cruize.addLongProperty("cruizeKey").notNull();
+        cruize.addStringProperty(StaticAccess.Column_name).notNull();
+        cruize.addStringProperty(StaticAccess.Column_shipName).notNull();
+        cruize.addStringProperty(StaticAccess.Column_from).notNull();
+        cruize.addStringProperty(StaticAccess.Column_to).notNull();
+        cruize.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        cruize.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return cruize;
     }
+
+
+    private static Entity addCabin(Schema schema) {
+        Entity cabin = schema.addEntity(StaticAccess.Table_CABIN);
+        cabin.addIdProperty().primaryKey().autoincrement();
+        cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
+        cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
+        cabin.addIntProperty(StaticAccess.Column_guestId).notNull();
+        cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
+        cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
+        cabin.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        cabin.addLongProperty(StaticAccess.Column_updatedAt).notNull();
+        return cabin;
+    }
+
+    private static Entity addCabinTemp(Schema schema) {
+        Entity cabin = schema.addEntity(StaticAccess.Table_CABIN_TMP);
+        cabin.addIdProperty().primaryKey().autoincrement();
+        cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
+        cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
+        cabin.addIntProperty(StaticAccess.Column_guestId).notNull();
+        cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
+        cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
+        cabin.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        cabin.addLongProperty(StaticAccess.Column_updatedAt).notNull();
+        return cabin;
+    }
+
 
     private static Entity addExcursion(Schema schema) {
-        Entity excursion = schema.addEntity("Excursion");
+        Entity excursion = schema.addEntity(StaticAccess.Table_EXCURSIONS);
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addStringProperty("dateFrom").notNull();
-        excursion.addStringProperty("dateTo").notNull();
-        excursion.addStringProperty("excursioneName").notNull();
-        excursion.addLongProperty("pricePerPerson").notNull();
-        excursion.addIntProperty("maxGuest").notNull();
-        excursion.addLongProperty("cruizeKey").notNull();
+        //excursion.addIntProperty(StaticAccess.Column_id).notNull();
+        excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
+        excursion.addIntProperty(StaticAccess.Column_title).notNull();
+        excursion.addStringProperty(StaticAccess.Column_from).notNull();
+        excursion.addStringProperty(StaticAccess.Column_to).notNull();
+        excursion.addStringProperty(StaticAccess.Column_time).notNull();
+        excursion.addStringProperty(StaticAccess.Column_price).notNull();
+        excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();
+        excursion.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        excursion.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return excursion;
     }
 
-    private static Entity addExcursionTemporary(Schema schema) {
-        Entity excursion = schema.addEntity("ExcursionTemporary");
+    private static Entity addExcursionTemp(Schema schema) {
+        Entity excursion = schema.addEntity(StaticAccess.Table_EXCURSIONS_TMP);
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addStringProperty("dateFrom").notNull();
-        excursion.addStringProperty("dateTo").notNull();
-        excursion.addStringProperty("excursioneName").notNull();
-        excursion.addLongProperty("pricePerPerson").notNull();
-        excursion.addIntProperty("maxGuest").notNull();
-        excursion.addLongProperty("cruizeKey").notNull();
+        //excursion.addIntProperty(StaticAccess.Column_id).notNull();
+        excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
+        excursion.addIntProperty(StaticAccess.Column_title).notNull();
+        excursion.addStringProperty(StaticAccess.Column_from).notNull();
+        excursion.addStringProperty(StaticAccess.Column_to).notNull();
+        excursion.addStringProperty(StaticAccess.Column_time).notNull();
+        excursion.addStringProperty(StaticAccess.Column_price).notNull();
+        excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();
+        excursion.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        excursion.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return excursion;
     }
 
 
     private static Entity addGuest(Schema schema) {
-        Entity guest = schema.addEntity("Guest");
+        Entity guest = schema.addEntity(StaticAccess.Table_GUESTS);
         guest.addIdProperty().primaryKey().autoincrement();
-        guest.addStringProperty("guestName").notNull();
-        guest.addStringProperty("cabin").notNull();
-        guest.addLongProperty("guestKey").notNull();
+        guest.addIntProperty(StaticAccess.Column_guestId).notNull();
+        guest.addStringProperty(StaticAccess.Column_fname).notNull();
+        guest.addStringProperty(StaticAccess.Column_lName).notNull();
+        guest.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        guest.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return guest;
     }
 
-    private static Entity addGuestTemporary(Schema schema) {
-        Entity guest = schema.addEntity("GuestTemporary");
+    private static Entity addGuestTemp(Schema schema) {
+        Entity guest = schema.addEntity(StaticAccess.Table_GUESTS_TMP);
         guest.addIdProperty().primaryKey().autoincrement();
-        guest.addStringProperty("guestName").notNull();
-        guest.addStringProperty("cabin").notNull();
-        guest.addLongProperty("guestKey").notNull();
+        guest.addIntProperty(StaticAccess.Column_guestId).notNull();
+        guest.addStringProperty(StaticAccess.Column_fname).notNull();
+        guest.addStringProperty(StaticAccess.Column_lName).notNull();
+        guest.addLongProperty(StaticAccess.Column_createdAt).notNull();
+        guest.addLongProperty(StaticAccess.Column_updatedAt).notNull();
         return guest;
     }
 

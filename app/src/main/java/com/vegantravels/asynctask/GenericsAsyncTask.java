@@ -3,7 +3,7 @@ package com.vegantravels.asynctask;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
-import com.vegantravels.dao.Criuze;
+import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 
@@ -16,9 +16,9 @@ public class GenericsAsyncTask extends FrameWorkAsyncTask {
     private ProgressDialog progressDialog;
     private DatabaseManager databaseManager;
     private String msg;
-    private Criuze cruises;
+    private Criuzes cruises;
 
-    public GenericsAsyncTask(Activity activity, Criuze cruises, String progressMsg) {
+    public GenericsAsyncTask(Activity activity, Criuzes cruises, String progressMsg) {
         this.activity = activity;
         progressDialog = new ProgressDialog(activity);
         databaseManager = new DatabaseManager(activity);
