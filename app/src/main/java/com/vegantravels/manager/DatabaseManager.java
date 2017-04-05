@@ -175,7 +175,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
                 openWritableDb();
                 daoSession.update(criuze);
 //                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
-                //criuzeKey = criuze.getCruizeKey();
+                criuzeKey = criuze.getId();
                 daoSession.clear();
             }
 
@@ -230,7 +230,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
                 openWritableDb();
                 daoSession.update(criuzeTemporary);
 //                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
-                //criuzeTemporaryKey = criuzeTemporary.getCruizeKey();
+                criuzeTemporaryKey = criuzeTemporary.getId();
                 daoSession.clear();
             }
 
