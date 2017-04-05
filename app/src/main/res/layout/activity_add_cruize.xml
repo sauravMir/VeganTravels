@@ -31,6 +31,7 @@
             android:layout_weight=".05" />
 
         <EditText
+            android:id="@+id/edtCruzeName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
@@ -85,21 +86,26 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <TextView
+            <Button
+                android:id="@+id/btnCabinUpload"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight=".4"
+                android:background="@color/transparent"
                 android:gravity="center"
                 android:text="Upload Cabin"
-                android:textSize="@dimen/twenty" />
+                android:onClick="setXLS"
+                android:textSize="@dimen/fifteen" />
 
             <TextView
+                android:id="@+id/tvCabinUpload"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight=".6"
                 android:gravity="center"
-                android:text="Cabin"
-                android:textSize="@dimen/twenty" />
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen" />
 
         </LinearLayout>
 
