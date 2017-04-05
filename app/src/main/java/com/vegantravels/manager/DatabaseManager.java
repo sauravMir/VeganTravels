@@ -10,6 +10,8 @@ import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Criuzes_TMPDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
+import com.vegantravels.dao.Guests;
+import com.vegantravels.dao.Guests_TMP;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -239,6 +241,37 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
         }
         return criuzeTemporaryKey;
+    }
+
+    
+    @Override
+    public Guests_TMP insertGuestTemporary(Guests_TMP guests_tmp) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Guests_TMP> listGuestTemporary() {
+        return null;
+    }
+
+    @Override
+    public Long updateGuestTemporary(Guests_TMP guests_tmp) {
+        return null;
+    }
+
+    @Override
+    public Guests insertGuest(Guests guests) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Guests> guestList() {
+        return null;
+    }
+
+    @Override
+    public Long updateGuest(Guests guests) {
+        return null;
     }
 
     @Override
