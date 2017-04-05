@@ -1,6 +1,7 @@
 package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private TextView tvCabinUpload;
     private EditText edtCruzeName, edtShipName, edtDateFrom, edtDateTo;
     private Criuzes_TMP aCruize;
+    private ImageButton ibtnBackCruize;
 
     @Override
 
@@ -54,10 +57,12 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         edtShipName = (EditText) findViewById(R.id.edtShipName);
         edtDateFrom = (EditText) findViewById(R.id.edtDateFrom);
         edtDateTo = (EditText) findViewById(R.id.edtDateTo);
+        ibtnBackCruize = (ImageButton) findViewById(R.id.ibtnBackCruize);
 
         //listner
         btnCabinUpload.setOnClickListener(this);
         btnDone.setOnClickListener(this);
+        ibtnBackCruize.setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +79,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                     Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.ibtnBackCruize:
+                startActivity(new Intent(activity, MainActivity.class));
+                finishTheActivity();
+                break;
         }
     }
 
@@ -85,7 +94,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         aCruize.setShipName(edtShipName.getText().toString());
         aCruize.setFrom(edtDateFrom.getText().toString());
         aCruize.setTo(edtDateTo.getText().toString());
-       // aCruize.setCruizeKey(cruizeKey);
+        // aCruize.setCruizeKey(cruizeKey);
         // trigger asynctask to insert cruize in temo table
         new NewCruiseAsyncTask().execute();
 
@@ -117,6 +126,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    void finishTheActivity() {
+        finish();
     }
 
     class NewCruiseAsyncTask extends AsyncTask<Void, Void, Void> {
