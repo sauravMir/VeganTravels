@@ -3,6 +3,8 @@ package com.vegantravels.sync;
 import android.content.Context;
 
 import com.vegantravels.dao.Criuze;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.CruiseJson;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.retroapi.APIClient;
@@ -26,13 +28,14 @@ public class CruiseTble {
     Context context;
     ArrayList<Cruises> cruisesList;
     APIInterface apiInterface;
-
+    IDatabaseManager databaseManager;
     public CruiseTble(Context context) {
         this.context = context;
         apiInterface = APIClient.getClient().create(APIInterface.class);
+        databaseManager = new DatabaseManager(context);
     }
 
-    void parsingCruisesList() {
+   public void parsingCruisesList() {
         cruisesList = new ArrayList<>();
 //        showProgressDialog();
         Call<CruiseJson> call = apiInterface.getCruizeList();
@@ -47,16 +50,10 @@ public class CruiseTble {
                     Criuze criuze = new Criuze();
                     criuze.setCruizeKey(System.currentTimeMillis());
                     criuze.setCruizeName(cruises.getCruiseName());
-//                    criuze.setDateFrom(cruises.getDateFrom());
-                    criuze.setCruizeKey(System.currentTimeMillis());
-                    criuze.setCruizeKey(System.currentTimeMillis());
-                   /* Cruises cruises1 = new Cruises();
-                    cruises1.setCruiseID(cruises.getCruiseID());
-                    cruises1.setCruiseName();
-                    cruises1.setShipName(cruises.getShipName());
-                    cruises1.setDateFrom(cruises.getDateFrom());
-                    cruises1.setDateTo(cruises.getDateTo());
-                    cruisesList.add(cruises1);*/
+                    criuze.setShipName(cruises.getShipName());
+                    criuze.setDateTo(cruises.getDateTo());
+                    criuze.setDateFrom(cruises.getDateFrom());
+                    databaseManager.insertCruises(criuze);
                 }
             }
 
