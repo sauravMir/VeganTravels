@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.vegantravels.R;
-import com.vegantravels.dao.Criuze;
+import com.vegantravels.dao.Criuzes;
 import com.vegantravels.model.Cruises;
 
 import java.util.ArrayList;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class CruisesAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Criuze> cruisesList;
+    private ArrayList<Criuzes> cruisesList;
     private LayoutInflater inflater;
 
-    public CruisesAdapter(Context context, ArrayList<Criuze> cruisesList) {
+    public CruisesAdapter(Context context, ArrayList<Criuzes> cruisesList) {
         this.context = context;
         this.cruisesList = cruisesList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -67,10 +67,10 @@ public class CruisesAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvCruiseName.setText(cruisesList.get(i).getCruizeName());
+        holder.tvCruiseName.setText(cruisesList.get(i).getName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
-        holder.tvDate.setText(cruisesList.get(i).getDateFrom());
-        holder.tvTime.setText(cruisesList.get(i).getDateTo());
+        holder.tvDate.setText(cruisesList.get(i).getFrom());
+        holder.tvTime.setText(cruisesList.get(i).getTo());
 
         return convertView;
     }

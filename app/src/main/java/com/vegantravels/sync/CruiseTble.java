@@ -2,7 +2,9 @@ package com.vegantravels.sync;
 
 import android.content.Context;
 
-import com.vegantravels.dao.Criuze;
+import com.vegantravels.dao.Criuzes;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.CruiseJson;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.retroapi.APIClient;
@@ -44,12 +46,12 @@ public class CruiseTble {
 
                 for (Cruises cruises : cruiseJson.mCruiseList) {
                     System.out.println(cruises.toString());
-                    Criuze criuze = new Criuze();
-                    criuze.setCruizeKey(System.currentTimeMillis());
-                    criuze.setCruizeName(cruises.getCruiseName());
+                    Criuzes criuze = new Criuzes();
+                    //criuze.setCruizeKey(System.currentTimeMillis());
+                    criuze.setName(cruises.getCruiseName());
                     criuze.setShipName(cruises.getShipName());
-                    criuze.setDateTo(cruises.getDateTo());
-                    criuze.setDateFrom(cruises.getDateFrom());
+                    criuze.setTo(cruises.getDateTo());
+                    criuze.setFrom(cruises.getDateFrom());
                     databaseManager.insertCruises(criuze);
                 }
             }
