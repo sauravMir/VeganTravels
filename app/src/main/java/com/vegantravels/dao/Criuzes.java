@@ -16,8 +16,8 @@ public class Criuzes {
     /** Not-null value. */
     private String to;
     private long CruizeUniqueId;
-    private long createdAt;
-    private long updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
 
     public Criuzes() {
     }
@@ -26,7 +26,7 @@ public class Criuzes {
         this.id = id;
     }
 
-    public Criuzes(Long id, String name, String shipName, String from, String to, long CruizeUniqueId, long createdAt, long updatedAt) {
+    public Criuzes(Long id, String name, String shipName, String from, String to, long CruizeUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.name = name;
         this.shipName = shipName;
@@ -93,19 +93,19 @@ public class Criuzes {
         this.CruizeUniqueId = CruizeUniqueId;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(long updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -28,8 +28,9 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
         public final static Property Fname = new Property(2, String.class, "fname", false, "FNAME");
         public final static Property LName = new Property(3, String.class, "lName", false, "L_NAME");
         public final static Property GuestUniqueId = new Property(4, long.class, "GuestUniqueId", false, "GUEST_UNIQUE_ID");
-        public final static Property CreatedAt = new Property(5, long.class, "createdAt", false, "CREATED_AT");
-        public final static Property UpdatedAt = new Property(6, long.class, "updatedAt", false, "UPDATED_AT");
+        public final static Property CabinNumber = new Property(5, int.class, "cabinNumber", false, "CABIN_NUMBER");
+        public final static Property CreatedAt = new Property(6, Long.class, "createdAt", false, "CREATED_AT");
+        public final static Property UpdatedAt = new Property(7, Long.class, "updatedAt", false, "UPDATED_AT");
     };
 
 
@@ -50,8 +51,9 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
                 "\"FNAME\" TEXT NOT NULL ," + // 2: fname
                 "\"L_NAME\" TEXT NOT NULL ," + // 3: lName
                 "\"GUEST_UNIQUE_ID\" INTEGER NOT NULL ," + // 4: GuestUniqueId
-                "\"CREATED_AT\" INTEGER NOT NULL ," + // 5: createdAt
-                "\"UPDATED_AT\" INTEGER NOT NULL );"); // 6: updatedAt
+                "\"CABIN_NUMBER\" INTEGER NOT NULL ," + // 5: cabinNumber
+                "\"CREATED_AT\" INTEGER," + // 6: createdAt
+                "\"UPDATED_AT\" INTEGER);"); // 7: updatedAt
     }
 
     /** Drops the underlying database table. */
@@ -73,8 +75,17 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
         stmt.bindString(3, entity.getFname());
         stmt.bindString(4, entity.getLName());
         stmt.bindLong(5, entity.getGuestUniqueId());
-        stmt.bindLong(6, entity.getCreatedAt());
-        stmt.bindLong(7, entity.getUpdatedAt());
+        stmt.bindLong(6, entity.getCabinNumber());
+ 
+        Long createdAt = entity.getCreatedAt();
+        if (createdAt != null) {
+            stmt.bindLong(7, createdAt);
+        }
+ 
+        Long updatedAt = entity.getUpdatedAt();
+        if (updatedAt != null) {
+            stmt.bindLong(8, updatedAt);
+        }
     }
 
     /** @inheritdoc */
@@ -92,8 +103,9 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
             cursor.getString(offset + 2), // fname
             cursor.getString(offset + 3), // lName
             cursor.getLong(offset + 4), // GuestUniqueId
-            cursor.getLong(offset + 5), // createdAt
-            cursor.getLong(offset + 6) // updatedAt
+            cursor.getInt(offset + 5), // cabinNumber
+            cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // createdAt
+            cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7) // updatedAt
         );
         return entity;
     }
@@ -106,8 +118,9 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
         entity.setFname(cursor.getString(offset + 2));
         entity.setLName(cursor.getString(offset + 3));
         entity.setGuestUniqueId(cursor.getLong(offset + 4));
-        entity.setCreatedAt(cursor.getLong(offset + 5));
-        entity.setUpdatedAt(cursor.getLong(offset + 6));
+        entity.setCabinNumber(cursor.getInt(offset + 5));
+        entity.setCreatedAt(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
+        entity.setUpdatedAt(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
      }
     
     /** @inheritdoc */

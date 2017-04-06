@@ -14,8 +14,8 @@ public class Cabins {
     /** Not-null value. */
     private String deviceDate;
     private long CabinUniqueId;
-    private long createdAt;
-    private long updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
 
     public Cabins() {
     }
@@ -24,7 +24,7 @@ public class Cabins {
         this.id = id;
     }
 
-    public Cabins(Long id, int cabinNumber, int numberOfGuest, int guestId, int paymentStatus, String deviceDate, long CabinUniqueId, long createdAt, long updatedAt) {
+    public Cabins(Long id, int cabinNumber, int numberOfGuest, int guestId, int paymentStatus, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.cabinNumber = cabinNumber;
         this.numberOfGuest = numberOfGuest;
@@ -94,19 +94,19 @@ public class Cabins {
         this.CabinUniqueId = CabinUniqueId;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(long updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 

@@ -12,9 +12,10 @@ public class Guests_TMP {
     private String fname;
     /** Not-null value. */
     private String lName;
+    private int cabinNumber;
     private long GuestUniqueId;
-    private long createdAt;
-    private long updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
 
     public Guests_TMP() {
     }
@@ -23,11 +24,12 @@ public class Guests_TMP {
         this.id = id;
     }
 
-    public Guests_TMP(Long id, int guestId, String fname, String lName, long GuestUniqueId, long createdAt, long updatedAt) {
+    public Guests_TMP(Long id, int guestId, String fname, String lName, int cabinNumber, long GuestUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.guestId = guestId;
         this.fname = fname;
         this.lName = lName;
+        this.cabinNumber = cabinNumber;
         this.GuestUniqueId = GuestUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -69,6 +71,14 @@ public class Guests_TMP {
         this.lName = lName;
     }
 
+    public int getCabinNumber() {
+        return cabinNumber;
+    }
+
+    public void setCabinNumber(int cabinNumber) {
+        this.cabinNumber = cabinNumber;
+    }
+
     public long getGuestUniqueId() {
         return GuestUniqueId;
     }
@@ -77,19 +87,19 @@ public class Guests_TMP {
         this.GuestUniqueId = GuestUniqueId;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(long updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 

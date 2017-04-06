@@ -30,8 +30,8 @@ public class CabinsDao extends AbstractDao<Cabins, Long> {
         public final static Property PaymentStatus = new Property(4, int.class, "paymentStatus", false, "PAYMENT_STATUS");
         public final static Property DeviceDate = new Property(5, String.class, "deviceDate", false, "DEVICE_DATE");
         public final static Property CabinUniqueId = new Property(6, long.class, "CabinUniqueId", false, "CABIN_UNIQUE_ID");
-        public final static Property CreatedAt = new Property(7, long.class, "createdAt", false, "CREATED_AT");
-        public final static Property UpdatedAt = new Property(8, long.class, "updatedAt", false, "UPDATED_AT");
+        public final static Property CreatedAt = new Property(7, Long.class, "createdAt", false, "CREATED_AT");
+        public final static Property UpdatedAt = new Property(8, Long.class, "updatedAt", false, "UPDATED_AT");
     };
 
 
@@ -54,8 +54,8 @@ public class CabinsDao extends AbstractDao<Cabins, Long> {
                 "\"PAYMENT_STATUS\" INTEGER NOT NULL ," + // 4: paymentStatus
                 "\"DEVICE_DATE\" TEXT NOT NULL ," + // 5: deviceDate
                 "\"CABIN_UNIQUE_ID\" INTEGER NOT NULL ," + // 6: CabinUniqueId
-                "\"CREATED_AT\" INTEGER NOT NULL ," + // 7: createdAt
-                "\"UPDATED_AT\" INTEGER NOT NULL );"); // 8: updatedAt
+                "\"CREATED_AT\" INTEGER," + // 7: createdAt
+                "\"UPDATED_AT\" INTEGER);"); // 8: updatedAt
     }
 
     /** Drops the underlying database table. */
@@ -79,8 +79,16 @@ public class CabinsDao extends AbstractDao<Cabins, Long> {
         stmt.bindLong(5, entity.getPaymentStatus());
         stmt.bindString(6, entity.getDeviceDate());
         stmt.bindLong(7, entity.getCabinUniqueId());
-        stmt.bindLong(8, entity.getCreatedAt());
-        stmt.bindLong(9, entity.getUpdatedAt());
+ 
+        Long createdAt = entity.getCreatedAt();
+        if (createdAt != null) {
+            stmt.bindLong(8, createdAt);
+        }
+ 
+        Long updatedAt = entity.getUpdatedAt();
+        if (updatedAt != null) {
+            stmt.bindLong(9, updatedAt);
+        }
     }
 
     /** @inheritdoc */
@@ -100,8 +108,8 @@ public class CabinsDao extends AbstractDao<Cabins, Long> {
             cursor.getInt(offset + 4), // paymentStatus
             cursor.getString(offset + 5), // deviceDate
             cursor.getLong(offset + 6), // CabinUniqueId
-            cursor.getLong(offset + 7), // createdAt
-            cursor.getLong(offset + 8) // updatedAt
+            cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7), // createdAt
+            cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8) // updatedAt
         );
         return entity;
     }
@@ -116,8 +124,8 @@ public class CabinsDao extends AbstractDao<Cabins, Long> {
         entity.setPaymentStatus(cursor.getInt(offset + 4));
         entity.setDeviceDate(cursor.getString(offset + 5));
         entity.setCabinUniqueId(cursor.getLong(offset + 6));
-        entity.setCreatedAt(cursor.getLong(offset + 7));
-        entity.setUpdatedAt(cursor.getLong(offset + 8));
+        entity.setCreatedAt(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));
+        entity.setUpdatedAt(cursor.isNull(offset + 8) ? null : cursor.getLong(offset + 8));
      }
     
     /** @inheritdoc */

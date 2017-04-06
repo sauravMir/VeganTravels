@@ -16,8 +16,8 @@ public class Criuzes_TMP {
     /** Not-null value. */
     private String to;
     private long CruizeUniqueId;
-    private long createdAt;
-    private long updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
 
     public Criuzes_TMP() {
     }
@@ -26,7 +26,7 @@ public class Criuzes_TMP {
         this.id = id;
     }
 
-    public Criuzes_TMP(Long id, String name, String shipName, String from, String to, long CruizeUniqueId, long createdAt, long updatedAt) {
+    public Criuzes_TMP(Long id, String name, String shipName, String from, String to, long CruizeUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.name = name;
         this.shipName = shipName;
@@ -93,19 +93,19 @@ public class Criuzes_TMP {
         this.CruizeUniqueId = CruizeUniqueId;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(long updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 
