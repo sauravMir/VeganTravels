@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import com.vegantravels.dao.Cabins_TMP;
+import com.vegantravels.dao.Cabins_TMPDao;
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.CriuzesDao;
 import com.vegantravels.dao.Criuzes_TMP;
@@ -13,6 +15,7 @@ import com.vegantravels.dao.DaoSession;
 import com.vegantravels.dao.Guests;
 import com.vegantravels.dao.GuestsDao;
 import com.vegantravels.dao.Guests_TMP;
+import com.vegantravels.dao.Guests_TMPDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -245,20 +248,57 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         return criuzeTemporaryKey;
     }
 
-
+    ///*****GUEST TEMPORARY CRUID OPERATION METHOD ************////
     @Override
     public Guests_TMP insertGuestTemporary(Guests_TMP guests_tmp) {
-        return null;
+        try {
+            if (guests_tmp != null) {
+                openWritableDb();
+                Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
+                guests_tmpDao.insert(guests_tmp);
+                daoSession.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return guests_tmp;
     }
 
     @Override
     public ArrayList<Guests_TMP> listGuestTemporary() {
+        List<Guests_TMP> guests_tmpList = null;
+        try {
+            openReadableDb();
+            Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
+            guests_tmpList = guests_tmpDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (guests_tmpList != null) {
+            return new ArrayList<>(guests_tmpList);
+        }
         return null;
     }
 
     @Override
     public Long updateGuestTemporary(Guests_TMP guests_tmp) {
-        return null;
+        Long guestTemporaryKey = null;
+        try {
+            if (guests_tmp != null) {
+                openWritableDb();
+                daoSession.update(guests_tmp);
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                guestTemporaryKey = guests_tmp.getId();
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return guestTemporaryKey;
     }
 
     @Override
@@ -293,14 +333,15 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return criuze;
     }
-   @Override
+
+    @Override
     public List<Guests> getSearchByNameCabin(String name) {
         List<Guests> guestsList = null;
         try {
             openReadableDb();
             GuestsDao guestDao = daoSession.getGuestsDao();
             QueryBuilder<Guests> queryBuilder = guestDao.queryBuilder().whereOr(GuestsDao.Properties.Fname.like("%" + name + "%"),
-                    GuestsDao.Properties.LName.like("%" + name + "%"),GuestsDao.Properties.CabinNumber.like("%" + name + "%"));
+                    GuestsDao.Properties.LName.like("%" + name + "%"), GuestsDao.Properties.CabinNumber.like("%" + name + "%"));
             guestsList = queryBuilder.list();
 
             daoSession.clear();
@@ -311,5 +352,58 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             return guestsList = new ArrayList<>(guestsList);
         }
         return guestsList;
+    }
+
+    /////************** CABIN CRUID OPERATION METHOD ***********************////
+    @Override
+    public Cabins_TMP insertCabinTemp(Cabins_TMP cabins_tmp) {
+        try {
+            if (cabins_tmp != null) {
+                openWritableDb();
+                Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+                cabins_tmpDao.insert(cabins_tmp);
+                daoSession.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cabins_tmp;
+    }
+
+    @Override
+    public ArrayList<Cabins_TMP> cabinTempList() {
+        List<Cabins_TMP> cabins_tmpList = null;
+        try {
+            openReadableDb();
+            Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+            cabins_tmpList = cabins_tmpDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (cabins_tmpList != null) {
+            return new ArrayList<>(cabins_tmpList);
+        }
+        return null;
+    }
+
+    @Override
+    public Long updateCabinTemp(Cabins_TMP cabins_tmp) {
+        Long cabinTempKay = null;
+        try {
+            if (cabins_tmp != null) {
+                openWritableDb();
+                daoSession.update(cabins_tmp);
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                cabinTempKay = cabins_tmp.getId();
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return cabinTempKay;
     }
 }

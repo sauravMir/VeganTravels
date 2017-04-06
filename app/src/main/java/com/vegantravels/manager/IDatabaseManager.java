@@ -1,6 +1,7 @@
 package com.vegantravels.manager;
 
 
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Guests;
@@ -63,4 +64,12 @@ public interface IDatabaseManager {
 
     List<Guests> getSearchByNameCabin(String name);
 //    ArrayList<Criuzes_TMP> tempCruiseList();
+
+    ///***** CABIN TABLE METHOD **********//////
+    Cabins_TMP insertCabinTemp(Cabins_TMP cabins_tmp);
+
+    ArrayList<Cabins_TMP> cabinTempList();
+
+    Long updateCabinTemp(Cabins_TMP cabins_tmp);
+
 }
