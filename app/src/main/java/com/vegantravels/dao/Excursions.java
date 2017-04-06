@@ -18,6 +18,7 @@ public class Excursions {
     /** Not-null value. */
     private String price;
     private int maxNumberOfGuest;
+    private long ExcursionUniqueId;
     private long createdAt;
     private long updatedAt;
 
@@ -28,7 +29,7 @@ public class Excursions {
         this.id = id;
     }
 
-    public Excursions(Long id, int cruzeId, int title, String from, String to, String time, String price, int maxNumberOfGuest, long createdAt, long updatedAt) {
+    public Excursions(Long id, int cruzeId, int title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.cruzeId = cruzeId;
         this.title = title;
@@ -37,6 +38,7 @@ public class Excursions {
         this.time = time;
         this.price = price;
         this.maxNumberOfGuest = maxNumberOfGuest;
+        this.ExcursionUniqueId = ExcursionUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -111,6 +113,14 @@ public class Excursions {
 
     public void setMaxNumberOfGuest(int maxNumberOfGuest) {
         this.maxNumberOfGuest = maxNumberOfGuest;
+    }
+
+    public long getExcursionUniqueId() {
+        return ExcursionUniqueId;
+    }
+
+    public void setExcursionUniqueId(long ExcursionUniqueId) {
+        this.ExcursionUniqueId = ExcursionUniqueId;
     }
 
     public long getCreatedAt() {

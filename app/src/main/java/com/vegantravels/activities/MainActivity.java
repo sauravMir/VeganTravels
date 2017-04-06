@@ -133,8 +133,8 @@ public class MainActivity extends BaseActivity {
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
             CruiseTble cruiseTble = new CruiseTble(activity);
+            cruiseTble.addCruise();
             cruiseTble.parsingCruisesList();
-
             cruisesList = new ArrayList<>();
             cruisesList = databaseManager.listCriuzes();
             return null;

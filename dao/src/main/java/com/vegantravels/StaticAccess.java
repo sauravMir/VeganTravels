@@ -25,7 +25,6 @@ public class StaticAccess {
     public static final String Table_GUESTS_TMP = "Guests_TMP";
 
 
-
     //////////All the columns
     //Cruizes
     public static final String Column_id = "id";
@@ -33,63 +32,53 @@ public class StaticAccess {
     public static final String Column_shipName = "shipName";
     public static final String Column_from = "from";
     public static final String Column_to = "to";
+    public static final String Cruize_unique_id = "CruizeUniqueId";
     public static final String Column_createdAt = "createdAt";
     public static final String Column_updatedAt = "updatedAt";
 
     //Guests
     public static final String Column_fname = "fname";
     public static final String Column_lName = "lName";
+    public static final String Guest_unique_id = "GuestUniqueId";
 
     //Excursions
     public static final String Column_cruzeId = "cruzeId";
     public static final String Column_title = "title";
     public static final String Column_time = "time";
     public static final String Column_price = "price";
+    public static final String Excursion_unique_id = "ExcursionUniqueId";
     public static final String Column_maxNumberOfGuest = "maxNumberOfGuest";
 
     //Cabins
 
     public static final String Column_cabinNumber = "cabinNumber";
     public static final String Column_guestId = "guestId";
+    public static final String Cabin_unique_id = "CabinUniqueId";
     public static final String Column_numberOfGuest = "numberOfGuest";
     public static final String Column_paymentStatus = "paymentStatus";
     public static final String Column_deviceDate = "deviceDate";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Guest Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";
- public static final String KEY_GUEST_ID = "guestID";
- public static final String KEY_GUEST_NAME = "guestName";
- public static final String KEY_NUMBER_GUEST = "numberOfGuest";
- public static final String KEY_EXCURSION = "excursion";
- public static final String KEY_CABIN_NO = "cabinNo";
- public static final String KEY_PAYMENT_STATUS = "paymentStatus";
+    public static final String KEY_GUEST_ID = "guestID";
+    public static final String KEY_GUEST_NAME = "guestName";
+    public static final String KEY_NUMBER_GUEST = "numberOfGuest";
+    public static final String KEY_EXCURSION = "excursion";
+    public static final String KEY_CABIN_NO = "cabinNo";
+    public static final String KEY_PAYMENT_STATUS = "paymentStatus";
 
     //Guest detail Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";
 
 
     //excursion  Key
- public static final String KEY_EXCURSION_ID = "id";
- public static final String KEY_EXCURSION_NAME = "excursionName";
+    public static final String KEY_EXCURSION_ID = "id";
+    public static final String KEY_EXCURSION_NAME = "excursionName";
 
     //Number0fGuest  Key
- public static final String KEY_GUEST_NUMBER_ID = "id";
- public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
+    public static final String KEY_GUEST_NUMBER_ID = "id";
+    public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
 
     //Participant
 

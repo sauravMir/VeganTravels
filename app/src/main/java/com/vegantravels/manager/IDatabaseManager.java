@@ -60,4 +60,5 @@ public interface IDatabaseManager {
 
     Long updateGuest(Guests guests);
 
+//    ArrayList<Criuzes_TMP> tempCruiseList();
 }

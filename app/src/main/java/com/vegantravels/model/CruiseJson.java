@@ -13,4 +13,10 @@ import java.util.List;
 public class CruiseJson {
     @SerializedName(StaticAccess.KEY_CRUISES_JSON_ARRAY)
     public List<Cruises> mCruiseList = new ArrayList<>();
+
+    public CruiseJson(List<Cruises> mCruiseList)
+    {
+        this.mCruiseList = mCruiseList;
+    }
+
 }

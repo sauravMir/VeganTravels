@@ -11,6 +11,7 @@ import com.vegantravels.dao.Criuzes_TMPDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
 import com.vegantravels.dao.Guests;
+import com.vegantravels.dao.GuestsDao;
 import com.vegantravels.dao.Guests_TMP;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import de.greenrobot.dao.async.AsyncOperation;
 import de.greenrobot.dao.async.AsyncOperationListener;
 import de.greenrobot.dao.async.AsyncSession;
+import de.greenrobot.dao.query.QueryBuilder;
 
 /**
  * @author Octa
@@ -291,5 +293,23 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return criuze;
     }
+    /*@Override
+    public List<Guests> getTaskPacksByName(String name) {
+        List<Guests> taskPacks = null;
+        try {
+            openReadableDb();
+            GuestsDao guestDao = daoSession.getGuestsDao();
+            QueryBuilder<Guests> queryBuilder = guestDao.queryBuilder().whereOr(GuestsDao.Properties.Fname.like("%" + name + "%"),
+                    TaskPackDao.Properties.LessonNumber.like("%" + name + "%"));
+            taskPacks = queryBuilder.list();
 
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (taskPacks != null) {
+            return taskPacks = new ArrayList<>(taskPacks);
+        }
+        return taskPacks;
+    }*/
 }
