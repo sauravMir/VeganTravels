@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
@@ -237,7 +240,26 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
             if (aCruize != null) {
-                databaseManager.insertCriuzeTemporary(aCruize);
+                Criuzes_TMP insertCruise=new Criuzes_TMP();
+                Guests_TMP insertGuest=new Guests_TMP();
+                Cabins_TMP insertCabinPayment=new Cabins_TMP();
+
+                
+                insertCruise= databaseManager.insertCriuzeTemporary(aCruize);
+                for(int i=0;i<xlsDataList.size();i++){
+
+                    XlsModel xlsModel=new XlsModel();
+                    insertGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
+                    insertGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
+                    insertGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
+                    insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
+//                    insertGuest.setGuestId(xlsDataList.get(i).getVTID());
+
+
+
+                }
+
+
                 success = true;
             }
             return null;
