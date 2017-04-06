@@ -25,7 +25,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property CruzeId = new Property(1, int.class, "cruzeId", false, "CRUZE_ID");
-        public final static Property Title = new Property(2, int.class, "title", false, "TITLE");
+        public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
         public final static Property From = new Property(3, String.class, "from", false, "FROM");
         public final static Property To = new Property(4, String.class, "to", false, "TO");
         public final static Property Time = new Property(5, String.class, "time", false, "TIME");
@@ -51,7 +51,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"EXCURSIONS__TMP\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"CRUZE_ID\" INTEGER NOT NULL ," + // 1: cruzeId
-                "\"TITLE\" INTEGER NOT NULL ," + // 2: title
+                "\"TITLE\" TEXT NOT NULL ," + // 2: title
                 "\"FROM\" TEXT NOT NULL ," + // 3: from
                 "\"TO\" TEXT NOT NULL ," + // 4: to
                 "\"TIME\" TEXT NOT NULL ," + // 5: time
@@ -78,7 +78,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindLong(2, entity.getCruzeId());
-        stmt.bindLong(3, entity.getTitle());
+        stmt.bindString(3, entity.getTitle());
         stmt.bindString(4, entity.getFrom());
         stmt.bindString(5, entity.getTo());
         stmt.bindString(6, entity.getTime());
@@ -101,7 +101,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         Excursions_TMP entity = new Excursions_TMP( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getInt(offset + 1), // cruzeId
-            cursor.getInt(offset + 2), // title
+            cursor.getString(offset + 2), // title
             cursor.getString(offset + 3), // from
             cursor.getString(offset + 4), // to
             cursor.getString(offset + 5), // time
@@ -119,7 +119,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
     public void readEntity(Cursor cursor, Excursions_TMP entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setCruzeId(cursor.getInt(offset + 1));
-        entity.setTitle(cursor.getInt(offset + 2));
+        entity.setTitle(cursor.getString(offset + 2));
         entity.setFrom(cursor.getString(offset + 3));
         entity.setTo(cursor.getString(offset + 4));
         entity.setTime(cursor.getString(offset + 5));

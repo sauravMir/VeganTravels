@@ -8,7 +8,8 @@ public class Excursions {
 
     private Long id;
     private int cruzeId;
-    private int title;
+    /** Not-null value. */
+    private String title;
     /** Not-null value. */
     private String from;
     /** Not-null value. */
@@ -29,7 +30,7 @@ public class Excursions {
         this.id = id;
     }
 
-    public Excursions(Long id, int cruzeId, int title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, long createdAt, long updatedAt) {
+    public Excursions(Long id, int cruzeId, String title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.cruzeId = cruzeId;
         this.title = title;
@@ -59,11 +60,13 @@ public class Excursions {
         this.cruzeId = cruzeId;
     }
 
-    public int getTitle() {
+    /** Not-null value. */
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(int title) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setTitle(String title) {
         this.title = title;
     }
 
