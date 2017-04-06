@@ -248,7 +248,7 @@ public class AllDialog {
                 calendar.set(Calendar.MILLISECOND, 0);
 
                 Date millis = calendar.getTime();
-                txt.setText(String.valueOf(new SimpleDateFormat("hh:mm:ss").format(millis).toString()));
+                txt.setText(String.valueOf(new SimpleDateFormat("h:mm a").format(millis).toString()));
             }
         }, 10, 20, true);
 
