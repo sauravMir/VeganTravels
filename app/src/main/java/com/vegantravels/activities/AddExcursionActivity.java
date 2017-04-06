@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.vegantravels.R;
+import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
 import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.List;
 
@@ -22,31 +26,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class AddExcursionActivity extends BaseActivity {
+public class AddExcursionActivity extends BaseActivity implements View.OnClickListener {
     AddExcursionActivity activity;
     // retro Call back Interface
     APIInterface apiInterface;
     ProgressDialog progressDialog;
     Button btnDone;
+    EditText edtExcursionTitle, edtPrice, edtMaxGuest;
+    TextView tvExcursionFromDate, tvExcursionToDate, tvExcursionTime;
+    private AllDialog allDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_excursion);
-
         activity = this;
-        btnDone = (Button) findViewById(R.id.btnDone);
-        btnDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, ViewExcursionActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        findViewById();
+        allDialog = new AllDialog(activity);
 
         //Connection Https or http Instances
-        apiInterface =  APIClient.getClient().create(APIInterface.class);
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
         showProgressDialog();
         Guest guest = new Guest();
@@ -61,6 +60,45 @@ public class AddExcursionActivity extends BaseActivity {
         getGuestPaymentMethodAdd(guest);
 
 
+    }
+
+    private void findViewById() {
+        btnDone = (Button) findViewById(R.id.btnDone);
+        edtExcursionTitle = (EditText) findViewById(R.id.edtExcursionTitle);
+        edtPrice = (EditText) findViewById(R.id.edtPrice);
+        edtMaxGuest = (EditText) findViewById(R.id.edtMaxGuest);
+        tvExcursionFromDate = (TextView) findViewById(R.id.tvExcursionFromDate);
+        tvExcursionToDate = (TextView) findViewById(R.id.tvExcursionToDate);
+        tvExcursionTime = (TextView) findViewById(R.id.tvExcursionTime);
+
+        tvExcursionFromDate.setOnClickListener(this);
+        tvExcursionToDate.setOnClickListener(this);
+        tvExcursionTime.setOnClickListener(this);
+        btnDone.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.tvExcursionFromDate:
+                allDialog.setCustomDate(tvExcursionFromDate, StaticAccess.DATE_FROM);
+                break;
+            case R.id.tvExcursionToDate:
+                allDialog.setCustomDate(tvExcursionToDate, StaticAccess.DATE_TO);
+                break;
+            case R.id.tvExcursionTime:
+                allDialog.setCustomDate(tvExcursionTime, StaticAccess.TIME);
+                break;
+            case R.id.btnDone:
+                Intent intent = new Intent(activity, ViewExcursionActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+
+        }
     }
 
     void getGuestDetails() {

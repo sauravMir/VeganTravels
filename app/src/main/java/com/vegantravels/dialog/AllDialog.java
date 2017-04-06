@@ -218,7 +218,7 @@ public class AllDialog {
     }
 
 
-    public void setDate(final TextView txt, final String flag) {
+    public void setCustomDate(final TextView txt, final String flag) {
 
         final Calendar calendar = Calendar.getInstance();
         int yy = calendar.get(Calendar.YEAR);
@@ -228,10 +228,13 @@ public class AllDialog {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
+                long time = calendar.getTimeInMillis();
                 if (flag == StaticAccess.DATE_FROM) {
                     txt.setText("Date From: " + date);
                 } else if (flag == StaticAccess.DATE_TO) {
                     txt.setText("Date To: " + date);
+                }else if (flag == StaticAccess.TIME) {
+                    txt.setText("Time: " + time);
                 }
             }
         }, yy, mm, dd);

@@ -30,6 +30,7 @@
             android:layout_weight=".05" />
 
         <EditText
+            android:id="@+id/edtExcursionTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
@@ -42,44 +43,45 @@
             android:textStyle="normal" />
 
 
-        <EditText
+        <TextView
+            android:id="@+id/tvExcursionFromDate"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
-            android:hint="From Date"
+            android:gravity="left|center"
+            android:text="From Date"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
+            android:id="@+id/tvExcursionToDate"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
-            android:hint="To date"
+            android:gravity="left|center"
+            android:text="To Date"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
-        <EditText
+        <TextView
+            android:id="@+id/tvExcursionTime"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
-            android:hint="Time"
+            android:gravity="left|center"
+            android:text="Time"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
 
         <EditText
+            android:id="@+id/edtPrice"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
@@ -93,12 +95,13 @@
 
 
         <EditText
+            android:id="@+id/edtMaxGuest"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
             android:gravity="left"
-            android:hint="Guest limit"
+            android:hint="Max number of guest"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty"

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -107,11 +106,11 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 finishTheActivity();
                 break;
             case R.id.tvDateFrom:
-                allDialog.setDate(tvDateFrom, StaticAccess.DATE_FROM);
+                allDialog.setCustomDate(tvDateFrom, StaticAccess.DATE_FROM);
                 break;
 
             case R.id.tvDateTo:
-                allDialog.setDate(tvDateTo, StaticAccess.DATE_TO);
+                allDialog.setCustomDate(tvDateTo, StaticAccess.DATE_TO);
                 break;
 
         }
