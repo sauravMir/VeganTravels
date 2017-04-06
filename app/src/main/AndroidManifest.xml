@@ -32,6 +32,7 @@
         <activity android:name=".activities.AddCruizeActivity" />
         <activity android:name=".activities.GuestListThreeActivity" />
         <activity android:name=".activities.ManagementActivity" />
+        <activity android:name=".activities.ExcursionCruiseList" />
     </application>
 
 </manifest>

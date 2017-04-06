@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes;
+import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.model.Cruises;
 
 import java.util.ArrayList;
@@ -19,10 +21,10 @@ import java.util.ArrayList;
 
 public class CruisesAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Criuzes> cruisesList;
+    private ArrayList<Criuzes_TMP> cruisesList;
     private LayoutInflater inflater;
 
-    public CruisesAdapter(Context context, ArrayList<Criuzes> cruisesList) {
+    public CruisesAdapter(Context context, ArrayList<Criuzes_TMP> cruisesList) {
         this.context = context;
         this.cruisesList = cruisesList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

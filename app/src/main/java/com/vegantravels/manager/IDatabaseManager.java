@@ -54,6 +54,8 @@ public interface IDatabaseManager {
 
     ArrayList<Guests_TMP> listGuestTemporary();
 
+    ArrayList<Guests_TMP> listGuestByUniqueId(long cruiseUniqueId);
+
     Long updateGuestTemporary(Guests_TMP guests_tmp);
 
     ///***** GUEST METHOD *****///

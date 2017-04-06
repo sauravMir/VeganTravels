@@ -286,6 +286,26 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return null;
     }
+    @Override
+ public ArrayList<Guests_TMP> listGuestByUniqueId(long cruiseUniqueId) {
+        List<Guests_TMP> guests_tmpList = null;
+        try {
+            openReadableDb();
+            Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
+
+            QueryBuilder<Guests_TMP> queryBuilder = guests_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseUniqueId));
+            guests_tmpList = queryBuilder.list();
+//            guests_tmpList = guests_tmpDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (guests_tmpList != null) {
+            return new ArrayList<>(guests_tmpList);
+        }
+        return null;
+    }
 
     @Override
     public Long updateGuestTemporary(Guests_TMP guests_tmp) {

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.model.Guest;
 
 import java.util.ArrayList;
@@ -20,12 +21,14 @@ import java.util.ArrayList;
 public class GuestThreeAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<Guest> guestList;
+    private ArrayList<Guests_TMP> guestList;
     private LayoutInflater layoutInflater;
+    String fDate;
 
-    public GuestThreeAdapter(Context context, ArrayList<Guest> guestsList) {
+    public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList,String fDate) {
         this.context = context;
         this.guestList = guestsList;
+        this.fDate=fDate;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -72,9 +75,9 @@ public class GuestThreeAdapter extends BaseAdapter {
             holder = (GuestThreeAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.tvGuestName.setText(guestList.get(i).getGuestName());
-        holder.tvCabinNo.setText(guestList.get(i).getCabinNo());
-        holder.tvCruiseDate.setText(String.valueOf(guestList.get(i)));
+        holder.tvGuestName.setText(guestList.get(i).getFname()+" "+guestList.get(i).getLName());
+        holder.tvCabinNo.setText(String.valueOf(guestList.get(i).getCabinNumber()));
+        holder.tvCruiseDate.setText(fDate);
 
 //        holder.tvExcursionName.setText(guestList.get(i).getExcursion());
 //        holder.btnDelete.setOnClickListener(new View.OnClickListener() {

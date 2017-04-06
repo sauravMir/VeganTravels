@@ -12,6 +12,9 @@ public class StaticAccess {
 
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
+    public static final String KEY_INTENT_DATE = "date";
+    public static final String KEY_INTENT_CRUISES_UNIQUE_ID = "UniqueId";
+
     public static final String KEY_CRUISES_JSON_ARRAY = "cruizes";
     public static final String KEY_CRUISES_NAME = "name";
     public static final String KEY_SHIP_NAME = "ship_name";
