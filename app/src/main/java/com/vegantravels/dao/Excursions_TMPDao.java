@@ -32,8 +32,8 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         public final static Property Price = new Property(6, String.class, "price", false, "PRICE");
         public final static Property MaxNumberOfGuest = new Property(7, int.class, "maxNumberOfGuest", false, "MAX_NUMBER_OF_GUEST");
         public final static Property ExcursionUniqueId = new Property(8, long.class, "ExcursionUniqueId", false, "EXCURSION_UNIQUE_ID");
-        public final static Property CreatedAt = new Property(9, long.class, "createdAt", false, "CREATED_AT");
-        public final static Property UpdatedAt = new Property(10, long.class, "updatedAt", false, "UPDATED_AT");
+        public final static Property CreatedAt = new Property(9, Long.class, "createdAt", false, "CREATED_AT");
+        public final static Property UpdatedAt = new Property(10, Long.class, "updatedAt", false, "UPDATED_AT");
     };
 
 
@@ -58,8 +58,8 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
                 "\"PRICE\" TEXT NOT NULL ," + // 6: price
                 "\"MAX_NUMBER_OF_GUEST\" INTEGER NOT NULL ," + // 7: maxNumberOfGuest
                 "\"EXCURSION_UNIQUE_ID\" INTEGER NOT NULL ," + // 8: ExcursionUniqueId
-                "\"CREATED_AT\" INTEGER NOT NULL ," + // 9: createdAt
-                "\"UPDATED_AT\" INTEGER NOT NULL );"); // 10: updatedAt
+                "\"CREATED_AT\" INTEGER," + // 9: createdAt
+                "\"UPDATED_AT\" INTEGER);"); // 10: updatedAt
     }
 
     /** Drops the underlying database table. */
@@ -89,8 +89,16 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         stmt.bindString(7, entity.getPrice());
         stmt.bindLong(8, entity.getMaxNumberOfGuest());
         stmt.bindLong(9, entity.getExcursionUniqueId());
-        stmt.bindLong(10, entity.getCreatedAt());
-        stmt.bindLong(11, entity.getUpdatedAt());
+ 
+        Long createdAt = entity.getCreatedAt();
+        if (createdAt != null) {
+            stmt.bindLong(10, createdAt);
+        }
+ 
+        Long updatedAt = entity.getUpdatedAt();
+        if (updatedAt != null) {
+            stmt.bindLong(11, updatedAt);
+        }
     }
 
     /** @inheritdoc */
@@ -112,8 +120,8 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
             cursor.getString(offset + 6), // price
             cursor.getInt(offset + 7), // maxNumberOfGuest
             cursor.getLong(offset + 8), // ExcursionUniqueId
-            cursor.getLong(offset + 9), // createdAt
-            cursor.getLong(offset + 10) // updatedAt
+            cursor.isNull(offset + 9) ? null : cursor.getLong(offset + 9), // createdAt
+            cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10) // updatedAt
         );
         return entity;
     }
@@ -130,8 +138,8 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         entity.setPrice(cursor.getString(offset + 6));
         entity.setMaxNumberOfGuest(cursor.getInt(offset + 7));
         entity.setExcursionUniqueId(cursor.getLong(offset + 8));
-        entity.setCreatedAt(cursor.getLong(offset + 9));
-        entity.setUpdatedAt(cursor.getLong(offset + 10));
+        entity.setCreatedAt(cursor.isNull(offset + 9) ? null : cursor.getLong(offset + 9));
+        entity.setUpdatedAt(cursor.isNull(offset + 10) ? null : cursor.getLong(offset + 10));
      }
     
     /** @inheritdoc */

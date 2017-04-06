@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Date"
+                android:text="Ship name"
                 android:textSize="@dimen/twelve" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="@dimen/two"
-                android:text="Ship name"
+                android:text="Date"
                 android:textSize="@dimen/twelve" />
 
             <View

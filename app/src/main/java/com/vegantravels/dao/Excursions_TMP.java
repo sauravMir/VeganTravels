@@ -19,8 +19,8 @@ public class Excursions_TMP {
     private String price;
     private int maxNumberOfGuest;
     private long ExcursionUniqueId;
-    private long createdAt;
-    private long updatedAt;
+    private Long createdAt;
+    private Long updatedAt;
 
     public Excursions_TMP() {
     }
@@ -29,7 +29,7 @@ public class Excursions_TMP {
         this.id = id;
     }
 
-    public Excursions_TMP(Long id, int cruzeId, String title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, long createdAt, long updatedAt) {
+    public Excursions_TMP(Long id, int cruzeId, String title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.cruzeId = cruzeId;
         this.title = title;
@@ -123,19 +123,19 @@ public class Excursions_TMP {
         this.ExcursionUniqueId = ExcursionUniqueId;
     }
 
-    public long getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(long createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(long updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 

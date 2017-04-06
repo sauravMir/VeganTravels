@@ -1,17 +1,18 @@
 package com.vegantravels.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.vegantravels.R;
-import com.vegantravels.dao.Cabins_TMP;
-import com.vegantravels.dao.Criuzes;
+import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.dao.Criuzes_TMP;
-import com.vegantravels.model.Cruises;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 
@@ -50,7 +51,10 @@ public class CruisesAdapter extends BaseAdapter {
         TextView tvCruiseName;
         TextView tvShipName;
         TextView tvDate;
-        TextView tvTime;
+        Button btnEdit;
+        Button btnAddExcursion;
+        Button btnExCursionManager;
+//        TextView tvTime;
 
     }
 
@@ -63,7 +67,10 @@ public class CruisesAdapter extends BaseAdapter {
             holder.tvCruiseName = (TextView) convertView.findViewById(R.id.tvCruiseName);
             holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
-            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
+            holder.btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
+            holder.btnAddExcursion = (Button) convertView.findViewById(R.id.btnAddExcursion);
+            holder.btnExCursionManager = (Button) convertView.findViewById(R.id.btnExCursionManager);
+//            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             convertView.setTag(holder);
 
         } else {
@@ -71,9 +78,34 @@ public class CruisesAdapter extends BaseAdapter {
         }
         holder.tvCruiseName.setText(cruisesList.get(i).getName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
-        holder.tvDate.setText(cruisesList.get(i).getFrom());
-        holder.tvTime.setText(cruisesList.get(i).getTo());
+        holder.tvDate.setText(cruisesList.get(i).getFrom() + "\n" + cruisesList.get(i).getTo());
+//        holder.tvTime.setText(cruisesList.get(i).getTo());
+        final int position = i;
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /// edit
+            }
+        });
+        holder.btnAddExcursion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+/// add excursion
+                Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
+                exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                context.startActivity(exIntent);
+            }
+        });
 
+        holder.btnExCursionManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
+                exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                context.startActivity(exIntent);
+            }
+        });
         return convertView;
     }
+
 }

@@ -14,18 +14,9 @@ import de.greenrobot.daogenerator.Schema;
 // -> Use classpath of Module
 // -> "dao"
 // -> Save changes.
-
 //2.To add a new table, use "addTables" method.
-
 //3.To add a new column just "addDateProperty" in the following table and build the dao library. It will automatically
 // generate the model class for the table.
-
-
-import de.greenrobot.daogenerator.DaoGenerator;
-import de.greenrobot.daogenerator.Entity;
-import de.greenrobot.daogenerator.Property;
-import de.greenrobot.daogenerator.Schema;
-import de.greenrobot.daogenerator.ToMany;
 
 public class Generator {
     private static final String PROJECT_DIR = System.getProperty("user.dir").replace("\\", "/");
@@ -129,8 +120,8 @@ public class Generator {
         excursion.addStringProperty(StaticAccess.Column_price).notNull();
         excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();
         excursion.addLongProperty(StaticAccess.Excursion_unique_id).notNull();
-        excursion.addLongProperty(StaticAccess.Column_createdAt).notNull();
-        excursion.addLongProperty(StaticAccess.Column_updatedAt).notNull();
+        excursion.addLongProperty(StaticAccess.Column_createdAt);
+        excursion.addLongProperty(StaticAccess.Column_updatedAt);
         return excursion;
     }
 
@@ -145,8 +136,8 @@ public class Generator {
         excursion.addStringProperty(StaticAccess.Column_price).notNull();
         excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();
         excursion.addLongProperty(StaticAccess.Excursion_unique_id).notNull();
-        excursion.addLongProperty(StaticAccess.Column_createdAt).notNull();
-        excursion.addLongProperty(StaticAccess.Column_updatedAt).notNull();
+        excursion.addLongProperty(StaticAccess.Column_createdAt);
+        excursion.addLongProperty(StaticAccess.Column_updatedAt);
         return excursion;
     }
 
