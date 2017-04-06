@@ -70,7 +70,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         tvExcursionFromDate = (TextView) findViewById(R.id.tvExcursionFromDate);
         tvExcursionToDate = (TextView) findViewById(R.id.tvExcursionToDate);
         tvExcursionTime = (TextView) findViewById(R.id.tvExcursionTime);
-
+        
         tvExcursionFromDate.setOnClickListener(this);
         tvExcursionToDate.setOnClickListener(this);
         tvExcursionTime.setOnClickListener(this);
