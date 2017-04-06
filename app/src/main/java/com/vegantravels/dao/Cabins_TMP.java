@@ -9,14 +9,11 @@ public class Cabins_TMP {
     private Long id;
     private int occupancy;
     private int cabinNumber;
-    private int numberOfGuest;
     /** Not-null value. */
     private String guestVT_Id;
     private long cruizeId;
     private Integer paymentStatus;
     private Long excursion;
-    /** Not-null value. */
-    private String deviceDate;
     private long CabinUniqueId;
     private Long createdAt;
     private Long updatedAt;
@@ -28,16 +25,14 @@ public class Cabins_TMP {
         this.id = id;
     }
 
-    public Cabins_TMP(Long id, int occupancy, int cabinNumber, int numberOfGuest, String guestVT_Id, long cruizeId, Integer paymentStatus, Long excursion, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
+    public Cabins_TMP(Long id, int occupancy, int cabinNumber, String guestVT_Id, long cruizeId, Integer paymentStatus, Long excursion, long CabinUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.occupancy = occupancy;
         this.cabinNumber = cabinNumber;
-        this.numberOfGuest = numberOfGuest;
         this.guestVT_Id = guestVT_Id;
         this.cruizeId = cruizeId;
         this.paymentStatus = paymentStatus;
         this.excursion = excursion;
-        this.deviceDate = deviceDate;
         this.CabinUniqueId = CabinUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -65,14 +60,6 @@ public class Cabins_TMP {
 
     public void setCabinNumber(int cabinNumber) {
         this.cabinNumber = cabinNumber;
-    }
-
-    public int getNumberOfGuest() {
-        return numberOfGuest;
-    }
-
-    public void setNumberOfGuest(int numberOfGuest) {
-        this.numberOfGuest = numberOfGuest;
     }
 
     /** Not-null value. */
@@ -107,16 +94,6 @@ public class Cabins_TMP {
 
     public void setExcursion(Long excursion) {
         this.excursion = excursion;
-    }
-
-    /** Not-null value. */
-    public String getDeviceDate() {
-        return deviceDate;
-    }
-
-    /** Not-null value; ensure this value is available before it is saved to the database. */
-    public void setDeviceDate(String deviceDate) {
-        this.deviceDate = deviceDate;
     }
 
     public long getCabinUniqueId() {

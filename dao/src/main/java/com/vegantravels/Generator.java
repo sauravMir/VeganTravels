@@ -92,12 +92,10 @@ public class Generator {
         cabin.addIdProperty().primaryKey().autoincrement();
         cabin.addIntProperty(StaticAccess.Column_occupancy).notNull();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
-        cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
         cabin.addLongProperty(StaticAccess.Column_Cruizes).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus);
         cabin.addLongProperty(StaticAccess.Column_EXCURSION);
-        cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
         cabin.addLongProperty(StaticAccess.Column_createdAt);
         cabin.addLongProperty(StaticAccess.Column_updatedAt);
@@ -109,12 +107,10 @@ public class Generator {
         cabin.addIdProperty().primaryKey().autoincrement();
         cabin.addIntProperty(StaticAccess.Column_occupancy).notNull();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
-        cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
         cabin.addLongProperty(StaticAccess.Column_Cruizes).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus);
         cabin.addLongProperty(StaticAccess.Column_EXCURSION);
-        cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
         cabin.addLongProperty(StaticAccess.Column_createdAt);
         cabin.addLongProperty(StaticAccess.Column_updatedAt);
