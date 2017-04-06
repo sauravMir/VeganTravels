@@ -76,12 +76,14 @@
             android:layout_weight=".1"
             android:gravity="left"
             android:hint="Price"
+            android:inputType="number"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
 
+        
         <EditText
             android:id="@+id/edtMaxGuest"
             android:layout_width="match_parent"
