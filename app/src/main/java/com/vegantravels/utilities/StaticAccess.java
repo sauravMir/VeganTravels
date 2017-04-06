@@ -20,7 +20,7 @@ public class StaticAccess {
 
     /// Date picker
     public static final String DATE_FROM = "Date from";
-    public static final String DATE_to = "Date to";
+    public static final String DATE_TO = "Date to";
 
     //Guest Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";

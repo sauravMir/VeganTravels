@@ -21,6 +21,7 @@ import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
 import com.vegantravels.model.Guest;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -168,7 +169,6 @@ public class AllDialog {
     }*/
 
 
-
     ///payment success dialog
     public void paymentCompletionDialog(String text) {
 
@@ -199,7 +199,7 @@ public class AllDialog {
     }
 
 
-    public void setDate(final TextView txt) {
+    public void setDate(final TextView txt, final String flag) {
 
         final Calendar calendar = Calendar.getInstance();
         int yy = calendar.get(Calendar.YEAR);
@@ -208,8 +208,12 @@ public class AllDialog {
         DatePickerDialog datePicker = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String date = "Date: " + String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
-                txt.setText(date);
+                String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
+                if (flag == StaticAccess.DATE_FROM) {
+                    txt.setText("Date From: " + date);
+                } else if (flag == StaticAccess.DATE_TO) {
+                    txt.setText("Date To: " + date);
+                }
             }
         }, yy, mm, dd);
 

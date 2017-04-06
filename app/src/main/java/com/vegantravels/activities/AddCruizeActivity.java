@@ -20,6 +20,7 @@ import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -96,11 +97,11 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 finishTheActivity();
                 break;
             case R.id.tvDateFrom:
-                allDialog.setDate(tvDateFrom);
+                allDialog.setDate(tvDateFrom, StaticAccess.DATE_FROM);
                 break;
 
             case R.id.tvDateTo:
-                allDialog.setDate(tvDateTo);
+                allDialog.setDate(tvDateTo, StaticAccess.DATE_TO);
                 break;
 
         }
