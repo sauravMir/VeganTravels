@@ -9,7 +9,7 @@ public class Cabins_TMP {
     private Long id;
     private int cabinNumber;
     private int numberOfGuest;
-    private int guestId;
+    private int guestVT_Id;
     private int paymentStatus;
     /** Not-null value. */
     private String deviceDate;
@@ -24,11 +24,11 @@ public class Cabins_TMP {
         this.id = id;
     }
 
-    public Cabins_TMP(Long id, int cabinNumber, int numberOfGuest, int guestId, int paymentStatus, String deviceDate, long CabinUniqueId, long createdAt, long updatedAt) {
+    public Cabins_TMP(Long id, int cabinNumber, int numberOfGuest, int guestVT_Id, int paymentStatus, String deviceDate, long CabinUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.cabinNumber = cabinNumber;
         this.numberOfGuest = numberOfGuest;
-        this.guestId = guestId;
+        this.guestVT_Id = guestVT_Id;
         this.paymentStatus = paymentStatus;
         this.deviceDate = deviceDate;
         this.CabinUniqueId = CabinUniqueId;
@@ -60,12 +60,12 @@ public class Cabins_TMP {
         this.numberOfGuest = numberOfGuest;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public int getGuestVT_Id() {
+        return guestVT_Id;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
+    public void setGuestVT_Id(int guestVT_Id) {
+        this.guestVT_Id = guestVT_Id;
     }
 
     public int getPaymentStatus() {

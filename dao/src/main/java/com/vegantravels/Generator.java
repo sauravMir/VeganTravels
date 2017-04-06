@@ -92,7 +92,7 @@ public class Generator {
         cabin.addIdProperty().primaryKey().autoincrement();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
-        cabin.addIntProperty(StaticAccess.Column_guestId).notNull();
+        cabin.addIntProperty(StaticAccess.Column_guest_VT_Id).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
@@ -106,7 +106,7 @@ public class Generator {
         cabin.addIdProperty().primaryKey().autoincrement();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
-        cabin.addIntProperty(StaticAccess.Column_guestId).notNull();
+        cabin.addIntProperty(StaticAccess.Column_guest_VT_Id).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
@@ -154,7 +154,7 @@ public class Generator {
     private static Entity addGuest(Schema schema) {
         Entity guest = schema.addEntity(StaticAccess.Table_GUESTS);
         guest.addIdProperty().primaryKey().autoincrement();
-        guest.addIntProperty(StaticAccess.Column_guestId).notNull();
+        guest.addIntProperty(StaticAccess.Column_guest_VT_Id).notNull();
         guest.addStringProperty(StaticAccess.Column_fname).notNull();
         guest.addStringProperty(StaticAccess.Column_lName).notNull();
         guest.addLongProperty(StaticAccess.Guest_unique_id).notNull();
@@ -167,7 +167,7 @@ public class Generator {
     private static Entity addGuestTemp(Schema schema) {
         Entity guest = schema.addEntity(StaticAccess.Table_GUESTS_TMP);
         guest.addIdProperty().primaryKey().autoincrement();
-        guest.addIntProperty(StaticAccess.Column_guestId).notNull();
+        guest.addIntProperty(StaticAccess.Column_guest_VT_Id).notNull();
         guest.addStringProperty(StaticAccess.Column_fname).notNull();
         guest.addStringProperty(StaticAccess.Column_lName).notNull();
         guest.addIntProperty(StaticAccess.Column_cabinNumber).notNull();

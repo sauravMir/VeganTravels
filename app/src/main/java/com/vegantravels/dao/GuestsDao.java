@@ -24,7 +24,7 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property GuestId = new Property(1, int.class, "guestId", false, "GUEST_ID");
+        public final static Property GuestVT_Id = new Property(1, int.class, "guestVT_Id", false, "GUEST_VT__ID");
         public final static Property Fname = new Property(2, String.class, "fname", false, "FNAME");
         public final static Property LName = new Property(3, String.class, "lName", false, "L_NAME");
         public final static Property GuestUniqueId = new Property(4, long.class, "GuestUniqueId", false, "GUEST_UNIQUE_ID");
@@ -47,7 +47,7 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GUESTS\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"GUEST_ID\" INTEGER NOT NULL ," + // 1: guestId
+                "\"GUEST_VT__ID\" INTEGER NOT NULL ," + // 1: guestVT_Id
                 "\"FNAME\" TEXT NOT NULL ," + // 2: fname
                 "\"L_NAME\" TEXT NOT NULL ," + // 3: lName
                 "\"GUEST_UNIQUE_ID\" INTEGER NOT NULL ," + // 4: GuestUniqueId
@@ -71,7 +71,7 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindLong(2, entity.getGuestId());
+        stmt.bindLong(2, entity.getGuestVT_Id());
         stmt.bindString(3, entity.getFname());
         stmt.bindString(4, entity.getLName());
         stmt.bindLong(5, entity.getGuestUniqueId());
@@ -99,7 +99,7 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
     public Guests readEntity(Cursor cursor, int offset) {
         Guests entity = new Guests( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getInt(offset + 1), // guestId
+            cursor.getInt(offset + 1), // guestVT_Id
             cursor.getString(offset + 2), // fname
             cursor.getString(offset + 3), // lName
             cursor.getLong(offset + 4), // GuestUniqueId
@@ -114,7 +114,7 @@ public class GuestsDao extends AbstractDao<Guests, Long> {
     @Override
     public void readEntity(Cursor cursor, Guests entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setGuestId(cursor.getInt(offset + 1));
+        entity.setGuestVT_Id(cursor.getInt(offset + 1));
         entity.setFname(cursor.getString(offset + 2));
         entity.setLName(cursor.getString(offset + 3));
         entity.setGuestUniqueId(cursor.getLong(offset + 4));

@@ -52,7 +52,7 @@ public class StaticAccess {
     //Cabins
 
     public static final String Column_cabinNumber = "cabinNumber";
-    public static final String Column_guestId = "guestId";
+    public static final String Column_guest_VT_Id = "guestVT_Id";
     public static final String Cabin_unique_id = "CabinUniqueId";
     public static final String Column_numberOfGuest = "numberOfGuest";
     public static final String Column_paymentStatus = "paymentStatus";
