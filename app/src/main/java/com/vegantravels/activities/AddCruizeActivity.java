@@ -248,14 +248,14 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 insertCruise= databaseManager.insertCriuzeTemporary(aCruize);
                 for(int i=0;i<xlsDataList.size();i++){
 
-                    XlsModel xlsModel=new XlsModel();
                     insertGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
                     insertGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
                     insertGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
+                    insertGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
                     insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
-//                    insertGuest.setGuestId(xlsDataList.get(i).getVTID());
-
-
+//                  insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
+//                    insertGuest.setCabinNumber(insertCruise.getCruizeUniqueId());
+                    
 
                 }
 
