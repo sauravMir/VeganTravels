@@ -7,7 +7,8 @@ package com.vegantravels.dao;
 public class Guests_TMP {
 
     private Long id;
-    private int guestVT_Id;
+    /** Not-null value. */
+    private String guestVT_Id;
     /** Not-null value. */
     private String fname;
     /** Not-null value. */
@@ -24,7 +25,7 @@ public class Guests_TMP {
         this.id = id;
     }
 
-    public Guests_TMP(Long id, int guestVT_Id, String fname, String lName, int cabinNumber, long GuestUniqueId, Long createdAt, Long updatedAt) {
+    public Guests_TMP(Long id, String guestVT_Id, String fname, String lName, int cabinNumber, long GuestUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.guestVT_Id = guestVT_Id;
         this.fname = fname;
@@ -43,11 +44,13 @@ public class Guests_TMP {
         this.id = id;
     }
 
-    public int getGuestVT_Id() {
+    /** Not-null value. */
+    public String getGuestVT_Id() {
         return guestVT_Id;
     }
 
-    public void setGuestVT_Id(int guestVT_Id) {
+    /** Not-null value; ensure this value is available before it is saved to the database. */
+    public void setGuestVT_Id(String guestVT_Id) {
         this.guestVT_Id = guestVT_Id;
     }
 

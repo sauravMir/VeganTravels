@@ -26,7 +26,7 @@ public class Cabins_TMPDao extends AbstractDao<Cabins_TMP, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property CabinNumber = new Property(1, int.class, "cabinNumber", false, "CABIN_NUMBER");
         public final static Property NumberOfGuest = new Property(2, int.class, "numberOfGuest", false, "NUMBER_OF_GUEST");
-        public final static Property GuestVT_Id = new Property(3, int.class, "guestVT_Id", false, "GUEST_VT__ID");
+        public final static Property GuestVT_Id = new Property(3, String.class, "guestVT_Id", false, "GUEST_VT__ID");
         public final static Property PaymentStatus = new Property(4, int.class, "paymentStatus", false, "PAYMENT_STATUS");
         public final static Property DeviceDate = new Property(5, String.class, "deviceDate", false, "DEVICE_DATE");
         public final static Property CabinUniqueId = new Property(6, long.class, "CabinUniqueId", false, "CABIN_UNIQUE_ID");
@@ -50,7 +50,7 @@ public class Cabins_TMPDao extends AbstractDao<Cabins_TMP, Long> {
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"CABIN_NUMBER\" INTEGER NOT NULL ," + // 1: cabinNumber
                 "\"NUMBER_OF_GUEST\" INTEGER NOT NULL ," + // 2: numberOfGuest
-                "\"GUEST_VT__ID\" INTEGER NOT NULL ," + // 3: guestVT_Id
+                "\"GUEST_VT__ID\" TEXT NOT NULL ," + // 3: guestVT_Id
                 "\"PAYMENT_STATUS\" INTEGER NOT NULL ," + // 4: paymentStatus
                 "\"DEVICE_DATE\" TEXT NOT NULL ," + // 5: deviceDate
                 "\"CABIN_UNIQUE_ID\" INTEGER NOT NULL ," + // 6: CabinUniqueId
@@ -75,7 +75,7 @@ public class Cabins_TMPDao extends AbstractDao<Cabins_TMP, Long> {
         }
         stmt.bindLong(2, entity.getCabinNumber());
         stmt.bindLong(3, entity.getNumberOfGuest());
-        stmt.bindLong(4, entity.getGuestVT_Id());
+        stmt.bindString(4, entity.getGuestVT_Id());
         stmt.bindLong(5, entity.getPaymentStatus());
         stmt.bindString(6, entity.getDeviceDate());
         stmt.bindLong(7, entity.getCabinUniqueId());
@@ -96,7 +96,7 @@ public class Cabins_TMPDao extends AbstractDao<Cabins_TMP, Long> {
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getInt(offset + 1), // cabinNumber
             cursor.getInt(offset + 2), // numberOfGuest
-            cursor.getInt(offset + 3), // guestVT_Id
+            cursor.getString(offset + 3), // guestVT_Id
             cursor.getInt(offset + 4), // paymentStatus
             cursor.getString(offset + 5), // deviceDate
             cursor.getLong(offset + 6), // CabinUniqueId
@@ -112,7 +112,7 @@ public class Cabins_TMPDao extends AbstractDao<Cabins_TMP, Long> {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setCabinNumber(cursor.getInt(offset + 1));
         entity.setNumberOfGuest(cursor.getInt(offset + 2));
-        entity.setGuestVT_Id(cursor.getInt(offset + 3));
+        entity.setGuestVT_Id(cursor.getString(offset + 3));
         entity.setPaymentStatus(cursor.getInt(offset + 4));
         entity.setDeviceDate(cursor.getString(offset + 5));
         entity.setCabinUniqueId(cursor.getLong(offset + 6));
