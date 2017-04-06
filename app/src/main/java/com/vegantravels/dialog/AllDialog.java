@@ -15,11 +15,15 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
+import com.vegantravels.dao.Guests;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.Guest;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -34,10 +38,12 @@ public class AllDialog {
     Activity activity;
     EditText edtCabinNumber, edtCabinName;
     GuestListThreeActivity guestListThreeActivity;
+    IDatabaseManager databaseManager;
 
     public AllDialog(Activity activity) {
         this.activity = activity;
         guestListThreeActivity = new GuestListThreeActivity();
+        databaseManager = new DatabaseManager(activity);
     }
 
     ///confirm dialog
@@ -137,7 +143,7 @@ public class AllDialog {
     }
 
 
-    /*public void searchGuestList() {
+   /* public void searchGuestList() {
         edtCabinNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -146,17 +152,30 @@ public class AllDialog {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-               *//* if (selectedPackType.equals(TaskType.All)) {
+                if (selectedPackType.equals(TaskType.All)) {
                     guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString());
                 } else {
                     guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString(), selectedPackType);
-                }*//*
-                guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString(), selectedPackType);
+                }
+
+                int cabinName = edtCabinName.getText().toString().length();
+                int cabinNumber = edtCabinNumber.getText().toString().length();
+
+               if(cabinName>0 && cabinNumber ==0){
+                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinName.getText().toString())
+               }else if(cabinNumber>0 && cabinName==0){
+                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString())
+               }else if(cabinName>0 && cabinNumber>0){
+                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString())
+               }else if(cabinName==0 && cabinNumber==0){
+                   Toast.makeText(activity, "Please write something for search", Toast.LENGTH_SHORT).show();
+               }
+
+                guestListThreeActivity.guestList = (ArrayList<Guests>) databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString());
 
                 if (guestListThreeActivity.guestList  != null) {
                     guestListThreeActivity.adapter = new GuestThreeAdapter(activity, guestListThreeActivity.guestList);
                     guestListThreeActivity.lstGuest.setAdapter(guestListThreeActivity.adapter);
-                    currentSelectedPack = null;
                 }
 
             }
@@ -166,8 +185,8 @@ public class AllDialog {
 
             }
         });
-    }*/
-
+    }
+*/
 
     ///payment success dialog
     public void paymentCompletionDialog(String text) {

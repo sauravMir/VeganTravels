@@ -295,21 +295,21 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
    @Override
     public List<Guests> getSearchByNameCabin(String name) {
-        List<Guests> taskPacks = null;
+        List<Guests> guestsList = null;
         try {
             openReadableDb();
             GuestsDao guestDao = daoSession.getGuestsDao();
             QueryBuilder<Guests> queryBuilder = guestDao.queryBuilder().whereOr(GuestsDao.Properties.Fname.like("%" + name + "%"),
                     GuestsDao.Properties.LName.like("%" + name + "%"),GuestsDao.Properties.CabinNumber.like("%" + name + "%"));
-            taskPacks = queryBuilder.list();
+            guestsList = queryBuilder.list();
 
             daoSession.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (taskPacks != null) {
-            return taskPacks = new ArrayList<>(taskPacks);
+        if (guestsList != null) {
+            return guestsList = new ArrayList<>(guestsList);
         }
-        return taskPacks;
+        return guestsList;
     }
 }
