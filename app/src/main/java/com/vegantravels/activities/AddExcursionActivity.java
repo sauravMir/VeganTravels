@@ -45,6 +45,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_add_excursion);
         activity = this;
         databaseManager = new DatabaseManager(activity);
+        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();
         allDialog = new AllDialog(activity);
 
@@ -113,6 +114,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         excursions_tmp.setFrom(tvExcursionFromDate.getText().toString());
         excursions_tmp.setTime(tvExcursionTime.getText().toString());
         excursions_tmp.setMaxNumberOfGuest(Integer.valueOf(edtMaxGuest.getText().toString()));
+        excursions_tmp.setTo("");
+        excursions_tmp.setCreatedAt(System.currentTimeMillis());
+        excursions_tmp.setUpdatedAt(System.currentTimeMillis());
+        excursions_tmp.setExcursionUniqueId(System.currentTimeMillis());
         new newExcursionAsyncTask().execute();
     }
 

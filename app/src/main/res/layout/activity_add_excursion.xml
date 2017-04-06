@@ -101,6 +101,7 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
             android:gravity="left"
+            android:inputType="number"
             android:hint="Max number of guest"
             android:textAlignment="gravity"
             android:textColor="@color/black"
