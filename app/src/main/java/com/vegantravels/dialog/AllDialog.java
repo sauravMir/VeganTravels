@@ -5,32 +5,22 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
-import com.vegantravels.adapter.GuestThreeAdapter;
-import com.vegantravels.dao.Guests;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
-import com.vegantravels.model.Guest;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -228,7 +218,7 @@ public class AllDialog {
         int yy = calendar.get(Calendar.YEAR);
         int mm = calendar.get(Calendar.MONTH);
         int dd = calendar.get(Calendar.DAY_OF_MONTH);
-       
+
         DatePickerDialog datePicker = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -238,11 +228,9 @@ public class AllDialog {
                     txt.setText("Date From: " + date);
                 } else if (flag == StaticAccess.DATE_TO) {
                     txt.setText("Date To: " + date);
-                }else if (flag == StaticAccess.TIME) {
-                    txt.setText("Time: " + time);
                 }
             }
-        }, yy, mm, dd );
+        }, yy, mm, dd);
 
         DialogNavBarHide.navBarHide(activity, datePicker);
     }
@@ -259,14 +247,13 @@ public class AllDialog {
                 calendar.set(Calendar.SECOND, 0);
                 calendar.set(Calendar.MILLISECOND, 0);
 
-                long millis = calendar.getTimeInMillis();
-                txt.setText(String.valueOf(millis));
+                Date millis = calendar.getTime();
+                txt.setText(String.valueOf(new SimpleDateFormat("hh:mm:ss").format(millis).toString()));
             }
         }, 10, 20, true);
 
         DialogNavBarHide.navBarHide(activity, timePickerDialog);
     }
-
 
 
 }
