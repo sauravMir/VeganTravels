@@ -28,6 +28,7 @@
         <activity android:name=".activities.AddExcussionActivity" />
         <activity android:name=".activities.GuestListTwoActivity" />
         <activity android:name=".activities.AddCruizeActivity" />
+        <activity android:name=".activities.GuestListThreeActivity" />
     </application>
 
 </manifest>

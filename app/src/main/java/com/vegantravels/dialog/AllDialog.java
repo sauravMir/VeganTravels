@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,8 +17,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
+import com.vegantravels.adapter.GuestThreeAdapter;
+import com.vegantravels.model.Guest;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -25,9 +31,12 @@ import java.util.Calendar;
 
 public class AllDialog {
     Activity activity;
+    EditText edtCabinNumber, edtCabinName;
+    GuestListThreeActivity guestListThreeActivity;
 
     public AllDialog(Activity activity) {
         this.activity = activity;
+        guestListThreeActivity = new GuestListThreeActivity();
     }
 
     ///confirm dialog
@@ -101,9 +110,8 @@ public class AllDialog {
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.setContentView(R.layout.dialog_search);
         dialog.setCancelable(false);
-
-        EditText edtCabinNumber = (EditText) dialog.findViewById(R.id.edtCabinNumber);
-        EditText edtCabinName = (EditText) dialog.findViewById(R.id.edtCabinName);
+        edtCabinNumber = (EditText) dialog.findViewById(R.id.edtCabinNumber);
+        edtCabinName = (EditText) dialog.findViewById(R.id.edtCabinName);
         ImageButton btnCancel = (ImageButton) dialog.findViewById(R.id.btnCancel);
         ImageButton btnOk = (ImageButton) dialog.findViewById(R.id.btnOk);
 
@@ -126,6 +134,39 @@ public class AllDialog {
 
         DialogNavBarHide.navBarHide(activity, dialog);
     }
+
+
+    /*public void searchGuestList() {
+        edtCabinNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               *//* if (selectedPackType.equals(TaskType.All)) {
+                    guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString());
+                } else {
+                    guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString(), selectedPackType);
+                }*//*
+                guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString(), selectedPackType);
+
+                if (guestListThreeActivity.guestList  != null) {
+                    guestListThreeActivity.adapter = new GuestThreeAdapter(activity, guestListThreeActivity.guestList);
+                    guestListThreeActivity.lstGuest.setAdapter(guestListThreeActivity.adapter);
+                    currentSelectedPack = null;
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }*/
+
 
 
     ///payment success dialog
