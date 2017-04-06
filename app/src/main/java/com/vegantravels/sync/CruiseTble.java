@@ -59,6 +59,7 @@ public class CruiseTble {
                     criuze.setShipName(cruises.getShipName());
                     criuze.setTo(cruises.getDateTo());
                     criuze.setFrom(cruises.getDateFrom());
+                    criuze.setCruizeUniqueId(Long.parseLong(cruises.getUniqueId()));
 //                    criuze.setFrom(cruises.getDateFrom());
                     databaseManager.insertCruises(criuze);
                 }
@@ -96,7 +97,7 @@ public class CruiseTble {
             cruises.setCruiseName(criuzes_tmps.get(i).getName());
             cruises.setDateTo(criuzes_tmps.get(i).getTo());
             cruises.setDateFrom(criuzes_tmps.get(i).getFrom());
-            cruises.setUniqueId("9111111111111");
+            cruises.setUniqueId(String.valueOf(criuzes_tmps.get(i).getCruizeUniqueId()));
             criuzes_tmps_json.add(cruises);
 
         }
@@ -105,7 +106,7 @@ public class CruiseTble {
         call.enqueue(new Callback<CruiseJson>() {
             @Override
             public void onResponse(Call<CruiseJson> call, Response<CruiseJson> response) {
-
+                CruiseJson resource = response.body();
 
   /*             Log.d("TAG", response.code() + "");
 
