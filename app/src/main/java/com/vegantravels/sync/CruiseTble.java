@@ -91,7 +91,7 @@ public class CruiseTble {
         criuzes_tmps = databaseManager.listCriuzeTemporary();
         List<Cruises> criuzes_tmps_json = new ArrayList<Cruises>();
         if(criuzes_tmps!=null)
-        for (int i = 0; i > criuzes_tmps.size(); i++) {
+        for (int i = 0; i < criuzes_tmps.size(); i++) {
             Cruises cruises = new Cruises();
             cruises.setShipName(criuzes_tmps.get(i).getShipName());
             cruises.setCruiseName(criuzes_tmps.get(i).getName());

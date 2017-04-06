@@ -44,7 +44,7 @@ public interface APIInterface {
     @POST("/api/guestDetailAdd")
     Call<Guest> guestDetailAdd(@Body Guest guest);
 
-    @POST("api/addCruise")
+    @POST("api/cruize")
     Call<CruiseJson> addCruise(@Body CruiseJson CruiseJson);
 
 
