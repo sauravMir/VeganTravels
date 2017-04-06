@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity {
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intentGuest = new Intent(activity, GuestListActivity.class);
+                Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);
                 intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(i).getId());
                 startActivity(intentGuest);
