@@ -50,7 +50,7 @@ public class Criuzes_TMPDao extends AbstractDao<Criuzes_TMP, Long> {
                 "\"NAME\" TEXT NOT NULL ," + // 1: name
                 "\"SHIP_NAME\" TEXT NOT NULL ," + // 2: shipName
                 "\"FROM\" TEXT NOT NULL ," + // 3: from
-                "\"TO\" TEXT NOT NULL ," + // 4: to
+                "\"TO\" TEXT," + // 4: to
                 "\"CRUIZE_UNIQUE_ID\" INTEGER NOT NULL ," + // 5: CruizeUniqueId
                 "\"CREATED_AT\" INTEGER," + // 6: createdAt
                 "\"UPDATED_AT\" INTEGER);"); // 7: updatedAt
@@ -74,7 +74,11 @@ public class Criuzes_TMPDao extends AbstractDao<Criuzes_TMP, Long> {
         stmt.bindString(2, entity.getName());
         stmt.bindString(3, entity.getShipName());
         stmt.bindString(4, entity.getFrom());
-        stmt.bindString(5, entity.getTo());
+ 
+        String to = entity.getTo();
+        if (to != null) {
+            stmt.bindString(5, to);
+        }
         stmt.bindLong(6, entity.getCruizeUniqueId());
  
         Long createdAt = entity.getCreatedAt();
@@ -102,7 +106,7 @@ public class Criuzes_TMPDao extends AbstractDao<Criuzes_TMP, Long> {
             cursor.getString(offset + 1), // name
             cursor.getString(offset + 2), // shipName
             cursor.getString(offset + 3), // from
-            cursor.getString(offset + 4), // to
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // to
             cursor.getLong(offset + 5), // CruizeUniqueId
             cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6), // createdAt
             cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7) // updatedAt
@@ -117,7 +121,7 @@ public class Criuzes_TMPDao extends AbstractDao<Criuzes_TMP, Long> {
         entity.setName(cursor.getString(offset + 1));
         entity.setShipName(cursor.getString(offset + 2));
         entity.setFrom(cursor.getString(offset + 3));
-        entity.setTo(cursor.getString(offset + 4));
+        entity.setTo(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setCruizeUniqueId(cursor.getLong(offset + 5));
         entity.setCreatedAt(cursor.isNull(offset + 6) ? null : cursor.getLong(offset + 6));
         entity.setUpdatedAt(cursor.isNull(offset + 7) ? null : cursor.getLong(offset + 7));

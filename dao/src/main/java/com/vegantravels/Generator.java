@@ -66,7 +66,7 @@ public class Generator {
         cruize.addStringProperty(StaticAccess.Column_name).notNull();
         cruize.addStringProperty(StaticAccess.Column_shipName).notNull();
         cruize.addStringProperty(StaticAccess.Column_from).notNull();
-        cruize.addStringProperty(StaticAccess.Column_to).notNull();
+        cruize.addStringProperty(StaticAccess.Column_to);
         cruize.addLongProperty(StaticAccess.Cruize_unique_id).notNull();
         cruize.addLongProperty(StaticAccess.Column_createdAt);
         cruize.addLongProperty(StaticAccess.Column_updatedAt);
@@ -79,7 +79,7 @@ public class Generator {
         cruize.addStringProperty(StaticAccess.Column_name).notNull();
         cruize.addStringProperty(StaticAccess.Column_shipName).notNull();
         cruize.addStringProperty(StaticAccess.Column_from).notNull();
-        cruize.addStringProperty(StaticAccess.Column_to).notNull();
+        cruize.addStringProperty(StaticAccess.Column_to);
         cruize.addLongProperty(StaticAccess.Cruize_unique_id).notNull();
         cruize.addLongProperty(StaticAccess.Column_createdAt);
         cruize.addLongProperty(StaticAccess.Column_updatedAt);
@@ -124,7 +124,7 @@ public class Generator {
         excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
         excursion.addStringProperty(StaticAccess.Column_title).notNull();
         excursion.addStringProperty(StaticAccess.Column_from).notNull();
-        excursion.addStringProperty(StaticAccess.Column_to).notNull();
+        excursion.addStringProperty(StaticAccess.Column_to);
         excursion.addStringProperty(StaticAccess.Column_time).notNull();
         excursion.addStringProperty(StaticAccess.Column_price).notNull();
         excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();
@@ -140,7 +140,7 @@ public class Generator {
         excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
         excursion.addStringProperty(StaticAccess.Column_title).notNull();
         excursion.addStringProperty(StaticAccess.Column_from).notNull();
-        excursion.addStringProperty(StaticAccess.Column_to).notNull();
+        excursion.addStringProperty(StaticAccess.Column_to);
         excursion.addStringProperty(StaticAccess.Column_time).notNull();
         excursion.addStringProperty(StaticAccess.Column_price).notNull();
         excursion.addIntProperty(StaticAccess.Column_maxNumberOfGuest).notNull();

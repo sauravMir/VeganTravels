@@ -13,7 +13,6 @@ public class Criuzes_TMP {
     private String shipName;
     /** Not-null value. */
     private String from;
-    /** Not-null value. */
     private String to;
     private long CruizeUniqueId;
     private Long createdAt;
@@ -75,12 +74,10 @@ public class Criuzes_TMP {
         this.from = from;
     }
 
-    /** Not-null value. */
     public String getTo() {
         return to;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setTo(String to) {
         this.to = to;
     }

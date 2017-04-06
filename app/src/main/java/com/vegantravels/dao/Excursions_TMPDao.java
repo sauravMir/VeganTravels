@@ -53,7 +53,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
                 "\"CRUZE_ID\" INTEGER NOT NULL ," + // 1: cruzeId
                 "\"TITLE\" TEXT NOT NULL ," + // 2: title
                 "\"FROM\" TEXT NOT NULL ," + // 3: from
-                "\"TO\" TEXT NOT NULL ," + // 4: to
+                "\"TO\" TEXT," + // 4: to
                 "\"TIME\" TEXT NOT NULL ," + // 5: time
                 "\"PRICE\" TEXT NOT NULL ," + // 6: price
                 "\"MAX_NUMBER_OF_GUEST\" INTEGER NOT NULL ," + // 7: maxNumberOfGuest
@@ -80,7 +80,11 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         stmt.bindLong(2, entity.getCruzeId());
         stmt.bindString(3, entity.getTitle());
         stmt.bindString(4, entity.getFrom());
-        stmt.bindString(5, entity.getTo());
+ 
+        String to = entity.getTo();
+        if (to != null) {
+            stmt.bindString(5, to);
+        }
         stmt.bindString(6, entity.getTime());
         stmt.bindString(7, entity.getPrice());
         stmt.bindLong(8, entity.getMaxNumberOfGuest());
@@ -103,7 +107,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
             cursor.getInt(offset + 1), // cruzeId
             cursor.getString(offset + 2), // title
             cursor.getString(offset + 3), // from
-            cursor.getString(offset + 4), // to
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // to
             cursor.getString(offset + 5), // time
             cursor.getString(offset + 6), // price
             cursor.getInt(offset + 7), // maxNumberOfGuest
@@ -121,7 +125,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
         entity.setCruzeId(cursor.getInt(offset + 1));
         entity.setTitle(cursor.getString(offset + 2));
         entity.setFrom(cursor.getString(offset + 3));
-        entity.setTo(cursor.getString(offset + 4));
+        entity.setTo(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setTime(cursor.getString(offset + 5));
         entity.setPrice(cursor.getString(offset + 6));
         entity.setMaxNumberOfGuest(cursor.getInt(offset + 7));

@@ -12,7 +12,6 @@ public class Excursions {
     private String title;
     /** Not-null value. */
     private String from;
-    /** Not-null value. */
     private String to;
     /** Not-null value. */
     private String time;
@@ -80,12 +79,10 @@ public class Excursions {
         this.from = from;
     }
 
-    /** Not-null value. */
     public String getTo() {
         return to;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setTo(String to) {
         this.to = to;
     }
