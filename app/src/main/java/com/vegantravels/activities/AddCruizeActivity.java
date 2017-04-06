@@ -242,32 +242,27 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             if (aCruize != null) {
                 Criuzes_TMP insertCruise = new Criuzes_TMP();
                 Guests_TMP insertGuest = new Guests_TMP();
-
-
-
                 insertCruise = databaseManager.insertCriuzeTemporary(aCruize);
                 for (int i = 0; i < xlsDataList.size(); i++) {
                     Cabins_TMP insertCabinPayment = new Cabins_TMP();
                     Guests_TMP mGuest = new Guests_TMP();
-                   mGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
+                    mGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
                     mGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
                     mGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
                     mGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
                     mGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
-                    insertGuest =databaseManager.insertGuestTemporary(mGuest);
+                    insertGuest = databaseManager.insertGuestTemporary(mGuest);
 
-                    if(insertGuest!=null)
-                    insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
+                    if (insertGuest != null)
+                        insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
                     insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
                     insertCabinPayment.setOccupancy(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
                     // here is CruiseId
                     insertCabinPayment.setCruizeId(insertCruise.getCruizeUniqueId());
-                    
-
+                    databaseManager.insertCabinTemp(insertCabinPayment);
 
 //                  insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
 //                    insertGuest.setCabinNumber(insertCruise.getCruizeUniqueId());
-
 
                 }
 
