@@ -293,14 +293,14 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return criuze;
     }
-    /*@Override
-    public List<Guests> getTaskPacksByName(String name) {
+   @Override
+    public List<Guests> getSearchByNameCabin(String name) {
         List<Guests> taskPacks = null;
         try {
             openReadableDb();
             GuestsDao guestDao = daoSession.getGuestsDao();
             QueryBuilder<Guests> queryBuilder = guestDao.queryBuilder().whereOr(GuestsDao.Properties.Fname.like("%" + name + "%"),
-                    TaskPackDao.Properties.LessonNumber.like("%" + name + "%"));
+                    GuestsDao.Properties.LName.like("%" + name + "%"),GuestsDao.Properties.CabinNumber.like("%" + name + "%"));
             taskPacks = queryBuilder.list();
 
             daoSession.clear();
@@ -311,5 +311,5 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             return taskPacks = new ArrayList<>(taskPacks);
         }
         return taskPacks;
-    }*/
+    }
 }

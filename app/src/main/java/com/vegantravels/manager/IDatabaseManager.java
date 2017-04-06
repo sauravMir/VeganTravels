@@ -7,6 +7,7 @@ import com.vegantravels.dao.Guests;
 import com.vegantravels.dao.Guests_TMP;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Interface that provides methods for managing the database inside the Application.
@@ -60,5 +61,6 @@ public interface IDatabaseManager {
 
     Long updateGuest(Guests guests);
 
+    List<Guests> getSearchByNameCabin(String name);
 //    ArrayList<Criuzes_TMP> tempCruiseList();
 }
