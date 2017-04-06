@@ -1,12 +1,14 @@
 package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     private DatabaseManager databaseManager;
     private Excursions_TMP excursions_tmp;
     private int cruizeKey = -1;
+    private ImageButton ibtnBackExcursion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,11 +80,13 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         tvExcursionFromDate = (TextView) findViewById(R.id.tvExcursionFromDate);
         tvExcursionToDate = (TextView) findViewById(R.id.tvExcursionToDate);
         tvExcursionTime = (TextView) findViewById(R.id.tvExcursionTime);
+        ibtnBackExcursion = (ImageButton) findViewById(R.id.ibtnBackExcursion);
 
         tvExcursionFromDate.setOnClickListener(this);
         tvExcursionToDate.setOnClickListener(this);
         tvExcursionTime.setOnClickListener(this);
         btnDone.setOnClickListener(this);
+        ibtnBackExcursion.setOnClickListener(this);
 
 
     }
@@ -106,8 +111,17 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                     addNewExcursion();
                 }
                 break;
+            case R.id.ibtnBackExcursion:
+                Intent intent = new Intent(activity, ManagementActivity.class);
+                startActivity(intent);
+                finishTheActivity();
+                break;
 
         }
+    }
+
+    private void finishTheActivity() {
+        findViewById();
     }
 
     private void addNewExcursion() {
