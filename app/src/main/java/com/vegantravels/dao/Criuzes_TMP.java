@@ -15,6 +15,7 @@ public class Criuzes_TMP {
     private String from;
     /** Not-null value. */
     private String to;
+    private long CruizeUniqueId;
     private long createdAt;
     private long updatedAt;
 
@@ -25,12 +26,13 @@ public class Criuzes_TMP {
         this.id = id;
     }
 
-    public Criuzes_TMP(Long id, String name, String shipName, String from, String to, long createdAt, long updatedAt) {
+    public Criuzes_TMP(Long id, String name, String shipName, String from, String to, long CruizeUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.name = name;
         this.shipName = shipName;
         this.from = from;
         this.to = to;
+        this.CruizeUniqueId = CruizeUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -81,6 +83,14 @@ public class Criuzes_TMP {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public long getCruizeUniqueId() {
+        return CruizeUniqueId;
+    }
+
+    public void setCruizeUniqueId(long CruizeUniqueId) {
+        this.CruizeUniqueId = CruizeUniqueId;
     }
 
     public long getCreatedAt() {

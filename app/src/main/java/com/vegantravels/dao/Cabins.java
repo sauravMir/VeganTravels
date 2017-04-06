@@ -13,6 +13,7 @@ public class Cabins {
     private int paymentStatus;
     /** Not-null value. */
     private String deviceDate;
+    private long CabinUniqueId;
     private long createdAt;
     private long updatedAt;
 
@@ -23,13 +24,14 @@ public class Cabins {
         this.id = id;
     }
 
-    public Cabins(Long id, int cabinNumber, int numberOfGuest, int guestId, int paymentStatus, String deviceDate, long createdAt, long updatedAt) {
+    public Cabins(Long id, int cabinNumber, int numberOfGuest, int guestId, int paymentStatus, String deviceDate, long CabinUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.cabinNumber = cabinNumber;
         this.numberOfGuest = numberOfGuest;
         this.guestId = guestId;
         this.paymentStatus = paymentStatus;
         this.deviceDate = deviceDate;
+        this.CabinUniqueId = CabinUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -82,6 +84,14 @@ public class Cabins {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setDeviceDate(String deviceDate) {
         this.deviceDate = deviceDate;
+    }
+
+    public long getCabinUniqueId() {
+        return CabinUniqueId;
+    }
+
+    public void setCabinUniqueId(long CabinUniqueId) {
+        this.CabinUniqueId = CabinUniqueId;
     }
 
     public long getCreatedAt() {

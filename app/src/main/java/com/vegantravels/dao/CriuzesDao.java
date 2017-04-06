@@ -28,8 +28,9 @@ public class CriuzesDao extends AbstractDao<Criuzes, Long> {
         public final static Property ShipName = new Property(2, String.class, "shipName", false, "SHIP_NAME");
         public final static Property From = new Property(3, String.class, "from", false, "FROM");
         public final static Property To = new Property(4, String.class, "to", false, "TO");
-        public final static Property CreatedAt = new Property(5, long.class, "createdAt", false, "CREATED_AT");
-        public final static Property UpdatedAt = new Property(6, long.class, "updatedAt", false, "UPDATED_AT");
+        public final static Property CruizeUniqueId = new Property(5, long.class, "CruizeUniqueId", false, "CRUIZE_UNIQUE_ID");
+        public final static Property CreatedAt = new Property(6, long.class, "createdAt", false, "CREATED_AT");
+        public final static Property UpdatedAt = new Property(7, long.class, "updatedAt", false, "UPDATED_AT");
     };
 
 
@@ -50,8 +51,9 @@ public class CriuzesDao extends AbstractDao<Criuzes, Long> {
                 "\"SHIP_NAME\" TEXT NOT NULL ," + // 2: shipName
                 "\"FROM\" TEXT NOT NULL ," + // 3: from
                 "\"TO\" TEXT NOT NULL ," + // 4: to
-                "\"CREATED_AT\" INTEGER NOT NULL ," + // 5: createdAt
-                "\"UPDATED_AT\" INTEGER NOT NULL );"); // 6: updatedAt
+                "\"CRUIZE_UNIQUE_ID\" INTEGER NOT NULL ," + // 5: CruizeUniqueId
+                "\"CREATED_AT\" INTEGER NOT NULL ," + // 6: createdAt
+                "\"UPDATED_AT\" INTEGER NOT NULL );"); // 7: updatedAt
     }
 
     /** Drops the underlying database table. */
@@ -73,8 +75,9 @@ public class CriuzesDao extends AbstractDao<Criuzes, Long> {
         stmt.bindString(3, entity.getShipName());
         stmt.bindString(4, entity.getFrom());
         stmt.bindString(5, entity.getTo());
-        stmt.bindLong(6, entity.getCreatedAt());
-        stmt.bindLong(7, entity.getUpdatedAt());
+        stmt.bindLong(6, entity.getCruizeUniqueId());
+        stmt.bindLong(7, entity.getCreatedAt());
+        stmt.bindLong(8, entity.getUpdatedAt());
     }
 
     /** @inheritdoc */
@@ -92,8 +95,9 @@ public class CriuzesDao extends AbstractDao<Criuzes, Long> {
             cursor.getString(offset + 2), // shipName
             cursor.getString(offset + 3), // from
             cursor.getString(offset + 4), // to
-            cursor.getLong(offset + 5), // createdAt
-            cursor.getLong(offset + 6) // updatedAt
+            cursor.getLong(offset + 5), // CruizeUniqueId
+            cursor.getLong(offset + 6), // createdAt
+            cursor.getLong(offset + 7) // updatedAt
         );
         return entity;
     }
@@ -106,8 +110,9 @@ public class CriuzesDao extends AbstractDao<Criuzes, Long> {
         entity.setShipName(cursor.getString(offset + 2));
         entity.setFrom(cursor.getString(offset + 3));
         entity.setTo(cursor.getString(offset + 4));
-        entity.setCreatedAt(cursor.getLong(offset + 5));
-        entity.setUpdatedAt(cursor.getLong(offset + 6));
+        entity.setCruizeUniqueId(cursor.getLong(offset + 5));
+        entity.setCreatedAt(cursor.getLong(offset + 6));
+        entity.setUpdatedAt(cursor.getLong(offset + 7));
      }
     
     /** @inheritdoc */

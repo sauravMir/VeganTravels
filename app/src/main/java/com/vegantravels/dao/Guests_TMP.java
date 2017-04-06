@@ -12,6 +12,7 @@ public class Guests_TMP {
     private String fname;
     /** Not-null value. */
     private String lName;
+    private long GuestUniqueId;
     private long createdAt;
     private long updatedAt;
 
@@ -22,11 +23,12 @@ public class Guests_TMP {
         this.id = id;
     }
 
-    public Guests_TMP(Long id, int guestId, String fname, String lName, long createdAt, long updatedAt) {
+    public Guests_TMP(Long id, int guestId, String fname, String lName, long GuestUniqueId, long createdAt, long updatedAt) {
         this.id = id;
         this.guestId = guestId;
         this.fname = fname;
         this.lName = lName;
+        this.GuestUniqueId = GuestUniqueId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -65,6 +67,14 @@ public class Guests_TMP {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setLName(String lName) {
         this.lName = lName;
+    }
+
+    public long getGuestUniqueId() {
+        return GuestUniqueId;
+    }
+
+    public void setGuestUniqueId(long GuestUniqueId) {
+        this.GuestUniqueId = GuestUniqueId;
     }
 
     public long getCreatedAt() {
