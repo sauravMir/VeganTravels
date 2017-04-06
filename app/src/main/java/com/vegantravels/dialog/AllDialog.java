@@ -3,6 +3,7 @@ package com.vegantravels.dialog;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.vegantravels.R;
@@ -244,5 +246,27 @@ public class AllDialog {
 
         DialogNavBarHide.navBarHide(activity, datePicker);
     }
+
+    public void setCustomTime(final TextView txt) {
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(activity, new TimePickerDialog.OnTimeSetListener() {
+
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                final Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+
+                long millis = calendar.getTimeInMillis();
+                txt.setText(String.valueOf(millis));
+            }
+        }, 10, 20, true);
+
+        DialogNavBarHide.navBarHide(activity, timePickerDialog);
+    }
+
+
 
 }

@@ -102,7 +102,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 allDialog.setCustomDate(tvExcursionToDate, StaticAccess.DATE_TO);
                 break;
             case R.id.tvExcursionTime:
-                allDialog.setCustomDate(tvExcursionTime, StaticAccess.TIME);
+                //allDialog.setCustomDate(tvExcursionTime, StaticAccess.TIME);
+                allDialog.setCustomTime(tvExcursionTime);
                 break;
             case R.id.btnDone:
 //                Intent intent = new Intent(activity, ViewExcursionActivity.class);
