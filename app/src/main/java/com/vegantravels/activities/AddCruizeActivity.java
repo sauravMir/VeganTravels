@@ -2,9 +2,10 @@ package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,13 +19,19 @@ import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.model.XlsModel;
+import com.vegantravels.utilities.FileUtils;
 import com.vegantravels.utilities.StaticAccess;
 
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.WorkbookSettings;
+
+import static android.content.ContentValues.TAG;
 
 public class AddCruizeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -82,7 +89,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btnCabinUpload:
                 //Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
-                setXLS();
+                //setXLS();
+                showFileChooser();
                 break;
             case R.id.btnDone:
                 if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
@@ -121,35 +129,39 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-    
+
     //// reading xls file per row 9 column fixed ,
     public void setXLS() {
         try {
+            if (path != null && path != "") {
+                File file = new File(path);
+                FileInputStream fileInputStream = new FileInputStream(file);
+                xlsDataList = new ArrayList<>();
+//            AssetManager assetManager = getAssets();
+//            InputStream inputStream = assetManager.open("client.xls");
+                WorkbookSettings ws = new WorkbookSettings();
+                ws.setEncoding("Cp1252");
+                Workbook workbook = Workbook.getWorkbook(fileInputStream, ws);
+                Sheet sheet = workbook.getSheet(0);
+                int row = sheet.getRows();///xls doc total row
+                int col = sheet.getColumns(); /// xls doc total columns
 
-            xlsDataList = new ArrayList<>();
-            AssetManager assetManager = getAssets();
-            InputStream inputStream = assetManager.open("client.xls");
-            Workbook workbook = Workbook.getWorkbook(inputStream);
-            Sheet sheet = workbook.getSheet(0);
-            int row = sheet.getRows();///xls doc total row
-            int col = sheet.getColumns(); /// xls doc total columns
+                for (int i = 1; i < row; i++) {
+                    aXls = new XlsModel();
+                    aXls.setVTID(sheet.getCell(1, i).getContents());
+                    aXls.setFirstNameGuestOne(sheet.getCell(2, i).getContents());
+                    aXls.setLastNameGuestOne(sheet.getCell(3, i).getContents());
+                    aXls.setSexGuestOne(sheet.getCell(4, i).getContents());
+                    aXls.setFirstNameGuestTwo(sheet.getCell(5, i).getContents());
+                    aXls.setLastNameGuestTwo(sheet.getCell(6, i).getContents());
+                    aXls.setSexGuestTwo(sheet.getCell(7, i).getContents());
+                    aXls.setCabinNo(sheet.getCell(8, i).getContents());
+                    aXls.setGuestInCabin(sheet.getCell(9, i).getContents());
+                    xlsDataList.add(aXls);
 
-            for (int i = 1; i < row; i++) {
-                aXls = new XlsModel();
-                aXls.setVTID(sheet.getCell(1, i).getContents());
-                aXls.setFirstNameGuestOne(sheet.getCell(2, i).getContents());
-                aXls.setLastNameGuestOne(sheet.getCell(3, i).getContents());
-                aXls.setSexGuestOne(sheet.getCell(4, i).getContents());
-                aXls.setFirstNameGuestTwo(sheet.getCell(5, i).getContents());
-                aXls.setLastNameGuestTwo(sheet.getCell(6, i).getContents());
-                aXls.setSexGuestTwo(sheet.getCell(7, i).getContents());
-                aXls.setCabinNo(sheet.getCell(8, i).getContents());
-                aXls.setGuestInCabin(sheet.getCell(9, i).getContents());
-                xlsDataList.add(aXls);
+                }
 
             }
-
-            tvCabinUpload.setText("");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,6 +171,55 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     void finishTheActivity() {
         finish();
     }
+
+    ///// ************ FILE PICKER SHITS ************////
+    private static final int FILE_SELECT_CODE = 0;
+
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        try {
+            startActivityForResult(
+                    Intent.createChooser(intent, "Select a File to Upload"),
+                    FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(this, "Please install a File Manager.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    String path = null;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case FILE_SELECT_CODE:
+                if (resultCode == RESULT_OK) {
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    Log.d(TAG, "File Uri: " + uri.toString());
+                    // Get the path
+
+                    try {
+                        path = FileUtils.getPath(this, uri);
+                        tvCabinUpload.setText(path);
+                        setXLS(); // read data and fill arraylist
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                    Log.d(TAG, "File Path: " + path);
+                    // Get the file instance
+                    // File file = new File(path);
+                    // Initiate the upload
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     class NewCruiseAsyncTask extends AsyncTask<Void, Void, Void> {
         boolean success = false;
