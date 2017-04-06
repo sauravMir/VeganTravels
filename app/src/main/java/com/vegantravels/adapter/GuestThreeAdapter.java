@@ -25,10 +25,10 @@ public class GuestThreeAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     String fDate;
 
-    public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList,String fDate) {
+    public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList, String fDate) {
         this.context = context;
         this.guestList = guestsList;
-        this.fDate=fDate;
+        this.fDate = fDate;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -75,7 +75,7 @@ public class GuestThreeAdapter extends BaseAdapter {
             holder = (GuestThreeAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.tvGuestName.setText(guestList.get(i).getFname()+" "+guestList.get(i).getLName());
+        holder.tvGuestName.setText(guestList.get(i).getFname() + " " + guestList.get(i).getLName());
         holder.tvCabinNo.setText(String.valueOf(guestList.get(i).getCabinNumber()));
         holder.tvCruiseDate.setText(fDate);
 
