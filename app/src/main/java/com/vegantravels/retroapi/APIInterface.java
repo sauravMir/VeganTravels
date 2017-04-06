@@ -7,6 +7,7 @@ import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
 import com.vegantravels.model.Participant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,6 +44,8 @@ public interface APIInterface {
     @POST("/api/guestDetailAdd")
     Call<Guest> guestDetailAdd(@Body Guest guest);
 
+    @POST("api/addCruise")
+    Call<CruiseJson> addCruise(@Body CruiseJson CruiseJson);
 
 
  /*   @FormUrlEncoded
