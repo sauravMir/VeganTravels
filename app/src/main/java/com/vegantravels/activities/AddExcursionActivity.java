@@ -40,7 +40,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     private AllDialog allDialog;
     private DatabaseManager databaseManager;
     private Excursions_TMP excursions_tmp;
-    private int cruizeKey = -1;
+    private long cruizeKey = -1;
     private ImageButton ibtnBackExcursion;
 
     @Override
@@ -48,7 +48,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_excursion);
         activity = this;
-        cruizeKey = getIntent().getIntExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        cruizeKey = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
         databaseManager = new DatabaseManager(activity);
         Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();

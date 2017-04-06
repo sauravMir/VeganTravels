@@ -112,7 +112,7 @@ public class Generator {
     private static Entity addExcursion(Schema schema) {
         Entity excursion = schema.addEntity(StaticAccess.Table_EXCURSIONS);
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
+        excursion.addLongProperty(StaticAccess.Column_cruzeId).notNull();
         excursion.addStringProperty(StaticAccess.Column_title).notNull();
         excursion.addStringProperty(StaticAccess.Column_from).notNull();
         excursion.addStringProperty(StaticAccess.Column_to);
@@ -128,7 +128,7 @@ public class Generator {
     private static Entity addExcursionTemp(Schema schema) {
         Entity excursion = schema.addEntity(StaticAccess.Table_EXCURSIONS_TMP);
         excursion.addIdProperty().primaryKey().autoincrement();
-        excursion.addIntProperty(StaticAccess.Column_cruzeId).notNull();
+        excursion.addLongProperty(StaticAccess.Column_cruzeId).notNull();
         excursion.addStringProperty(StaticAccess.Column_title).notNull();
         excursion.addStringProperty(StaticAccess.Column_from).notNull();
         excursion.addStringProperty(StaticAccess.Column_to);

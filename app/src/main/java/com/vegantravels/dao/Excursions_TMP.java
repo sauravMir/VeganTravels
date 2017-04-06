@@ -7,7 +7,7 @@ package com.vegantravels.dao;
 public class Excursions_TMP {
 
     private Long id;
-    private int cruzeId;
+    private long cruzeId;
     /** Not-null value. */
     private String title;
     /** Not-null value. */
@@ -29,7 +29,7 @@ public class Excursions_TMP {
         this.id = id;
     }
 
-    public Excursions_TMP(Long id, int cruzeId, String title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, Long createdAt, Long updatedAt) {
+    public Excursions_TMP(Long id, long cruzeId, String title, String from, String to, String time, String price, int maxNumberOfGuest, long ExcursionUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.cruzeId = cruzeId;
         this.title = title;
@@ -51,11 +51,11 @@ public class Excursions_TMP {
         this.id = id;
     }
 
-    public int getCruzeId() {
+    public long getCruzeId() {
         return cruzeId;
     }
 
-    public void setCruzeId(int cruzeId) {
+    public void setCruzeId(long cruzeId) {
         this.cruzeId = cruzeId;
     }
 

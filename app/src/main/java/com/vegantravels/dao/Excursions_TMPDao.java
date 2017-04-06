@@ -24,7 +24,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property CruzeId = new Property(1, int.class, "cruzeId", false, "CRUZE_ID");
+        public final static Property CruzeId = new Property(1, long.class, "cruzeId", false, "CRUZE_ID");
         public final static Property Title = new Property(2, String.class, "title", false, "TITLE");
         public final static Property From = new Property(3, String.class, "from", false, "FROM");
         public final static Property To = new Property(4, String.class, "to", false, "TO");
@@ -112,7 +112,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
     public Excursions_TMP readEntity(Cursor cursor, int offset) {
         Excursions_TMP entity = new Excursions_TMP( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getInt(offset + 1), // cruzeId
+            cursor.getLong(offset + 1), // cruzeId
             cursor.getString(offset + 2), // title
             cursor.getString(offset + 3), // from
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // to
@@ -130,7 +130,7 @@ public class Excursions_TMPDao extends AbstractDao<Excursions_TMP, Long> {
     @Override
     public void readEntity(Cursor cursor, Excursions_TMP entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setCruzeId(cursor.getInt(offset + 1));
+        entity.setCruzeId(cursor.getLong(offset + 1));
         entity.setTitle(cursor.getString(offset + 2));
         entity.setFrom(cursor.getString(offset + 3));
         entity.setTo(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
