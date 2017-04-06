@@ -4,6 +4,7 @@ package com.vegantravels.manager;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests;
 import com.vegantravels.dao.Guests_TMP;
 
@@ -71,5 +72,12 @@ public interface IDatabaseManager {
     ArrayList<Cabins_TMP> cabinTempList();
 
     Long updateCabinTemp(Cabins_TMP cabins_tmp);
+
+    ///***** EXCURSION TABLE METHOD **********//////
+    Excursions_TMP insertExcursionTemp(Excursions_TMP excursions_tmp);
+
+    ArrayList<Excursions_TMP> excursionTempList();
+
+    Long updateExcursionTemp(Excursions_TMP excursions_tmp);
 
 }

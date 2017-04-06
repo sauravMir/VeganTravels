@@ -27,7 +27,7 @@
         <activity android:name=".activities.GuestListActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.AddParticipantActivity" />
-        <activity android:name=".activities.AddExcussionActivity" />
+        <activity android:name=".activities.AddExcursionActivity" />
         <activity android:name=".activities.GuestListTwoActivity" />
         <activity android:name=".activities.AddCruizeActivity" />
         <activity android:name=".activities.GuestListThreeActivity" />

@@ -12,6 +12,8 @@ import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Criuzes_TMPDao;
 import com.vegantravels.dao.DaoMaster;
 import com.vegantravels.dao.DaoSession;
+import com.vegantravels.dao.Excursions_TMP;
+import com.vegantravels.dao.Excursions_TMPDao;
 import com.vegantravels.dao.Guests;
 import com.vegantravels.dao.GuestsDao;
 import com.vegantravels.dao.Guests_TMP;
@@ -405,5 +407,58 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
         }
         return cabinTempKay;
+    }
+
+    ////***************     EXCURSION CRUD OPERATION METHODS        ************************//
+    @Override
+    public Excursions_TMP insertExcursionTemp(Excursions_TMP excursions_tmp) {
+        try {
+            if (excursions_tmp != null) {
+                openWritableDb();
+                Excursions_TMPDao excursions_tmpDao = daoSession.getExcursions_TMPDao();
+                excursions_tmpDao.insert(excursions_tmp);
+                daoSession.clear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return excursions_tmp;
+    }
+
+    @Override
+    public ArrayList<Excursions_TMP> excursionTempList() {
+        List<Excursions_TMP> excursions_tmpList = null;
+        try {
+            openReadableDb();
+            Excursions_TMPDao excursionsTmpDao = daoSession.getExcursions_TMPDao();
+            excursions_tmpList = excursionsTmpDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (excursions_tmpList != null) {
+            return new ArrayList<>(excursions_tmpList);
+        }
+        return null;
+    }
+
+    @Override
+    public Long updateExcursionTemp(Excursions_TMP excursions_tmp) {
+        Long excursionTempKay = null;
+        try {
+            if (excursions_tmp != null) {
+                openWritableDb();
+                daoSession.update(excursions_tmp);
+//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                excursionTempKay = excursions_tmp.getId();
+                daoSession.clear();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return excursionTempKay;
     }
 }

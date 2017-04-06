@@ -75,7 +75,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         int id = view.getId();
         switch (id) {
             case R.id.btnAddExcursion:
-                Intent intent = new Intent(activity, AddExcussionActivity.class);
+                Intent intent = new Intent(activity, AddExcursionActivity.class);
                 startActivity(intent);
                 finishTheActivity();
                 
