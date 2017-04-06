@@ -1,15 +1,12 @@
 package com.vegantravels.activities;
 
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,12 +17,11 @@ import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.model.XlsModel;
 
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 
-import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 
@@ -41,6 +37,9 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private Criuzes_TMP aCruize;
     private ImageButton ibtnBackCruize;
     AllDialog allDialog;
+
+    private ArrayList<XlsModel> xlsDataList;
+    private XlsModel aXls;
 
     @Override
 
@@ -113,6 +112,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         aCruize.setName(edtCruzeName.getText().toString());
         aCruize.setShipName(edtShipName.getText().toString());
         aCruize.setFrom(tvDateFrom.getText().toString());
+        aCruize.setCruizeUniqueId(cruizeKey);
         aCruize.setTo(tvDateTo.getText().toString());
         // aCruize.setCruizeKey(cruizeKey);
         // trigger asynctask to insert cruize in temo table
@@ -120,28 +120,35 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
     }
 
-
+    
+    //// reading xls file per row 9 column fixed ,
     public void setXLS() {
         try {
+
+            xlsDataList = new ArrayList<>();
             AssetManager assetManager = getAssets();
             InputStream inputStream = assetManager.open("client.xls");
             Workbook workbook = Workbook.getWorkbook(inputStream);
             Sheet sheet = workbook.getSheet(0);
-            int row = sheet.getRows();
-            int col = sheet.getColumns();
-            String values = "";
+            int row = sheet.getRows();///xls doc total row
+            int col = sheet.getColumns(); /// xls doc total columns
 
-            for (int i = 0; i < row; i++) {
-                for (int j = 0; j < col; j++) {
-                    Cell cell = sheet.getCell(j, i);
-                    values = values + cell.getContents();
-                }
-                values = values + "\n";
+            for (int i = 1; i < row; i++) {
+                aXls = new XlsModel();
+                aXls.setVTID(sheet.getCell(1, i).getContents());
+                aXls.setFirstNameGuestOne(sheet.getCell(2, i).getContents());
+                aXls.setLastNameGuestOne(sheet.getCell(3, i).getContents());
+                aXls.setSexGuestOne(sheet.getCell(4, i).getContents());
+                aXls.setFirstNameGuestTwo(sheet.getCell(5, i).getContents());
+                aXls.setLastNameGuestTwo(sheet.getCell(6, i).getContents());
+                aXls.setSexGuestTwo(sheet.getCell(7, i).getContents());
+                aXls.setCabinNo(sheet.getCell(8, i).getContents());
+                aXls.setGuestInCabin(sheet.getCell(9, i).getContents());
+                xlsDataList.add(aXls);
+
             }
-            Log.d(values, values);
-            Toast.makeText(activity, values, Toast.LENGTH_SHORT).show();
 
-            tvCabinUpload.setText(values);
+            tvCabinUpload.setText("");
 
         } catch (Exception e) {
             e.printStackTrace();

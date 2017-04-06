@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.AddCruizeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,7 @@
         <activity android:name=".activities.AddParticipantActivity" />
         <activity android:name=".activities.AddExcussionActivity" />
         <activity android:name=".activities.GuestListTwoActivity" />
-        <activity android:name=".activities.AddCruizeActivity" />
+        <activity android:name=".activities.SplashActivity" />
         <activity android:name=".activities.GuestListThreeActivity" />
     </application>
 
