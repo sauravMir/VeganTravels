@@ -1,5 +1,6 @@
 package com.vegantravels.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -8,15 +9,17 @@ import com.vegantravels.R;
 
 public class ManagementActivity extends BaseActivity implements View.OnClickListener {
     TextView tvCruiseMngmnt, tvExcursionMngmnt, tvExport, tvFinancial;
+    private ManagementActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management);
+        activity = this;
+        findViewById();
     }
 
     private void findViewById() {
-        //TextView tvCruiseMngmnt, tvExcursionMngmnt, tvExport, tvFinancial;
         tvCruiseMngmnt = (TextView) findViewById(R.id.tvCruiseMngmnt);
         tvExcursionMngmnt = (TextView) findViewById(R.id.tvExcursionMngmnt);
         tvExport = (TextView) findViewById(R.id.tvExport);
@@ -32,5 +35,22 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()) {
+            case R.id.tvCruiseMngmnt:
+                Intent intentGuest = new Intent(activity, MainActivity.class);
+                startActivity(intentGuest);
+                finish();
+                break;
+            case R.id.tvExcursionMngmnt:
+                Intent intentExcursion = new Intent(activity, GuestListThreeActivity.class);
+                startActivity(intentExcursion);
+                finish();
+                break;
+            case R.id.tvExport:
+                break;
+            case R.id.tvFinancial:
+                break;
+
+        }
     }
 }

@@ -49,7 +49,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
 
         switch (v.getId()) {
             case R.id.ibtnBack:
-                Intent intent = new Intent(activity, MainActivity.class);
+                Intent intent = new Intent(activity, ManagementActivity.class);
                 startActivity(intent);
                 break;
             case R.id.ibtnSearch:

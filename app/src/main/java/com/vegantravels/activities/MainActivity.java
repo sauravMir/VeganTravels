@@ -78,6 +78,8 @@ public class MainActivity extends BaseActivity {
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(activity, ManagementActivity.class);
+                startActivity(intent);
                 finishActivity();
             }
         });
