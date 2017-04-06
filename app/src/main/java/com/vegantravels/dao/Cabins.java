@@ -12,6 +12,7 @@ public class Cabins {
     private int numberOfGuest;
     /** Not-null value. */
     private String guestVT_Id;
+    private long cruizeId;
     private Integer paymentStatus;
     private Long excursion;
     /** Not-null value. */
@@ -27,12 +28,13 @@ public class Cabins {
         this.id = id;
     }
 
-    public Cabins(Long id, int occupancy, int cabinNumber, int numberOfGuest, String guestVT_Id, Integer paymentStatus, Long excursion, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
+    public Cabins(Long id, int occupancy, int cabinNumber, int numberOfGuest, String guestVT_Id, long cruizeId, Integer paymentStatus, Long excursion, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
         this.occupancy = occupancy;
         this.cabinNumber = cabinNumber;
         this.numberOfGuest = numberOfGuest;
         this.guestVT_Id = guestVT_Id;
+        this.cruizeId = cruizeId;
         this.paymentStatus = paymentStatus;
         this.excursion = excursion;
         this.deviceDate = deviceDate;
@@ -81,6 +83,14 @@ public class Cabins {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setGuestVT_Id(String guestVT_Id) {
         this.guestVT_Id = guestVT_Id;
+    }
+
+    public long getCruizeId() {
+        return cruizeId;
+    }
+
+    public void setCruizeId(long cruizeId) {
+        this.cruizeId = cruizeId;
     }
 
     public Integer getPaymentStatus() {

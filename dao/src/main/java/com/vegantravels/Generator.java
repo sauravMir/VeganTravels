@@ -94,6 +94,7 @@ public class Generator {
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
+        cabin.addLongProperty(StaticAccess.Column_Cruizes).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus);
         cabin.addLongProperty(StaticAccess.Column_EXCURSION);
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
@@ -110,6 +111,7 @@ public class Generator {
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
+        cabin.addLongProperty(StaticAccess.Column_Cruizes).notNull();
         cabin.addIntProperty(StaticAccess.Column_paymentStatus);
         cabin.addLongProperty(StaticAccess.Column_EXCURSION);
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();

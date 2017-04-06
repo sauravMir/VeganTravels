@@ -28,6 +28,7 @@ public class StaticAccess {
     //////////All the columns
     //Cruizes
     public static final String Column_id = "id";
+    public static final String Column_Cruizes= "cruizeId";
     public static final String Column_name = "name";
     public static final String Column_shipName = "shipName";
     public static final String Column_from = "from";

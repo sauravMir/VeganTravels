@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".15"
-            android:background="@drawable/cell_bg"
+            android:background="@color/app_color"
             android:gravity="center"
-            android:text="WHAT DU YOU WANT TO DO?"
+            android:text="WHAT DO YOU WANT TO DO?"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty_five" />
 
@@ -29,6 +29,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvCruiseMngmnt"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".15"
@@ -43,6 +44,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvExcursionMngmnt"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".15"
@@ -57,7 +59,7 @@
             android:layout_weight=".05" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvExport"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".15"
@@ -72,6 +74,7 @@
             android:layout_weight=".05" />
 
         <TextView
+            android:id="@+id/tvFinancial"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".15"
