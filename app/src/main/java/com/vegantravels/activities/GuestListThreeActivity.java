@@ -1,11 +1,14 @@
 package com.vegantravels.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestThreeAdapter;
+import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.model.Guest;
 
 import java.util.ArrayList;
@@ -14,15 +17,15 @@ import java.util.ArrayList;
  * Created by Rakib on 4/6/2017.
  */
 
-public class GuestListThreeActivity extends BaseActivity {
+public class GuestListThreeActivity extends BaseActivity implements View.OnClickListener {
 
-    private ListView lstGuest;
-    private GuestThreeAdapter adapter;
-    private ArrayList<Guest> guestList;
+    public ListView lstGuest;
+    public GuestThreeAdapter adapter;
+    public ArrayList<Guest> guestList;
     private Guest guests;
     private GuestListThreeActivity activity;
-    ImageButton ibtnSearch;
-    private ImageButton ibtnBack;
+    private ImageButton ibtnBack, ibtnSearch;
+    private AllDialog allDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,29 @@ public class GuestListThreeActivity extends BaseActivity {
         setContentView(R.layout.guest_layout_three);
         activity = this;
         lstGuest = (ListView) findViewById(R.id.lstGuest);
+        allDialog = new AllDialog(activity);
         ibtnSearch = (ImageButton) findViewById(R.id.ibtnSearch);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+
+        ibtnSearch.setOnClickListener(this);
+        ibtnBack.setOnClickListener(this);
         fillDummyData();
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.ibtnBack:
+                Intent intent = new Intent(activity, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.ibtnSearch:
+                allDialog.dialogForSearch();
+                break;
+        }
     }
 
     private void fillDummyData() {
@@ -66,5 +89,6 @@ public class GuestListThreeActivity extends BaseActivity {
         lstGuest.setAdapter(adapter);
 
     }
+
 
 }
