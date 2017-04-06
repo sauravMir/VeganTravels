@@ -45,6 +45,7 @@ public class StaticAccess {
     public static final String Column_cruzeId = "cruzeId";
     public static final String Column_title = "title";
     public static final String Column_time = "time";
+    public static final String Column_EXCURSION = "excursion";
     public static final String Column_price = "price";
     public static final String Excursion_unique_id = "ExcursionUniqueId";
     public static final String Column_maxNumberOfGuest = "maxNumberOfGuest";
@@ -52,6 +53,7 @@ public class StaticAccess {
     //Cabins
 
     public static final String Column_cabinNumber = "cabinNumber";
+    public static final String Column_occupancy = "occupancy";
     public static final String Column_guest_VT_Id = "guestVT_Id";
     public static final String Cabin_unique_id = "CabinUniqueId";
     public static final String Column_numberOfGuest = "numberOfGuest";

@@ -7,11 +7,13 @@ package com.vegantravels.dao;
 public class Cabins {
 
     private Long id;
+    private int occupancy;
     private int cabinNumber;
     private int numberOfGuest;
     /** Not-null value. */
     private String guestVT_Id;
-    private int paymentStatus;
+    private Integer paymentStatus;
+    private Long excursion;
     /** Not-null value. */
     private String deviceDate;
     private long CabinUniqueId;
@@ -25,12 +27,14 @@ public class Cabins {
         this.id = id;
     }
 
-    public Cabins(Long id, int cabinNumber, int numberOfGuest, String guestVT_Id, int paymentStatus, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
+    public Cabins(Long id, int occupancy, int cabinNumber, int numberOfGuest, String guestVT_Id, Integer paymentStatus, Long excursion, String deviceDate, long CabinUniqueId, Long createdAt, Long updatedAt) {
         this.id = id;
+        this.occupancy = occupancy;
         this.cabinNumber = cabinNumber;
         this.numberOfGuest = numberOfGuest;
         this.guestVT_Id = guestVT_Id;
         this.paymentStatus = paymentStatus;
+        this.excursion = excursion;
         this.deviceDate = deviceDate;
         this.CabinUniqueId = CabinUniqueId;
         this.createdAt = createdAt;
@@ -43,6 +47,14 @@ public class Cabins {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getOccupancy() {
+        return occupancy;
+    }
+
+    public void setOccupancy(int occupancy) {
+        this.occupancy = occupancy;
     }
 
     public int getCabinNumber() {
@@ -71,12 +83,20 @@ public class Cabins {
         this.guestVT_Id = guestVT_Id;
     }
 
-    public int getPaymentStatus() {
+    public Integer getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(int paymentStatus) {
+    public void setPaymentStatus(Integer paymentStatus) {
         this.paymentStatus = paymentStatus;
+    }
+
+    public Long getExcursion() {
+        return excursion;
+    }
+
+    public void setExcursion(Long excursion) {
+        this.excursion = excursion;
     }
 
     /** Not-null value. */

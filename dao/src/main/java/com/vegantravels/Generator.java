@@ -90,10 +90,12 @@ public class Generator {
     private static Entity addCabin(Schema schema) {
         Entity cabin = schema.addEntity(StaticAccess.Table_CABIN);
         cabin.addIdProperty().primaryKey().autoincrement();
+        cabin.addIntProperty(StaticAccess.Column_occupancy).notNull();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
-        cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
+        cabin.addIntProperty(StaticAccess.Column_paymentStatus);
+        cabin.addLongProperty(StaticAccess.Column_EXCURSION);
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
         cabin.addLongProperty(StaticAccess.Column_createdAt);
@@ -104,14 +106,16 @@ public class Generator {
     private static Entity addCabinTemp(Schema schema) {
         Entity cabin = schema.addEntity(StaticAccess.Table_CABIN_TMP);
         cabin.addIdProperty().primaryKey().autoincrement();
+        cabin.addIntProperty(StaticAccess.Column_occupancy).notNull();
         cabin.addIntProperty(StaticAccess.Column_cabinNumber).notNull();
         cabin.addIntProperty(StaticAccess.Column_numberOfGuest).notNull();
         cabin.addStringProperty(StaticAccess.Column_guest_VT_Id).notNull();
-        cabin.addIntProperty(StaticAccess.Column_paymentStatus).notNull();
+        cabin.addIntProperty(StaticAccess.Column_paymentStatus);
+        cabin.addLongProperty(StaticAccess.Column_EXCURSION);
         cabin.addStringProperty(StaticAccess.Column_deviceDate).notNull();
         cabin.addLongProperty(StaticAccess.Cabin_unique_id).notNull();
-        cabin.addLongProperty(StaticAccess.Column_createdAt).notNull();
-        cabin.addLongProperty(StaticAccess.Column_updatedAt).notNull();
+        cabin.addLongProperty(StaticAccess.Column_createdAt);
+        cabin.addLongProperty(StaticAccess.Column_updatedAt);
         return cabin;
     }
 
