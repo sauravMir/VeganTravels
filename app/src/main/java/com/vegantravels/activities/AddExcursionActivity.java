@@ -1,21 +1,22 @@
 package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dialog.AllDialog;
+import com.vegantravels.dialog.DialogNavBarHide;
+import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
-import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -35,29 +36,32 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     EditText edtExcursionTitle, edtPrice, edtMaxGuest;
     TextView tvExcursionFromDate, tvExcursionToDate, tvExcursionTime;
     private AllDialog allDialog;
+    private DatabaseManager databaseManager;
+    private Excursions_TMP excursions_tmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_excursion);
         activity = this;
+        databaseManager = new DatabaseManager(activity);
         findViewById();
         allDialog = new AllDialog(activity);
 
         //Connection Https or http Instances
-        apiInterface = APIClient.getClient().create(APIInterface.class);
-
-        showProgressDialog();
-        Guest guest = new Guest();
-        guest.setCruiseID("1");
-        guest.setGuestID("1");
-        guest.setCabinNo("88800");
-        guest.setExcursion("hello");
-        guest.setGuestName("Reaz");
-        guest.setNumberOfGuest("4");
-        guest.setPaymentStatus("3");
-
-        getGuestPaymentMethodAdd(guest);
+//        apiInterface = APIClient.getClient().create(APIInterface.class);
+//
+//        showProgressDialog();
+//        Guest guest = new Guest();
+//        guest.setCruiseID("1");
+//        guest.setGuestID("1");
+//        guest.setCabinNo("88800");
+//        guest.setExcursion("hello");
+//        guest.setGuestName("Reaz");
+//        guest.setNumberOfGuest("4");
+//        guest.setPaymentStatus("3");
+//
+//        getGuestPaymentMethodAdd(guest);
 
 
     }
@@ -93,12 +97,23 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 allDialog.setCustomDate(tvExcursionTime, StaticAccess.TIME);
                 break;
             case R.id.btnDone:
-                Intent intent = new Intent(activity, ViewExcursionActivity.class);
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(activity, ViewExcursionActivity.class);
+//                startActivity(intent);
+                if (edtExcursionTitle.getText().toString().length() > 0 && tvExcursionFromDate.getText().toString().length() > 0 && tvExcursionTime.getText().toString().length() > 0 && edtMaxGuest.getText().toString().length() > 0) {
+                    addNewExcursion();
+                }
                 break;
 
         }
+    }
+
+    private void addNewExcursion() {
+        excursions_tmp = new Excursions_TMP();
+        excursions_tmp.setTitle(edtExcursionTitle.getText().toString());
+        excursions_tmp.setFrom(tvExcursionFromDate.getText().toString());
+        excursions_tmp.setTime(tvExcursionTime.getText().toString());
+        excursions_tmp.setMaxNumberOfGuest(Integer.valueOf(edtMaxGuest.getText().toString()));
+        new newExcursionAsyncTask().execute();
     }
 
     void getGuestDetails() {
@@ -177,6 +192,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         progressDialog = new ProgressDialog(activity);
         progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
         progressDialog.show();
+        DialogNavBarHide.navBarHide(activity, progressDialog);
     }
 
     public void hideProgressDialog() {
@@ -184,5 +200,29 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             progressDialog.dismiss();
     }
 
+    class newExcursionAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean isSuccess = false;
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if (excursions_tmp != null) {
+                databaseManager.insertExcursionTemp(excursions_tmp);
+                isSuccess = true;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideProgressDialog();
+            Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
+        }
+    }
 }
