@@ -59,6 +59,7 @@ public class CruiseTble {
                     criuze.setShipName(cruises.getShipName());
                     criuze.setTo(cruises.getDateTo());
                     criuze.setFrom(cruises.getDateFrom());
+//                    criuze.setFrom(cruises.getDateFrom());
                     databaseManager.insertCruises(criuze);
                 }
             }
@@ -81,19 +82,21 @@ public class CruiseTble {
         return outputString;
     }
 
-    void addCruise() {
+    public void addCruise() {
         /**
          GET List Resources
          **/
-
+        criuzes_tmps=new ArrayList<>();
         criuzes_tmps = databaseManager.listCriuzeTemporary();
         List<Cruises> criuzes_tmps_json = new ArrayList<Cruises>();
+        if(criuzes_tmps!=null)
         for (int i = 0; i > criuzes_tmps.size(); i++) {
             Cruises cruises = new Cruises();
             cruises.setShipName(criuzes_tmps.get(i).getShipName());
             cruises.setCruiseName(criuzes_tmps.get(i).getName());
             cruises.setDateTo(criuzes_tmps.get(i).getTo());
             cruises.setDateFrom(criuzes_tmps.get(i).getFrom());
+            cruises.setUniqueId("9111111111111");
             criuzes_tmps_json.add(cruises);
 
         }

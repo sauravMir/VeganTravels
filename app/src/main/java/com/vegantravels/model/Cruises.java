@@ -20,12 +20,19 @@ public class Cruises {
     @SerializedName(StaticAccess.KEY_DATE_TO)
     private String dateTo;
 
-    public Cruises(String cruiseID, String cruiseName, String shipName, String dateFrom, String dateTo) {
+
+
+    @SerializedName(StaticAccess.KEY_CRUISE_UNIQUE_ID)
+    private String uniqueId;
+
+    public Cruises(String cruiseID, String cruiseName, String shipName, String dateFrom, String dateTo,String uniqueId) {
         this.cruiseID = cruiseID;
         this.cruiseName = cruiseName;
         this.shipName = shipName;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.uniqueId = uniqueId;
+
     }
 
     public Cruises(String cruiseName, String shipName, String dateFrom, String dateTo) {
@@ -76,5 +83,12 @@ public class Cruises {
 
     public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
+    }
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 }
