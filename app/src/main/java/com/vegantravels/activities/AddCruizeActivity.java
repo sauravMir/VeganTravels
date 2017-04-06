@@ -240,22 +240,33 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
             if (aCruize != null) {
-                Criuzes_TMP insertCruise=new Criuzes_TMP();
-                Guests_TMP insertGuest=new Guests_TMP();
-                Cabins_TMP insertCabinPayment=new Cabins_TMP();
+                Criuzes_TMP insertCruise = new Criuzes_TMP();
+                Guests_TMP insertGuest = new Guests_TMP();
 
-                
-                insertCruise= databaseManager.insertCriuzeTemporary(aCruize);
-                for(int i=0;i<xlsDataList.size();i++){
 
-                    insertGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
-                    insertGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
-                    insertGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
-                    insertGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
-                    insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
+
+                insertCruise = databaseManager.insertCriuzeTemporary(aCruize);
+                for (int i = 0; i < xlsDataList.size(); i++) {
+                    Cabins_TMP insertCabinPayment = new Cabins_TMP();
+                    Guests_TMP mGuest = new Guests_TMP();
+                   mGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
+                    mGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
+                    mGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
+                    mGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
+                    mGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
+                    insertGuest =databaseManager.insertGuestTemporary(mGuest);
+                    
+                    if(insertGuest!=null)
+                    insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
+                    insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
+                    insertCabinPayment.setOccupancy(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
+                    // here is CruiseId
+//                    insertCabinPayment.set(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
+
+
 //                  insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
 //                    insertGuest.setCabinNumber(insertCruise.getCruizeUniqueId());
-                    
+
 
                 }
 
