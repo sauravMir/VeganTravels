@@ -27,8 +27,10 @@ import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.Guest;
 import com.vegantravels.utilities.StaticAccess;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Rakib on 4/3/2017.
@@ -224,8 +226,7 @@ public class AllDialog {
         int yy = calendar.get(Calendar.YEAR);
         int mm = calendar.get(Calendar.MONTH);
         int dd = calendar.get(Calendar.DAY_OF_MONTH);
-
-
+       
         DatePickerDialog datePicker = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -239,7 +240,7 @@ public class AllDialog {
                     txt.setText("Time: " + time);
                 }
             }
-        }, yy, mm, dd);
+        }, yy, mm, dd );
 
         DialogNavBarHide.navBarHide(activity, datePicker);
     }
