@@ -97,6 +97,14 @@ public class GuestListActivity extends BaseActivity {
                 finishActivity();
             }
         });
+        lvGuest.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(new Intent(activity, GuestListThreeActivity.class));
+                finishActivity();
+                return false;
+            }
+        });
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
