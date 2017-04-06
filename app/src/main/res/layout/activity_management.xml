@@ -27,13 +27,13 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
+            android:layout_weight=".15" />
 
         <TextView
             android:id="@+id/tvCruiseMngmnt"
             android:layout_width="@dimen/three_hundred"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
             android:text="CRUISE MANAGEMENT"
@@ -48,7 +48,7 @@
             android:id="@+id/tvExcursionMngmnt"
             android:layout_width="@dimen/three_hundred"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
             android:text="EXCURSION MANAGEMENT"
@@ -63,7 +63,7 @@
             android:id="@+id/tvExport"
             android:layout_width="@dimen/three_hundred"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
             android:text="EXPORT"
@@ -78,7 +78,7 @@
             android:id="@+id/tvFinancial"
             android:layout_width="@dimen/three_hundred"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".15"
+            android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
             android:text="FINANCIALS"
@@ -87,7 +87,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
+            android:layout_weight=".15" />
 
     </LinearLayout>
 
