@@ -84,6 +84,9 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         ibtnBackCruize.setOnClickListener(this);
         tvDateFrom.setOnClickListener(this);
         tvDateTo.setOnClickListener(this);
+
+
+        xlsDataList = new ArrayList<>();
     }
 
     @Override
@@ -133,7 +136,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
 
     //// reading xls file per row 9 column fixed ,
-    public void setXLS() {
+    public void setXLS(String path) {
         try {
             if (path != null && path != "") {
                 File file = new File(path);
@@ -208,9 +211,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                     try {
                         path = FileUtils.getPath(this, uri);
                         tvCabinUpload.setText(path);
-                        setXLS(); // read data and fill arraylist
+                        setXLS(path); // read data and fill arraylist
                     } catch (URISyntaxException e) {
                         e.printStackTrace();
+                        Log.d(TAG, "File Path: " + e.toString());
                     }
                     Log.d(TAG, "File Path: " + path);
                     // Get the file instance
@@ -242,31 +246,39 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 Criuzes_TMP insertCruise = new Criuzes_TMP();
                 Guests_TMP insertGuest = new Guests_TMP();
                 insertCruise = databaseManager.insertCriuzeTemporary(aCruize);
-                for (int i = 0; i < xlsDataList.size(); i++) {
-                    Cabins_TMP insertCabinPayment = new Cabins_TMP();
-                    Guests_TMP mGuest = new Guests_TMP();
-                    mGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
-                    mGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
-                    mGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
-                    mGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
-                    mGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
-                    insertGuest = databaseManager.insertGuestTemporary(mGuest);
+                if (xlsDataList.size() > 0)
+                    for (int i = 0; i < xlsDataList.size(); i++) {
+                        Cabins_TMP insertCabinPayment = new Cabins_TMP();
+                        Guests_TMP mGuest = new Guests_TMP();
+                        mGuest.setFname(xlsDataList.get(i).getFirstNameGuestOne());
+                        mGuest.setLName(xlsDataList.get(i).getLastNameGuestOne());
+                        mGuest.setCabinNumber(Integer.valueOf(xlsDataList.get(i).getCabinNo()));
+                        mGuest.setGuestVT_Id(xlsDataList.get(i).getVTID());
+                        mGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
+                        insertGuest = databaseManager.insertGuestTemporary(mGuest);
 
-                    if (insertGuest != null)
-                        insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
-                    insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
-                    insertCabinPayment.setOccupancy(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
-                    // here is CruiseId
-                    insertCabinPayment.setCruizeId(insertCruise.getCruizeUniqueId());
-                    databaseManager.insertCabinTemp(insertCabinPayment);
+
+
+
+                        if (insertGuest != null)
+                       insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
+                        insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
+                        insertCabinPayment.setOccupancy(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
+                        insertCabinPayment.setNumberOfGuest(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
+                        // here is CruiseId
+                        insertCabinPayment.setCruizeId(insertCruise.getCruizeUniqueId());
+                        insertCabinPayment.setCabinUniqueId(insertCruise.getCruizeUniqueId());
+                        insertCabinPayment.setDeviceDate("d");
+
+                        databaseManager.insertCabinTemp(insertCabinPayment);
 
 //                  insertGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
 //                    insertGuest.setCabinNumber(insertCruise.getCruizeUniqueId());
 
-                }
+                    }
 
 
-                success = true;
+
             }
             return null;
         }

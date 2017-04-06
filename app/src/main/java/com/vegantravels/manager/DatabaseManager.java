@@ -3,6 +3,7 @@ package com.vegantravels.manager;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Cabins_TMPDao;
@@ -204,7 +205,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (criuzeTemporary != null) {
                 openWritableDb();
                 Criuzes_TMPDao cruzeTempDao = daoSession.getCriuzes_TMPDao();
-                cruzeTempDao.insert(criuzeTemporary);
+               long id= cruzeTempDao.insert(criuzeTemporary);
+                Log.d("insert","Cruise Is"+String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -257,7 +259,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (guests_tmp != null) {
                 openWritableDb();
                 Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
-                guests_tmpDao.insert(guests_tmp);
+                long id=guests_tmpDao.insert(guests_tmp);
+                Log.d("insert","guest Id"+String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -363,7 +366,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (cabins_tmp != null) {
                 openWritableDb();
                 Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
-                cabins_tmpDao.insert(cabins_tmp);
+                long id=cabins_tmpDao.insert(cabins_tmp);
+                Log.d("insert","Cabin Id"+String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
