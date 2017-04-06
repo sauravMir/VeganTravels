@@ -35,25 +35,27 @@
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
 
-                android:layout_toRightOf="@+id/tvCruiseList"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_toRightOf="@+id/tvCruiseList"
                 android:background="@color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_input_add"
                 android:visibility="visible" />
+
             <ImageButton
                 android:id="@+id/ibtnSync"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
-                android:layout_alignParentRight="true"
-                android:background="@color/transparent"
                 android:layout_toRightOf="@+id/ibtnAddCruize"
+                android:background="@color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_popup_sync"
                 android:visibility="visible" />
+
             <ImageButton
                 android:id="@+id/ibtnBack"
                 android:layout_width="@dimen/fifty"
@@ -67,15 +69,53 @@
                 android:src="@drawable/ic_back" />
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginTop="@dimen/two"
+            android:layout_weight=".06"
+            android:orientation="horizontal"
+            android:weightSum="6">
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Cruise Name"
+                android:textSize="@dimen/twelve" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Date"
+                android:textSize="@dimen/twelve" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/two"
+                android:text="Ship name"
+                android:textSize="@dimen/twelve" />
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="3" />
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/lvCruises"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/ten"
-            android:layout_weight=".90"
-            android:dividerHeight="@dimen/ten" />
+            android:layout_margin="@dimen/two"
+            android:layout_weight=".84" />
 
     </LinearLayout>
 

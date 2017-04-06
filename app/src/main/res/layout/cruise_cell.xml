@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="@dimen/thirty"
-    android:background="@drawable/cell_bg">
+    android:layout_height="match_parent">
 
-
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
         android:weightSum="1">
-
 
         <LinearLayout
             android:layout_width="@dimen/zero"
@@ -101,7 +97,116 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/two"
+        android:weightSum="6">
 
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCruiseName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="1066"
+                android:textSize="@dimen/twelve" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvShipName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/two"
+                android:text="2-2-2017"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnEdit"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_edit"
+                android:gravity="center"
+                android:text="Edit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+            <Button
+                android:id="@+id/btnAddExcursion"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_add_excursion"
+                android:gravity="center"
+                android:text="Add Exc."
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+            <Button
+                android:id="@+id/btnExCursionManager"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/btn_add_excursion"
+                android:gravity="center"
+                android:text="Exc. Man"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </RelativeLayout>
