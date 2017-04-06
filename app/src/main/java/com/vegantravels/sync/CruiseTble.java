@@ -34,13 +34,14 @@ public class CruiseTble {
     APIInterface apiInterface;
     IDatabaseManager databaseManager;
     ArrayList<Criuzes_TMP> criuzes_tmps;
+
     public CruiseTble(Context context) {
         this.context = context;
         apiInterface = APIClient.getClient().create(APIInterface.class);
         databaseManager = new DatabaseManager(context);
     }
 
-   public void parsingCruisesList() {
+    public void parsingCruisesList() {
         cruisesList = new ArrayList<>();
 //        showProgressDialog();
         Call<CruiseJson> call = apiInterface.getCruizeList();
@@ -79,15 +80,16 @@ public class CruiseTble {
         String outputString = outputFormat.format(checkDate);
         return outputString;
     }
-   void addCruise() {
-       /**
+
+    void addCruise() {
+        /**
          GET List Resources
          **/
 
-        criuzes_tmps=databaseManager.listCriuzeTemporary();
-       List<Cruises> criuzes_tmps_json=new ArrayList<Cruises>() ;
-        for(int i=0;i>criuzes_tmps.size();i++){
-            Cruises cruises=new Cruises();
+        criuzes_tmps = databaseManager.listCriuzeTemporary();
+        List<Cruises> criuzes_tmps_json = new ArrayList<Cruises>();
+        for (int i = 0; i > criuzes_tmps.size(); i++) {
+            Cruises cruises = new Cruises();
             cruises.setShipName(criuzes_tmps.get(i).getShipName());
             cruises.setCruiseName(criuzes_tmps.get(i).getName());
             cruises.setDateTo(criuzes_tmps.get(i).getTo());
@@ -95,8 +97,8 @@ public class CruiseTble {
             criuzes_tmps_json.add(cruises);
 
         }
-       CruiseJson cruiseJson=new CruiseJson(criuzes_tmps_json);
-       Call<CruiseJson> call = apiInterface.addCruise(cruiseJson);
+        CruiseJson cruiseJson = new CruiseJson(criuzes_tmps_json);
+        Call<CruiseJson> call = apiInterface.addCruise(cruiseJson);
         call.enqueue(new Callback<CruiseJson>() {
             @Override
             public void onResponse(Call<CruiseJson> call, Response<CruiseJson> response) {
