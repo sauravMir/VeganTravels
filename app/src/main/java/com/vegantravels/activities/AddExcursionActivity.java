@@ -36,7 +36,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     ProgressDialog progressDialog;
     Button btnDone;
     EditText edtExcursionTitle, edtPrice, edtMaxGuest;
-    TextView tvExcursionFromDate, tvExcursionToDate, tvExcursionTime;
+    TextView tvExcursionFromDate, tvExcursionTime;
     private AllDialog allDialog;
     private DatabaseManager databaseManager;
     private Excursions_TMP excursions_tmp;
@@ -78,12 +78,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         edtPrice = (EditText) findViewById(R.id.edtPrice);
         edtMaxGuest = (EditText) findViewById(R.id.edtMaxGuest);
         tvExcursionFromDate = (TextView) findViewById(R.id.tvExcursionFromDate);
-        tvExcursionToDate = (TextView) findViewById(R.id.tvExcursionToDate);
         tvExcursionTime = (TextView) findViewById(R.id.tvExcursionTime);
         ibtnBackExcursion = (ImageButton) findViewById(R.id.ibtnBackExcursion);
 
         tvExcursionFromDate.setOnClickListener(this);
-        tvExcursionToDate.setOnClickListener(this);
         tvExcursionTime.setOnClickListener(this);
         btnDone.setOnClickListener(this);
         ibtnBackExcursion.setOnClickListener(this);
@@ -98,16 +96,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             case R.id.tvExcursionFromDate:
                 allDialog.setCustomDate(tvExcursionFromDate, StaticAccess.DATE_FROM);
                 break;
-            case R.id.tvExcursionToDate:
-                allDialog.setCustomDate(tvExcursionToDate, StaticAccess.DATE_TO);
-                break;
             case R.id.tvExcursionTime:
-                //allDialog.setCustomDate(tvExcursionTime, StaticAccess.TIME);
                 allDialog.setCustomTime(tvExcursionTime);
                 break;
             case R.id.btnDone:
-//                Intent intent = new Intent(activity, ViewExcursionActivity.class);
-//                startActivity(intent);
                 if (edtExcursionTitle.getText().toString().length() > 0 && tvExcursionFromDate.getText().toString().length() > 0 && tvExcursionTime.getText().toString().length() > 0 && edtMaxGuest.getText().toString().length() > 0) {
                     addNewExcursion();
                 }
@@ -147,10 +139,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         call.enqueue(new Callback<GuestDetails>() {
             @Override
             public void onResponse(Call<GuestDetails> call, Response<GuestDetails> response) {
-
-
+                
                 Log.d("TAG", response.code() + "");
-
                 String displayResponse = "";
 
                 GuestDetails resource = response.body();

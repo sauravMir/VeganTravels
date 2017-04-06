@@ -225,9 +225,9 @@ public class AllDialog {
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
                 long time = calendar.getTimeInMillis();
                 if (flag == StaticAccess.DATE_FROM) {
-                    txt.setText("Date From: " + date);
+                    txt.setText(date);
                 } else if (flag == StaticAccess.DATE_TO) {
-                    txt.setText("Date To: " + date);
+                    txt.setText(date);
                 }
             }
         }, yy, mm, dd);

@@ -27,7 +27,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".05" />
+            android:layout_weight=".1" />
 
         <EditText
             android:id="@+id/edtExcursionTitle"
@@ -51,18 +51,6 @@
             android:layout_weight=".1"
             android:gravity="left|center"
             android:text="From Date"
-            android:textAlignment="gravity"
-            android:textSize="@dimen/twenty"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/tvExcursionToDate"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_marginLeft="@dimen/ten"
-            android:layout_weight=".1"
-            android:gravity="left|center"
-            android:text="To Date"
             android:textAlignment="gravity"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
@@ -111,7 +99,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".1" />
+            android:layout_weight=".15" />
 
         <Button
             android:id="@+id/btnDone"
