@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
+import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -95,9 +95,12 @@ public class CruisesAdapter extends BaseAdapter {
         holder.ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/// add Cruize
-                Intent exIntent = new Intent(context.getApplicationContext(), AddCruizeActivity.class);
-                context.startActivity(exIntent);
+                Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+                intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(position).getId());
+                intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesList.get(position).getFrom() + "\n To :" + cruisesList.get(position).getTo());
+                context.startActivity(intentGuest);
             }
         });
 
