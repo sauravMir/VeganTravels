@@ -361,10 +361,10 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             if (!goForEdit) {
                 if (criuzes_tmp != null) {
                     /// fill data for edit
-                    edtCruzeName.setText(criuzes_tmp.getName());
-                    edtShipName.setText(criuzes_tmp.getShipName());
-                    tvDateFrom.setText(criuzes_tmp.getFrom());
-                    tvDateTo.setText(criuzes_tmp.getTo());
+                    edtCruzeName.setText(String.valueOf(criuzes_tmp.getName()));
+                    edtShipName.setText(String.valueOf(criuzes_tmp.getShipName()));
+                    tvDateFrom.setText(String.valueOf(criuzes_tmp.getFrom()));
+                    tvDateTo.setText(String.valueOf(criuzes_tmp.getTo()));
                     tvCabinUpload.setText("");
                     btnCabinUpload.setVisibility(View.GONE);
 

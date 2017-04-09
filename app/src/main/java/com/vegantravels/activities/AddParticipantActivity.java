@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.dao.Guests_TMP;
+import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.Participant;
@@ -58,12 +59,14 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         etFName = (EditText) findViewById(R.id.etFName);
         etLName = (EditText) findViewById(R.id.etLName);
         etLName = (EditText) findViewById(R.id.etLName);
+        etVTid = (EditText) findViewById(R.id.etVTid);
         ibtnBackGuest = (ImageButton) findViewById(R.id.ibtnBackGuest);
 
         databaseManager = new DatabaseManager(activity);
 
         btnDone = (Button) findViewById(R.id.btnDone);
         btnDone.setOnClickListener(activity);
+        ibtnBackGuest.setOnClickListener(activity);
 
 
         //// fill data for edit
@@ -116,8 +119,9 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.ibtnBackGuest:
                 Intent intent = new Intent(activity, GuestListThreeActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
                 intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                startActivity(intent);
                 finishTheActivity();
                 break;
 
@@ -130,6 +134,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
         progressDialog.setCancelable(false);
         progressDialog.show();
+        DialogNavBarHide.navBarHide(activity, progressDialog);
     }
 
     public void hideProgressDialog() {
@@ -228,15 +233,16 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
             super.onPostExecute(aVoid);
             if (!isGetData) {
                 etCabinNum.setText(String.valueOf(tempGuest.getCabinNumber()));
-                etFName.setText(tempGuest.getFname());
-                etLName.setText(tempGuest.getLName());
-                etVTid.setText(tempGuest.getGuestVT_Id());
+                etFName.setText(String.valueOf(tempGuest.getFname()));
+                etLName.setText(String.valueOf(tempGuest.getLName()));
+                etVTid.setText(String.valueOf(tempGuest.getGuestVT_Id()));
 
             } else {
                 Toast.makeText(activity, "Guest Edit Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(activity, GuestListThreeActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
                 intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                startActivity(intent);
                 finishTheActivity();
             }
             hideProgressDialog();
