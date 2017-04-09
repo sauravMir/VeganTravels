@@ -12,11 +12,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
+
+import java.util.ArrayList;
 
 public class ViewExcursionActivity extends BaseActivity implements View.OnClickListener {
 
@@ -34,6 +37,9 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     IDatabaseManager databaseManager;
     Guests_TMP tempGuestV;
     ProgressDialog progressDialog;
+
+    ArrayList<Excursions_TMP> arrExcursion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +47,13 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         activity = this;
         allDialog = new AllDialog(activity);
 
-        databaseManager=new DatabaseManager(activity);
+        databaseManager = new DatabaseManager(activity);
         bindingViews();
     }
 
     private void bindingViews() {
 
-        getGuestId=getIntent().getExtras().getLong(StaticAccess.INTENT_GUEST_ID_KEY,-1);
+        getGuestId = getIntent().getExtras().getLong(StaticAccess.INTENT_GUEST_ID_KEY, -1);
 
         btnAddExcursion = (Button) findViewById(R.id.btnAddExcursion);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
@@ -63,7 +69,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         btnConfirm.setOnClickListener(this);
         ibtnBack.setOnClickListener(this);
         tempGuestV = new Guests_TMP();
-
+        arrExcursion=new ArrayList<>();
 
         fillExcursionData();
         fillGuestNumberData();
@@ -83,9 +89,11 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
-            if (getGuestId!=-1) {
+            if (getGuestId != -1) {
                 /// update cruize
                 tempGuestV = databaseManager.getGuestTempById(getGuestId);
+                if (tempGuestV != null)
+                    arrExcursion = databaseManager.excursionTempListByCruiseUniqueId(tempGuestV.getGuestUniqueId());
 
             } else {
                /* // get cruize
@@ -102,9 +110,11 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             super.onPostExecute(aVoid);
             hideProgressDialog();
             if (tempGuestV != null) {
-                tvGuestName.setText(tempGuestV.getLName()+",  "+tempGuestV.getFname());
+                tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
                 tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
             }
+            if(arrExcursion!=null)
+
         }
     }
 
@@ -122,29 +132,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void fillGuestNumberData() {
         String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
-
         ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
         spnGuestNumber.setAdapter(adapterGuest);
 
@@ -166,10 +155,10 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 Intent intent = new Intent(activity, AddExcursionActivity.class);
                 startActivity(intent);
                 finishTheActivity();
-                
+
                 break;
             case R.id.btnConfirm:
-                allDialog.confirmDialog("Are you sure? You want to confirm");
+                allDialog.confirmDialog("Are you sure? You want to confirm",);
                 break;
             case R.id.ibtnBack:
                 Intent guestintent = new Intent(activity, GuestListActivity.class);
