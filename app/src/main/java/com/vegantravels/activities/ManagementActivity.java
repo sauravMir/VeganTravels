@@ -39,21 +39,25 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
             case R.id.tvCruiseMngmnt:
                 Intent intentGuest = new Intent(activity, MainActivity.class);
                 startActivity(intentGuest);
-                finish();
+                finishTheActivity();
                 break;
             case R.id.tvExcursionMngmnt:
                 Intent intentExcursion = new Intent(activity, ExcursionCruiseList.class);
                 startActivity(intentExcursion);
-                finish();
+                finishTheActivity();
                 break;
             case R.id.tvExport:
                 Intent intent = new Intent(activity, AddExcursionActivity.class);
                 startActivity(intent);
-                finish();
+                finishTheActivity();
                 break;
             case R.id.tvFinancial:
                 break;
 
         }
+    }
+
+    void finishTheActivity() {
+        finish();
     }
 }
