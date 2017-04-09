@@ -50,32 +50,32 @@ public class ExcursionCruiseList extends BaseActivity {
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
-        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
+//        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
         ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
         apiInterface = APIClient.getClient().create(APIInterface.class);
         databaseManager = new DatabaseManager(activity);
             new CruizeSyncAsyncTask().execute();
 
-        ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, AddCruizeActivity.class);
-                startActivity(intent);
-                finishActivity();
+//        ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(activity, AddCruizeActivity.class);
+//                startActivity(intent);
+//                finishActivity();
+//
+//            }
+//        });
 
-            }
-        });
-
-        ibtnSync.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                CruiseTble cruiseTble = new CruiseTble(activity);
-//                cruiseTble.parsingCruisesList();
-//                fillDummmyData();
-                  new CruizeSyncAsyncTask().execute();
-            }
-        });
+//        ibtnSync.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                CruiseTble cruiseTble = new CruiseTble(activity);
+////                cruiseTble.parsingCruisesList();
+////                fillDummmyData();
+//                  new CruizeSyncAsyncTask().execute();
+//            }
+//        });
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
