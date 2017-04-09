@@ -108,7 +108,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         spnGuestNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                numOfGuest = Integer.parseInt(adapterGuest.getItem(i));
+                if (i != 0)
+                    numOfGuest = Integer.parseInt(adapterGuest.getItem(i));
             }
 
             @Override
@@ -120,6 +121,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    
     private long excrusionId = -1;
 
     private void fillExcursionData() {
@@ -129,7 +131,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (arrExcursion != null) {
-                    long excrusionId = arrExcursion.get(i).getExcursionUniqueId();
+                    excrusionId = arrExcursion.get(i).getExcursionUniqueId();
                 }
             }
 
