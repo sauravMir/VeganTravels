@@ -29,21 +29,20 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/thirty" />
 
-
+<!--
             <ImageButton
                 android:id="@+id/ibtnAddCruize"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
-
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@+id/tvCruiseList"
                 android:background="@color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_input_add"
-                android:visibility="visible" />
+                android:visibility="visible" />-->
 
-            <ImageButton
+          <!--  <ImageButton
                 android:id="@+id/ibtnSync"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
@@ -55,12 +54,11 @@
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_popup_sync"
                 android:visibility="visible" />
-
+-->
             <ImageButton
                 android:id="@+id/ibtnBack"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
-                android:layout_alignLeft="@+id/ibtnSync"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="@color/transparent"
@@ -80,7 +78,7 @@
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.33"
                 android:gravity="center"
                 android:text="Cruise Name"
                 android:textSize="@dimen/twelve" />
@@ -88,7 +86,7 @@
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.33"
                 android:gravity="center"
                 android:text="Ship name"
                 android:textSize="@dimen/twelve" />
@@ -96,7 +94,7 @@
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.33"
                 android:gravity="center"
                 android:padding="@dimen/two"
                 android:text="Date"
@@ -105,7 +103,7 @@
             <View
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight="3" />
+                android:layout_weight="2" />
 
         </LinearLayout>
 

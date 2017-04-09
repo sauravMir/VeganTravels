@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.utilities.StaticAccess;
@@ -52,7 +53,7 @@ public class CruisesAdapter extends BaseAdapter {
         TextView tvShipName;
         TextView tvDate;
         Button btnEdit;
-        Button btnAddExcursion;
+        Button ibtnAddCruize;
         Button btnExCursionManager;
 //        TextView tvTime;
 
@@ -68,7 +69,7 @@ public class CruisesAdapter extends BaseAdapter {
             holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
             holder.btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
-            holder.btnAddExcursion = (Button) convertView.findViewById(R.id.btnAddExcursion);
+            holder.ibtnAddCruize = (Button) convertView.findViewById(R.id.ibtnAddCruize);
             holder.btnExCursionManager = (Button) convertView.findViewById(R.id.btnExCursionManager);
 //            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             convertView.setTag(holder);
@@ -87,12 +88,11 @@ public class CruisesAdapter extends BaseAdapter {
                 /// edit
             }
         });
-        holder.btnAddExcursion.setOnClickListener(new View.OnClickListener() {
+        holder.ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-/// add excursion
-                Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
-                exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+/// add Cruize
+                Intent exIntent = new Intent(context.getApplicationContext(), AddCruizeActivity.class);
                 context.startActivity(exIntent);
             }
         });
