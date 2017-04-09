@@ -82,6 +82,7 @@ public interface IDatabaseManager {
     Excursions_TMP insertExcursionTemp(Excursions_TMP excursions_tmp);
 
     ArrayList<Excursions_TMP> excursionTempList();
+    ArrayList<Excursions_TMP> excursionTempListByCruiseUniqueId(long cruiseUniqueId);
 
     Long updateExcursionTemp(Excursions_TMP excursions_tmp);
 

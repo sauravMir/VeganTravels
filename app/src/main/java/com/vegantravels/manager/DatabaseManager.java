@@ -504,6 +504,26 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
+    public ArrayList<Excursions_TMP> excursionTempListByCruiseUniqueId(long CruiseUniqueId) {
+        List<Excursions_TMP> excursions_tmpList = null;
+        try {
+            openReadableDb();
+            Excursions_TMPDao excursionsTmpDao = daoSession.getExcursions_TMPDao();
+            QueryBuilder<Excursions_TMP> queryBuilder = excursionsTmpDao.queryBuilder().where(Excursions_TMPDao.Properties.ExcursionUniqueId.eq(CruiseUniqueId)).orderAsc(Excursions_TMPDao.Properties.Id);
+            excursions_tmpList = queryBuilder.list();
+            daoSession.clear();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (excursions_tmpList != null) {
+            return new ArrayList<>(excursions_tmpList);
+        }
+        return null;
+    }
+
+    @Override
     public Long updateExcursionTemp(Excursions_TMP excursions_tmp) {
         Long excursionTempKay = null;
         try {
