@@ -85,7 +85,9 @@ public class CruisesAdapter extends BaseAdapter {
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /// edit
+                Intent edtiIntent = new Intent(context, AddCruizeActivity.class);
+                edtiIntent.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(position).getId());
+                edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
             }
         });
         holder.ibtnAddCruize.setOnClickListener(new View.OnClickListener() {

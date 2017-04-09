@@ -50,6 +50,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
     private ArrayList<XlsModel> xlsDataList;
     private XlsModel aXls;
+    private long cruizeID = -1;
+    private long cruizeUniqueID = -1;
 
     @Override
 
@@ -60,9 +62,17 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         progressDialog = new ProgressDialog(activity);
         databaseManager = new DatabaseManager(activity);
         allDialog = new AllDialog(activity);
-
+        cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
+        cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        if (cruizeID != -1 && cruizeUniqueID != -1) {
+            fillEditableData();
+        }
         findViewById();
 
+
+    }
+
+    private void fillEditableData() {
 
     }
 
@@ -258,10 +268,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                         insertGuest = databaseManager.insertGuestTemporary(mGuest);
 
 
-
-
                         if (insertGuest != null)
-                       insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
+                            insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
                         insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
                         insertCabinPayment.setOccupancy(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
 //                        insertCabinPayment.setNumberOfGuest(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
@@ -277,6 +285,36 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
                     }
 
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressDialog.dismiss();
+            Toast.makeText(activity, "insert Success", Toast.LENGTH_SHORT).show();
+            super.onPostExecute(aVoid);
+        }
+    }
+
+
+    class EditCruiseAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean success = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.setMessage("please wait...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            DialogNavBarHide.navBarHide(activity, progressDialog);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            if (cruizeID != -1&&cruizeUniqueID!=-1) {
 
 
             }
