@@ -76,8 +76,7 @@
                     android:gravity="center"
                     android:padding="@dimen/ten"
                     android:src="@drawable/ic_done"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/twenty" />
+                    android:textColor="@color/white" />
 
 
             </LinearLayout>

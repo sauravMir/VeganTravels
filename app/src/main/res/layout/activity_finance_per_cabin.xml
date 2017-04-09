@@ -25,7 +25,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="FinanceList"
+                android:text="@string/cruise_list"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 
@@ -41,21 +41,8 @@
                 android:src="@android:drawable/ic_input_add"
                 android:visibility="visible" />
 
-            <!--  <ImageButton
-                  android:id="@+id/ibtnSync"
-                  android:layout_width="@dimen/fifty"
-                  android:layout_height="@dimen/fifty"
-                  android:layout_alignParentRight="true"
-                  android:layout_centerVertical="true"
-                  android:layout_gravity="center"
-                  android:layout_toRightOf="@+id/ibtnAddCruize"
-                  android:background="@color/transparent"
-                  android:scaleType="fitCenter"
-                  android:src="@android:drawable/ic_popup_sync"
-                  android:visibility="visible" />
-  -->
             <ImageButton
-                android:id="@+id/ibtnBack"
+                android:id="@+id/ibtnBackFinacePerCabin"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
                 android:layout_alignParentLeft="true"
@@ -79,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Cabin No"
+                android:text="Cruise Name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -88,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Last Name"
+                android:text="Date"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -97,19 +84,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="First name"
+                android:text="Ship name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
 
             <TextView
+                android:id="@+id/tvBlank"
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:gravity="center|bottom"
-                android:text="Excursion booked"
-                android:textColor="@color/white"
-                android:textSize="@dimen/eighteen" />
+                android:layout_weight=".25" />
 
         </LinearLayout>
 

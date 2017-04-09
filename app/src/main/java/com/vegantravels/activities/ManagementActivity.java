@@ -52,12 +52,14 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
                 finishTheActivity();
                 break;
             case R.id.tvFinancial:
+                startActivity(new Intent(activity, FinanceActivity.class));
+                finishTheActivity();
                 break;
 
         }
     }
 
-    
+
     void finishTheActivity() {
         finish();
     }
