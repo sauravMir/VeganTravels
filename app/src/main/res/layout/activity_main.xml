@@ -29,7 +29,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/thirty" />
 
-<!--
             <ImageButton
                 android:id="@+id/ibtnAddCruize"
                 android:layout_width="@dimen/fifty"
@@ -40,21 +39,21 @@
                 android:background="@color/transparent"
                 android:scaleType="fitCenter"
                 android:src="@android:drawable/ic_input_add"
-                android:visibility="visible" />-->
-
-          <!--  <ImageButton
-                android:id="@+id/ibtnSync"
-                android:layout_width="@dimen/fifty"
-                android:layout_height="@dimen/fifty"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_toRightOf="@+id/ibtnAddCruize"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@android:drawable/ic_popup_sync"
                 android:visibility="visible" />
--->
+
+            <!--  <ImageButton
+                  android:id="@+id/ibtnSync"
+                  android:layout_width="@dimen/fifty"
+                  android:layout_height="@dimen/fifty"
+                  android:layout_alignParentRight="true"
+                  android:layout_centerVertical="true"
+                  android:layout_gravity="center"
+                  android:layout_toRightOf="@+id/ibtnAddCruize"
+                  android:background="@color/transparent"
+                  android:scaleType="fitCenter"
+                  android:src="@android:drawable/ic_popup_sync"
+                  android:visibility="visible" />
+  -->
             <ImageButton
                 android:id="@+id/ibtnBack"
                 android:layout_width="@dimen/fifty"

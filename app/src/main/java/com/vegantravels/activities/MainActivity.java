@@ -11,7 +11,6 @@ import android.widget.ListView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
-import com.vegantravels.dao.Criuzes;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
@@ -20,7 +19,6 @@ import com.vegantravels.model.CruiseJson;
 import com.vegantravels.model.Cruises;
 import com.vegantravels.retroapi.APIClient;
 import com.vegantravels.retroapi.APIInterface;
-import com.vegantravels.sync.CruiseTble;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -50,6 +48,7 @@ public class MainActivity extends BaseActivity {
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
 //        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
         apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -66,6 +65,13 @@ public class MainActivity extends BaseActivity {
 //                new CruizeSyncAsyncTask().execute();
 //            }
 //        });
+        ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(activity, AddCruizeActivity.class));
+                finishActivity();
+            }
+        });
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,7 +134,7 @@ public class MainActivity extends BaseActivity {
 //            CruiseTble cruiseTble = new CruiseTble(activity);
 //            cruiseTble.addCruise();
 //            cruiseTble.parsingCruisesList();
-            
+
             cruisesList = new ArrayList<>();
             cruisesList = databaseManager.listCriuzeTemporary();
             return null;
