@@ -35,24 +35,25 @@
                 android:layout_centerInParent="true">
 
                 <RadioButton
-                    android:id="@+id/sound"
+                    android:id="@+id/rbPaidAlReady"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Paid already" />
 
                 <RadioButton
-                    android:id="@+id/vibration"
+                    android:id="@+id/rbCashOnBoard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cash on Board" />
 
                 <RadioButton
-                    android:id="@+id/silent"
+                    android:id="@+id/rbCreditCard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Credit card" />
 
                 <RadioButton
+                    android:id="@+id/rbComplementary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Complementary" />

@@ -10,8 +10,11 @@ import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
@@ -81,11 +84,11 @@ public class AllDialog {
         ImageButton btnCancelPayment = (ImageButton) dialog.findViewById(R.id.btnCancelPayment);
         ImageButton btnOkPayment = (ImageButton) dialog.findViewById(R.id.btnOkPayment);
 
-       /* final RadioGroup rdGrp=(RadioGroup)dialog.findViewById(R.id.rdGrp);
-        RadioButton rdPaid = (RadioButton) dialog.findViewById(R.id.rdPaid);
-        RadioButton rdCashBord = (RadioButton) dialog.findViewById(R.id.rdCashBord);
-        RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rdCaditCard);
-        RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rdComplementary);*/
+        final RadioGroup rdGrp = (RadioGroup) dialog.findViewById(R.id.myRadioGroup);
+        RadioButton rbPaidAlReady = (RadioButton) dialog.findViewById(R.id.rbPaidAlReady);
+        RadioButton rdCashBord = (RadioButton) dialog.findViewById(R.id.rbCashOnBoard);
+        RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rbCreditCard);
+        RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rbComplementary);
 
 
         btnCancelPayment.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +100,16 @@ public class AllDialog {
         btnOkPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //int selectedId=rdGrp.getCheckedRadioButtonId();
-                //RadioButton radioButton =(RadioButton)dialog.findViewById(selectedId);
+                int selectedId = rdGrp.getCheckedRadioButtonId();
+                if (selectedId == R.id.rbPaidAlReady) {
+                    Toast.makeText(activity, "paid on board", Toast.LENGTH_SHORT).show();
+                } else if (selectedId == R.id.rbCashOnBoard) {
+
+                } else if (selectedId == R.id.rbCreditCard) {
+
+                } else if (selectedId == R.id.rbComplementary) {
+
+                }
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
