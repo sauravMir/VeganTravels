@@ -81,7 +81,7 @@ public class ExcursionAdapter extends BaseAdapter {
         } else {
             holder = (ExcursionAdapter.ViewHolder) convertView.getTag();
         }
-        holder.tvExcursionDate.setText(excursionList.get(i).getFrom() + "  -  " + excursionList.get(i).getTo());
+        holder.tvExcursionDate.setText(excursionList.get(i).getFrom());
         holder.tvExcursionTime.setText(excursionList.get(i).getTime());
         holder.tvExcursionName.setText(excursionList.get(i).getTitle());
         holder.tvExcursionPPP.setText(excursionList.get(i).getPrice());
@@ -93,7 +93,7 @@ public class ExcursionAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent edtiIntent = new Intent(context, AddExcursionActivity.class);
-                edtiIntent.putExtra(StaticAccess.KEY_CRUISES_ID, excursionList.get(position).getId());
+                edtiIntent.putExtra(StaticAccess.KEY_EXCURSION_ID, excursionList.get(position).getId());
                 edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, excursionList.get(position).getExcursionUniqueId());
                 context.startActivity(edtiIntent);
             }

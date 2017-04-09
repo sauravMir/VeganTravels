@@ -15,6 +15,7 @@ import android.widget.TimePicker;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
+import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
@@ -39,6 +40,7 @@ public class AllDialog {
     GuestListThreeActivity guestListThreeActivity;
     AddCruizeActivity addCruizeActivity;
     ViewExcursionActivity viewExcursionActivity;
+    AddExcursionActivity addExcursionActivity;
 
     public AllDialog(AddCruizeActivity activity) {
         addCruizeActivity = activity;
@@ -52,6 +54,10 @@ public class AllDialog {
 
     public AllDialog(GuestListThreeActivity activity) {
         guestListThreeActivity = activity;
+        databaseManager = new DatabaseManager(activity);
+    }
+    public AllDialog(AddExcursionActivity activity) {
+        addExcursionActivity = activity;
         databaseManager = new DatabaseManager(activity);
     }
 
@@ -258,6 +264,53 @@ public class AllDialog {
         }, 10, 20, true);
 
         DialogNavBarHide.navBarHide(addCruizeActivity, timePickerDialog);
+    }
+
+
+
+
+
+    public void setCustomDateForEx(final TextView txt, final String flag) {
+
+        final Calendar calendar = Calendar.getInstance();
+        int yy = calendar.get(Calendar.YEAR);
+        int mm = calendar.get(Calendar.MONTH);
+        int dd = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePicker = new DatePickerDialog(addExcursionActivity, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
+                long time = calendar.getTimeInMillis();
+                if (flag == StaticAccess.DATE_FROM) {
+                    txt.setText(date);
+                } else if (flag == StaticAccess.DATE_TO) {
+                    txt.setText(date);
+                }
+            }
+        }, yy, mm, dd);
+
+        DialogNavBarHide.navBarHide(addExcursionActivity, datePicker);
+    }
+
+    public void setCustomTimeForEx(final TextView txt) {
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(addExcursionActivity, new TimePickerDialog.OnTimeSetListener() {
+
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                final Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
+
+                Date millis = calendar.getTime();
+                txt.setText(String.valueOf(new SimpleDateFormat("h:mm a").format(millis).toString()));
+            }
+        }, 10, 20, true);
+
+        DialogNavBarHide.navBarHide(addExcursionActivity, timePickerDialog);
     }
 
 

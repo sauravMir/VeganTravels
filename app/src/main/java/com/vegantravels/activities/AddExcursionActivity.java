@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
@@ -35,12 +36,14 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     APIInterface apiInterface;
     ProgressDialog progressDialog;
     Button btnDone;
+    boolean goForEdit = false;
     EditText edtExcursionTitle, edtPrice, edtMaxGuest;
     TextView tvExcursionFromDate, tvExcursionTime;
     private AllDialog allDialog;
     private DatabaseManager databaseManager;
-    private Excursions_TMP excursions_tmp;
+    private Excursions_TMP excursions_tmp, updateexcursions;
     private Long cruizeKey = -1L;
+    private long excursionId = -1;
     private ImageButton ibtnBackExcursion;
 
     @Override
@@ -49,10 +52,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_add_excursion);
         activity = this;
         cruizeKey = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1L);
+        excursionId = getIntent().getLongExtra(StaticAccess.KEY_EXCURSION_ID, -1);
         databaseManager = new DatabaseManager(activity);
 //        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();
-        allDialog = new AllDialog(new AddCruizeActivity());
 
         //Connection Https or http Instances
 //        apiInterface = APIClient.getClient().create(APIInterface.class);
@@ -68,6 +71,11 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
 //        guest.setPaymentStatus("3");
 //
 //        getGuestPaymentMethodAdd(guest);
+
+        allDialog = new AllDialog(activity);
+        if (excursionId != -1 && cruizeKey != -1) {
+            new EditExcursionAsyncTask().execute();
+        }
 
 
     }
@@ -95,14 +103,21 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.tvExcursionFromDate:
-                allDialog.setCustomDate(tvExcursionFromDate, StaticAccess.DATE_FROM);
+                allDialog.setCustomDateForEx(tvExcursionFromDate, StaticAccess.DATE_FROM);
                 break;
             case R.id.tvExcursionTime:
-                allDialog.setCustomTime(tvExcursionTime);
+                allDialog.setCustomTimeForEx(tvExcursionTime);
                 break;
             case R.id.btnDone:
-                if (edtExcursionTitle.getText().toString().length() > 0 && tvExcursionFromDate.getText().toString().length() > 0 && tvExcursionTime.getText().toString().length() > 0 && edtMaxGuest.getText().toString().length() > 0) {
-                    addNewExcursion();
+                if (excursionId != -1 && cruizeKey != -1) {
+                    if (edtExcursionTitle.getText().toString().length() > 0 && tvExcursionFromDate.getText().toString().length() > 0 && tvExcursionTime.getText().toString().length() > 0 && edtMaxGuest.getText().toString().length() > 0 && excursionId != -1) {
+                        goForEdit = true;
+                        updateExcursion();
+                    }
+                } else {
+                    if (edtExcursionTitle.getText().toString().length() > 0 && tvExcursionFromDate.getText().toString().length() > 0 && tvExcursionTime.getText().toString().length() > 0 && edtMaxGuest.getText().toString().length() > 0 && cruizeKey != -1) {
+                        addNewExcursion();
+                    }
                 }
                 break;
             case R.id.ibtnBackExcursion:
@@ -116,6 +131,33 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
 
     private void finishTheActivity() {
         findViewById();
+    }
+
+
+
+ /*   private void updateCruize() {
+        upCruize = new Criuzes_TMP();
+        upCruize.setId(cruizeID);
+        upCruize.setName(edtCruzeName.getText().toString());
+        upCruize.setShipName(edtShipName.getText().toString());
+        upCruize.setFrom(tvDateFrom.getText().toString());
+        upCruize.setCruizeUniqueId(cruizeUniqueID);
+        upCruize.setTo(tvDateTo.getText().toString());
+        new AddCruizeActivity.EditCruiseAsyncTask().execute();
+    }*/
+
+
+    private void updateExcursion() {
+        updateexcursions = new Excursions_TMP();
+        updateexcursions.setTitle(edtExcursionTitle.getText().toString());
+        updateexcursions.setFrom(tvExcursionFromDate.getText().toString());
+        updateexcursions.setTime(tvExcursionTime.getText().toString());
+        updateexcursions.setPrice(edtPrice.getText().toString());
+        updateexcursions.setMaxNumberOfGuest(Integer.valueOf(edtMaxGuest.getText().toString()));
+        updateexcursions.setExcursionUniqueId(excursions_tmp.getExcursionUniqueId());
+        updateexcursions.setCruzeId(cruizeKey);
+        updateexcursions.setId(excursionId);
+        new EditExcursionAsyncTask().execute();
     }
 
     private void addNewExcursion() {
@@ -241,6 +283,63 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(activity, ExcursionListActivity.class));
             finishTheActivity();
+        }
+    }
+
+
+    class EditExcursionAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean success = false;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            if (goForEdit) {
+                /// update cruize
+                if (updateexcursions != null)
+                    databaseManager.updateExcursionTemp(updateexcursions);
+
+            } else {
+                // get cruize
+                if (excursionId != -1 && cruizeKey != -1) {
+                    excursions_tmp = databaseManager.getExcursionById(excursionId);
+
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (!goForEdit) {
+                if (excursions_tmp != null) {
+                    /// fill data for edit
+                  /*  edtCruzeName.setText(String.valueOf(criuzes_tmp.getName()));
+                    edtShipName.setText(String.valueOf(criuzes_tmp.getShipName()));
+                    tvDateFrom.setText(String.valueOf(criuzes_tmp.getFrom()));
+                    tvDateTo.setText(String.valueOf(criuzes_tmp.getTo()));
+                    tvCabinUpload.setText("");
+                    btnCabinUpload.setVisibility(View.GONE);*/
+
+                    edtExcursionTitle.setText(String.valueOf(excursions_tmp.getTitle()));
+                    tvExcursionFromDate.setText(String.valueOf(excursions_tmp.getFrom()));
+                    tvExcursionTime.setText(String.valueOf(excursions_tmp.getTime()));
+                    edtPrice.setText(String.valueOf(excursions_tmp.getPrice()));
+                    edtMaxGuest.setText(String.valueOf(excursions_tmp.getMaxNumberOfGuest()));
+                    hideProgressDialog();
+                }
+            } else {
+                hideProgressDialog();
+                Toast.makeText(activity, "is excursion inserted: ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(activity, ExcursionListActivity.class));
+                finishTheActivity();
+            }
         }
     }
 }
