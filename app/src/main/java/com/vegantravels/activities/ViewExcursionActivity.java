@@ -49,6 +49,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
         databaseManager = new DatabaseManager(activity);
         bindingViews();
+        new ExCursionGuestAsyncTask().execute();
     }
 
     private void bindingViews() {
@@ -69,14 +70,15 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         btnConfirm.setOnClickListener(this);
         ibtnBack.setOnClickListener(this);
         tempGuestV = new Guests_TMP();
-        arrExcursion=new ArrayList<>();
+        arrExcursion = new ArrayList<>();
 
-        fillExcursionData();
-        fillGuestNumberData();
+//        fillExcursionData();
+//        fillGuestNumberData();
 
     }
 
-    class GuestAsyncTask extends AsyncTask<Void, Void, Void> {
+    
+    class ExCursionGuestAsyncTask extends AsyncTask<Void, Void, Void> {
         boolean success = false;
 
 
@@ -113,7 +115,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
                 tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
             }
-            if(arrExcursion!=null);
+            if (arrExcursion != null) ;
 
         }
     }
