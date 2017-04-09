@@ -76,6 +76,8 @@ public interface IDatabaseManager {
 
     ArrayList<Cabins_TMP> cabinTempList();
 
+    Cabins_TMP hasGuestExcursion(String guestVT_id);
+
     Long updateCabinTemp(Cabins_TMP cabins_tmp);
 
     ///***** EXCURSION TABLE METHOD **********//////
@@ -88,5 +90,6 @@ public interface IDatabaseManager {
     Excursions_TMP getExcursionById(long id);
 
     Long updateExcursionTemp(Excursions_TMP excursions_tmp);
+
 
 }

@@ -467,6 +467,32 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return cabinTempKay;
     }
+    @Override
+    public Cabins_TMP hasGuestExcursion(String vtId) {
+        Cabins_TMP cabins_tmp=null;
+        List<Cabins_TMP> allCabins_TMP = null;
+        try {
+            openReadableDb();
+            Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.GuestVT_Id .eq(vtId));
+            allCabins_TMP = queryBuilder.list();
+            for (Cabins_TMP cabins_TMP : allCabins_TMP) {
+                cabins_tmp = cabins_TMP;
+                break;
+            }
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return cabins_tmp;
+    }
+
+
+
+
+
 
     ////***************     EXCURSION CRUD OPERATION METHODS        ************************//
     @Override

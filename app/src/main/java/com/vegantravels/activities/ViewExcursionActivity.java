@@ -248,14 +248,20 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
-            if (cabins_tmp != null) {
-                if (databaseManager.hasGuestExcursion(tempGuestV.getGuestVT_Id())>0) {
-                    databaseManager.updateCabinTemp(cabins_tmp);
+            Cabins_TMP cabins_tmp_Update = databaseManager.hasGuestExcursion(tempGuestV.getGuestVT_Id());
 
-                } else {
+            if (cabins_tmp_Update != null) {
+//                    update
+                cabins_tmp_Update.setPaymentStatus(cabins_tmp.getPaymentStatus());
+                cabins_tmp_Update.setOccupancy(cabins_tmp.getOccupancy());
+                cabins_tmp_Update.setExcursion(cabins_tmp.getExcursion());
+                databaseManager.updateCabinTemp(cabins_tmp_Update);
+            } else {
+                // insert
+                if (cabins_tmp != null)
                     databaseManager.insertCabinTemp(cabins_tmp);
-                }
             }
+
             return null;
         }
 
