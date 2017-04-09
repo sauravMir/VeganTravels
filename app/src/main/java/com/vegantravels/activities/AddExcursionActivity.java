@@ -129,6 +129,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         excursions_tmp.setUpdatedAt(System.currentTimeMillis());
         excursions_tmp.setExcursionUniqueId(System.currentTimeMillis());
         excursions_tmp.setCruzeId(cruizeKey);
+
         new newExcursionAsyncTask().execute();
     }
 

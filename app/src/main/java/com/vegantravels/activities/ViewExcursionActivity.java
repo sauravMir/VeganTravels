@@ -1,6 +1,8 @@
 package com.vegantravels.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,7 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
+import com.vegantravels.utilities.StaticAccess;
 
 public class ViewExcursionActivity extends BaseActivity implements View.OnClickListener {
 
@@ -24,17 +30,25 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private ViewExcursionActivity activity;
     private AllDialog allDialog;
     private ImageButton ibtnBack;
-
+    long getGuestId;
+    IDatabaseManager databaseManager;
+    Guests_TMP tempGuestV;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_excursion);
         activity = this;
         allDialog = new AllDialog(activity);
+
+        databaseManager=new DatabaseManager(activity);
         bindingViews();
     }
 
     private void bindingViews() {
+
+        getGuestId=getIntent().getExtras().getLong(StaticAccess.INTENT_GUEST_ID_KEY,-1);
+
         btnAddExcursion = (Button) findViewById(R.id.btnAddExcursion);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
         tvGuestDetail = (TextView) findViewById(R.id.tvGuestDetail);
@@ -48,6 +62,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         btnAddExcursion.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
         ibtnBack.setOnClickListener(this);
+        tempGuestV = new Guests_TMP();
 
 
         fillExcursionData();
@@ -55,11 +70,84 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    class GuestAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean success = false;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            if (getGuestId!=-1) {
+                /// update cruize
+                tempGuestV = databaseManager.getGuestTempById(getGuestId);
+
+            } else {
+               /* // get cruize
+                if (cruizeID != -1 && cruizeUniqueID != -1) {
+                    criuzes_tmp = databaseManager.getCruiseTempById(cruizeID);
+
+                }*/
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideProgressDialog();
+            if (tempGuestV != null) {
+                tvGuestName.setText(tempGuestV.getLName()+",  "+tempGuestV.getFname());
+                tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
+            }
+        }
+    }
+
+
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private void fillGuestNumberData() {
         String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
 
         ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
         spnGuestNumber.setAdapter(adapterGuest);
+
 
     }
 
