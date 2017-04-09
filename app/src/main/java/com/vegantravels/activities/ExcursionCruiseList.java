@@ -51,7 +51,7 @@ public class ExcursionCruiseList extends BaseActivity {
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
 //        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
-        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
+//        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
         apiInterface = APIClient.getClient().create(APIInterface.class);
         databaseManager = new DatabaseManager(activity);

@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
-        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
+//        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
         apiInterface = APIClient.getClient().create(APIInterface.class);
         databaseManager = new DatabaseManager(activity);
