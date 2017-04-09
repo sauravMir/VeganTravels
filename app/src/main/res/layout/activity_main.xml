@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Ship name"
+                android:text="Date"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -97,9 +97,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Date"
+                android:text="Ship name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
+
 
             <View
                 android:layout_width="@dimen/zero"
