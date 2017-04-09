@@ -68,12 +68,17 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
             case R.id.ibtnBack:
                 Intent intent = new Intent(activity, ManagementActivity.class);
                 startActivity(intent);
+                finishTheActivity();
                 break;
             case R.id.ibtnSearch:
                 allDialog.dialogForSearch();
                 break;
             case R.id.ibtnAddGuest:
-                Toast.makeText(activity, "ibtnAddGuest clicked", Toast.LENGTH_SHORT).show();
+                Intent intentadd = new Intent(activity, AddParticipantActivity.class);
+                intentadd.putExtra(StaticAccess.KEY_CRUISES_ID, cruiseId);
+                intentadd.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, uniqueId);
+                startActivity(intentadd);
+                finishTheActivity();
                 break;
 
         }
@@ -127,5 +132,9 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
     public void hideProgressDialog() {
         if (progressDialog != null)
             progressDialog.dismiss();
+    }
+
+    private void finishTheActivity() {
+        finish();
     }
 }
