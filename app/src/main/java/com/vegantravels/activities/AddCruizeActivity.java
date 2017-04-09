@@ -108,8 +108,6 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCabinUpload:
-                //Toast.makeText(activity, "Toast", Toast.LENGTH_SHORT).show();
-                //setXLS();
                 showFileChooser();
                 break;
             case R.id.btnDone:
@@ -124,7 +122,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
                 } else {
                     /// add
-                    if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
+                    if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0 && xlsDataList.size() > 0) {
                         addNewCruize();
                     } else {
                         Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
@@ -362,6 +360,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             super.onPostExecute(aVoid);
             if (!goForEdit) {
                 if (criuzes_tmp != null) {
+                    /// fill data for edit
                     edtCruzeName.setText(criuzes_tmp.getName());
                     edtShipName.setText(criuzes_tmp.getShipName());
                     tvDateFrom.setText(criuzes_tmp.getFrom());
@@ -378,5 +377,5 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.dismiss();
         }
     }
-    
+
 }
