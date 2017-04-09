@@ -50,7 +50,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         activity = this;
         cruizeKey = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1L);
         databaseManager = new DatabaseManager(activity);
-        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();
         allDialog = new AllDialog(activity);
 
@@ -71,6 +71,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
 
 
     }
+
 
     private void findViewById() {
         btnDone = (Button) findViewById(R.id.btnDone);
@@ -238,6 +239,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             super.onPostExecute(aVoid);
             hideProgressDialog();
             Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(activity, MainActivity.class));
+            finishTheActivity();
         }
     }
 }
