@@ -239,7 +239,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             super.onPostExecute(aVoid);
             hideProgressDialog();
             Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, MainActivity.class));
+            startActivity(new Intent(activity, ExcursionListActivity.class));
             finishTheActivity();
         }
     }

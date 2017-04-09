@@ -1,6 +1,5 @@
 package com.vegantravels.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +25,7 @@ public class FinanceActivity extends BaseActivity {
         tvCabinMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(activity, FinancePerCabinActivity.class));
+                startActivity(new Intent(activity, ExcursionListActivity.class));
                 finishTheActivity();
 
             }

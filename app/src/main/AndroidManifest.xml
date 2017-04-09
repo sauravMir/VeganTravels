@@ -85,7 +85,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".activities.FinancePerCabinActivity"
+            android:name=".activities.ExcursionListActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="stateHidden" />

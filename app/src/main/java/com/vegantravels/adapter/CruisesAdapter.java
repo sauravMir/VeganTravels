@@ -104,9 +104,9 @@ public class CruisesAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-                Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
+               /* Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
                 exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
-                context.startActivity(exIntent);
+                context.startActivity(exIntent);*/
 
                /* Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
                 intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

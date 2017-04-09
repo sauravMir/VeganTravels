@@ -25,7 +25,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="FinanceList"
+                android:text="@string/cruise_list"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Cabin No"
+                android:text="Cruise Name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="Last Name"
+                android:text="Date"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -97,19 +97,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:gravity="center|bottom"
-                android:text="First name"
+                android:text="Ship name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
 
             <TextView
+                android:id="@+id/tvBlank"
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:gravity="center|bottom"
-                android:text="Excursion booked"
-                android:textColor="@color/white"
-                android:textSize="@dimen/eighteen" />
+                android:layout_weight=".25" />
 
         </LinearLayout>
 

@@ -25,12 +25,12 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="@string/cruise_list"
+                android:text="Excursion list"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 
             <ImageButton
-                android:id="@+id/ibtnAddCruize"
+                android:id="@+id/ibtnAddExcursion"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
                 android:layout_alignParentRight="true"
@@ -42,7 +42,7 @@
                 android:visibility="visible" />
 
             <ImageButton
-                android:id="@+id/ibtnBackFinacePerCabin"
+                android:id="@+id/ibtnBackExcursionList"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
                 android:layout_alignParentLeft="true"
@@ -59,21 +59,12 @@
             android:layout_weight=".1"
             android:gravity="bottom"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="6">
 
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:gravity="center|bottom"
-                android:text="Cruise Name"
-                android:textColor="@color/white"
-                android:textSize="@dimen/eighteen" />
-
-            <TextView
-                android:layout_width="@dimen/zero"
-                android:layout_height="wrap_content"
-                android:layout_weight=".25"
+                android:layout_weight="1"
                 android:gravity="center|bottom"
                 android:text="Date"
                 android:textColor="@color/white"
@@ -82,23 +73,49 @@
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
+                android:layout_weight="1"
                 android:gravity="center|bottom"
-                android:text="Ship name"
+                android:text="Time"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:text="Name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
 
             <TextView
-                android:id="@+id/tvBlank"
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25" />
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:text="Price Per Person"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|bottom"
+                android:text="Max Guest"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
         <ListView
-            android:id="@+id/lvCruises"
+            android:id="@+id/lvExcursion"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_gravity="center"
