@@ -33,7 +33,7 @@ import retrofit2.Response;
  */
 
 public class ExcursionCruiseList extends BaseActivity {
-    private ListView lvCruises;
+    private ListView lvExcursionCruises;
     private CruisesAdapter cruisesAdapter;
     // Criuze model for dao class
     private ArrayList<Criuzes_TMP> cruisesList;
@@ -50,7 +50,7 @@ public class ExcursionCruiseList extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excursion_cruise_lst);
         activity = this;
-        lvCruises = (ListView) findViewById(R.id.lvCruises);
+        lvExcursionCruises = (ListView) findViewById(R.id.lvExcursionCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         tvBlank = (TextView) findViewById(R.id.tvBlank);
 //        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
@@ -106,9 +106,9 @@ public class ExcursionCruiseList extends BaseActivity {
     private void fillData() {
         if (cruisesList != null && cruisesList.size() > 0) {
             cruisesAdapter = new CruisesAdapter(this, cruisesList, StaticAccess.EXCURSION_MANAGEMENT);
-            lvCruises.setAdapter(cruisesAdapter);
+            lvExcursionCruises.setAdapter(cruisesAdapter);
         }
-        lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvExcursionCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);

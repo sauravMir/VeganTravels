@@ -78,7 +78,7 @@ public class CruisesAdapter extends BaseAdapter {
             holder.btnExCursionManager = (ImageButton) convertView.findViewById(R.id.btnExCursionManager);
             holder.llbtnLst = (LinearLayout) convertView.findViewById(R.id.llbtnLst);
             if (flag == StaticAccess.EXCURSION_MANAGEMENT) {
-                holder.llbtnLst.setVisibility(View.INVISIBLE);
+                holder.llbtnLst.setVisibility(View.GONE);
             } else if (flag == StaticAccess.CRIUZE_MANAGEMENT) {
                 holder.llbtnLst.setVisibility(View.VISIBLE);
             }

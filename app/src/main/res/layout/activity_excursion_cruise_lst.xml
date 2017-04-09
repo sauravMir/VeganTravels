@@ -29,31 +29,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 
-            <ImageButton
-                android:id="@+id/ibtnAddCruize"
-                android:layout_width="@dimen/fifty"
-                android:layout_height="@dimen/fifty"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/twenty"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@android:drawable/ic_input_add"
-                android:visibility="visible" />
 
-            <!--  <ImageButton
-                  android:id="@+id/ibtnSync"
-                  android:layout_width="@dimen/fifty"
-                  android:layout_height="@dimen/fifty"
-                  android:layout_alignParentRight="true"
-                  android:layout_centerVertical="true"
-                  android:layout_gravity="center"
-                  android:layout_toRightOf="@+id/ibtnAddCruize"
-                  android:background="@color/transparent"
-                  android:scaleType="fitCenter"
-                  android:src="@android:drawable/ic_popup_sync"
-                  android:visibility="visible" />
-  -->
             <ImageButton
                 android:id="@+id/ibtnBack"
                 android:layout_width="@dimen/fifty"
@@ -73,6 +49,11 @@
             android:gravity="bottom"
             android:orientation="horizontal"
             android:weightSum="1">
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".12" />
 
             <TextView
                 android:layout_width="@dimen/zero"
@@ -106,13 +87,12 @@
                 android:id="@+id/tvBlank"
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:visibility="gone" />
+                android:layout_weight=".12" />
 
         </LinearLayout>
 
         <ListView
-            android:id="@+id/lvCruises"
+            android:id="@+id/lvExcursionCruises"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_gravity="center"
