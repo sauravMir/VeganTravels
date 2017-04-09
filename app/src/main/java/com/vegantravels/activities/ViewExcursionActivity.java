@@ -113,7 +113,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
                 tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
             }
-            if(arrExcursion!=null)
+            if(arrExcursion!=null);
 
         }
     }
@@ -157,8 +157,9 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 finishTheActivity();
 
                 break;
+
             case R.id.btnConfirm:
-                allDialog.confirmDialog("Are you sure? You want to confirm",);
+                allDialog.confirmDialog("Are you sure? You want to confirm");
                 break;
             case R.id.ibtnBack:
                 Intent guestintent = new Intent(activity, GuestListActivity.class);
