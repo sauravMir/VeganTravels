@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddParticipantActivity;
+import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -92,7 +93,6 @@ public class GuestThreeAdapter extends BaseAdapter {
                 intentEdit.putExtra(StaticAccess.KEY_GUEST_ID, guestList.get(pos).getId());
                 intentEdit.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
                 intentEdit.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
-                
                 context.startActivity(intentEdit);
 
             }
@@ -102,6 +102,9 @@ public class GuestThreeAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(context, ViewExcursionActivity.class);
+                intent.putExtra(StaticAccess.INTENT_GUEST_ID_KEY, guestList.get(pos).getId());
+                context.startActivity(intent);
 
             }
         });
