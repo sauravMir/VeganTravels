@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
@@ -52,9 +53,9 @@ public class CruisesAdapter extends BaseAdapter {
         TextView tvCruiseName;
         TextView tvShipName;
         TextView tvDate;
-        Button btnEdit;
-        Button ibtnAddCruize;
-        Button btnExCursionManager;
+        ImageButton btnEdit;
+        ImageButton ibtnAddCruize;
+        ImageButton btnExCursionManager;
 //        TextView tvTime;
 
     }
@@ -68,9 +69,9 @@ public class CruisesAdapter extends BaseAdapter {
             holder.tvCruiseName = (TextView) convertView.findViewById(R.id.tvCruiseName);
             holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
-            holder.btnEdit = (Button) convertView.findViewById(R.id.btnEdit);
-            holder.ibtnAddCruize = (Button) convertView.findViewById(R.id.ibtnAddCruize);
-            holder.btnExCursionManager = (Button) convertView.findViewById(R.id.btnExCursionManager);
+            holder.btnEdit = (ImageButton) convertView.findViewById(R.id.btnEdit);
+            holder.ibtnAddCruize = (ImageButton) convertView.findViewById(R.id.ibtnAddCruize);
+            holder.btnExCursionManager = (ImageButton) convertView.findViewById(R.id.btnExCursionManager);
 //            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
             convertView.setTag(holder);
 
