@@ -31,32 +31,20 @@
             android:layout_weight=".05" />
 
         <EditText
+            android:id="@+id/etCabinNum"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left"
             android:hint="Cabin no"
+            android:inputType="number"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
-
-
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/zero"
-            android:layout_marginLeft="@dimen/ten"
-            android:layout_weight=".15"
-            android:gravity="left"
-            android:hint="Last name"
-            android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
-            android:textStyle="normal" />
-
-
-        <EditText
+            android:id="@+id/etFName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
@@ -68,10 +56,38 @@
             android:textSize="@dimen/twenty"
             android:textStyle="normal" />
 
+        <EditText
+            android:id="@+id/etLName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="Last name"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+        <EditText
+            android:id="@+id/etVTid"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_marginLeft="@dimen/ten"
+            android:layout_weight=".15"
+            android:gravity="left"
+            android:hint="@string/vt_id"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"
+            android:textStyle="normal" />
+
+
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".2" />
+            android:layout_weight=".05" />
 
         <Button
             android:id="@+id/btnDone"

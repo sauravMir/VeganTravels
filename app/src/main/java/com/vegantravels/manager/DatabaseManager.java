@@ -240,7 +240,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (criuzeTemporary != null) {
                 openWritableDb();
                 daoSession.update(criuzeTemporary);
-//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
+                Log.d(TAG, "Updated Cruize: " + criuzeTemporary.getName() + " from the schema.");
                 criuzeTemporaryKey = criuzeTemporary.getId();
                 daoSession.clear();
             }
@@ -396,15 +396,14 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
-    public List<Guests> getSearchByNameCabin(String name) {
-        List<Guests> guestsList = null;
+    public List<Guests_TMP> getSearchByNameCabin(String name) {
+        List<Guests_TMP> guestsList = null;
         try {
             openReadableDb();
-            GuestsDao guestDao = daoSession.getGuestsDao();
-            QueryBuilder<Guests> queryBuilder = guestDao.queryBuilder().whereOr(GuestsDao.Properties.Fname.like("%" + name + "%"),
-                    GuestsDao.Properties.LName.like("%" + name + "%"), GuestsDao.Properties.CabinNumber.like("%" + name + "%"));
+            Guests_TMPDao guestTempDao = daoSession.getGuests_TMPDao();
+            QueryBuilder<Guests_TMP> queryBuilder = guestTempDao.queryBuilder().whereOr(Guests_TMPDao.Properties.Fname.like("%" + name + "%"),
+                    Guests_TMPDao.Properties.LName.like("%" + name + "%"), Guests_TMPDao.Properties.CabinNumber.like("%" + name + "%")).orderAsc(Guests_TMPDao.Properties.CabinNumber);
             guestsList = queryBuilder.list();
-
             daoSession.clear();
         } catch (Exception e) {
             e.printStackTrace();

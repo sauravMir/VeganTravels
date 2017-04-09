@@ -68,7 +68,7 @@ public interface IDatabaseManager {
 
     Long updateGuest(Guests guests);
 
-    List<Guests> getSearchByNameCabin(String name);
+    List<Guests_TMP> getSearchByNameCabin(String name);
 //    ArrayList<Criuzes_TMP> tempCruiseList();
 
     ///***** CABIN TABLE METHOD **********//////
