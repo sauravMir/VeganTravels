@@ -530,8 +530,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (excursions_tmp != null) {
                 openWritableDb();
                 daoSession.update(excursions_tmp);
-//                Log.d(TAG, "Updated user: " + Criuze.getName() + " from the schema.");
                 excursionTempKay = excursions_tmp.getId();
+                Log.d("update", "Updated Excursions: " + excursions_tmp.getTitle() + " from the schema.");
                 daoSession.clear();
             }
 
@@ -540,5 +540,20 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
         }
         return excursionTempKay;
+    }
+    @Override
+    public Excursions_TMP getExcursionById(long id) {
+        Excursions_TMP excursions_tmp = null;
+        try {
+            openWritableDb();
+            Excursions_TMPDao excursions_tmpDao = daoSession.getExcursions_TMPDao();
+            excursions_tmp = excursions_tmpDao.load(id);
+            daoSession.clear();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return excursions_tmp;
     }
 }
