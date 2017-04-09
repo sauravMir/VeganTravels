@@ -16,23 +16,75 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity">
+        <activity
+            android:name=".activities.SplashActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ViewExcursionActivity" />
-        <activity android:name=".activities.GuestListActivity" />
-        <activity android:name=".activities.MainActivity" />
-        <activity android:name=".activities.AddParticipantActivity" />
-        <activity android:name=".activities.AddExcursionActivity" />
-        <activity android:name=".activities.GuestListTwoActivity" />
-        <activity android:name=".activities.AddCruizeActivity" />
-        <activity android:name=".activities.GuestListThreeActivity" />
-        <activity android:name=".activities.ManagementActivity" />
-        <activity android:name=".activities.ExcursionCruiseList" />
+        <activity
+            android:name=".activities.ViewExcursionActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.GuestListActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.AddParticipantActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.AddExcursionActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.GuestListTwoActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.AddCruizeActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.GuestListThreeActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.ManagementActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".activities.ExcursionCruiseList"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
