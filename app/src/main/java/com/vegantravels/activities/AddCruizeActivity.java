@@ -148,6 +148,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
     private void updateCruize() {
         upCruize = new Criuzes_TMP();
+        upCruize.setId(cruizeID);
         upCruize.setName(edtCruzeName.getText().toString());
         upCruize.setShipName(edtShipName.getText().toString());
         upCruize.setFrom(tvDateFrom.getText().toString());
@@ -365,6 +366,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                     edtShipName.setText(criuzes_tmp.getShipName());
                     tvDateFrom.setText(criuzes_tmp.getFrom());
                     tvDateTo.setText(criuzes_tmp.getTo());
+                    tvCabinUpload.setText("");
+                    btnCabinUpload.setVisibility(View.GONE);
 
                 }
             } else {
@@ -375,6 +378,5 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.dismiss();
         }
     }
-
-
+    
 }
