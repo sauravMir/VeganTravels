@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.GuestDetails;
@@ -26,6 +27,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     EditText etCabinNum, etFName, etLName, etVTid;
     Button btnDone;
     IDatabaseManager databaseManager;
+    Guests_TMP tempGuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,16 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 
                 if (etFName.getText().length() > 0 && etLName.getText().length() > 0 &&
                         etCabinNum.getText().length() > 0 && etVTid.getText().length() > 0) {
+
+                    tempGuest =new Guests_TMP();
+                    tempGuest.setCabinNumber(Integer.valueOf(etCabinNum.getText().toString()));
+                    tempGuest.setFname(etFName.getText().toString());
+                    tempGuest.setLName(etLName.getText().toString());
+                    tempGuest.setGuestVT_Id(etVTid.getText().toString());
+
+                    
+                    tempGuest= databaseManager.insertGuestTemporary(tempGuest);
+
 
                 }
                 break;
