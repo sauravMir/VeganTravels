@@ -122,6 +122,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     }
 
     
+
     private long excrusionId = -1;
 
     private void fillExcursionData() {
@@ -253,20 +254,22 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
         @Override
         protected Void doInBackground(Void... voids) {
-            //// insert new Data Here,
-            Cabins_TMP cabins_tmp_Update = databaseManager.hasGuestExcursion(tempGuestV.getGuestVT_Id());
-
-            if (cabins_tmp_Update != null) {
-//                    update
-                cabins_tmp_Update.setPaymentStatus(cabins_tmp.getPaymentStatus());
-                cabins_tmp_Update.setOccupancy(cabins_tmp.getOccupancy());
-                cabins_tmp_Update.setExcursion(cabins_tmp.getExcursion());
-                updateBookedID = databaseManager.updateCabinTemp(cabins_tmp_Update);
-            } else {
-                // insert
-                if (cabins_tmp != null)
-                    insertedCabin_Tmp = databaseManager.insertCabinTemp(cabins_tmp);
-            }
+//            //// insert new Data Here,
+//            Cabins_TMP cabins_tmp_Update = databaseManager.hasGuestExcursion(tempGuestV.getGuestVT_Id());
+//
+//            if (cabins_tmp_Update != null) {
+////                    update
+//                cabins_tmp_Update.setPaymentStatus(cabins_tmp.getPaymentStatus());
+//                cabins_tmp_Update.setOccupancy(cabins_tmp.getOccupancy());
+//                cabins_tmp_Update.setExcursion(cabins_tmp.getExcursion());
+//                updateBookedID = databaseManager.updateCabinTemp(cabins_tmp_Update);
+//            } else {
+//                // insert
+//                if (cabins_tmp != null)
+//                    insertedCabin_Tmp = databaseManager.insertCabinTemp(cabins_tmp);
+//            }
+            if (cabins_tmp != null)
+                insertedCabin_Tmp = databaseManager.insertCabinTemp(cabins_tmp);
 
             return null;
         }
