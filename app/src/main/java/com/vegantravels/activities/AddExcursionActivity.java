@@ -122,8 +122,9 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         excursions_tmp.setTitle(edtExcursionTitle.getText().toString());
         excursions_tmp.setFrom(tvExcursionFromDate.getText().toString());
         excursions_tmp.setTime(tvExcursionTime.getText().toString());
+        excursions_tmp.setPrice(edtPrice.getText().toString());
         excursions_tmp.setMaxNumberOfGuest(Integer.valueOf(edtMaxGuest.getText().toString()));
-        excursions_tmp.setTo("");
+        excursions_tmp.setTo("  ");
         excursions_tmp.setCreatedAt(System.currentTimeMillis());
         excursions_tmp.setUpdatedAt(System.currentTimeMillis());
         excursions_tmp.setExcursionUniqueId(System.currentTimeMillis());

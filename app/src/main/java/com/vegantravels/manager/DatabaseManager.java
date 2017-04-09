@@ -205,8 +205,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (criuzeTemporary != null) {
                 openWritableDb();
                 Criuzes_TMPDao cruzeTempDao = daoSession.getCriuzes_TMPDao();
-               long id= cruzeTempDao.insert(criuzeTemporary);
-                Log.d("insert","Cruise Is"+String.valueOf(id));
+                long id = cruzeTempDao.insert(criuzeTemporary);
+                Log.d("insert", "Cruise Is" + String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -250,7 +250,25 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
         }
         return criuzeTemporaryKey;
+
     }
+
+    @Override
+    public Criuzes_TMP getCruiseTempById(long id) {
+        Criuzes_TMP criuzes_TMP = null;
+        try {
+            openWritableDb();
+            Criuzes_TMPDao criuzes_tmpDao = daoSession.getCriuzes_TMPDao();
+            criuzes_TMP = criuzes_tmpDao.load(id);
+            daoSession.clear();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return criuzes_TMP;
+    }
+
 
     ///*****GUEST TEMPORARY CRUID OPERATION METHOD ************////
     @Override
@@ -259,8 +277,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (guests_tmp != null) {
                 openWritableDb();
                 Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
-                long id=guests_tmpDao.insert(guests_tmp);
-                Log.d("insert","guest Id"+String.valueOf(id));
+                long id = guests_tmpDao.insert(guests_tmp);
+                Log.d("insert", "guest Id" + String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -268,6 +286,23 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return guests_tmp;
     }
+
+    @Override
+    public Guests_TMP getGuestTempById(long id) {
+        Guests_TMP guests_TMP = null;
+        try {
+            openWritableDb();
+            Guests_TMPDao guest_tmpDao = daoSession.getGuests_TMPDao();
+            guests_TMP = guest_tmpDao.load(id);
+            daoSession.clear();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return guests_TMP;
+    }
+
 
     @Override
     public ArrayList<Guests_TMP> listGuestTemporary() {
@@ -286,8 +321,9 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return null;
     }
+
     @Override
- public ArrayList<Guests_TMP> listGuestByUniqueId(long cruiseUniqueId) {
+    public ArrayList<Guests_TMP> listGuestByUniqueId(long cruiseUniqueId) {
         List<Guests_TMP> guests_tmpList = null;
         try {
             openReadableDb();
@@ -386,8 +422,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (cabins_tmp != null) {
                 openWritableDb();
                 Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
-                long id=cabins_tmpDao.insert(cabins_tmp);
-                Log.d("insert","Cabin Id"+String.valueOf(id));
+                long id = cabins_tmpDao.insert(cabins_tmp);
+                Log.d("insert", "Cabin Id" + String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {
@@ -440,7 +476,8 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (excursions_tmp != null) {
                 openWritableDb();
                 Excursions_TMPDao excursions_tmpDao = daoSession.getExcursions_TMPDao();
-                excursions_tmpDao.insert(excursions_tmp);
+                long id = excursions_tmpDao.insert(excursions_tmp);
+                Log.d("insert", "Excursion Id" + String.valueOf(id));
                 daoSession.clear();
             }
         } catch (Exception e) {

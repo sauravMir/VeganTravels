@@ -48,9 +48,12 @@ public interface IDatabaseManager {
 
     Long updateCriuzeTemporary(Criuzes_TMP criuzeTemporary);
 
+    Criuzes_TMP getCruiseTempById(long id);
 
     ///***** temporary guest methods *****///
     Guests_TMP insertGuestTemporary(Guests_TMP guests_tmp);
+
+    Guests_TMP getGuestTempById(long id);
 
     ArrayList<Guests_TMP> listGuestTemporary();
 
