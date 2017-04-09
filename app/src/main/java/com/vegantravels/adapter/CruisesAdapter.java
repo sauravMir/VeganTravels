@@ -79,7 +79,7 @@ public class CruisesAdapter extends BaseAdapter {
         }
         holder.tvCruiseName.setText(cruisesList.get(i).getName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
-        holder.tvDate.setText(cruisesList.get(i).getFrom() + "\n" + cruisesList.get(i).getTo());
+        holder.tvDate.setText(cruisesList.get(i).getFrom() + "  -  " + cruisesList.get(i).getTo());
 //        holder.tvTime.setText(cruisesList.get(i).getTo());
         final int position = i;
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +88,7 @@ public class CruisesAdapter extends BaseAdapter {
                 Intent edtiIntent = new Intent(context, AddCruizeActivity.class);
                 edtiIntent.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(position).getId());
                 edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                context.startActivity(edtiIntent);
             }
         });
         holder.ibtnAddCruize.setOnClickListener(new View.OnClickListener() {

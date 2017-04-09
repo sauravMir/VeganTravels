@@ -44,7 +44,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private TextView tvCabinUpload;
     private EditText edtCruzeName, edtShipName;
     private TextView tvDateFrom, tvDateTo;
-    private Criuzes_TMP aCruize;
+    private Criuzes_TMP aCruize, upCruize;
     private ImageButton ibtnBackCruize;
     AllDialog allDialog;
 
@@ -52,6 +52,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private XlsModel aXls;
     private long cruizeID = -1;
     private long cruizeUniqueID = -1;
+    private Criuzes_TMP criuzes_tmp;
 
     @Override
 
@@ -64,15 +65,17 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         allDialog = new AllDialog(activity);
         cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
         cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        findViewById();
         if (cruizeID != -1 && cruizeUniqueID != -1) {
             fillEditableData();
         }
-        findViewById();
 
 
     }
 
+    /// for editing
     private void fillEditableData() {
+        new EditCruiseAsyncTask().execute();
 
     }
 
@@ -99,6 +102,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         xlsDataList = new ArrayList<>();
     }
 
+    boolean goForEdit = false; /// for controlling edit post or get cruize
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,10 +113,22 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 showFileChooser();
                 break;
             case R.id.btnDone:
-                if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
-                    addNewCruize();
+                if (cruizeUniqueID != -1 && cruizeUniqueID != -1) {
+                    /// edit
+                    if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
+                        goForEdit = true;
+                        updateCruize();
+                    } else {
+                        Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
-                    Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
+                    /// add
+                    if (edtCruzeName.length() > 0 && edtShipName.length() > 0 && tvDateFrom.length() > 0 && tvDateTo.length() > 0) {
+                        addNewCruize();
+                    } else {
+                        Toast.makeText(activity, "Fill Properly", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             case R.id.ibtnBackCruize:
@@ -127,6 +144,16 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+    private void updateCruize() {
+        upCruize = new Criuzes_TMP();
+        upCruize.setName(edtCruzeName.getText().toString());
+        upCruize.setShipName(edtShipName.getText().toString());
+        upCruize.setFrom(tvDateFrom.getText().toString());
+        upCruize.setCruizeUniqueId(cruizeUniqueID);
+        upCruize.setTo(tvDateTo.getText().toString());
+        new EditCruiseAsyncTask().execute();
     }
 
     private void addNewCruize() {
@@ -294,6 +321,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.dismiss();
             Toast.makeText(activity, "insert Success", Toast.LENGTH_SHORT).show();
             super.onPostExecute(aVoid);
+            startActivity(new Intent(activity, MainActivity.class));
+            finishTheActivity();
         }
     }
 
@@ -313,21 +342,37 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
-            if (cruizeID != -1&&cruizeUniqueID!=-1) {
+            if (goForEdit) {
+                /// update cruize
+                databaseManager.updateCriuzeTemporary(upCruize);
 
+            } else {
+                // get cruize
+                if (cruizeID != -1 && cruizeUniqueID != -1) {
+                    criuzes_tmp = databaseManager.getCruiseTempById(cruizeID);
 
-
+                }
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressDialog.dismiss();
-            Toast.makeText(activity, "insert Success", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, MainActivity.class));
-            finishTheActivity();
             super.onPostExecute(aVoid);
+            if (!goForEdit) {
+                if (criuzes_tmp != null) {
+                    edtCruzeName.setText(criuzes_tmp.getName());
+                    edtShipName.setText(criuzes_tmp.getShipName());
+                    tvDateFrom.setText(criuzes_tmp.getFrom());
+                    tvDateTo.setText(criuzes_tmp.getTo());
+
+                }
+            } else {
+                Toast.makeText(activity, "Update done", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(activity, MainActivity.class));
+                finishTheActivity();
+            }
+            progressDialog.dismiss();
         }
     }
 
