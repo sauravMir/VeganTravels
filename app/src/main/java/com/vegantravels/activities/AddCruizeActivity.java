@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import com.vegantravels.R;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes_TMP;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -217,27 +219,27 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private static final int FILE_SELECT_CODE = 0;
 
     private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-
-        try {
-            startActivityForResult(
-                    Intent.createChooser(intent, "Select a File to Upload"),
-                    FILE_SELECT_CODE);
-        } catch (android.content.ActivityNotFoundException ex) {
-            // Potentially direct the user to the Market with a Dialog
-            Toast.makeText(this, "Please install a File Manager.",
-                    Toast.LENGTH_SHORT).show();
-        }
+        Intent intent = new Intent(this, FilePickerActivity.class);
+        intent.putExtra(FilePickerActivity.ARG_FILTER, Pattern.compile(".*\\.txt$"));
+        /*intent.putExtra(FilePickerActivity.ARG_DIRECTORIES_FILTER, true);
+        intent.putExtra(FilePickerActivity.ARG_SHOW_HIDDEN, true);*/
+        startActivityForResult(intent, 1);
     }
 
     String path = null;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case FILE_SELECT_CODE:
+
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            // Do anything with file
+        }
+
+
+        /*switch (requestCode) {
+           *//* case FILE_SELECT_CODE:
                 if (resultCode == RESULT_OK) {
                     // Get the Uri of the selected file
                     Uri uri = data.getData();
@@ -257,8 +259,9 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                     // File file = new File(path);
                     // Initiate the upload
                 }
-                break;
-        }
+                break;*//*
+
+        }*/
         super.onActivityResult(requestCode, resultCode, data);
     }
 
