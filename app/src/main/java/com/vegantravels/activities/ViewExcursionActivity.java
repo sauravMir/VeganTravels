@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.SpinnerCustomAdapter;
@@ -235,6 +236,9 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         }
     }
 
+    long updateBookedID = -1;
+    Cabins_TMP insertedCabin_Tmp;
+
     class BookedExcursionGuestAsyncTask extends AsyncTask<Void, Void, Void> {
         boolean success = false;
 
@@ -255,11 +259,11 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 cabins_tmp_Update.setPaymentStatus(cabins_tmp.getPaymentStatus());
                 cabins_tmp_Update.setOccupancy(cabins_tmp.getOccupancy());
                 cabins_tmp_Update.setExcursion(cabins_tmp.getExcursion());
-                databaseManager.updateCabinTemp(cabins_tmp_Update);
+                updateBookedID = databaseManager.updateCabinTemp(cabins_tmp_Update);
             } else {
                 // insert
                 if (cabins_tmp != null)
-                    databaseManager.insertCabinTemp(cabins_tmp);
+                    insertedCabin_Tmp = databaseManager.insertCabinTemp(cabins_tmp);
             }
 
             return null;
@@ -269,12 +273,12 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            if (tempGuestV != null) {
-                tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
-                tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
+            if (updateBookedID != -1) {
+                Toast.makeText(activity, "update", Toast.LENGTH_SHORT).show();
             }
-            if (arrExcursion != null) {
-                fillExcursionData();
+            if (insertedCabin_Tmp != null) {
+                Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
+
             }
 
         }
