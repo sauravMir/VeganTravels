@@ -104,6 +104,8 @@ public class GuestThreeAdapter extends BaseAdapter {
 
                 Intent intent = new Intent(context, ViewExcursionActivity.class);
                 intent.putExtra(StaticAccess.INTENT_GUEST_ID_KEY, guestList.get(pos).getId());
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
+                intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 context.startActivity(intent);
 
             }

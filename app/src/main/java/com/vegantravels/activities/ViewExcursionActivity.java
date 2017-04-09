@@ -15,6 +15,7 @@ import com.vegantravels.R;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
+import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
@@ -39,6 +40,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     ProgressDialog progressDialog;
 
     ArrayList<Excursions_TMP> arrExcursion;
+    private long cruizeUniqueID = -1;
+    private String fDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private void bindingViews() {
 
         getGuestId = getIntent().getExtras().getLong(StaticAccess.INTENT_GUEST_ID_KEY, -1);
-
+        cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        fDate = getIntent().getStringExtra(StaticAccess.KEY_INTENT_DATE);
         btnAddExcursion = (Button) findViewById(R.id.btnAddExcursion);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
         tvGuestDetail = (TextView) findViewById(R.id.tvGuestDetail);
@@ -71,13 +75,76 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         ibtnBack.setOnClickListener(this);
         tempGuestV = new Guests_TMP();
         arrExcursion = new ArrayList<>();
-
-//        fillExcursionData();
-//        fillGuestNumberData();
+        fillGuestNumberData();
 
     }
 
-    
+
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        DialogNavBarHide.navBarHide(activity, progressDialog);
+    }
+
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
+
+
+    private void fillGuestNumberData() {
+        String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
+        ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
+        spnGuestNumber.setAdapter(adapterGuest);
+
+
+    }
+
+    private void fillExcursionData() {
+        String[] EXCURSION_ARRAY = getResources().getStringArray(R.array.excursions);
+
+        ArrayAdapter<String> adapterExcursion = new ArrayAdapter<String>(activity, R.layout.spinner_item, EXCURSION_ARRAY);
+        spnExcursion.setAdapter(adapterExcursion);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.btnAddExcursion:
+                if (cruizeUniqueID != -1) {
+                    Intent intent = new Intent(activity, AddExcursionActivity.class);
+                    intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                    startActivity(intent);
+                    finishTheActivity();
+                }
+                break;
+
+            case R.id.btnConfirm:
+                allDialog.confirmDialog("Are you sure? You want to confirm");
+                break;
+            case R.id.ibtnBack:
+                if (cruizeUniqueID != -1) {
+                    Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                    startActivity(guestintent);
+                    finishTheActivity();
+                }
+                break;
+        }
+    }
+
+
+    private void finishTheActivity() {
+        finish();
+    }
+
+    ////////////////*****************  ASYNCTASK CLASS HERE   ****************************
+
+
     class ExCursionGuestAsyncTask extends AsyncTask<Void, Void, Void> {
         boolean success = false;
 
@@ -118,61 +185,5 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             if (arrExcursion != null) ;
 
         }
-    }
-
-
-    public void showProgressDialog() {
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-        if (progressDialog != null)
-            progressDialog.dismiss();
-    }
-
-
-    private void fillGuestNumberData() {
-        String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
-        ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
-        spnGuestNumber.setAdapter(adapterGuest);
-
-
-    }
-
-    private void fillExcursionData() {
-        String[] EXCURSION_ARRAY = getResources().getStringArray(R.array.excursions);
-
-        ArrayAdapter<String> adapterExcursion = new ArrayAdapter<String>(activity, R.layout.spinner_item, EXCURSION_ARRAY);
-        spnExcursion.setAdapter(adapterExcursion);
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.btnAddExcursion:
-                Intent intent = new Intent(activity, AddExcursionActivity.class);
-                startActivity(intent);
-                finishTheActivity();
-
-                break;
-
-            case R.id.btnConfirm:
-                allDialog.confirmDialog("Are you sure? You want to confirm");
-                break;
-            case R.id.ibtnBack:
-                Intent guestintent = new Intent(activity, GuestListActivity.class);
-                startActivity(guestintent);
-                finishTheActivity();
-                break;
-        }
-    }
-
-
-    private void finishTheActivity() {
-        finish();
     }
 }
