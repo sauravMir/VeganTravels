@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestThreeAdapter;
@@ -31,12 +32,13 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
     public ArrayList<Guests_TMP> guestList;
     private Guest guests;
     private GuestListThreeActivity activity;
-    private ImageButton ibtnBack, ibtnSearch;
+    private ImageButton ibtnBack, ibtnSearch, ibtnAddGuest;
     private AllDialog allDialog;
     long uniqueId, cruiseId;
     String date;
     ProgressDialog progressDialog;
     IDatabaseManager databaseManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
         allDialog = new AllDialog(activity);
         ibtnSearch = (ImageButton) findViewById(R.id.ibtnSearch);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+        ibtnAddGuest = (ImageButton) findViewById(R.id.ibtnAddGuest);
 
         cruiseId = getIntent().getExtras().getLong(StaticAccess.KEY_CRUISES_ID);
         uniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID);
@@ -53,7 +56,8 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
 
         ibtnSearch.setOnClickListener(this);
         ibtnBack.setOnClickListener(this);
-        databaseManager=new DatabaseManager(activity);
+        ibtnAddGuest.setOnClickListener(this);
+        databaseManager = new DatabaseManager(activity);
         new GuestSyncAsyncTask().execute();
     }
 
@@ -68,12 +72,16 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
             case R.id.ibtnSearch:
                 allDialog.dialogForSearch();
                 break;
+            case R.id.ibtnAddGuest:
+                Toast.makeText(activity, "ibtnAddGuest clicked", Toast.LENGTH_SHORT).show();
+                break;
+
         }
     }
 
     private void lvGuestLoad() {
-         if(guestList!=null)
-        adapter = new GuestThreeAdapter(activity, guestList, date);
+        if (guestList != null)
+            adapter = new GuestThreeAdapter(activity, guestList, date);
         lstGuest.setAdapter(adapter);
 
     }

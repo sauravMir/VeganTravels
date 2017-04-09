@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/list_bg_blue"
-    android:orientation="vertical">
+    tools:context="com.vegantravels.activities.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,8 +15,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".09"
-            android:background="@color/app_color">
+            android:layout_weight=".1"
+            android:background="@drawable/top_cell">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -25,19 +26,32 @@
                 android:padding="@dimen/ten"
                 android:text="@string/guest_list"
                 android:textColor="@color/white"
-                android:textSize="@dimen/thirty" />
+                android:textSize="@dimen/twenty" />
 
             <ImageButton
                 android:id="@+id/ibtnSearch"
                 android:layout_width="@dimen/fifty"
                 android:layout_height="@dimen/fifty"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_marginRight="@dimen/hundred"
                 android:background="@color/transparent"
-                android:padding="@dimen/ten"
                 android:scaleType="fitCenter"
-                android:src="@android:drawable/ic_menu_search" />
+                android:src="@android:drawable/ic_menu_search"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/ibtnAddGuest"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/twenty"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@android:drawable/ic_input_add"
+                android:visibility="visible" />
+
 
             <ImageButton
                 android:id="@+id/ibtnBack"
@@ -54,36 +68,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".03"
+            android:layout_weight=".1"
+            android:gravity="bottom"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="1">
 
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
                 android:text="Cabin No"
-                android:textSize="@dimen/twelve" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
 
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Name"
-                android:textSize="@dimen/twelve" />
-
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Last Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
 
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/two"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="First Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
                 android:text="Cruise Date"
-                android:textSize="@dimen/twelve" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
 
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".2" />
 
         </LinearLayout>
 
@@ -91,7 +121,11 @@
             android:id="@+id/lstGuest"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".88" />
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/two"
+            android:layout_weight=".8" />
 
     </LinearLayout>
+
+
 </RelativeLayout>

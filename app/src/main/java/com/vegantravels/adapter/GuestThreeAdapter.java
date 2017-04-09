@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
@@ -51,8 +52,10 @@ public class GuestThreeAdapter extends BaseAdapter {
 
         TextView tvCabinNo;
         TextView tvGuestName;
+        TextView tvFirstName;
         TextView tvCruiseDate;
-//        Button btnDelete;
+        ImageButton ibtnEditGuest;
+        ImageButton ibtnAddGuest;
 
     }
 
@@ -63,11 +66,12 @@ public class GuestThreeAdapter extends BaseAdapter {
             holder = new GuestThreeAdapter.ViewHolder();
             convertView = layoutInflater.inflate(R.layout.guest_cell_three, null);
 
-            holder.tvGuestName = (TextView) convertView.findViewById(R.id.tvGuestName);
-            holder.tvCabinNo = (TextView) convertView.findViewById(R.id.tvCabinNo);
             holder.tvCruiseDate = (TextView) convertView.findViewById(R.id.tvCruiseDate);
-//            holder.btnDelete = (Button) convertView.findViewById(R.id.btnDelete);
-
+            holder.tvGuestName = (TextView) convertView.findViewById(R.id.tvGuestName);
+            holder.tvFirstName = (TextView) convertView.findViewById(R.id.tvFirstName);
+            holder.tvCabinNo = (TextView) convertView.findViewById(R.id.tvCabinNo);
+            holder.ibtnEditGuest = (ImageButton) convertView.findViewById(R.id.ibtnEditGuest);
+            holder.ibtnAddGuest = (ImageButton) convertView.findViewById(R.id.ibtnAddGuest);
 
             convertView.setTag(holder);
 
@@ -75,17 +79,24 @@ public class GuestThreeAdapter extends BaseAdapter {
             holder = (GuestThreeAdapter.ViewHolder) convertView.getTag();
         }
 
-        holder.tvGuestName.setText(guestList.get(i).getFname() + " " + guestList.get(i).getLName());
+        holder.tvGuestName.setText(guestList.get(i).getLName());
+        holder.tvFirstName.setText(guestList.get(i).getFname());
         holder.tvCabinNo.setText(String.valueOf(guestList.get(i).getCabinNumber()));
         holder.tvCruiseDate.setText(fDate);
 
-//        holder.tvExcursionName.setText(guestList.get(i).getExcursion());
-//        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        holder.ibtnEditGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.ibtnAddGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         return convertView;
     }
