@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.adapter.SpinnerCustomAdapter;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
@@ -38,6 +39,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     IDatabaseManager databaseManager;
     Guests_TMP tempGuestV;
     ProgressDialog progressDialog;
+    SpinnerCustomAdapter spinnerCustomAdapter;
 
     ArrayList<Excursions_TMP> arrExcursion;
     private long cruizeUniqueID = -1;
@@ -103,10 +105,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     }
 
     private void fillExcursionData() {
-        String[] EXCURSION_ARRAY = getResources().getStringArray(R.array.excursions);
-
-        ArrayAdapter<String> adapterExcursion = new ArrayAdapter<String>(activity, R.layout.spinner_item, EXCURSION_ARRAY);
-        spnExcursion.setAdapter(adapterExcursion);
+        spinnerCustomAdapter = new SpinnerCustomAdapter(activity, arrExcursion);
+        spnExcursion.setAdapter(spinnerCustomAdapter);
     }
 
     @Override
@@ -182,7 +182,9 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
                 tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
             }
-            if (arrExcursion != null) ;
+            if (arrExcursion != null) {
+                fillExcursionData();
+            }
 
         }
     }

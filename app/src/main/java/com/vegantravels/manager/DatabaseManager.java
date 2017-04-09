@@ -509,7 +509,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         try {
             openReadableDb();
             Excursions_TMPDao excursionsTmpDao = daoSession.getExcursions_TMPDao();
-            QueryBuilder<Excursions_TMP> queryBuilder = excursionsTmpDao.queryBuilder().where(Excursions_TMPDao.Properties.ExcursionUniqueId.eq(CruiseUniqueId)).orderAsc(Excursions_TMPDao.Properties.Id);
+            QueryBuilder<Excursions_TMP> queryBuilder = excursionsTmpDao.queryBuilder().where(Excursions_TMPDao.Properties.CruzeId.eq(CruiseUniqueId)).orderAsc(Excursions_TMPDao.Properties.Id);
             excursions_tmpList = queryBuilder.list();
             daoSession.clear();
 

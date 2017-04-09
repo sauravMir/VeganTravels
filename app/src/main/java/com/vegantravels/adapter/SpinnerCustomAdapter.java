@@ -29,10 +29,9 @@ public class SpinnerCustomAdapter extends BaseAdapter {
     private LayoutInflater layoutInflater;
     String fDate;
 
-    public SpinnerCustomAdapter(Context context, ArrayList<Excursions_TMP> excursionList, String fDate) {
+    public SpinnerCustomAdapter(Context context, ArrayList<Excursions_TMP> excursionList) {
         this.context = context;
         this.excursionList = excursionList;
-        this.fDate = fDate;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
