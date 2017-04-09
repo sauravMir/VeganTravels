@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.vegantravels.R;
@@ -34,6 +35,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     private long cruizeUniqueID = -1;
     public long guestID = -1;
     private String fDate = "";
+    private ImageButton ibtnBackGuest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,8 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         etCabinNum = (EditText) findViewById(R.id.etCabinNum);
         etFName = (EditText) findViewById(R.id.etFName);
         etLName = (EditText) findViewById(R.id.etLName);
-        etVTid = (EditText) findViewById(R.id.etVTid);
+        etLName = (EditText) findViewById(R.id.etLName);
+        ibtnBackGuest = (ImageButton) findViewById(R.id.ibtnBackGuest);
 
         databaseManager = new DatabaseManager(activity);
 
@@ -71,6 +74,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 
 
     boolean isGetData = false;/// true to get the specific guest and false to update specific guest data
+
     //// fill data for edit
     private void fillEditableData() {
         new EditGuestAsyncTask().execute();
@@ -109,6 +113,12 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 
                     }
                 }
+                break;
+            case R.id.ibtnBackGuest:
+                Intent intent = new Intent(activity, GuestListThreeActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                finishTheActivity();
                 break;
 
         }
@@ -190,7 +200,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         }
     }
 
-/// guest update async task
+    /// guest update async task
     class EditGuestAsyncTask extends AsyncTask<Void, Void, Void> {
         Guests_TMP tempGuest;
 
