@@ -1,17 +1,18 @@
 package com.vegantravels.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.AddParticipantActivity;
 import com.vegantravels.dao.Guests_TMP;
-import com.vegantravels.model.Guest;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 
@@ -83,10 +84,15 @@ public class GuestThreeAdapter extends BaseAdapter {
         holder.tvFirstName.setText(guestList.get(i).getFname());
         holder.tvCabinNo.setText(String.valueOf(guestList.get(i).getCabinNumber()));
         holder.tvCruiseDate.setText(fDate);
-
+        final int pos = i;
         holder.ibtnEditGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intentadd = new Intent(context, AddParticipantActivity.class);
+                intentadd.putExtra(StaticAccess.KEY_GUEST_ID, guestList.get(pos).getId());
+                intentadd.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
+                intentadd.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                context.startActivity(intentadd);
 
             }
         });

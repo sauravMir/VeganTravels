@@ -11,10 +11,8 @@ import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.dao.Guests_TMP;
-import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
-import com.vegantravels.model.GuestDetails;
 import com.vegantravels.model.Participant;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
@@ -31,7 +29,11 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     EditText etCabinNum, etFName, etLName, etVTid;
     Button btnDone;
     IDatabaseManager databaseManager;
-    Guests_TMP tempGuest;
+    Guests_TMP tempGuest, tempGuestEdit;
+    private long cruizeID = -1;
+    private long cruizeUniqueID = -1;
+    public long guestID = -1;
+    private String fDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,10 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         activity = this;
         //Connection Https or http Instances
 //        apiInterface =  APIClient.getClient().create(APIInterface.class);
-
+        cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
+        cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        guestID = getIntent().getLongExtra(StaticAccess.KEY_GUEST_ID, -1);
+        fDate = getIntent().getStringExtra(StaticAccess.KEY_INTENT_DATE);
         initialization();
 
     }
@@ -56,24 +61,53 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 
         btnDone = (Button) findViewById(R.id.btnDone);
         btnDone.setOnClickListener(activity);
+
+
+        //// fill data for edit
+        if (cruizeUniqueID != -1 && guestID != -1) {
+            fillEditableData();
+        }
+    }
+
+
+    boolean isGetData = false;/// true to get the specific guest and false to update specific guest data
+    //// fill data for edit
+    private void fillEditableData() {
+        new EditGuestAsyncTask().execute();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnDone:
+                if (cruizeUniqueID != -1 && guestID != -1) {
+                    if (etFName.getText().length() > 0 && etLName.getText().length() > 0 &&
+                            etCabinNum.getText().length() > 0 && etVTid.getText().length() > 0 && cruizeUniqueID != -1 && guestID != -1) {
+                        isGetData = true;
+                        tempGuestEdit = new Guests_TMP();
+                        tempGuestEdit.setId(guestID);
+                        tempGuestEdit.setCabinNumber(Integer.valueOf(etCabinNum.getText().toString()));
+                        tempGuestEdit.setFname(etFName.getText().toString());
+                        tempGuestEdit.setLName(etLName.getText().toString());
+                        tempGuestEdit.setGuestVT_Id(etVTid.getText().toString());
+                        tempGuestEdit.setGuestUniqueId(cruizeUniqueID); /// cruize unique id
+                        new EditGuestAsyncTask().execute();
 
-                if (etFName.getText().length() > 0 && etLName.getText().length() > 0 &&
-                        etCabinNum.getText().length() > 0 && etVTid.getText().length() > 0) {
+                    }
 
-                    tempGuest = new Guests_TMP();
-                    tempGuest.setCabinNumber(Integer.valueOf(etCabinNum.getText().toString()));
-                    tempGuest.setFname(etFName.getText().toString());
-                    tempGuest.setLName(etLName.getText().toString());
-                    tempGuest.setGuestVT_Id(etVTid.getText().toString());
+                } else {
+                    if (etFName.getText().length() > 0 && etLName.getText().length() > 0 &&
+                            etCabinNum.getText().length() > 0 && etVTid.getText().length() > 0 && cruizeUniqueID != -1) {
 
-                    new GuestAsyncTask().execute();
+                        tempGuest = new Guests_TMP();
+                        tempGuest.setCabinNumber(Integer.valueOf(etCabinNum.getText().toString()));
+                        tempGuest.setFname(etFName.getText().toString());
+                        tempGuest.setLName(etLName.getText().toString());
+                        tempGuest.setGuestVT_Id(etVTid.getText().toString());
+                        tempGuest.setGuestUniqueId(cruizeUniqueID); /// cruize unique id
+                        new GuestAsyncTask().execute();
 
+                    }
                 }
                 break;
 
@@ -81,6 +115,41 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     }
 
 
+    public void showProgressDialog() {
+        progressDialog = new ProgressDialog(activity);
+        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
+    }
+
+    void addParticipant(String name) {
+        Participant participant = new Participant();
+        participant.setParticipantName(name);
+        Call callParticipant = apiInterface.createUser(participant);
+        callParticipant.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                hideProgressDialog();
+                Participant participant = (Participant) response.body();
+                Toast.makeText(activity, participant.getParticipantName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                call.cancel();
+                hideProgressDialog();
+            }
+        });
+    }
+
+
+    /////////****************  ASYNC TASKS ********************** ///////////////////
+    ////****************************************************************************
     class GuestAsyncTask extends AsyncTask<Void, Void, Void> {
         boolean success = false;
         Guests_TMP tempGuestV = new Guests_TMP();
@@ -121,37 +190,52 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         }
     }
 
+/// guest update async task
+    class EditGuestAsyncTask extends AsyncTask<Void, Void, Void> {
+        Guests_TMP tempGuest;
 
-    public void showProgressDialog() {
-        progressDialog = new ProgressDialog(activity);
-        progressDialog.setMessage(getResources().getString(R.string.pleaseWait));
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
 
-    public void hideProgressDialog() {
-        if (progressDialog != null)
-            progressDialog.dismiss();
-    }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            if (isGetData && guestID != -1 && tempGuestEdit != null) {
+                databaseManager.updateGuestTemporary(tempGuestEdit);
 
-    void addParticipant(String name) {
-        Participant participant = new Participant();
-        participant.setParticipantName(name);
-        Call callParticipant = apiInterface.createUser(participant);
-        callParticipant.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                hideProgressDialog();
-                Participant participant = (Participant) response.body();
-                Toast.makeText(activity, participant.getParticipantName(), Toast.LENGTH_SHORT).show();
+            } else {
+                tempGuest = databaseManager.getGuestTempById(guestID);
+
             }
+            return null;
+        }
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                call.cancel();
-                hideProgressDialog();
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (!isGetData) {
+                etCabinNum.setText(String.valueOf(tempGuest.getCabinNumber()));
+                etFName.setText(tempGuest.getFname());
+                etLName.setText(tempGuest.getLName());
+                etVTid.setText(tempGuest.getGuestVT_Id());
+
+            } else {
+                Toast.makeText(activity, "Guest Edit Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, GuestListThreeActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                finishTheActivity();
             }
-        });
+            hideProgressDialog();
+
+        }
     }
 
+
+    void finishTheActivity() {
+        finish();
+    }
 }
