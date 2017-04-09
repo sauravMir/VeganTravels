@@ -2,11 +2,13 @@ package com.vegantravels.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vegantravels.R;
@@ -26,10 +28,12 @@ public class CruisesAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Criuzes_TMP> cruisesList;
     private LayoutInflater inflater;
+    private String flag;
 
-    public CruisesAdapter(Context context, ArrayList<Criuzes_TMP> cruisesList) {
+    public CruisesAdapter(Context context, ArrayList<Criuzes_TMP> cruisesList, String flag) {
         this.context = context;
         this.cruisesList = cruisesList;
+        this.flag = flag;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -56,7 +60,7 @@ public class CruisesAdapter extends BaseAdapter {
         ImageButton btnEdit;
         ImageButton ibtnAddCruize;
         ImageButton btnExCursionManager;
-//        TextView tvTime;
+        LinearLayout llbtnLst;
 
     }
 
@@ -72,7 +76,13 @@ public class CruisesAdapter extends BaseAdapter {
             holder.btnEdit = (ImageButton) convertView.findViewById(R.id.btnEdit);
             holder.ibtnAddCruize = (ImageButton) convertView.findViewById(R.id.ibtnAddCruize);
             holder.btnExCursionManager = (ImageButton) convertView.findViewById(R.id.btnExCursionManager);
-//            holder.tvTime = (TextView) convertView.findViewById(R.id.tvTime);
+            holder.llbtnLst = (LinearLayout) convertView.findViewById(R.id.llbtnLst);
+            if (flag == StaticAccess.EXCURSION_MANAGEMENT) {
+                holder.llbtnLst.setVisibility(View.INVISIBLE);
+            } else if (flag == StaticAccess.CRIUZE_MANAGEMENT) {
+                holder.llbtnLst.setVisibility(View.VISIBLE);
+            }
+
             convertView.setTag(holder);
 
         } else {
@@ -81,7 +91,6 @@ public class CruisesAdapter extends BaseAdapter {
         holder.tvCruiseName.setText(cruisesList.get(i).getName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
         holder.tvDate.setText(cruisesList.get(i).getFrom() + "  -  " + cruisesList.get(i).getTo());
-//        holder.tvTime.setText(cruisesList.get(i).getTo());
         final int position = i;
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override

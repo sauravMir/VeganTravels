@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
@@ -42,14 +43,16 @@ public class ExcursionCruiseList extends BaseActivity {
     ProgressDialog progressDialog;
     private ImageButton ibtnBack, ibtnAddCruize, ibtnSync;
     IDatabaseManager databaseManager;
+    TextView tvBlank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_excursion_cruise_lst);
         activity = this;
         lvCruises = (ListView) findViewById(R.id.lvCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
+        tvBlank = (TextView) findViewById(R.id.tvBlank);
 //        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
 //        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
@@ -102,7 +105,7 @@ public class ExcursionCruiseList extends BaseActivity {
     //fill cruize data
     private void fillData() {
         if (cruisesList != null && cruisesList.size() > 0) {
-            cruisesAdapter = new CruisesAdapter(this, cruisesList);
+            cruisesAdapter = new CruisesAdapter(this, cruisesList, StaticAccess.EXCURSION_MANAGEMENT);
             lvCruises.setAdapter(cruisesAdapter);
         }
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {

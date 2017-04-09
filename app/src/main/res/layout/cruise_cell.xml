@@ -1,117 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="@dimen/seventy"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/two"
+    android:weightSum="1">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/seventy"
-        android:gravity="center"
+        android:layout_width="@dimen/zero"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/two"
+        android:layout_weight=".25"
+        android:background="@drawable/cell_bg_guest"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCruiseName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="1066"
+            android:textSize="@dimen/twelve" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/zero"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/two"
+        android:layout_weight=".25"
+        android:background="@drawable/cell_bg_guest"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/two"
+            android:text="2-2-2017"
+            android:textSize="@dimen/twelve" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/zero"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/two"
+        android:layout_weight=".25"
+        android:background="@drawable/cell_bg_guest"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvShipName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Milan"
+            android:textSize="@dimen/twelve" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llbtnLst"
+        android:layout_width="@dimen/zero"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/two"
+        android:layout_weight=".25"
         android:orientation="horizontal"
-        android:padding="@dimen/two"
-        android:weightSum="1">
+        android:weightSum="3">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btnEdit"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
-            android:layout_weight=".25"
-            android:background="@drawable/cell_bg_guest"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="@drawable/btn_add_excursion"
+            android:gravity="center"
+            android:src="@android:drawable/ic_menu_edit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twelve" />
 
-            <TextView
-                android:id="@+id/tvCruiseName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="1066"
-                android:textSize="@dimen/twelve" />
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/ibtnAddCruize"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
-            android:layout_weight=".25"
-            android:background="@drawable/cell_bg_guest"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:background="@drawable/btn_edit"
+            android:gravity="center"
+            android:src="@android:drawable/ic_input_add"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twelve" />
 
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="@dimen/two"
-                android:text="2-2-2017"
-                android:textSize="@dimen/twelve" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/btnExCursionManager"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/two"
-            android:layout_weight=".25"
-            android:background="@drawable/cell_bg_guest"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvShipName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Milan"
-                android:textSize="@dimen/twelve" />
-
-        </LinearLayout>
-        
-        <LinearLayout
-            android:layout_width="@dimen/zero"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/two"
-            android:layout_weight=".25"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/two"
-                android:layout_weight="1"
-                android:background="@drawable/btn_add_excursion"
-                android:gravity="center"
-                android:src="@android:drawable/ic_menu_edit"
-                android:textColor="@color/white"
-                android:textSize="@dimen/twelve" />
-
-            <ImageButton
-                android:id="@+id/ibtnAddCruize"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/two"
-                android:layout_weight="1"
-                android:background="@drawable/btn_edit"
-                android:gravity="center"
-                android:src="@android:drawable/ic_input_add"
-                android:textColor="@color/white"
-                android:textSize="@dimen/twelve" />
-
-            <ImageButton
-                android:id="@+id/btnExCursionManager"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/btn_add_excursion"
-                android:gravity="center"
-                android:src="@android:drawable/ic_menu_set_as"
-                android:textColor="@color/white"
-                android:textSize="@dimen/twelve" />
-
-
-        </LinearLayout>
+            android:layout_weight="1"
+            android:background="@drawable/btn_add_excursion"
+            android:gravity="center"
+            android:src="@android:drawable/ic_menu_set_as"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twelve" />
 
 
     </LinearLayout>
+
+
+</LinearLayout>
 
 </RelativeLayout>

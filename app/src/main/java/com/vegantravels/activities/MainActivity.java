@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity {
     //fill cruize data
     private void fillData() {
         if (cruisesList != null && cruisesList.size() > 0) {
-            cruisesAdapter = new CruisesAdapter(this, cruisesList);
+            cruisesAdapter = new CruisesAdapter(this, cruisesList, StaticAccess.CRIUZE_MANAGEMENT);
             lvCruises.setAdapter(cruisesAdapter);
         }
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {

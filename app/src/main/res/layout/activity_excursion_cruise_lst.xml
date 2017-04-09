@@ -106,7 +106,8 @@
                 android:id="@+id/tvBlank"
                 android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25" />
+                android:layout_weight=".25"
+                android:visibility="gone" />
 
         </LinearLayout>
 
