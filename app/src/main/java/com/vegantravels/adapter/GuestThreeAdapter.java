@@ -88,11 +88,12 @@ public class GuestThreeAdapter extends BaseAdapter {
         holder.ibtnEditGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentadd = new Intent(context, AddParticipantActivity.class);
-                intentadd.putExtra(StaticAccess.KEY_GUEST_ID, guestList.get(pos).getId());
-                intentadd.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
-                intentadd.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
-                context.startActivity(intentadd);
+                Intent intentEdit = new Intent(context, AddParticipantActivity.class);
+                intentEdit.putExtra(StaticAccess.KEY_GUEST_ID, guestList.get(pos).getId());
+                intentEdit.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
+                intentEdit.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                
+                context.startActivity(intentEdit);
 
             }
         });
@@ -100,6 +101,7 @@ public class GuestThreeAdapter extends BaseAdapter {
         holder.ibtnAddGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
