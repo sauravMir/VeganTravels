@@ -267,7 +267,6 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
                         mGuest.setGuestUniqueId(insertCruise.getCruizeUniqueId());
                         insertGuest = databaseManager.insertGuestTemporary(mGuest);
 
-
                         if (insertGuest != null)
                             insertCabinPayment.setCabinNumber(insertGuest.getCabinNumber());
                         insertCabinPayment.setGuestVT_Id(insertGuest.getGuestVT_Id());
@@ -317,6 +316,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             if (cruizeID != -1&&cruizeUniqueID!=-1) {
 
 
+
             }
             return null;
         }
@@ -325,6 +325,8 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         protected void onPostExecute(Void aVoid) {
             progressDialog.dismiss();
             Toast.makeText(activity, "insert Success", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(activity, MainActivity.class));
+            finishTheActivity();
             super.onPostExecute(aVoid);
         }
     }
