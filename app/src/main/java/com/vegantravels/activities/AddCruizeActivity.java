@@ -2,10 +2,8 @@ package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,20 +20,15 @@ import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.model.XlsModel;
-import com.vegantravels.utilities.FileUtils;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
-
-import static android.content.ContentValues.TAG;
 
 public class AddCruizeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -220,9 +213,6 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
     private void showFileChooser() {
         Intent intent = new Intent(this, FilePickerActivity.class);
-        intent.putExtra(FilePickerActivity.ARG_FILTER, Pattern.compile(".*\\.txt$"));
-        /*intent.putExtra(FilePickerActivity.ARG_DIRECTORIES_FILTER, true);
-        intent.putExtra(FilePickerActivity.ARG_SHOW_HIDDEN, true);*/
         startActivityForResult(intent, 1);
     }
 
@@ -234,34 +224,13 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 
         if (requestCode == 1 && resultCode == RESULT_OK) {
             String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            tvCabinUpload.setText(filePath);
+            path = filePath;
+            setXLS(path);
             // Do anything with file
         }
 
 
-        /*switch (requestCode) {
-           *//* case FILE_SELECT_CODE:
-                if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    Log.d(TAG, "File Uri: " + uri.toString());
-                    // Get the path
-
-                    try {
-                        path = FileUtils.getPath(this, uri);
-                        tvCabinUpload.setText(path);
-                        setXLS(path); // read data and fill arraylist
-                    } catch (URISyntaxException e) {
-                        e.printStackTrace();
-                        Log.d(TAG, "File Path: " + e.toString());
-                    }
-                    Log.d(TAG, "File Path: " + path);
-                    // Get the file instance
-                    // File file = new File(path);
-                    // Initiate the upload
-                }
-                break;*//*
-
-        }*/
         super.onActivityResult(requestCode, resultCode, data);
     }
 

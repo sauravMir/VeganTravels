@@ -52,7 +52,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         databaseManager = new DatabaseManager(activity);
 //        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();
-        allDialog = new AllDialog(activity);
+        allDialog = new AllDialog(new AddCruizeActivity());
 
         //Connection Https or http Instances
 //        apiInterface = APIClient.getClient().create(APIInterface.class);

@@ -45,7 +45,7 @@ public class GuestListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest_list);
         activity = this;
-        allDialog = new AllDialog(activity);
+       // allDialog = new AllDialog(GuestListActivity.this);
         lvGuest = (ListView) findViewById(R.id.lvGuest);
 
         ibtnSearch = (ImageButton) findViewById(R.id.ibtnSearch);

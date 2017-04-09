@@ -1,12 +1,8 @@
 package com.vegantravels.dialog;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -18,8 +14,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
-import com.vegantravels.activities.GuestListTwoActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
 import com.vegantravels.dao.Guests_TMP;
@@ -37,14 +33,25 @@ import java.util.Date;
  */
 
 public class AllDialog {
-    Activity activity;
-    EditText edtCabinNumber, edtCabinName;
-    GuestListThreeActivity guestListThreeActivity;
-    IDatabaseManager databaseManager;
 
-    public AllDialog(Activity activity) {
-        this.activity = activity;
-        guestListThreeActivity =(GuestListThreeActivity)activity;
+    EditText edtCabinNumber, edtCabinName;
+    IDatabaseManager databaseManager;
+    GuestListThreeActivity guestListThreeActivity;
+    AddCruizeActivity addCruizeActivity;
+    ViewExcursionActivity viewExcursionActivity;
+
+    public AllDialog(AddCruizeActivity activity) {
+        addCruizeActivity = activity;
+        databaseManager = new DatabaseManager(activity);
+    }
+
+    public AllDialog(ViewExcursionActivity activity) {
+        viewExcursionActivity = activity;
+        databaseManager = new DatabaseManager(activity);
+    }
+
+    public AllDialog(GuestListThreeActivity activity) {
+        guestListThreeActivity = activity;
         databaseManager = new DatabaseManager(activity);
     }
 
@@ -129,7 +136,7 @@ public class AllDialog {
 
 
     public void dialogForSearch() {
-        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        final Dialog dialog = new Dialog(guestListThreeActivity, R.style.CustomAlertDialog);
         dialog.setContentView(R.layout.dialog_search);
         dialog.setCancelable(false);
         edtCabinNumber = (EditText) dialog.findViewById(R.id.edtCabinNumber);
@@ -161,13 +168,13 @@ public class AllDialog {
                 } else if (edtCabinNumber.getText().length() <= 0 && edtCabinName.getText().length() > 0) {
                     guestListThreeActivity.guestList.clear();
                     guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString());
-                }else {
+                } else {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList=databaseManager.listGuestByUniqueId(guestListThreeActivity.uniqueId);
+                    guestListThreeActivity.guestList = databaseManager.listGuestByUniqueId(guestListThreeActivity.uniqueId);
                 }
 
                 if (guestListThreeActivity.guestList != null) {
-                    guestListThreeActivity.adapter = new GuestThreeAdapter(activity, guestListThreeActivity.guestList, guestListThreeActivity.date);
+                    guestListThreeActivity.adapter = new GuestThreeAdapter(guestListThreeActivity, guestListThreeActivity.guestList, guestListThreeActivity.date);
                     guestListThreeActivity.lstGuest.setAdapter(guestListThreeActivity.adapter);
                 }
 
@@ -176,14 +183,14 @@ public class AllDialog {
             }
         });
 
-        DialogNavBarHide.navBarHide(activity, dialog);
+        DialogNavBarHide.navBarHide(guestListThreeActivity, dialog);
     }
 
 
     ///payment success dialog
     public void paymentCompletionDialog(String text) {
 
-        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        final Dialog dialog = new Dialog(viewExcursionActivity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.confirm_dialog);
         dialog.setCancelable(true);
@@ -205,7 +212,7 @@ public class AllDialog {
                 dialog.dismiss();
             }
         });
-        DialogNavBarHide.navBarHide(activity, dialog);
+        DialogNavBarHide.navBarHide(viewExcursionActivity, dialog);
 
     }
 
@@ -217,7 +224,7 @@ public class AllDialog {
         int mm = calendar.get(Calendar.MONTH);
         int dd = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePicker = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog datePicker = new DatePickerDialog(addCruizeActivity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
@@ -230,12 +237,12 @@ public class AllDialog {
             }
         }, yy, mm, dd);
 
-        DialogNavBarHide.navBarHide(activity, datePicker);
+        DialogNavBarHide.navBarHide(addCruizeActivity, datePicker);
     }
 
     public void setCustomTime(final TextView txt) {
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(activity, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(addCruizeActivity, new TimePickerDialog.OnTimeSetListener() {
 
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -250,7 +257,7 @@ public class AllDialog {
             }
         }, 10, 20, true);
 
-        DialogNavBarHide.navBarHide(activity, timePickerDialog);
+        DialogNavBarHide.navBarHide(addCruizeActivity, timePickerDialog);
     }
 
 
