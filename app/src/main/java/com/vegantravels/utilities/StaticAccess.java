@@ -60,4 +60,8 @@ public class StaticAccess {
     public static final String KEY_PARTICIPANT_GUEST_NAME = "guestName";
     public static final String KEY_PARTICIPANT_GUEST_FIRST_NAME = "guestFName";
     public static final String KEY_PARTICIPANT_GUEST_LAST_NAME = "guestLName";
+    public static final int PAID_ALLREADY = 1;
+    public static final int CASH_ON_BOARD = 2;
+    public static final int CREDIT_CARD = 3;
+    public static final int COMPLEMENTARY = 4;
 }

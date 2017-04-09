@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.SpinnerCustomAdapter;
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
@@ -44,6 +46,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     ArrayList<Excursions_TMP> arrExcursion;
     private long cruizeUniqueID = -1;
     private String fDate = "";
+    private Cabins_TMP cabins_tmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,18 +98,45 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             progressDialog.dismiss();
     }
 
+    private int numOfGuest = -1;
 
     private void fillGuestNumberData() {
         String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
-        ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
+        final ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
         spnGuestNumber.setAdapter(adapterGuest);
+        spnGuestNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                numOfGuest = Integer.parseInt(adapterGuest.getItem(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
     }
 
+    private long excrusionId = -1;
+
     private void fillExcursionData() {
         spinnerCustomAdapter = new SpinnerCustomAdapter(activity, arrExcursion);
         spnExcursion.setAdapter(spinnerCustomAdapter);
+        spnExcursion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (arrExcursion != null) {
+                    long excrusionId = arrExcursion.get(i).getExcursionUniqueId();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -123,7 +153,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.btnConfirm:
-                allDialog.confirmDialog("Are you sure? You want to confirm");
+                allDialog.confirmDialog("Are you sure? You want to confirm", this);
                 break;
             case R.id.ibtnBack:
                 if (cruizeUniqueID != -1) {
@@ -135,6 +165,22 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 }
                 break;
         }
+    }
+
+    public void bookedExcursion(int paymentStatus) {
+        cabins_tmp = new Cabins_TMP();
+        cabins_tmp.setCruizeId(tempGuestV.getGuestUniqueId());
+        cabins_tmp.setGuestVT_Id(tempGuestV.getGuestVT_Id());
+        cabins_tmp.setPaymentStatus(paymentStatus);
+        if (numOfGuest != -1) {
+            cabins_tmp.setOccupancy(numOfGuest);
+        }
+
+        if (excrusionId != -1) {
+            cabins_tmp.setExcursion(excrusionId);
+        }
+        new BookedExcursionGuestAsyncTask().execute();
+
     }
 
 
@@ -188,4 +234,45 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
         }
     }
+
+    class BookedExcursionGuestAsyncTask extends AsyncTask<Void, Void, Void> {
+        boolean success = false;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            if (cabins_tmp != null) {
+                if (databaseManager.hasGuestExcursion(tempGuestV.getGuestVT_Id())>0) {
+                    databaseManager.updateCabinTemp(cabins_tmp);
+
+                } else {
+                    databaseManager.insertCabinTemp(cabins_tmp);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideProgressDialog();
+            if (tempGuestV != null) {
+                tvGuestName.setText(tempGuestV.getLName() + ",  " + tempGuestV.getFname());
+                tvCabinNo.setText(String.valueOf(tempGuestV.getCabinNumber()));
+            }
+            if (arrExcursion != null) {
+                fillExcursionData();
+            }
+
+        }
+    }
+
+
 }

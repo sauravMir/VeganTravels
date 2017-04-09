@@ -14,11 +14,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
+import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
@@ -44,7 +44,7 @@ public class AllDialog {
     }
 
     ///confirm dialog
-    public void confirmDialog(String title) {
+    public void confirmDialog(String title, final ViewExcursionActivity activity) {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -65,7 +65,7 @@ public class AllDialog {
         btnOkPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paymentDialog();
+                paymentDialog(activity);
                 dialog.dismiss();
             }
         });
@@ -74,7 +74,7 @@ public class AllDialog {
     }
 
     /// payment dialog
-    public void paymentDialog() {
+    public void paymentDialog(final ViewExcursionActivity activity) {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -102,12 +102,17 @@ public class AllDialog {
             public void onClick(View v) {
                 int selectedId = rdGrp.getCheckedRadioButtonId();
                 if (selectedId == R.id.rbPaidAlReady) {
-                    Toast.makeText(activity, "paid on board", Toast.LENGTH_SHORT).show();
+                    activity.bookedExcursion(StaticAccess.PAID_ALLREADY);
+
                 } else if (selectedId == R.id.rbCashOnBoard) {
+                    activity.bookedExcursion(StaticAccess.CASH_ON_BOARD);
 
                 } else if (selectedId == R.id.rbCreditCard) {
+                    activity.bookedExcursion(StaticAccess.CREDIT_CARD);
 
                 } else if (selectedId == R.id.rbComplementary) {
+                    activity.bookedExcursion(StaticAccess.COMPLEMENTARY);
+
 
                 }
             }

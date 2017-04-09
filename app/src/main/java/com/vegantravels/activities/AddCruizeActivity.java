@@ -300,7 +300,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
 //                        insertCabinPayment.setNumberOfGuest(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
                         // here is CruiseId
                         insertCabinPayment.setCruizeId(insertCruise.getCruizeUniqueId());
-                        insertCabinPayment.setCabinUniqueId(insertCruise.getCruizeUniqueId());
+                        insertCabinPayment.setCabinUniqueId(System.currentTimeMillis());
 //                        insertCabinPayment.setDeviceDate("d");
 
                         databaseManager.insertCabinTemp(insertCabinPayment);
