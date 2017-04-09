@@ -34,8 +34,8 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
     private GuestListThreeActivity activity;
     private ImageButton ibtnBack, ibtnSearch, ibtnAddGuest;
     private AllDialog allDialog;
-    long uniqueId, cruiseId;
-    String date;
+    public long uniqueId, cruiseId;
+    public String date;
     ProgressDialog progressDialog;
     IDatabaseManager databaseManager;
 

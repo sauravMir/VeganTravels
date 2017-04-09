@@ -396,13 +396,49 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
-    public List<Guests_TMP> getSearchByNameCabin(String name) {
+    public List<Guests_TMP> getSearchByNameCabin(String name,String cabinNumber) {
         List<Guests_TMP> guestsList = null;
         try {
             openReadableDb();
             Guests_TMPDao guestTempDao = daoSession.getGuests_TMPDao();
             QueryBuilder<Guests_TMP> queryBuilder = guestTempDao.queryBuilder().whereOr(Guests_TMPDao.Properties.Fname.like("%" + name + "%"),
-                    Guests_TMPDao.Properties.LName.like("%" + name + "%"), Guests_TMPDao.Properties.CabinNumber.like("%" + name + "%")).orderAsc(Guests_TMPDao.Properties.CabinNumber);
+                    Guests_TMPDao.Properties.LName.like("%" + name + "%"), Guests_TMPDao.Properties.CabinNumber.like("%" + cabinNumber + "%")).orderAsc(Guests_TMPDao.Properties.CabinNumber);
+            guestsList = queryBuilder.list();
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (guestsList != null) {
+            return guestsList = new ArrayList<>(guestsList);
+        }
+        return guestsList;
+    }
+
+    @Override
+    public List<Guests_TMP> getSearchByName(String name) {
+        List<Guests_TMP> guestsList = null;
+        try {
+            openReadableDb();
+            Guests_TMPDao guestTempDao = daoSession.getGuests_TMPDao();
+            QueryBuilder<Guests_TMP> queryBuilder = guestTempDao.queryBuilder().where(Guests_TMPDao.Properties.LName.like("%" + name + "%"));
+            guestsList = queryBuilder.list();
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (guestsList != null) {
+            return guestsList = new ArrayList<>(guestsList);
+        }
+        return guestsList;
+    }
+
+    @Override
+    public List<Guests_TMP> getSearchByCabin(String CabinNum) {
+        List<Guests_TMP> guestsList = null;
+        try {
+            openReadableDb();
+            Guests_TMPDao guestTempDao = daoSession.getGuests_TMPDao();
+            QueryBuilder<Guests_TMP> queryBuilder = guestTempDao.queryBuilder().where(Guests_TMPDao.Properties.CabinNumber.like("%" + CabinNum + "%")).orderAsc(Guests_TMPDao.Properties.CabinNumber);
             guestsList = queryBuilder.list();
             daoSession.clear();
         } catch (Exception e) {

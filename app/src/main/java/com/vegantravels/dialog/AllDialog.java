@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -19,11 +21,14 @@ import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.GuestListTwoActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
+import com.vegantravels.adapter.GuestThreeAdapter;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -39,7 +44,7 @@ public class AllDialog {
 
     public AllDialog(Activity activity) {
         this.activity = activity;
-        guestListThreeActivity = new GuestListThreeActivity();
+        guestListThreeActivity =(GuestListThreeActivity)activity;
         databaseManager = new DatabaseManager(activity);
     }
 
@@ -142,8 +147,30 @@ public class AllDialog {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, GuestListTwoActivity.class);
-                activity.startActivity(intent);
+//
+//                Intent intent = new Intent(activity, GuestListTwoActivity.class);
+//                activity.startActivity(intent);
+
+                if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() > 0) {
+                    guestListThreeActivity.guestList.clear();
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByNameCabin(edtCabinName.getText().toString(), edtCabinNumber.getText().toString());
+
+                } else if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() <= 0) {
+                    guestListThreeActivity.guestList.clear();
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByCabin(edtCabinNumber.getText().toString());
+                } else if (edtCabinNumber.getText().length() <= 0 && edtCabinName.getText().length() > 0) {
+                    guestListThreeActivity.guestList.clear();
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString());
+                }else {
+                    guestListThreeActivity.guestList.clear();
+                    guestListThreeActivity.guestList=databaseManager.listGuestByUniqueId(guestListThreeActivity.uniqueId);
+                }
+
+                if (guestListThreeActivity.guestList != null) {
+                    guestListThreeActivity.adapter = new GuestThreeAdapter(activity, guestListThreeActivity.guestList, guestListThreeActivity.date);
+                    guestListThreeActivity.lstGuest.setAdapter(guestListThreeActivity.adapter);
+                }
+
 
                 dialog.dismiss();
             }
@@ -152,51 +179,6 @@ public class AllDialog {
         DialogNavBarHide.navBarHide(activity, dialog);
     }
 
-
-   /* public void searchGuestList() {
-        edtCabinNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (selectedPackType.equals(TaskType.All)) {
-                    guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString());
-                } else {
-                    guestListThreeActivity.guestList = (ArrayList<Guest>) databaseManager.getTaskPacksByName(edtCabinNumber.getText().toString(), selectedPackType);
-                }
-
-                int cabinName = edtCabinName.getText().toString().length();
-                int cabinNumber = edtCabinNumber.getText().toString().length();
-
-               if(cabinName>0 && cabinNumber ==0){
-                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinName.getText().toString())
-               }else if(cabinNumber>0 && cabinName==0){
-                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString())
-               }else if(cabinName>0 && cabinNumber>0){
-                   guestListThreeActivity.guestList = databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString())
-               }else if(cabinName==0 && cabinNumber==0){
-                   Toast.makeText(activity, "Please write something for search", Toast.LENGTH_SHORT).show();
-               }
-
-                guestListThreeActivity.guestList = (ArrayList<Guests>) databaseManager.getSearchByNameCabin(edtCabinNumber.getText().toString());
-
-                if (guestListThreeActivity.guestList  != null) {
-                    guestListThreeActivity.adapter = new GuestThreeAdapter(activity, guestListThreeActivity.guestList);
-                    guestListThreeActivity.lstGuest.setAdapter(guestListThreeActivity.adapter);
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-    }
-*/
 
     ///payment success dialog
     public void paymentCompletionDialog(String text) {
