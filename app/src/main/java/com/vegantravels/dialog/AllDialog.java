@@ -3,6 +3,7 @@ package com.vegantravels.dialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -56,6 +57,7 @@ public class AllDialog {
         guestListThreeActivity = activity;
         databaseManager = new DatabaseManager(activity);
     }
+
     public AllDialog(AddExcursionActivity activity) {
         addExcursionActivity = activity;
         databaseManager = new DatabaseManager(activity);
@@ -198,7 +200,7 @@ public class AllDialog {
 
 
     ///payment success dialog
-    public void paymentCompletionDialog(String text) {
+    public void paymentCompletionDialog(String text, final ViewExcursionActivity activity) {
 
         final Dialog dialog = new Dialog(viewExcursionActivity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -213,6 +215,11 @@ public class AllDialog {
         btnCancelPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, activity.cruizeUniqueID);
+                guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, activity.fDate);
+                activity.startActivity(guestintent);
+                activity.finish();
                 dialog.dismiss();
             }
         });
@@ -271,9 +278,6 @@ public class AllDialog {
     }
 
 
-
-
-
     public void setCustomDateForEx(final TextView txt, final String flag) {
 
         final Calendar calendar = Calendar.getInstance();
@@ -316,7 +320,6 @@ public class AllDialog {
 
         DialogNavBarHide.navBarHide(addExcursionActivity, timePickerDialog);
     }
-
 
 
     ///confirm dialog

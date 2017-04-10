@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.vegantravels.R;
@@ -51,6 +52,7 @@ public class ExcursionManagementAdapter extends BaseAdapter {
         TextView tvManagementName;
         TextView tvManagementShipName;
         TextView tvManagementDate;
+        Button btnFinance;
 
     }
 
@@ -63,7 +65,7 @@ public class ExcursionManagementAdapter extends BaseAdapter {
             holder.tvManagementName = (TextView) convertView.findViewById(R.id.tvManagementName);
             holder.tvManagementShipName = (TextView) convertView.findViewById(R.id.tvManagementShipName);
             holder.tvManagementDate = (TextView) convertView.findViewById(R.id.tvManagementDate);
-
+            holder.btnFinance = (Button) convertView.findViewById(R.id.btnFinance);
             convertView.setTag(holder);
 
         } else {
@@ -72,6 +74,13 @@ public class ExcursionManagementAdapter extends BaseAdapter {
         holder.tvManagementName.setText(cruisesManagementList.get(i).getName());
         holder.tvManagementShipName.setText(cruisesManagementList.get(i).getShipName());
         holder.tvManagementDate.setText(cruisesManagementList.get(i).getFrom() + "  -  " + cruisesManagementList.get(i).getTo());
+
+        holder.btnFinance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return convertView;
     }

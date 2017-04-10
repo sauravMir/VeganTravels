@@ -46,8 +46,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     SpinnerCustomAdapter spinnerCustomAdapter;
 
     ArrayList<Excursions_TMP> arrExcursion;
-    private long cruizeUniqueID = -1;
-    private String fDate = "";
+    public long cruizeUniqueID = -1;
+    public String fDate = "";
     private Cabins_TMP cabins_tmp;
 
     @Override
@@ -122,7 +122,6 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    
 
     private long excrusionId = -1;
 
@@ -160,6 +159,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             case R.id.btnConfirm:
                 allDialog.confirmDialog("Are you sure? You want to confirm", this);
                 break;
+
             case R.id.ibtnBack:
                 if (cruizeUniqueID != -1) {
                     Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
@@ -283,20 +283,22 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 Toast.makeText(activity, "update", Toast.LENGTH_SHORT).show();
             }
             if (insertedCabin_Tmp != null) {
-                Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
+
+
                 if (cruizeUniqueID != -1) {
-                    Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                    allDialog.paymentCompletionDialog("Do you want to add another excursion to cabin?", activity);
+
+                  /*  Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
                     guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
                     guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                     startActivity(guestintent);
-                    finishTheActivity();
+                    finishTheActivity();*/
                 }
 
             }
 
         }
     }
-
-
 
 }
