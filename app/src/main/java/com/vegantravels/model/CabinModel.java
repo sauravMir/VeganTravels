@@ -11,9 +11,10 @@ public class CabinModel {
     String ExcursionName;
     String ExcursionDate;
     String ExcursionPrice;
-    int people;
+    int People;
     int Status;
     String VTId;
+
 
     public String getExcursionPrice() {
         return ExcursionPrice;
@@ -23,6 +24,7 @@ public class CabinModel {
         ExcursionPrice = excursionPrice;
     }
 
+
     public String getVTId() {
         return VTId;
     }
@@ -30,7 +32,6 @@ public class CabinModel {
     public void setVTId(String VTId) {
         this.VTId = VTId;
     }
-
 
     public int getCabinNum() {
         return CabinNum;
@@ -73,11 +74,11 @@ public class CabinModel {
     }
 
     public int getPeople() {
-        return people;
+        return People;
     }
 
     public void setPeople(int people) {
-        this.people = people;
+        this.People = people;
     }
 
     public int getStatus() {
