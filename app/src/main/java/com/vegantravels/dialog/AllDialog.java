@@ -121,15 +121,19 @@ public class AllDialog {
                 int selectedId = rdGrp.getCheckedRadioButtonId();
                 if (selectedId == R.id.rbPaidAlReady) {
                     activity.bookedExcursion(StaticAccess.PAID_ALLREADY);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbCashOnBoard) {
                     activity.bookedExcursion(StaticAccess.CASH_ON_BOARD);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbCreditCard) {
                     activity.bookedExcursion(StaticAccess.CREDIT_CARD);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbComplementary) {
                     activity.bookedExcursion(StaticAccess.COMPLEMENTARY);
+                    dialog.dismiss();
 
 
                 }

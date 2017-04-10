@@ -284,6 +284,13 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             }
             if (insertedCabin_Tmp != null) {
                 Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
+                if (cruizeUniqueID != -1) {
+                    Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                    startActivity(guestintent);
+                    finishTheActivity();
+                }
 
             }
 

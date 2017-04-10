@@ -226,12 +226,12 @@ public class ExportExcursionAdapter extends BaseAdapter {
             sheet.addCell(label4);
 
 
-            for (int i = 1; i < guestList.size(); i++) {
-
-                Label m_idValue1 = new Label(0, i, String.valueOf(guestList.get(i).getGuestVT_Id()));
-                Label m_idValue2 = new Label(1, i, guestList.get(i).getLName());
-                Label m_idValue3 = new Label(2, i, guestList.get(i).getFname());
-                Label m_idValue4 = new Label(3, i, String.valueOf(guestList.get(i).getCabinNumber()));
+            for (int i = 0; i < guestList.size(); i++) {
+                int j = i + 1;
+                Label m_idValue1 = new Label(0, j, String.valueOf(guestList.get(i).getGuestVT_Id()));
+                Label m_idValue2 = new Label(1, j, guestList.get(i).getLName());
+                Label m_idValue3 = new Label(2, j, guestList.get(i).getFname());
+                Label m_idValue4 = new Label(3, j, String.valueOf(guestList.get(i).getCabinNumber()));
                 sheet.addCell(m_idValue1);
                 sheet.addCell(m_idValue2);
                 sheet.addCell(m_idValue3);

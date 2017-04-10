@@ -51,10 +51,10 @@ public class ExportActivity extends BaseActivity {
 
     }
 
-    public String addspace(int i){
-        String res="";
-        res=String.valueOf(i)+". ";
-        return  res;
+    public String addspace(int i) {
+        String res = "";
+        res = String.valueOf(i) + ". ";
+        return res;
 
     }
 
@@ -101,11 +101,11 @@ public class ExportActivity extends BaseActivity {
             sheet.addCell(label7);
             sheet.addCell(label8);
 
-            int rowIndex=1;
+            int rowIndex = 1;
 
             for (int i = 0; i < finalList.size(); i++) {
                 //if person did not add excursion then no calculations needed
-                if(finalList.get(i).getExcursionName()!=null) {
+                if (finalList.get(i).getExcursionName() != null) {
                     Label m_idValue1 = new Label(0, rowIndex, String.valueOf(finalList.get(i).getCabinNum()));
                     Label m_idValue2 = new Label(1, rowIndex, finalList.get(i).getLName());
                     Label m_idValue3 = new Label(2, rowIndex, finalList.get(i).getFName());
@@ -121,7 +121,7 @@ public class ExportActivity extends BaseActivity {
                         Label excursionPrice = new Label(6, rowIndex, String.valueOf((finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j))));
                         Label payment = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(j)));
 
-                        grandTotal+=finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j);
+                        grandTotal += finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j);
 
                         sheet.addCell(excursionName);
                         sheet.addCell(excursionDate);
@@ -133,7 +133,7 @@ public class ExportActivity extends BaseActivity {
                     }
                     //adding total info
                     Label GTotal = new Label(3, rowIndex, "Grand Total");
-                    Label total = new Label(6, rowIndex, String.valueOf(grandTotal)+StaticAccess.CURRENCY);
+                    Label total = new Label(6, rowIndex, String.valueOf(grandTotal) + StaticAccess.CURRENCY);
                     Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
 
                     sheet.addCell(GTotal);
@@ -179,7 +179,7 @@ public class ExportActivity extends BaseActivity {
                 if (cabinWiseCalculationmap.containsKey(cabin)) {
                     calculation = cabinWiseCalculationmap.get(cabin);
                 }
-                if (cabinList.get(i).getExcursionPrice() != null) {
+                if (!cabinList.get(i).getExcursionPrice().equals("")) {
                     calculation = calculation + Integer.valueOf(cabinList.get(i).getExcursionPrice().trim())
                             * cabinList.get(i).getPeople();
                 }
@@ -231,7 +231,7 @@ public class ExportActivity extends BaseActivity {
                     finalmodel.setFName(m.getFName());
                     finalmodel.setLName(m.getLName());
                     finalmodel.setVTId(m.getVTId());
-                    if (m.getExcursionName() != null) {
+                    if (!m.getExcursionName().equals("") ) {
                         finalmodel.setExcursionName(m.getExcursionName());
                         finalmodel.setExcursionDate(m.getExcursionDate());
                         finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
@@ -315,6 +315,7 @@ public class ExportActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             cabinList = arrCabinModel;
+            sortCabin();
             hideProgressDialog();
             Toast.makeText(activity, String.valueOf(arrCabinModel.size()), Toast.LENGTH_LONG).show();
         }
