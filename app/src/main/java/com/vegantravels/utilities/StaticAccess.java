@@ -64,6 +64,7 @@ public class StaticAccess {
     public static final int CREDIT_CARD = 3;
     public static final int COMPLEMENTARY = 4;
 
+
     public static String getPaymentByName(int payment) {
         String paymentValue = "";
         switch (payment) {
@@ -82,5 +83,18 @@ public class StaticAccess {
         }
         return paymentValue;
     }
+
+    //// financial xls columns names
+    public static final String FINANCIAL_STATUS_PER_CABIN = "FINANCIAL STATUS PER CABIN";
+    public static final String KEY_CABIN_NUMBER = "CABIN NO";
+    public static final String KEY_LAST_NAME = "LAST NAME";
+    public static final String KEY_FIRST_NAME = "FIRST NAME";
+    public static final String KEY_EXC_BOOKED = "EXC BOOKED";
+    public static final String KEY_EXC_DATE = "EXC DATE";
+    public static final String KEY_PPL = "PPL";
+    public static final String KEY_TOTAL = "TOTAL";
+    public static final String KEY_PAYMENT = "PAYMENT";
+
+
 
 }
