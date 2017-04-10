@@ -48,11 +48,12 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ibtnBackExportExcursion:
-                startActivity(new Intent(activity, ExportActivity.class));
+                startActivity(new Intent(activity, ManagementActivity.class));
                 finishTheActivity();
                 break;
         }
     }
+    
 
     class ExportExcursionAsync extends AsyncTask<Void, Void, Void> {
 
