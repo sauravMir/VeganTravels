@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.GuestListThreeActivity;
@@ -24,7 +25,9 @@ import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import jxl.Workbook;
@@ -131,7 +134,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
         holder.ibtnExportExcursionPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GuestSyncAsyncTask guestSyncAsyncTask = new GuestSyncAsyncTask(excursionsTmpsList.get(position).getCruzeId());
+                GuestSyncAsyncTask guestSyncAsyncTask = new GuestSyncAsyncTask(excursionsTmpsList.get(position).getCruzeId(), excursionsTmpsList.get(position).getTitle());
                 guestSyncAsyncTask.execute();
             }
         });
@@ -147,9 +150,12 @@ public class ExportExcursionAdapter extends BaseAdapter {
 
     class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
         private long cruizeUniqID = -1;
+        private String excursionName;
+        private boolean isGenerated = false;
 
-        public GuestSyncAsyncTask(long cruizeUniqID) {
+        public GuestSyncAsyncTask(long cruizeUniqID, String excursionName) {
             this.cruizeUniqID = cruizeUniqID;
+            this.excursionName = excursionName;
         }
 
         @Override
@@ -163,16 +169,22 @@ public class ExportExcursionAdapter extends BaseAdapter {
             guestList = new ArrayList<>();
             if (cruizeUniqID != -1) {
                 guestList = databaseManager.listGuestByUniqueId(cruizeUniqID);
-                exportXls("_guest_list", guestList);
+                long msTime = System.currentTimeMillis();
+                Date curDateTime = new Date(msTime);
+                SimpleDateFormat formatter = new SimpleDateFormat("MM'_'dd'_'y_hh:mm");
+                String xlsDate = formatter.format(curDateTime);
+                isGenerated = exportXls(xlsDate +"_"+ excursionName, guestList);
             }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
-            hideProgressDialog();
             super.onPostExecute(aVoid);
+            hideProgressDialog();
+            if (isxlsGenerated) {
+                Toast.makeText(context, "XLS Generated!", Toast.LENGTH_SHORT).show();
+            }
 
         }
     }
@@ -189,7 +201,9 @@ public class ExportExcursionAdapter extends BaseAdapter {
             progressDialog.dismiss();
     }
 
-    public void exportXls(String xlsName, ArrayList<Guests_TMP> guestList) {
+    private boolean isxlsGenerated = false;
+
+    public boolean exportXls(String xlsName, ArrayList<Guests_TMP> guestList) {
         final String fileName = xlsName + ".xls";
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
@@ -201,6 +215,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
         }
 
         //file path
+
         File file = new File(directory, fileName);
         WorkbookSettings wbSettings = new WorkbookSettings();
         wbSettings.setLocale(new Locale("en", "EN"));
@@ -211,7 +226,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
             m_workbook = Workbook.createWorkbook(file, wbSettings);
 
             // this will create new new sheet in workbook
-            WritableSheet sheet = m_workbook.createSheet(StaticAccess.FINANCIAL_STATUS_PER_CABIN, 0);
+            WritableSheet sheet = m_workbook.createSheet(StaticAccess.GUEST_LIST_PER_EXCURSION, 0);
 
             // this will add label in excel sheet
             Label label1 = new Label(0, 0, StaticAccess.KEY_VT_ID);
@@ -241,9 +256,11 @@ public class ExportExcursionAdapter extends BaseAdapter {
 
             m_workbook.write();
             m_workbook.close();
+            isxlsGenerated = true;
         } catch (Exception e) {
 
         }
+        return isxlsGenerated;
 
     }
 
