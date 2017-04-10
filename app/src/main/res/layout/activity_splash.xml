@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/hundred_twenty"
+        android:layout_marginTop="@dimen/seventy"
         android:text="@string/shore_excursion_management"
         android:textColor="@color/black"
         android:textSize="@dimen/thirty"
