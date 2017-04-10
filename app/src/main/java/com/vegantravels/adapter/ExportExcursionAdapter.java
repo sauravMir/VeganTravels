@@ -61,6 +61,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
         TextView tvExportExcursionCruizeName;
         ImageButton ibtnExportExcursionView;
         ImageButton ibtnExportExcursionPrint;
+        ImageButton ibtnExportExcursionDelete;
 
     }
 
@@ -78,6 +79,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
             holder.tvExportExcursionCruizeName = (TextView) convertView.findViewById(R.id.tvExportExcursionCruizeName);
             holder.ibtnExportExcursionView = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionView);
             holder.ibtnExportExcursionPrint = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionPrint);
+            holder.ibtnExportExcursionDelete = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionDelete);
 
             convertView.setTag(holder);
 
@@ -86,25 +88,27 @@ public class ExportExcursionAdapter extends BaseAdapter {
         }
         criuzes_tmp = databaseManager.getCruizeByCruizeUniqueID(excursionsTmpsList.get(i).getCruzeId());
 
-        if(criuzes_tmp != null)
+
         holder.tvExportExcursionDate.setText(String.valueOf(excursionsTmpsList.get(i).getFrom()));
         holder.tvExportExcursionTime.setText(String.valueOf(excursionsTmpsList.get(i).getTime()));
         holder.tvExportExcursionName.setText(String.valueOf(excursionsTmpsList.get(i).getTitle()));
         holder.tvExportExcursionPPP.setText(String.valueOf(excursionsTmpsList.get(i).getPrice()));
-        holder.tvExportExcursionCruizeName.setText(String.valueOf(criuzes_tmp.getName()));
-
+        if (criuzes_tmp != null) {
+            holder.tvExportExcursionCruizeName.setText(String.valueOf(criuzes_tmp.getName()));
+        }
         final int position = i;
 
         holder.ibtnExportExcursionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-                intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, criuzes_tmp.getId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + criuzes_tmp.getFrom() + "\n To :" + criuzes_tmp.getTo());
-                context.startActivity(intentGuest);
+                if (criuzes_tmp != null) {
+                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, criuzes_tmp.getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + criuzes_tmp.getFrom() + "\n To :" + criuzes_tmp.getTo());
+                    context.startActivity(intentGuest);
+                }
 
             }
         });
@@ -114,7 +118,12 @@ public class ExportExcursionAdapter extends BaseAdapter {
 
             }
         });
+        holder.ibtnExportExcursionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         return convertView;
     }

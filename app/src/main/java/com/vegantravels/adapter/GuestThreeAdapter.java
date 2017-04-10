@@ -13,6 +13,8 @@ import com.vegantravels.R;
 import com.vegantravels.activities.AddParticipantActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.dao.Guests_TMP;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -27,11 +29,13 @@ public class GuestThreeAdapter extends BaseAdapter {
     private ArrayList<Guests_TMP> guestList;
     private LayoutInflater layoutInflater;
     String fDate;
+    private IDatabaseManager databaseManager;
 
     public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList, String fDate) {
         this.context = context;
         this.guestList = guestsList;
         this.fDate = fDate;
+        databaseManager = new DatabaseManager(context);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -58,6 +62,7 @@ public class GuestThreeAdapter extends BaseAdapter {
         TextView tvCruiseDate;
         ImageButton ibtnEditGuest;
         ImageButton ibtnAddGuest;
+        ImageButton ibtnDeleteGuest;
 
     }
 
@@ -74,6 +79,7 @@ public class GuestThreeAdapter extends BaseAdapter {
             holder.tvCabinNo = (TextView) convertView.findViewById(R.id.tvCabinNo);
             holder.ibtnEditGuest = (ImageButton) convertView.findViewById(R.id.ibtnEditGuest);
             holder.ibtnAddGuest = (ImageButton) convertView.findViewById(R.id.ibtnAddGuest);
+            holder.ibtnDeleteGuest = (ImageButton) convertView.findViewById(R.id.ibtnDeleteGuest);
 
             convertView.setTag(holder);
 
@@ -107,6 +113,15 @@ public class GuestThreeAdapter extends BaseAdapter {
                 intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(pos).getGuestUniqueId());
                 intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 context.startActivity(intent);
+
+            }
+        });
+
+
+        holder.ibtnDeleteGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
 
             }
         });

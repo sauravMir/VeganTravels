@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.vegantravels.R;
 import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.dao.Excursions_TMP;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -26,11 +28,13 @@ public class ExcursionAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private String flag;
     private long cruizeUniqueID = -1;
+    private IDatabaseManager databaseManager;
 
     public ExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionList, long cruizeUniqueID) {
         this.context = context;
         this.excursionList = excursionList;
         this.cruizeUniqueID = cruizeUniqueID;
+        databaseManager = new DatabaseManager(context);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -57,6 +61,7 @@ public class ExcursionAdapter extends BaseAdapter {
         TextView tvExcursionPPP;
         TextView tvExcursionMaxGst;
         ImageButton ibtnExcursionEdit;
+        ImageButton ibtnExcursionDelete;
 
     }
 
@@ -72,6 +77,7 @@ public class ExcursionAdapter extends BaseAdapter {
             holder.tvExcursionPPP = (TextView) convertView.findViewById(R.id.tvExcursionPPP);
             holder.tvExcursionMaxGst = (TextView) convertView.findViewById(R.id.tvExcursionMaxGst);
             holder.ibtnExcursionEdit = (ImageButton) convertView.findViewById(R.id.ibtnExcursionEdit);
+            holder.ibtnExcursionDelete = (ImageButton) convertView.findViewById(R.id.ibtnExcursionDelete);
 
             convertView.setTag(holder);
 
@@ -93,6 +99,14 @@ public class ExcursionAdapter extends BaseAdapter {
                 edtiIntent.putExtra(StaticAccess.KEY_EXCURSION_ID, excursionList.get(position).getId());
                 edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
                 context.startActivity(edtiIntent);
+            }
+        });
+
+
+        holder.ibtnExcursionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 

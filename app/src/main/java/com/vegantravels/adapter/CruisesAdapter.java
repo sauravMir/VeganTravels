@@ -16,6 +16,8 @@ import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.ExcursionListActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -29,11 +31,13 @@ public class CruisesAdapter extends BaseAdapter {
     private ArrayList<Criuzes_TMP> cruisesList;
     private LayoutInflater inflater;
     private String flag;
+    private IDatabaseManager databaseManager;
 
     public CruisesAdapter(Context context, ArrayList<Criuzes_TMP> cruisesList, String flag) {
         this.context = context;
         this.cruisesList = cruisesList;
         this.flag = flag;
+        databaseManager = new DatabaseManager(context);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -60,6 +64,7 @@ public class CruisesAdapter extends BaseAdapter {
         ImageButton btnEdit;
         ImageButton ibtnAddCruize;
         ImageButton btnExCursionManager;
+        ImageButton btnExCursionDelete;
         LinearLayout llbtnLst;
 
     }
@@ -76,6 +81,8 @@ public class CruisesAdapter extends BaseAdapter {
             holder.btnEdit = (ImageButton) convertView.findViewById(R.id.btnEdit);
             holder.ibtnAddCruize = (ImageButton) convertView.findViewById(R.id.ibtnAddCruize);
             holder.btnExCursionManager = (ImageButton) convertView.findViewById(R.id.btnExCursionManager);
+            holder.btnExCursionDelete = (ImageButton) convertView.findViewById(R.id.btnExCursionDelete);
+
             holder.llbtnLst = (LinearLayout) convertView.findViewById(R.id.llbtnLst);
             if (flag == StaticAccess.EXCURSION_MANAGEMENT) {
                 holder.llbtnLst.setVisibility(View.GONE);
@@ -132,6 +139,16 @@ public class CruisesAdapter extends BaseAdapter {
                 context.startActivity(intentGuest);
             }
         });
+
+
+        holder.btnExCursionDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
         return convertView;
     }
 

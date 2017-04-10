@@ -108,7 +108,7 @@
             android:layout_marginRight="@dimen/two"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <ImageButton
                 android:id="@+id/ibtnExportExcursionView"
@@ -131,6 +131,18 @@
                 android:background="@drawable/btn_edit"
                 android:gravity="center"
                 android:src="@android:drawable/ic_input_add"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+            <ImageButton
+                android:id="@+id/ibtnExportExcursionDelete"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_edit"
+                android:gravity="center"
+                android:src="@android:drawable/ic_delete"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twelve" />
 
