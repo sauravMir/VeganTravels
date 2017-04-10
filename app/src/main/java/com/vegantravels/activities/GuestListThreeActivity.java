@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.GuestThreeAdapter;

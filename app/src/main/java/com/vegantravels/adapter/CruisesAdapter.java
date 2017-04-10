@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
+import com.vegantravels.activities.ExcursionListActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.utilities.StaticAccess;
@@ -104,9 +105,9 @@ public class CruisesAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-               /* Intent exIntent = new Intent(context.getApplicationContext(), AddExcursionActivity.class);
+                Intent exIntent = new Intent(context.getApplicationContext(), ExcursionListActivity.class);
                 exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
-                context.startActivity(exIntent);*/
+                context.startActivity(exIntent);
 
                /* Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
                 intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

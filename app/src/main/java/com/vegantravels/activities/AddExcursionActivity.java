@@ -121,7 +121,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.ibtnBackExcursion:
-                Intent intent = new Intent(activity, ManagementActivity.class);
+                Intent intent = new Intent(activity, ExcursionListActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
                 startActivity(intent);
                 finishTheActivity();
                 break;
@@ -130,22 +131,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void finishTheActivity() {
-        findViewById();
+       finish();
     }
-
-
-
- /*   private void updateCruize() {
-        upCruize = new Criuzes_TMP();
-        upCruize.setId(cruizeID);
-        upCruize.setName(edtCruzeName.getText().toString());
-        upCruize.setShipName(edtShipName.getText().toString());
-        upCruize.setFrom(tvDateFrom.getText().toString());
-        upCruize.setCruizeUniqueId(cruizeUniqueID);
-        upCruize.setTo(tvDateTo.getText().toString());
-        new AddCruizeActivity.EditCruiseAsyncTask().execute();
-    }*/
-
 
     private void updateExcursion() {
         updateexcursions = new Excursions_TMP();
@@ -319,14 +306,6 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             super.onPostExecute(aVoid);
             if (!goForEdit) {
                 if (excursions_tmp != null) {
-                    /// fill data for edit
-                  /*  edtCruzeName.setText(String.valueOf(criuzes_tmp.getName()));
-                    edtShipName.setText(String.valueOf(criuzes_tmp.getShipName()));
-                    tvDateFrom.setText(String.valueOf(criuzes_tmp.getFrom()));
-                    tvDateTo.setText(String.valueOf(criuzes_tmp.getTo()));
-                    tvCabinUpload.setText("");
-                    btnCabinUpload.setVisibility(View.GONE);*/
-
                     edtExcursionTitle.setText(String.valueOf(excursions_tmp.getTitle()));
                     tvExcursionFromDate.setText(String.valueOf(excursions_tmp.getFrom()));
                     tvExcursionTime.setText(String.valueOf(excursions_tmp.getTime()));

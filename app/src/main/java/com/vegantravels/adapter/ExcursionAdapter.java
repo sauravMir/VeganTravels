@@ -7,14 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.vegantravels.R;
-import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
-import com.vegantravels.activities.GuestListThreeActivity;
-import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -29,11 +25,12 @@ public class ExcursionAdapter extends BaseAdapter {
     private ArrayList<Excursions_TMP> excursionList;
     private LayoutInflater inflater;
     private String flag;
+    private long cruizeUniqueID = -1;
 
-    public ExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionList) {
+    public ExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionList, long cruizeUniqueID) {
         this.context = context;
         this.excursionList = excursionList;
-        this.flag = flag;
+        this.cruizeUniqueID = cruizeUniqueID;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -94,7 +91,7 @@ public class ExcursionAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent edtiIntent = new Intent(context, AddExcursionActivity.class);
                 edtiIntent.putExtra(StaticAccess.KEY_EXCURSION_ID, excursionList.get(position).getId());
-                edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, excursionList.get(position).getExcursionUniqueId());
+                edtiIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
                 context.startActivity(edtiIntent);
             }
         });
