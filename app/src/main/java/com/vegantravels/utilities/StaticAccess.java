@@ -8,7 +8,7 @@ public class StaticAccess {
     //Root Url
     public static final String RootUrl = "http://dmaverick.com/cruize/public/";
 
-
+    public static final String CURRENCY = " EUR";
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
     public static final String KEY_INTENT_DATE = "date";

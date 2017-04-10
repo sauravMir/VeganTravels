@@ -51,6 +51,13 @@ public class ExportActivity extends BaseActivity {
 
     }
 
+    public String addspace(int i){
+        String res="";
+        res=String.valueOf(i)+". ";
+        return  res;
+
+    }
+
     public void exportXls(View view) {
         final String fileName = "test.xls";
         //Saving file in external storage
@@ -93,33 +100,48 @@ public class ExportActivity extends BaseActivity {
             sheet.addCell(label6);
             sheet.addCell(label7);
             sheet.addCell(label8);
-//            int rowIndex=
+
+            int rowIndex=1;
 
             for (int i = 0; i < finalList.size(); i++) {
+                //if person did not add excursion then no calculations needed
+                if(finalList.get(i).getExcursionName()!=null) {
+                    Label m_idValue1 = new Label(0, rowIndex, String.valueOf(finalList.get(i).getCabinNum()));
+                    Label m_idValue2 = new Label(1, rowIndex, finalList.get(i).getLName());
+                    Label m_idValue3 = new Label(2, rowIndex, finalList.get(i).getFName());
+                    sheet.addCell(m_idValue1);
+                    sheet.addCell(m_idValue2);
+                    sheet.addCell(m_idValue3);
+                    int grandTotal = 0;
+                    for (int j = 0; j < finalList.get(i).getExcursionName().size(); j++) {
 
-                Label m_idValue1 = new Label(0, i, String.valueOf(finalList.get(i).getCabinNum()));
-                Label m_idValue2 = new Label(1, i, finalList.get(i).getLName());
-                Label m_idValue3 = new Label(2, i, finalList.get(i).getFName());
+                        Label excursionName = new Label(3, rowIndex, finalList.get(i).getExcursionName().get(j));
+                        Label excursionDate = new Label(4, rowIndex, finalList.get(i).getExcursionDate().get(j));
+                        Label people = new Label(5, rowIndex, finalList.get(i).getPeople().get(j).toString());
+                        Label excursionPrice = new Label(6, rowIndex, String.valueOf((finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j))));
+                        Label payment = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(j)));
 
-                for (int j = i; j < finalList.get(i).getExcursionName().size(); j++) {
+                        grandTotal+=finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j);
 
-                    Label excursionName = new Label(3, j, finalList.get(i).getExcursionName().get(j));
-                    Label excursionDate = new Label(4, j, finalList.get(i).getExcursionDate().get(j));
-                    Label people = new Label(5, j, finalList.get(i).getPeople().get(j).toString());
-                    Label excursionPrice = new Label(6, j, String.valueOf((finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j))));
-                    Label payment = new Label(7, j, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(j)));
+                        sheet.addCell(excursionName);
+                        sheet.addCell(excursionDate);
+                        sheet.addCell(people);
+                        sheet.addCell(excursionPrice);
+                        sheet.addCell(payment);
 
-                    sheet.addCell(excursionName);
-                    sheet.addCell(excursionDate);
-                    sheet.addCell(people);
-                    sheet.addCell(excursionPrice);
-                    sheet.addCell(payment);
+                        rowIndex++;
+                    }
+                    //adding total info
+                    Label GTotal = new Label(3, rowIndex, "Grand Total");
+                    Label total = new Label(6, rowIndex, String.valueOf(grandTotal)+StaticAccess.CURRENCY);
+                    Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
+
+                    sheet.addCell(GTotal);
+                    sheet.addCell(total);
+                    sheet.addCell(paymentname);
+
+                    rowIndex++;
                 }
-
-                sheet.addCell(m_idValue1);
-                sheet.addCell(m_idValue2);
-                sheet.addCell(m_idValue3);
-
             }
 
 
