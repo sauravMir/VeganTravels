@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/two"
+        android:weightSum="7">
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceCabinNo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Cabin No"
+                android:textSize="@dimen/twelve" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceLastName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/two"
+                android:text="abc"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceExcursionBooked"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".75"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceExcursionDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scrollbars="vertical"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".75"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinancePPP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scrollbars="vertical"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".75"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinanceTotal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scrollbars="vertical"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".75"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvFinancePayment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:scrollbars="vertical"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

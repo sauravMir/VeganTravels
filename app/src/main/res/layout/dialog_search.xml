@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
     android:background="@drawable/dialog_bg">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/two_hundred_fifty"
+        android:layout_height="@dimen/three_hundred"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -28,36 +29,36 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    android:layout_weight=".2" />
+                    android:layout_weight=".3" />
 
                 <EditText
                     android:id="@+id/edtCabinName"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    android:layout_weight="0.3"
+                    android:layout_weight=".2"
                     android:gravity="left"
                     android:hint="@string/guest_name"
                     android:padding="@dimen/five"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/twenty" />
+                    android:textSize="@dimen/fifteen" />
 
                 <EditText
                     android:id="@+id/edtCabinNumber"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    android:layout_weight="0.3"
+                    android:layout_weight=".2"
                     android:gravity="left"
                     android:hint="@string/cabin_number"
                     android:inputType="number"
                     android:padding="@dimen/five"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/twenty" />
+                    android:textSize="@dimen/fifteen" />
 
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/zero"
-                    android:layout_weight=".2" />
+                    android:layout_weight=".3" />
 
 
             </LinearLayout>
@@ -76,17 +77,17 @@
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="@dimen/five">
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/btnCancel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/fifty"
+                    android:layout_height="@dimen/fifty"
                     android:layout_gravity="center"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
-                    android:padding="@dimen/ten"
+                    android:padding="@dimen/five"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/icon_delete" />
 
 
@@ -97,20 +98,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/five">
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/btnOk"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_width="@dimen/fifty"
+                    android:layout_height="@dimen/fifty"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
-                    android:padding="@dimen/ten"
-                    android:src="@drawable/ic_done"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/twenty" />
+                    android:padding="@dimen/five"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_done" />
 
 
             </LinearLayout>
