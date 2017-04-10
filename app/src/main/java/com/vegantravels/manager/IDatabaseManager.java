@@ -99,6 +99,7 @@ public interface IDatabaseManager {
     Long updateExcursionTemp(Excursions_TMP excursions_tmp);
     //excurtion List by Excursion Unique Id
     ArrayList<Excursions_TMP> excursionTempListByExcursionId(long excursionId);
+    Excursions_TMP getExcursionByExcursionUniqueId(long excursionId);
 
     boolean isDeleteCruiseTemp(long cruise_uniqueId);
 

@@ -10,9 +10,19 @@ public class CabinModel {
     String LName;
     String ExcursionName;
     String ExcursionDate;
-    int  people;
+    String ExcursionPrice;
+    int people;
     int Status;
     String VTId;
+
+    public String getExcursionPrice() {
+        return ExcursionPrice;
+    }
+
+    public void setExcursionPrice(String excursionPrice) {
+        ExcursionPrice = excursionPrice;
+    }
+
     public String getVTId() {
         return VTId;
     }

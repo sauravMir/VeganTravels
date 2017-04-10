@@ -13,15 +13,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Cabins_TMP;
+import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
+import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.model.CabinModel;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,7 +81,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             new EditExcursionAsyncTask().execute();
         }
 
-
+        new CabinSetupAsyncTask().execute();
     }
 
 
@@ -120,8 +125,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.ibtnBackExcursion:
-                Intent intent = new Intent(activity, ExcursionListActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+                Intent intent = new Intent(activity, ManagementActivity.class);
                 startActivity(intent);
                 finishTheActivity();
                 break;
@@ -130,8 +134,22 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void finishTheActivity() {
-        finish();
+        findViewById();
     }
+
+
+
+ /*   private void updateCruize() {
+        upCruize = new Criuzes_TMP();
+        upCruize.setId(cruizeID);
+        upCruize.setName(edtCruzeName.getText().toString());
+        upCruize.setShipName(edtShipName.getText().toString());
+        upCruize.setFrom(tvDateFrom.getText().toString());
+        upCruize.setCruizeUniqueId(cruizeUniqueID);
+        upCruize.setTo(tvDateTo.getText().toString());
+        new AddCruizeActivity.EditCruiseAsyncTask().execute();
+    }*/
+
 
     private void updateExcursion() {
         updateexcursions = new Excursions_TMP();
@@ -266,10 +284,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            Toast.makeText(activity, "Excursion Inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(activity, ExcursionListActivity.class);
-            intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
-            startActivity(intent);
+            Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(activity, ExcursionListActivity.class));
             finishTheActivity();
         }
     }
@@ -307,6 +323,14 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             super.onPostExecute(aVoid);
             if (!goForEdit) {
                 if (excursions_tmp != null) {
+                    /// fill data for edit
+                  /*  edtCruzeName.setText(String.valueOf(criuzes_tmp.getName()));
+                    edtShipName.setText(String.valueOf(criuzes_tmp.getShipName()));
+                    tvDateFrom.setText(String.valueOf(criuzes_tmp.getFrom()));
+                    tvDateTo.setText(String.valueOf(criuzes_tmp.getTo()));
+                    tvCabinUpload.setText("");
+                    btnCabinUpload.setVisibility(View.GONE);*/
+
                     edtExcursionTitle.setText(String.valueOf(excursions_tmp.getTitle()));
                     tvExcursionFromDate.setText(String.valueOf(excursions_tmp.getFrom()));
                     tvExcursionTime.setText(String.valueOf(excursions_tmp.getTime()));
@@ -316,12 +340,64 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
             } else {
                 hideProgressDialog();
-                Toast.makeText(activity, "Excursion Updated: ", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(activity, ExcursionListActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
-                startActivity(intent);
+                Toast.makeText(activity, "is excursion inserted: ", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(activity, ExcursionListActivity.class));
                 finishTheActivity();
             }
+        }
+    }
+
+    ArrayList<CabinModel> arrCabinModel = new ArrayList<>();
+    ArrayList<Cabins_TMP> arrCabinTemp;
+
+    class CabinSetupAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgressDialog();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            //// insert new Data Here,
+            arrCabinTemp = databaseManager.cabinTempList();
+            if (arrCabinTemp != null) {
+                for (Cabins_TMP cabins_tmp : arrCabinTemp) {
+                    CabinModel cabinModel = new CabinModel();
+                    cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
+                    cabinModel.setPeople(cabins_tmp.getOccupancy());
+                    cabinModel.setStatus(cabins_tmp.getPaymentStatus());
+                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
+                    if (guests_tmp != null) {
+
+                        cabinModel.setFName(guests_tmp.getFname());
+                        cabinModel.setLName(guests_tmp.getLName());
+                    } else {
+                        cabinModel.setFName("");
+                        cabinModel.setLName("");
+                    }
+
+                    Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
+                    if (excursions_tmp != null) {
+                        cabinModel.setExcursionDate(excursions_tmp.getFrom());
+                        cabinModel.setExcursionPrice(excursions_tmp.getPrice());
+                        cabinModel.setExcursionName(excursions_tmp.getTitle());
+                    } else {
+                        cabinModel.setExcursionDate("");
+                        cabinModel.setExcursionPrice("");
+                        cabinModel.setExcursionName("");
+                    }
+                    arrCabinModel.add(cabinModel);
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(activity, String.valueOf(arrCabinModel.size()), Toast.LENGTH_LONG).show();
         }
     }
 }
