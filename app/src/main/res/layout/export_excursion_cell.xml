@@ -130,9 +130,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_edit"
                 android:gravity="center"
-                android:src="@android:drawable/ic_input_add"
+                android:src="@drawable/print"
                 android:textColor="@color/white"
-                android:textSize="@dimen/twelve" />
+                android:textSize="@dimen/twelve"
+                android:padding="@dimen/ten"
+                android:scaleType="fitCenter"/>
 
             <ImageButton
                 android:id="@+id/ibtnExportExcursionDelete"

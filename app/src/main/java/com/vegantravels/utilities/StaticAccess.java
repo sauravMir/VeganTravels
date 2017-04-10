@@ -96,4 +96,13 @@ public class StaticAccess {
 
 
 
+
+    //// FOR GENERATING GUSET LIST BY EXCURSION
+    public static final String KEY_VT_ID= "VT ID NO";
+
+
+
+
+
+
 }
