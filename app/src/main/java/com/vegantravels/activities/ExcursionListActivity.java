@@ -28,6 +28,7 @@ public class ExcursionListActivity extends BaseActivity implements View.OnClickL
     private long cruizeUniqueID = -1;
     private ProgressDialog progressDialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

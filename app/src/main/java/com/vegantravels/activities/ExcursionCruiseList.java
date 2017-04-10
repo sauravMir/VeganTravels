@@ -45,7 +45,8 @@ public class ExcursionCruiseList extends BaseActivity {
     private ImageButton ibtnBack, ibtnAddCruize, ibtnSync;
     IDatabaseManager databaseManager;
     TextView tvBlank;
-
+    // if came from finance  = 2, excursion==1;
+    int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,8 @@ public class ExcursionCruiseList extends BaseActivity {
         lvExcursionCruises = (ListView) findViewById(R.id.lvExcursionCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         tvBlank = (TextView) findViewById(R.id.tvBlank);
+        flag = getIntent().getIntExtra(StaticAccess.KEY_Activity_flag, 0);
+
 //        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
 //        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
@@ -106,19 +109,24 @@ public class ExcursionCruiseList extends BaseActivity {
     //fill cruize data
     private void fillData() {
         if (cruisesManagementList != null && cruisesManagementList.size() > 0) {
-            excursionManagementAdapter = new ExcursionManagementAdapter(this, cruisesManagementList);
+            if(flag==1)
+            excursionManagementAdapter = new ExcursionManagementAdapter(this, cruisesManagementList,false);
+            else
+                excursionManagementAdapter = new ExcursionManagementAdapter(this, cruisesManagementList,true);
             lvExcursionCruises.setAdapter(excursionManagementAdapter);
         }
         lvExcursionCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);
-                intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :"+cruisesManagementList.get(i).getFrom()+ "\n To :"+cruisesManagementList.get(i).getTo());
-                startActivity(intentGuest);
-                finishActivity();
+                if(flag==1) {
+                    Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
+                    startActivity(intentGuest);
+                    finishActivity();
+                }
             }
         });
 

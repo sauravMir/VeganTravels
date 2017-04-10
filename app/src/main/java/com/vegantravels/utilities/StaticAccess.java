@@ -20,9 +20,11 @@ public class StaticAccess {
     public static final String KEY_DATE_FROM = "from";
     public static final String KEY_DATE_TO = "to";
     public static final String KEY_CRUISE_UNIQUE_ID = "uniq_id";
+    public static final String KEY_Activity_flag = "flag";
 
     public static final String CRIUZE_MANAGEMENT = "CruizeManagement";
     public static final String EXCURSION_MANAGEMENT = "ExcursionManagement";
+    public static final String FINANCE_MANAGEMENT = "ExcursionManagement";
 
     /// Date picker
     public static final String DATE_FROM = "Date from";

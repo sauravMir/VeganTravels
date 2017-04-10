@@ -70,6 +70,31 @@
 
         </LinearLayout>
 
+
+
+      <!-- <LinearLayout
+            android:id="@+id/llbtnLst"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".25"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnFinance"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_add_excursion"
+                android:gravity="center"
+                android:src="@android:drawable/ic_menu_edit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>-->
+
         <LinearLayout
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
