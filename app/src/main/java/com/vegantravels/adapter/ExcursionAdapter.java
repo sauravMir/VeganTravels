@@ -34,7 +34,6 @@ public class ExcursionAdapter extends BaseAdapter {
     private long cruizeUniqueID = -1;
     private IDatabaseManager databaseManager;
     private ExcursionListActivity activity;
-    private int position;
 
     public ExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionList, long cruizeUniqueID) {
         this.context = context;
@@ -73,7 +72,7 @@ public class ExcursionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ExcursionAdapter.ViewHolder holder = null;
         if (convertView == null) {
             holder = new ExcursionAdapter.ViewHolder();
@@ -91,13 +90,12 @@ public class ExcursionAdapter extends BaseAdapter {
         } else {
             holder = (ExcursionAdapter.ViewHolder) convertView.getTag();
         }
-        holder.tvExcursionDate.setText(excursionList.get(i).getFrom());
-        holder.tvExcursionTime.setText(excursionList.get(i).getTime());
-        holder.tvExcursionName.setText(excursionList.get(i).getTitle());
-        holder.tvExcursionPPP.setText(excursionList.get(i).getPrice());
-        holder.tvExcursionMaxGst.setText(String.valueOf(excursionList.get(i).getMaxNumberOfGuest()));
+        holder.tvExcursionDate.setText(excursionList.get(position).getFrom());
+        holder.tvExcursionTime.setText(excursionList.get(position).getTime());
+        holder.tvExcursionName.setText(excursionList.get(position).getTitle());
+        holder.tvExcursionPPP.setText(excursionList.get(position).getPrice());
+        holder.tvExcursionMaxGst.setText(String.valueOf(excursionList.get(position).getMaxNumberOfGuest()));
 
-        position = i;
 
         holder.ibtnExcursionEdit.setOnClickListener(new View.OnClickListener() {
             @Override

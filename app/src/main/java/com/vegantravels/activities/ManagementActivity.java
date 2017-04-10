@@ -47,12 +47,12 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
                 finishTheActivity();
                 break;
             case R.id.tvExport:
-                Intent intent = new Intent(activity, ExportActivity.class);
+                Intent intent = new Intent(activity, ExportExcursionActivity.class);
                 startActivity(intent);
                 finishTheActivity();
                 break;
             case R.id.tvFinancial:
-                startActivity(new Intent(activity, ExportExcursionActivity.class));
+                startActivity(new Intent(activity, ExportActivity.class));
                 finishTheActivity();
                 break;
 

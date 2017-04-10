@@ -3,7 +3,6 @@ package com.vegantravels.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -15,13 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
-import com.vegantravels.activities.GuestListThreeActivity;
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
+import com.vegantravels.model.GuestExport;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.io.File;
@@ -46,7 +46,10 @@ public class ExportExcursionAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private IDatabaseManager databaseManager;
     Criuzes_TMP criuzes_tmp;
-    private ArrayList<Guests_TMP> guestList;
+    private ArrayList<Guests_TMP> guestList = new ArrayList<>();
+
+    private ArrayList<GuestExport> guestListExport = new ArrayList<>();
+
     private ProgressDialog progressDialog;
 
     public ExportExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionsTmpsList) {
@@ -85,7 +88,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ExportExcursionAdapter.ViewHolder holder = null;
         if (convertView == null) {
             holder = new ExportExcursionAdapter.ViewHolder();
@@ -105,36 +108,35 @@ public class ExportExcursionAdapter extends BaseAdapter {
         } else {
             holder = (ExportExcursionAdapter.ViewHolder) convertView.getTag();
         }
-        criuzes_tmp = databaseManager.getCruizeByCruizeUniqueID(excursionsTmpsList.get(i).getCruzeId());
+        criuzes_tmp = databaseManager.getCruizeByCruizeUniqueID(excursionsTmpsList.get(position).getCruzeId());
 
 
-        holder.tvExportExcursionDate.setText(String.valueOf(excursionsTmpsList.get(i).getFrom()));
-        holder.tvExportExcursionTime.setText(String.valueOf(excursionsTmpsList.get(i).getTime()));
-        holder.tvExportExcursionName.setText(String.valueOf(excursionsTmpsList.get(i).getTitle()));
-        holder.tvExportExcursionPPP.setText(String.valueOf(excursionsTmpsList.get(i).getPrice()));
+        holder.tvExportExcursionDate.setText(String.valueOf(excursionsTmpsList.get(position).getFrom()));
+        holder.tvExportExcursionTime.setText(String.valueOf(excursionsTmpsList.get(position).getTime()));
+        holder.tvExportExcursionName.setText(String.valueOf(excursionsTmpsList.get(position).getTitle()));
+        holder.tvExportExcursionPPP.setText(String.valueOf(excursionsTmpsList.get(position).getPrice()));
         if (criuzes_tmp != null) {
             holder.tvExportExcursionCruizeName.setText(String.valueOf(criuzes_tmp.getName()));
         }
-        final int position = i;
 
         holder.ibtnExportExcursionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (criuzes_tmp != null) {
-                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, criuzes_tmp.getId());
-                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
-                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + criuzes_tmp.getFrom() + "\n To :" + criuzes_tmp.getTo());
-                    context.startActivity(intentGuest);
-                }
+//                if (criuzes_tmp != null) {
+//                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+//                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, criuzes_tmp.getId());
+//                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
+//                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + criuzes_tmp.getFrom() + "\n To :" + criuzes_tmp.getTo());
+//                    context.startActivity(intentGuest);
+//                }
 
             }
         });
         holder.ibtnExportExcursionPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GuestSyncAsyncTask guestSyncAsyncTask = new GuestSyncAsyncTask(excursionsTmpsList.get(position).getCruzeId(), excursionsTmpsList.get(position).getTitle());
+                GuestSyncAsyncTask guestSyncAsyncTask = new GuestSyncAsyncTask(excursionsTmpsList.get(position).getCruzeId(), excursionsTmpsList.get(position).getExcursionUniqueId(), excursionsTmpsList.get(position).getTitle());
                 guestSyncAsyncTask.execute();
             }
         });
@@ -148,14 +150,18 @@ public class ExportExcursionAdapter extends BaseAdapter {
         return convertView;
     }
 
+    private ArrayList<Cabins_TMP> cabins_tmpsList;
+
     class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
         private long cruizeUniqID = -1;
+        private long excursionUniqID = -1;
         private String excursionName;
         private boolean isGenerated = false;
 
-        public GuestSyncAsyncTask(long cruizeUniqID, String excursionName) {
+        public GuestSyncAsyncTask(long cruizeUniqID, long excursionUniqID, String excursionName) {
             this.cruizeUniqID = cruizeUniqID;
             this.excursionName = excursionName;
+            this.excursionUniqID = excursionUniqID;
         }
 
         @Override
@@ -167,13 +173,36 @@ public class ExportExcursionAdapter extends BaseAdapter {
         @Override
         protected Void doInBackground(Void... voids) {
             guestList = new ArrayList<>();
+            cabins_tmpsList = new ArrayList<>();
             if (cruizeUniqID != -1) {
-                guestList = databaseManager.listGuestByUniqueId(cruizeUniqID);
-                long msTime = System.currentTimeMillis();
-                Date curDateTime = new Date(msTime);
-                SimpleDateFormat formatter = new SimpleDateFormat("MM'_'dd'_'y_hh:mm");
-                String xlsDate = formatter.format(curDateTime);
-                isGenerated = exportXls(xlsDate +"_"+ excursionName, guestList);
+//                guestList = databaseManager.listGuestByUniqueId(cruizeUniqID);
+                cabins_tmpsList = databaseManager.getGuestDeatilByExcursionCruizeID(excursionUniqID, cruizeUniqID);
+                if (cabins_tmpsList != null) {
+                    for (int i = 0; i < cabins_tmpsList.size(); i++) {
+                        GuestExport model = new GuestExport();
+                        Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmpsList.get(i).getGuestVT_Id(),
+                                cabins_tmpsList.get(i).getCruizeId());
+
+                        model.setFirstName(guests_tmp.getFname());
+                        model.setLastName(guests_tmp.getLName());
+                        model.setCabins_tmp(cabins_tmpsList.get(i));
+
+                        guestListExport.add(model);
+
+                    }
+                    long msTime = System.currentTimeMillis();
+                    Date curDateTime = new Date(msTime);
+                    SimpleDateFormat formatter = new SimpleDateFormat("MM'_'dd'_'y_hh:mm");
+                    String xlsDate = formatter.format(curDateTime);
+                    if (guestListExport != null)
+                        isGenerated = exportXls(xlsDate + "_" + excursionName, guestListExport);
+
+                } else {
+                    //please add a toast here
+                    isGenerated = false;
+                }
+
+
             }
             return null;
         }
@@ -184,6 +213,8 @@ public class ExportExcursionAdapter extends BaseAdapter {
             hideProgressDialog();
             if (isxlsGenerated) {
                 Toast.makeText(context, "XLS Generated!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "No Booked Data Found", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -203,7 +234,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
 
     private boolean isxlsGenerated = false;
 
-    public boolean exportXls(String xlsName, ArrayList<Guests_TMP> guestList) {
+    public boolean exportXls(String xlsName, ArrayList<GuestExport> guestListExport) {
         final String fileName = xlsName + ".xls";
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
@@ -241,12 +272,12 @@ public class ExportExcursionAdapter extends BaseAdapter {
             sheet.addCell(label4);
 
 
-            for (int i = 0; i < guestList.size(); i++) {
+            for (int i = 0; i < guestListExport.size(); i++) {
                 int j = i + 1;
-                Label m_idValue1 = new Label(0, j, String.valueOf(guestList.get(i).getGuestVT_Id()));
-                Label m_idValue2 = new Label(1, j, guestList.get(i).getLName());
-                Label m_idValue3 = new Label(2, j, guestList.get(i).getFname());
-                Label m_idValue4 = new Label(3, j, String.valueOf(guestList.get(i).getCabinNumber()));
+                Label m_idValue1 = new Label(0, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getGuestVT_Id()));
+                Label m_idValue2 = new Label(1, j, guestListExport.get(i).getFirstName());
+                Label m_idValue3 = new Label(2, j, guestListExport.get(i).getLastName());
+                Label m_idValue4 = new Label(3, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getCabinNumber()));
                 sheet.addCell(m_idValue1);
                 sheet.addCell(m_idValue2);
                 sheet.addCell(m_idValue3);

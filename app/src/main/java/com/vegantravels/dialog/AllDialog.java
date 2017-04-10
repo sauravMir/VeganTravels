@@ -145,7 +145,7 @@ public class AllDialog {
     }
 
 
-    public void dialogForSearch() {
+    public void dialogForSearch(final long cruizeUniqID) {
         final Dialog dialog = new Dialog(guestListThreeActivity, R.style.CustomAlertDialog);
         dialog.setContentView(R.layout.dialog_search);
         dialog.setCancelable(false);
@@ -170,14 +170,14 @@ public class AllDialog {
 
                 if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() > 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByNameCabin(edtCabinName.getText().toString(), edtCabinNumber.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByNameCabin(edtCabinName.getText().toString(), edtCabinNumber.getText().toString(),cruizeUniqID);
 
                 } else if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() <= 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByCabin(edtCabinNumber.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByCabin(edtCabinNumber.getText().toString(),cruizeUniqID);
                 } else if (edtCabinNumber.getText().length() <= 0 && edtCabinName.getText().length() > 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString(),cruizeUniqID);
                 } else {
                     guestListThreeActivity.guestList.clear();
                     guestListThreeActivity.guestList = databaseManager.listGuestByUniqueId(guestListThreeActivity.uniqueId);
