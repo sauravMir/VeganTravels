@@ -21,7 +21,7 @@ import jxl.write.Label;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
-public class ExportActivity extends AppCompatActivity {
+public class ExportActivity extends BaseActivity {
 
     private DatabaseManager databaseManager;
     private ArrayList<CabinModel> cabinList;
