@@ -88,7 +88,7 @@ public class ExportActivity extends AppCompatActivity {
                 Label m_idValue4 = new Label(3, i, cabinList.get(i).getExcursionName());
                 Label m_idValue5 = new Label(4, i, cabinList.get(i).getExcursionDate());
                 Label m_idValue6 = new Label(5, i, String.valueOf(cabinList.get(i).getPeople()));
-                Label m_idValue7 = new Label(6, i, cabinList.get(i).getPricePerPeople());
+                Label m_idValue7 = new Label(6, i, cabinList.get(i).getExcursionPrice());
                 Label m_idValue8 = new Label(7, i, StaticAccess.getPaymentByName(cabinList.get(i).getStatus()));
 
                 sheet.addCell(m_idValue1);
