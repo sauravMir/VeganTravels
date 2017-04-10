@@ -351,7 +351,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         try {
             openReadableDb();
             Guests_TMPDao guest_tmpDao = daoSession.getGuests_TMPDao();
-            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestVT_Id.eq(vtId),Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseId));
+            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestVT_Id.eq(vtId), Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseId));
             guests_TMP = queryBuilder.list();
             for (Guests_TMP guests_tmp1 : guests_TMP) {
                 guests_tmp = guests_tmp1;
@@ -663,7 +663,31 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         return excursions_tmp;
     }
 
+    @Override
+    public Criuzes_TMP getCruizeByCruizeUniqueID(long cruizeId) {
 
+
+        Criuzes_TMP criuzes_tmp = null;
+        List<Criuzes_TMP> arrCriuzes_tmp = null;
+        try {
+            openWritableDb();
+            Criuzes_TMPDao criuzes_tmpDao = daoSession.getCriuzes_TMPDao();
+            QueryBuilder<Criuzes_TMP> queryBuilder = criuzes_tmpDao.queryBuilder().where(Criuzes_TMPDao.Properties.CruizeUniqueId.eq(cruizeId));
+            arrCriuzes_tmp = queryBuilder.list();
+            for (Criuzes_TMP mCruise_TMP : arrCriuzes_tmp) {
+                criuzes_tmp = mCruise_TMP;
+                break;
+            }
+
+            daoSession.clear();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return criuzes_tmp;
+
+    }
 
 
     @Override
@@ -742,13 +766,14 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
+
     @Override
     public boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId) {
         boolean isRemoved = false;
         try {
             openWritableDb();
             Guests_TMPDao guest_tmpDao = daoSession.getGuests_TMPDao();
-            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruise_uniqueId),Guests_TMPDao.Properties.GuestVT_Id.eq(VTId));
+            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruise_uniqueId), Guests_TMPDao.Properties.GuestVT_Id.eq(VTId));
             List<Guests_TMP> guestTempList = queryBuilder.list();
             if (guestTempList.size() > 0) {
                 for (Guests_TMP guests_tmp : guestTempList) {
@@ -765,6 +790,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
+
     // excursion delete
     @Override
     public boolean isDeleteExcursionTemp(long cruise_uniqueId) {
@@ -815,8 +841,6 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
-
-
 
 
 }

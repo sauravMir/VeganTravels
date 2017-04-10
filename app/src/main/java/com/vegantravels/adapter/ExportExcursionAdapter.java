@@ -84,8 +84,9 @@ public class ExportExcursionAdapter extends BaseAdapter {
         } else {
             holder = (ExportExcursionAdapter.ViewHolder) convertView.getTag();
         }
-        criuzes_tmp = databaseManager.getCruiseTempById(excursionsTmpsList.get(i).getCruzeId());
+        criuzes_tmp = databaseManager.getCruizeByCruizeUniqueID(excursionsTmpsList.get(i).getCruzeId());
 
+        if(criuzes_tmp != null)
         holder.tvExportExcursionDate.setText(String.valueOf(excursionsTmpsList.get(i).getFrom()));
         holder.tvExportExcursionTime.setText(String.valueOf(excursionsTmpsList.get(i).getTime()));
         holder.tvExportExcursionName.setText(String.valueOf(excursionsTmpsList.get(i).getTitle()));
