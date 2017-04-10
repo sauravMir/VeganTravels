@@ -81,7 +81,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             new EditExcursionAsyncTask().execute();
         }
 
-        new CabinSetupAsyncTask().execute();
+//        new CabinSetupAsyncTask().execute();
     }
 
 
@@ -347,57 +347,5 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
-    ArrayList<CabinModel> arrCabinModel = new ArrayList<>();
-    ArrayList<Cabins_TMP> arrCabinTemp;
 
-    class CabinSetupAsyncTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            showProgressDialog();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            //// insert new Data Here,
-            arrCabinTemp = databaseManager.cabinTempList();
-            if (arrCabinTemp != null) {
-                for (Cabins_TMP cabins_tmp : arrCabinTemp) {
-                    CabinModel cabinModel = new CabinModel();
-                    cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
-                    cabinModel.setPeople(cabins_tmp.getOccupancy());
-                    cabinModel.setStatus(cabins_tmp.getPaymentStatus());
-                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
-                    if (guests_tmp != null) {
-
-                        cabinModel.setFName(guests_tmp.getFname());
-                        cabinModel.setLName(guests_tmp.getLName());
-                    } else {
-                        cabinModel.setFName("");
-                        cabinModel.setLName("");
-                    }
-
-                    Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
-                    if (excursions_tmp != null) {
-                        cabinModel.setExcursionDate(excursions_tmp.getFrom());
-                        cabinModel.setExcursionPrice(excursions_tmp.getPrice());
-                        cabinModel.setExcursionName(excursions_tmp.getTitle());
-                    } else {
-                        cabinModel.setExcursionDate("");
-                        cabinModel.setExcursionPrice("");
-                        cabinModel.setExcursionName("");
-                    }
-                    arrCabinModel.add(cabinModel);
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            Toast.makeText(activity, String.valueOf(arrCabinModel.size()), Toast.LENGTH_LONG).show();
-        }
-    }
 }
