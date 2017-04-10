@@ -71,7 +71,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
                 finishTheActivity();
                 break;
             case R.id.ibtnSearch:
-                allDialog.dialogForSearch();
+                allDialog.dialogForSearch(uniqueId);
                 break;
             case R.id.ibtnAddGuest:
                 Intent intentadd = new Intent(activity, AddParticipantActivity.class);
@@ -91,7 +91,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
 
     }
 
-     class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
+    class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -135,7 +135,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
     }
 
 
-    public void GuestListRefresh(){
+    public void GuestListRefresh() {
         new GuestSyncAsyncTask().execute();
     }
 

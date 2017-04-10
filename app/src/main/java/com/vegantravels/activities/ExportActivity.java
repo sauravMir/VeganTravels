@@ -285,7 +285,7 @@ public class ExportActivity extends BaseActivity {
                     cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
                     cabinModel.setPeople(cabins_tmp.getOccupancy());
                     cabinModel.setStatus(cabins_tmp.getPaymentStatus());
-                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
+                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCruizeId());
                     if (guests_tmp != null) {
 
                         cabinModel.setFName(guests_tmp.getFname());

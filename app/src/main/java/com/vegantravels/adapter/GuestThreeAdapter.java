@@ -35,7 +35,6 @@ public class GuestThreeAdapter extends BaseAdapter {
     String fDate;
     private IDatabaseManager databaseManager;
     private GuestListThreeActivity activity;
-    private int position;
     private String vtID;
 
     public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList, String fDate) {
@@ -75,7 +74,7 @@ public class GuestThreeAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int position, View convertView, ViewGroup viewGroup) {
         GuestThreeAdapter.ViewHolder holder = null;
         if (convertView == null) {
             holder = new GuestThreeAdapter.ViewHolder();
@@ -93,13 +92,13 @@ public class GuestThreeAdapter extends BaseAdapter {
 
         } else {
             holder = (GuestThreeAdapter.ViewHolder) convertView.getTag();
+
         }
 
-        holder.tvGuestName.setText(guestList.get(i).getLName());
-        holder.tvFirstName.setText(guestList.get(i).getFname());
-        holder.tvCabinNo.setText(String.valueOf(guestList.get(i).getCabinNumber()));
+        holder.tvGuestName.setText(guestList.get(position).getLName());
+        holder.tvFirstName.setText(guestList.get(position).getFname());
+        holder.tvCabinNo.setText(String.valueOf(guestList.get(position).getCabinNumber()));
         holder.tvCruiseDate.setText(fDate);
-        position = i;
         holder.ibtnEditGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,7 +129,7 @@ public class GuestThreeAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-                deletePermissionDialog();
+                deletePermissionDialog(position);
             }
         });
 
@@ -138,7 +137,7 @@ public class GuestThreeAdapter extends BaseAdapter {
     }
 
 
-    private void deletePermissionDialog() {
+    private void deletePermissionDialog(final int pos) {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -160,7 +159,7 @@ public class GuestThreeAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (guestList != null) {
-                    databaseManager.isDeleteSingleGuestTemp(guestList.get(position).getGuestUniqueId(), guestList.get(position).getGuestVT_Id());
+                    databaseManager.isDeleteSingleGuestTemp(guestList.get(pos).getGuestUniqueId(), guestList.get(pos).getGuestVT_Id());
                     activity.GuestListRefresh();
                     notifyDataSetChanged();
                 }
