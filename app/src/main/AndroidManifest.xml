@@ -77,13 +77,11 @@
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".activities.FinanceActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".activities.ExcursionListActivity"
             android:screenOrientation="sensorLandscape"
