@@ -102,14 +102,14 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private int numOfGuest = -1;
 
     private void fillGuestNumberData() {
-        String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
+        final String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
         final ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
         spnGuestNumber.setAdapter(adapterGuest);
         spnGuestNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0)
-                    numOfGuest = Integer.parseInt(adapterGuest.getItem(i));
+                    numOfGuest = Integer.valueOf(GUEST_ARRAY[i]);
             }
 
             @Override
@@ -184,7 +184,11 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         if (excrusionId != -1) {
             cabins_tmp.setExcursion(excrusionId);
         }
-        new BookedExcursionGuestAsyncTask().execute();
+        if (numOfGuest != -1 && excrusionId != -1) {
+            new BookedExcursionGuestAsyncTask().execute();
+        } else {
+            Toast.makeText(activity, "Select an Excursion First", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
@@ -136,8 +137,8 @@ public class AllDialog {
                 } else if (selectedId == R.id.rbComplementary) {
                     activity.bookedExcursion(StaticAccess.COMPLEMENTARY);
                     dialog.dismiss();
-
-
+                }else{
+                    Toast.makeText(activity, "Select Payment Method", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -102,6 +102,9 @@ public class StaticAccess {
     //// FOR GENERATING GUSET LIST BY EXCURSION
     public static final String KEY_VT_ID= "VT ID NO";
     public static final String GUEST_LIST_PER_EXCURSION = "GUEST LIST PER EXCURSION";
+    public static final String NR_NO = "Nr.";
+    public static final String GUEST_IN_CABIN ="GUESTS IN CABIN" ;
+
 
 
 

@@ -233,6 +233,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
     }
 
     private boolean isxlsGenerated = false;
+    private int nrCount = 0;
 
     public boolean exportXls(String xlsName, ArrayList<GuestExport> guestListExport) {
         final String fileName = xlsName + ".xls";
@@ -260,33 +261,43 @@ public class ExportExcursionAdapter extends BaseAdapter {
             WritableSheet sheet = m_workbook.createSheet(StaticAccess.GUEST_LIST_PER_EXCURSION, 0);
 
             // this will add label in excel sheet
-            Label label1 = new Label(0, 0, StaticAccess.KEY_VT_ID);
-            Label label2 = new Label(1, 0, StaticAccess.KEY_LAST_NAME);
+            Label label1 = new Label(0, 0, StaticAccess.NR_NO);
+            Label label2 = new Label(1, 0, StaticAccess.KEY_VT_ID);
             Label label3 = new Label(2, 0, StaticAccess.KEY_FIRST_NAME);
-            Label label4 = new Label(3, 0, StaticAccess.KEY_CABIN_NUMBER);
+            Label label4 = new Label(3, 0, StaticAccess.KEY_LAST_NAME);
+            Label label5 = new Label(4, 0, StaticAccess.KEY_CABIN_NUMBER);
+            Label label6 = new Label(5, 0, StaticAccess.GUEST_IN_CABIN);
 
 
             sheet.addCell(label1);
             sheet.addCell(label2);
             sheet.addCell(label3);
             sheet.addCell(label4);
+            sheet.addCell(label5);
+            sheet.addCell(label6);
 
 
             for (int i = 0; i < guestListExport.size(); i++) {
+                nrCount++;
                 int j = i + 1;
-                Label m_idValue1 = new Label(0, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getGuestVT_Id()));
-                Label m_idValue2 = new Label(1, j, guestListExport.get(i).getFirstName());
-                Label m_idValue3 = new Label(2, j, guestListExport.get(i).getLastName());
-                Label m_idValue4 = new Label(3, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getCabinNumber()));
+                Label m_idValue1 = new Label(0, j, String.valueOf(nrCount));
+                Label m_idValue2 = new Label(1, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getGuestVT_Id()));
+                Label m_idValue3 = new Label(2, j, guestListExport.get(i).getFirstName());
+                Label m_idValue4 = new Label(3, j, guestListExport.get(i).getLastName());
+                Label m_idValue5 = new Label(4, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getCabinNumber()));
+                Label m_idValue6 = new Label(5, j, String.valueOf(guestListExport.get(i).getCabins_tmp().getOccupancy()));
                 sheet.addCell(m_idValue1);
                 sheet.addCell(m_idValue2);
                 sheet.addCell(m_idValue3);
                 sheet.addCell(m_idValue4);
+                sheet.addCell(m_idValue5);
+                sheet.addCell(m_idValue6);
 
             }
 
             m_workbook.write();
             m_workbook.close();
+            nrCount = 0;
             isxlsGenerated = true;
         } catch (Exception e) {
 
