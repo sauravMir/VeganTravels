@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.dao.Cabins_TMP;
-import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
@@ -365,29 +364,40 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             if (arrCabinTemp != null) {
                 for (Cabins_TMP cabins_tmp : arrCabinTemp) {
                     CabinModel cabinModel = new CabinModel();
-                    cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
-                    cabinModel.setPeople(cabins_tmp.getOccupancy());
-                    cabinModel.setStatus(cabins_tmp.getPaymentStatus());
-                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
-                    if (guests_tmp != null) {
+                    if (cabins_tmp.getCabinNumber() > 0) {
+                        cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
+                    }
+                    if (cabins_tmp.getPaymentStatus() > 0) {
+                        cabinModel.setPeople(cabins_tmp.getOccupancy());
+                    }
+                    if (cabins_tmp.getPaymentStatus() > 0) {
+                        cabinModel.setStatus(cabins_tmp.getPaymentStatus());
+                    }
+                    if (cabins_tmp.getCabinUniqueId() > 0) {
+                        Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
+                        if (guests_tmp != null) {
 
-                        cabinModel.setFName(guests_tmp.getFname());
-                        cabinModel.setLName(guests_tmp.getLName());
-                    } else {
-                        cabinModel.setFName("");
-                        cabinModel.setLName("");
+                            cabinModel.setFName(guests_tmp.getFname());
+                            cabinModel.setLName(guests_tmp.getLName());
+                        } else {
+                            cabinModel.setFName("");
+                            cabinModel.setLName("");
+                        }
+
+                    }
+                    if ((cabins_tmp.getExcursion() > 0)) {
+                        Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
+                        if (excursions_tmp != null) {
+                            cabinModel.setExcursionDate(excursions_tmp.getFrom());
+                            cabinModel.setExcursionPrice(excursions_tmp.getPrice());
+                            cabinModel.setExcursionName(excursions_tmp.getTitle());
+                        } else {
+                            cabinModel.setExcursionDate("");
+                            cabinModel.setExcursionPrice("");
+                            cabinModel.setExcursionName("");
+                        }
                     }
 
-                    Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
-                    if (excursions_tmp != null) {
-                        cabinModel.setExcursionDate(excursions_tmp.getFrom());
-                        cabinModel.setExcursionPrice(excursions_tmp.getPrice());
-                        cabinModel.setExcursionName(excursions_tmp.getTitle());
-                    } else {
-                        cabinModel.setExcursionDate("");
-                        cabinModel.setExcursionPrice("");
-                        cabinModel.setExcursionName("");
-                    }
                     arrCabinModel.add(cabinModel);
                 }
             }
