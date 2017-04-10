@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:padding="@dimen/five">
+                >
 
                 <ImageButton
                     android:id="@+id/btnCancelPermission"
@@ -53,7 +53,8 @@
                     android:layout_gravity="center"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
-                    android:padding="@dimen/ten"
+                    android:padding="@dimen/five"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/icon_delete" />
 
 
@@ -64,8 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/five">
+                android:orientation="vertical">
 
                 <ImageButton
                     android:id="@+id/btnOkPermission"
@@ -74,9 +74,9 @@
                     android:layout_gravity="center"
                     android:background="?android:attr/selectableItemBackground"
                     android:gravity="center"
-                    android:padding="@dimen/ten"
-                    android:src="@drawable/ic_done"
-                    android:textColor="@color/white" />
+                    android:scaleType="fitCenter"
+                    android:padding="@dimen/five"
+                    android:src="@drawable/ic_done" />
 
 
             </LinearLayout>
