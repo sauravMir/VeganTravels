@@ -329,7 +329,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             openReadableDb();
             Guests_TMPDao guests_tmpDao = daoSession.getGuests_TMPDao();
 
-            QueryBuilder<Guests_TMP> queryBuilder = guests_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseUniqueId));
+            QueryBuilder<Guests_TMP> queryBuilder = guests_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseUniqueId)).orderAsc(Guests_TMPDao.Properties.CabinNumber);
             guests_tmpList = queryBuilder.list();
 //            guests_tmpList = guests_tmpDao.loadAll();
 
