@@ -22,7 +22,6 @@ import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
-import com.vegantravels.model.CabinModel;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -122,7 +121,6 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    
 
     private long excrusionId = -1;
 
@@ -176,6 +174,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         cabins_tmp = new Cabins_TMP();
         cabins_tmp.setCruizeId(tempGuestV.getGuestUniqueId());
         cabins_tmp.setGuestVT_Id(tempGuestV.getGuestVT_Id());
+        cabins_tmp.setCabinNumber(tempGuestV.getCabinNumber());
         cabins_tmp.setPaymentStatus(paymentStatus);
         if (numOfGuest != -1) {
             cabins_tmp.setOccupancy(numOfGuest);
@@ -296,7 +295,6 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
         }
     }
-
 
 
 }
