@@ -37,9 +37,7 @@ public class ExcursionListActivity extends BaseActivity implements View.OnClickL
         databaseManager = new DatabaseManager(activity);
         excursionLst = new ArrayList<>();
         findViewById();
-        if (cruizeUniqueID != -1) {
-            new ExcursionAsyncTask().execute();
-        }
+        ExcursionListRefresh();
 
     }
 
@@ -104,10 +102,16 @@ public class ExcursionListActivity extends BaseActivity implements View.OnClickL
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (excursionLst != null) {
-                excursionAdapter = new ExcursionAdapter(activity, excursionLst,cruizeUniqueID);
+                excursionAdapter = new ExcursionAdapter(activity, excursionLst, cruizeUniqueID);
                 lvExcursion.setAdapter(excursionAdapter);
             }
             hideProgressDialog();
+        }
+    }
+
+    public void ExcursionListRefresh() {
+        if (cruizeUniqueID != -1) {
+            new ExcursionAsyncTask().execute();
         }
     }
 }

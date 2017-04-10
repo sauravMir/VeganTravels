@@ -1,17 +1,21 @@
 package com.vegantravels.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddExcursionActivity;
+import com.vegantravels.activities.ExcursionListActivity;
 import com.vegantravels.dao.Excursions_TMP;
+import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
@@ -29,9 +33,12 @@ public class ExcursionAdapter extends BaseAdapter {
     private String flag;
     private long cruizeUniqueID = -1;
     private IDatabaseManager databaseManager;
+    private ExcursionListActivity activity;
+    private int position;
 
     public ExcursionAdapter(Context context, ArrayList<Excursions_TMP> excursionList, long cruizeUniqueID) {
         this.context = context;
+        activity = (ExcursionListActivity) context;
         this.excursionList = excursionList;
         this.cruizeUniqueID = cruizeUniqueID;
         databaseManager = new DatabaseManager(context);
@@ -90,7 +97,7 @@ public class ExcursionAdapter extends BaseAdapter {
         holder.tvExcursionPPP.setText(excursionList.get(i).getPrice());
         holder.tvExcursionMaxGst.setText(String.valueOf(excursionList.get(i).getMaxNumberOfGuest()));
 
-        final int position = i;
+        position = i;
 
         holder.ibtnExcursionEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,11 +114,45 @@ public class ExcursionAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
+                //deletePermissionDialog();
             }
         });
 
 
         return convertView;
     }
+
+   /* private void deletePermissionDialog() {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText(R.string.delete_permission);
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (excursionList != null) {
+                    databaseManager.isDeleteCruiseTemp(excursionList.get(position).getCruizeUniqueId());
+                    activity.ExcursionListRefresh();
+                    notifyDataSetChanged();
+                }
+
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+    }*/
 
 }
