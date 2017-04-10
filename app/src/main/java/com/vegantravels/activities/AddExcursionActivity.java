@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
-import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
@@ -131,7 +130,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void finishTheActivity() {
-       finish();
+        finish();
     }
 
     private void updateExcursion() {
@@ -267,8 +266,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, ExcursionListActivity.class));
+            Toast.makeText(activity, "Excursion Inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(activity, ExcursionListActivity.class);
+            intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+            startActivity(intent);
             finishTheActivity();
         }
     }
@@ -315,8 +316,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
             } else {
                 hideProgressDialog();
-                Toast.makeText(activity, "is excursion inserted: ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(activity, ExcursionListActivity.class));
+                Toast.makeText(activity, "Excursion Updated: ", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, ExcursionListActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+                startActivity(intent);
                 finishTheActivity();
             }
         }
