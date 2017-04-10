@@ -618,4 +618,109 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return excursions_tmp;
     }
+    // delete function
+//  when Cruise delete that time guest, Excursion and cabin delete
+    @Override
+    public boolean isDeleteCruiseTemp(long cruise_uniqueId){
+        boolean isRemoved = false;
+        try {
+            openWritableDb();
+            Criuzes_TMPDao  criuzes_tmpDao = daoSession.getCriuzes_TMPDao();
+            QueryBuilder<Criuzes_TMP> queryBuilder = criuzes_tmpDao.queryBuilder().where(Criuzes_TMPDao.Properties.CruizeUniqueId.eq(cruise_uniqueId));
+            List<Criuzes_TMP> cruiseTempList = queryBuilder.list();
+            if (cruiseTempList.size() > 0) {
+                for (Criuzes_TMP fLayerImage : cruiseTempList) {
+                    criuzes_tmpDao.delete(fLayerImage);
+
+                    isDeleteGuestTemp(cruise_uniqueId);
+                    isDeleteExcursionTemp(cruise_uniqueId);
+                    isDeleteCabinTemp(cruise_uniqueId);
+                }
+                isRemoved = true;
+                daoSession.clear();
+                Log.d(TAG, cruiseTempList.size() + " entry. ");
+            }
+
+        } catch (Exception e) {
+            isRemoved = false;
+            e.printStackTrace();
+        }
+        return isRemoved;
+
+    }
+    // Guest delete
+    @Override
+    public boolean isDeleteGuestTemp(long cruise_uniqueId){
+        boolean isRemoved = false;
+        try {
+            openWritableDb();
+            Guests_TMPDao  guest_tmpDao = daoSession.getGuests_TMPDao();
+            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruise_uniqueId));
+            List<Guests_TMP> guestTempList = queryBuilder.list();
+            if (guestTempList.size() > 0) {
+                for (Guests_TMP guests_tmp : guestTempList) {
+                    guest_tmpDao.delete(guests_tmp);
+
+                }
+                isRemoved = true;
+                daoSession.clear();
+                Log.d(TAG, guestTempList.size() + " entry. ");
+            }
+
+        } catch (Exception e) {
+            isRemoved = false;
+            e.printStackTrace();
+        }
+        return isRemoved;
+    }
+    // excursion delete
+    @Override
+    public boolean isDeleteExcursionTemp(long cruise_uniqueId){
+        boolean isRemoved = false;
+        try {
+            openWritableDb();
+            Excursions_TMPDao  excursions_tmpDao = daoSession.getExcursions_TMPDao();
+            QueryBuilder<Excursions_TMP> queryBuilder = excursions_tmpDao.queryBuilder().where(Excursions_TMPDao.Properties.CruzeId.eq(cruise_uniqueId));
+            List<Excursions_TMP> excursionTempList = queryBuilder.list();
+            if (excursionTempList.size() > 0) {
+                for (Excursions_TMP excursion_tmp : excursionTempList) {
+                    excursions_tmpDao.delete(excursion_tmp);
+
+                }
+                isRemoved = true;
+                daoSession.clear();
+                Log.d(TAG, excursionTempList.size() + " entry. ");
+            }
+
+        } catch (Exception e) {
+            isRemoved = false;
+            e.printStackTrace();
+        }
+        return isRemoved;
+    }
+    // cabin delete
+    @Override
+    public boolean isDeleteCabinTemp(long cruise_uniqueId){
+        boolean isRemoved = false;
+        try {
+            openWritableDb();
+            Cabins_TMPDao  cabins_tmpDao = daoSession.getCabins_TMPDao();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.CruizeId.eq(cruise_uniqueId));
+            List<Cabins_TMP> cabinsTempList = queryBuilder.list();
+            if (cabinsTempList.size() > 0) {
+                for (Cabins_TMP cabinds_tmp : cabinsTempList) {
+                    cabins_tmpDao.delete(cabinds_tmp);
+
+                }
+                isRemoved = true;
+                daoSession.clear();
+                Log.d(TAG, cabinsTempList.size() + " entry. ");
+            }
+
+        } catch (Exception e) {
+            isRemoved = false;
+            e.printStackTrace();
+        }
+        return isRemoved;
+    }
 }

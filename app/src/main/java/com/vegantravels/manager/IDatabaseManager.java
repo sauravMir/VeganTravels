@@ -68,7 +68,7 @@ public interface IDatabaseManager {
 
     Long updateGuest(Guests guests);
 
-    List<Guests_TMP> getSearchByNameCabin(String name,String cabin);
+    List<Guests_TMP> getSearchByNameCabin(String name, String cabin);
 
     List<Guests_TMP> getSearchByName(String name);
 
@@ -88,12 +88,19 @@ public interface IDatabaseManager {
     Excursions_TMP insertExcursionTemp(Excursions_TMP excursions_tmp);
 
     ArrayList<Excursions_TMP> excursionTempList();
+
     ArrayList<Excursions_TMP> excursionTempListByCruiseUniqueId(long cruiseUniqueId);
 
-    
+
     Excursions_TMP getExcursionById(long id);
 
     Long updateExcursionTemp(Excursions_TMP excursions_tmp);
+
+    boolean isDeleteCruiseTemp(long cruise_uniqueId);
+
+    boolean isDeleteGuestTemp(long cruise_uniqueId);
+    boolean isDeleteExcursionTemp(long cruise_uniqueId);
+    boolean isDeleteCabinTemp(long cruise_uniqueId);
 
 
 }
