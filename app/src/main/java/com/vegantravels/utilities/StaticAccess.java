@@ -9,7 +9,6 @@ public class StaticAccess {
     public static final String RootUrl = "http://dmaverick.com/cruize/public/";
 
 
-
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
     public static final String KEY_INTENT_DATE = "date";
@@ -32,12 +31,12 @@ public class StaticAccess {
 
     //Guest Key
 //    public static final String KEY_CRUISES_ID = "cruiseId";
- public static final String KEY_GUEST_ID = "guestID";
- public static final String KEY_GUEST_NAME = "guestName";
- public static final String KEY_NUMBER_GUEST = "numberOfGuest";
- public static final String KEY_EXCURSION = "excursion";
- public static final String KEY_CABIN_NO = "cabinNo";
- public static final String KEY_PAYMENT_STATUS = "paymentStatus";
+    public static final String KEY_GUEST_ID = "guestID";
+    public static final String KEY_GUEST_NAME = "guestName";
+    public static final String KEY_NUMBER_GUEST = "numberOfGuest";
+    public static final String KEY_EXCURSION = "excursion";
+    public static final String KEY_CABIN_NO = "cabinNo";
+    public static final String KEY_PAYMENT_STATUS = "paymentStatus";
 
 
     public static final String INTENT_GUEST_ID_KEY = "IntentGuestID";
@@ -47,12 +46,12 @@ public class StaticAccess {
 
 
     //excursion  Key
- public static final String KEY_EXCURSION_ID = "id";
- public static final String KEY_EXCURSION_NAME = "excursionName";
+    public static final String KEY_EXCURSION_ID = "id";
+    public static final String KEY_EXCURSION_NAME = "excursionName";
 
     //Number0fGuest  Key
- public static final String KEY_GUEST_NUMBER_ID = "id";
- public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
+    public static final String KEY_GUEST_NUMBER_ID = "id";
+    public static final String KEY_GUEST_NUMBER_NAME = "guestNumberName";
 
     //Participant
 
@@ -64,4 +63,24 @@ public class StaticAccess {
     public static final int CASH_ON_BOARD = 2;
     public static final int CREDIT_CARD = 3;
     public static final int COMPLEMENTARY = 4;
+
+    public static String getPaymentByName(int payment) {
+        String paymentValue = "";
+        switch (payment) {
+            case PAID_ALLREADY:
+                paymentValue = "Paid Already";
+                break;
+            case CASH_ON_BOARD:
+                paymentValue = "Cash on Board";
+                break;
+            case CREDIT_CARD:
+                paymentValue = "Credit Card";
+                break;
+            case COMPLEMENTARY:
+                paymentValue = "Complementary";
+                break;
+        }
+        return paymentValue;
+    }
+
 }

@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.dao.Cabins_TMP;
+import com.vegantravels.dao.Excursions_TMP;
+import com.vegantravels.dao.Guests_TMP;
+import com.vegantravels.manager.DatabaseManager;
+import com.vegantravels.manager.IDatabaseManager;
 
 import java.util.ArrayList;
 
@@ -20,11 +24,13 @@ public class FinanceAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Cabins_TMP> cabinList;
     private LayoutInflater inflater;
+    private IDatabaseManager databaseManager;
 
     public FinanceAdapter(Context context, ArrayList<Cabins_TMP> cabinList) {
         this.context = context;
         this.cabinList = cabinList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        databaseManager = new DatabaseManager(context);
     }
 
     @Override
@@ -76,15 +82,17 @@ public class FinanceAdapter extends BaseAdapter {
         } else {
             holder = (FinanceAdapter.ViewHolder) convertView.getTag();
         }
+        Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabinList.get(i).getGuestVT_Id(), cabinList.get(i).getCruizeId());
+        ArrayList<Excursions_TMP> excursions_tmpsLst = databaseManager.excursionTempListByExcursionId(cabinList.get(i).getExcursion());
+
        /* holder.tvFinanceCabinNo.setText(String.valueOf(cabinList.get(i).getCabinNumber()));
-        holder.tvFinanceLastName.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinanceFirstName.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinanceExcursionBooked.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinanceExcursionDate.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinancePPP.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinanceTotal.setText(String.valueOf(cabinList.get(i).getMaxNumberOfGuest()));
-        holder.tvFinancePayment.setText(String.valueOf(cabinList.get(i).getPaymentStatus()));
-*/
+        holder.tvFinanceLastName.setText(String.valueOf(guests_tmp.getLName()));
+        holder.tvFinanceFirstName.setText(String.valueOf(guests_tmp.getFname()));
+        holder.tvFinanceExcursionBooked.setText(String.valueOf(excursions_tmpsLst.get(i).));
+        holder.tvFinanceExcursionDate.setText(String.valueOf(excursions_tmpsLst.get(i).getFrom()));
+        holder.tvFinancePPP.setText(String.valueOf(excursions_tmpsLst.get(i).getPrice()));
+        holder.tvFinanceTotal.setText(String.valueOf(excursions_tmpsLst.get(i).));
+        holder.tvFinancePayment.setText(String.valueOf(cabinList.get(i).getPaymentStatus()));*/
 
         final int position = i;
 
