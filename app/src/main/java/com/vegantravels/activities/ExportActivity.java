@@ -38,6 +38,7 @@ public class ExportActivity extends BaseActivity {
     private ArrayList<CabinModelFinal> finalList;
     private ProgressDialog progressDialog;
     private BaseActivity activity;
+    private long cruizeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class ExportActivity extends BaseActivity {
         databaseManager = new DatabaseManager(ExportActivity.this);
         cabinList = new ArrayList<>();
         finalList = new ArrayList<>();
+        cruizeId = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, 0);
         new CabinSetupAsyncTask().execute();
 
     }
