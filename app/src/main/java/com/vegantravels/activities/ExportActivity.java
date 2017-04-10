@@ -8,12 +8,16 @@ import android.view.View;
 import com.vegantravels.R;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.model.CabinModel;
+import com.vegantravels.model.CabinModelFinal;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -25,12 +29,15 @@ public class ExportActivity extends BaseActivity {
 
     private DatabaseManager databaseManager;
     private ArrayList<CabinModel> cabinList;
+    private ArrayList<CabinModelFinal> finalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
         databaseManager = new DatabaseManager(ExportActivity.this);
+
+        finalList=new ArrayList<>();
 
     }
 
@@ -114,12 +121,58 @@ public class ExportActivity extends BaseActivity {
 
     }
 
-    public ArrayList<Integer> getUniqCaninNumber(){
+    Comparator<Integer> comparator = new Comparator<Integer>() {
+
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1.compareTo(o2);
+        }
+    };
+
+    HashMap<Integer ,Integer> cabinWiseCalculationmap=new HashMap<>();
+
+
+    //step2
+    public ArrayList<CabinModel> getAlltheRowsOfACabin(int cabin){
+        ArrayList<CabinModel>  result=new ArrayList<>();
+        for(int i=0;i<cabinList.size();i++){
+            if(cabinList.get(i).getCabinNum()==cabin){
+                result.add(cabinList.get(i));
+                int calculation=0;
+                //if multiple rows
+                if(cabinWiseCalculationmap.containsKey(cabin)){
+                    calculation=cabinWiseCalculationmap.get(cabin);
+                }
+                if(cabinList.get(i).getExcursionPrice()!=null){
+                    calculation=calculation+Integer.valueOf(cabinList.get(i).getExcursionPrice().trim())
+                                            *cabinList.get(i).getPeople();
+                }
+                cabinWiseCalculationmap.put(cabin,calculation);
+            }
+
+        }
+
+        return result;
+    }
+
+    //step 1
+    public ArrayList<Integer> getUniqCaBinNumber(){
+        HashMap<Integer,Integer> map=new HashMap<>();
         ArrayList<Integer> resList=new ArrayList<>();
 
 
+        for(CabinModel m: cabinList){
+            map.put(m.getCabinNum(),m.getCabinNum());
+        }
 
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int key = entry.getKey();
+            resList.add(key);
+        }
 
+        //sorting by room number
+        Collections.sort(resList, comparator);
+        //SortArrayList
         return  resList;
     }
 
@@ -128,6 +181,31 @@ public class ExportActivity extends BaseActivity {
         HashMap<Integer, ArrayList<CabinModel>> sortCabin= new HashMap<>();
 
         ArrayList<Integer> uniqCabin=new ArrayList<>();
+        //sorted uniq cabins
+        uniqCabin=getUniqCaBinNumber();
+
+        if(uniqCabin!=null)
+        for(int i=0;i<uniqCabin.size();i++){
+            ArrayList<CabinModel> list=getAlltheRowsOfACabin(uniqCabin.get(i));
+
+            //this model contains same cabin and its multiple excursion
+            CabinModelFinal finalmodel=new CabinModelFinal();
+            for(CabinModel m: list){
+                finalmodel.setCabinNum(m.getCabinNum());
+                finalmodel.setFName(m.getFName());
+                finalmodel.setLName(m.getLName());
+                finalmodel.setVTId(m.getVTId());
+                if(m.getExcursionName()!=null) {
+                    finalmodel.setExcursionName(m.getExcursionName());
+                    finalmodel.setExcursionDate(m.getExcursionDate());
+                    finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
+                }
+                finalmodel.setPeople(m.getPeople());
+                finalmodel.setStatus(m.getStatus());
+            }
+
+            finalList.add(finalmodel);
+        }
 
 
 
