@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
         //Connection Https or http Instances
         apiInterface = APIClient.getClient().create(APIInterface.class);
         databaseManager = new DatabaseManager(activity);
-        new CruizeSyncAsyncTask().execute();
+        listRefresh();
 
 
 //        ibtnSync.setOnClickListener(new View.OnClickListener() {
@@ -180,5 +180,9 @@ public class MainActivity extends BaseActivity {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    public void listRefresh(){
+        new CruizeSyncAsyncTask().execute();
     }
 }

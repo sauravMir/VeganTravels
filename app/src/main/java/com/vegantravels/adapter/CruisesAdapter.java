@@ -1,21 +1,26 @@
 package com.vegantravels.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.ExcursionListActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
+import com.vegantravels.activities.MainActivity;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
@@ -32,11 +37,14 @@ public class CruisesAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private String flag;
     private IDatabaseManager databaseManager;
+    MainActivity mainActivity;
+    int position;
 
     public CruisesAdapter(Context context, ArrayList<Criuzes_TMP> cruisesList, String flag) {
         this.context = context;
         this.cruisesList = cruisesList;
         this.flag = flag;
+        mainActivity = (MainActivity) context;
         databaseManager = new DatabaseManager(context);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -98,7 +106,8 @@ public class CruisesAdapter extends BaseAdapter {
         holder.tvCruiseName.setText(cruisesList.get(i).getName());
         holder.tvShipName.setText(cruisesList.get(i).getShipName());
         holder.tvDate.setText(cruisesList.get(i).getFrom() + "  -  " + cruisesList.get(i).getTo());
-        final int position = i;
+        position = i;
+
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,11 +154,47 @@ public class CruisesAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
+                deletePermissionDialog();
+
             }
         });
 
 
         return convertView;
+    }
+
+
+    private void deletePermissionDialog() {
+
+        final Dialog dialog = new Dialog(mainActivity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText(R.string.delete_permission);
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cruisesList != null) {
+                    databaseManager.isDeleteCruiseTemp(cruisesList.get(position).getCruizeUniqueId());
+                    mainActivity.listRefresh();
+                    notifyDataSetChanged();
+                }
+
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(mainActivity, dialog);
     }
 
 }

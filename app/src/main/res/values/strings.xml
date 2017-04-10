@@ -20,6 +20,7 @@
     <string name="cabin_name">Cabin Name</string>
     <string name="guest_name">Guest Name</string>
     <string name="vt_id">VT ID</string>
+    <string name="delete_permission">Do you want to delete?</string>
 
 
     <array name="excursions">

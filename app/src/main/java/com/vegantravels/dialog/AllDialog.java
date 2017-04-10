@@ -318,4 +318,35 @@ public class AllDialog {
     }
 
 
+
+    ///confirm dialog
+    /*public void deletePermissionDialog() {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText("Do you want to delete?");
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+
+    }
+*/
+
 }

@@ -57,7 +57,8 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
         ibtnBack.setOnClickListener(this);
         ibtnAddGuest.setOnClickListener(this);
         databaseManager = new DatabaseManager(activity);
-        new GuestSyncAsyncTask().execute();
+        GuestListRefresh();
+
     }
 
     @Override
@@ -90,7 +91,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
 
     }
 
-    class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
+     class GuestSyncAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -133,7 +134,14 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
             progressDialog.dismiss();
     }
 
+
+    public void GuestListRefresh(){
+        new GuestSyncAsyncTask().execute();
+    }
+
     private void finishTheActivity() {
         finish();
     }
+
+
 }
