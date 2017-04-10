@@ -73,7 +73,7 @@ public class ExcursionManagementAdapter extends BaseAdapter {
             holder.tvManagementDate = (TextView) convertView.findViewById(R.id.tvManagementDate);
             holder.btnFinance = (Button) convertView.findViewById(R.id.btnFinance);
             if (!flag) {
-                holder.btnFinance.setVisibility(View.GONE);
+                holder.btnFinance.setVisibility(View.INVISIBLE);
             } else {
                 holder.btnFinance.setVisibility(View.VISIBLE);
             }
@@ -90,7 +90,7 @@ public class ExcursionManagementAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intentExcursion2 = new Intent(context, ExportActivity.class);
-                intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID,cruisesManagementList.get(i).getCruizeUniqueId());
+                intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
                 context.startActivity(intentExcursion2);
             }
         });
