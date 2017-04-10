@@ -82,7 +82,7 @@ public interface IDatabaseManager {
     ///***** CABIN TABLE METHOD **********//////
     Cabins_TMP insertCabinTemp(Cabins_TMP cabins_tmp);
 
-    ArrayList<Cabins_TMP> cabinTempList();
+    ArrayList<Cabins_TMP> cabinTempList(long uniqCruizeID);
 
     Cabins_TMP hasGuestExcursion(String guestVT_id);
 

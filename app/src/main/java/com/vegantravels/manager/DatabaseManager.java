@@ -490,12 +490,13 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
     @Override
-    public ArrayList<Cabins_TMP> cabinTempList() {
+    public ArrayList<Cabins_TMP> cabinTempList(long uniqCruizeID) {
         List<Cabins_TMP> cabins_tmpList = null;
         try {
             openReadableDb();
             Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
-            cabins_tmpList = cabins_tmpDao.loadAll();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where( Cabins_TMPDao.Properties.CruizeId.eq(uniqCruizeID)).orderAsc(Cabins_TMPDao.Properties.Id);
+            cabins_tmpList = queryBuilder.list();
 
             daoSession.clear();
         } catch (Exception e) {

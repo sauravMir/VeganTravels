@@ -38,7 +38,7 @@ public class ExportActivity extends BaseActivity {
     private ArrayList<CabinModelFinal> finalList;
     private ProgressDialog progressDialog;
     private BaseActivity activity;
-    private long cruizeId;
+    private long cruizeId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class ExportActivity extends BaseActivity {
         databaseManager = new DatabaseManager(ExportActivity.this);
         cabinList = new ArrayList<>();
         finalList = new ArrayList<>();
-        cruizeId = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, 0);
+        cruizeId = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
         new CabinSetupAsyncTask().execute();
 
     }
@@ -60,8 +60,11 @@ public class ExportActivity extends BaseActivity {
 
     }
 
+    
+    boolean isgenerated = false;
+
     public void exportXls(View view) {
-        final String fileName = "test.xls";
+        final String fileName = "FINANCIAL_DOC.xls";
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
         File directory = new File(sdCard.getAbsolutePath() + "/veganT");
@@ -107,7 +110,7 @@ public class ExportActivity extends BaseActivity {
 
             for (int i = 0; i < finalList.size(); i++) {
                 //if person did not add excursion then no calculations needed
-                if (finalList.get(i).getExcursionName() != null) {
+                if (finalList.get(i).getExcursionName().size() > 0) {
                     Label m_idValue1 = new Label(0, rowIndex, String.valueOf(finalList.get(i).getCabinNum()));
                     Label m_idValue2 = new Label(1, rowIndex, finalList.get(i).getLName());
                     Label m_idValue3 = new Label(2, rowIndex, finalList.get(i).getFName());
@@ -152,8 +155,12 @@ public class ExportActivity extends BaseActivity {
             sheet.addCell(m_idValue);
             sheet.addCell(m_idValue1);*/
             m_workbook.write();
+            Toast.makeText(activity, "XLS Generated Successfully", Toast.LENGTH_SHORT).show();
             m_workbook.close();
         } catch (Exception e) {
+            isgenerated = false;
+            Toast.makeText(activity, "XLS Could not be Generated", Toast.LENGTH_SHORT).show();
+
 
         }
 
@@ -233,7 +240,7 @@ public class ExportActivity extends BaseActivity {
                     finalmodel.setFName(m.getFName());
                     finalmodel.setLName(m.getLName());
                     finalmodel.setVTId(m.getVTId());
-                    if (!m.getExcursionName().equals("") ) {
+                    if (!m.getExcursionName().equals("")) {
                         finalmodel.setExcursionName(m.getExcursionName());
                         finalmodel.setExcursionDate(m.getExcursionDate());
                         finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
@@ -280,34 +287,36 @@ public class ExportActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
-            arrCabinTemp = databaseManager.cabinTempList();
-            if (arrCabinTemp != null) {
-                for (Cabins_TMP cabins_tmp : arrCabinTemp) {
-                    CabinModel cabinModel = new CabinModel();
-                    cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
-                    cabinModel.setPeople(cabins_tmp.getOccupancy());
-                    cabinModel.setStatus(cabins_tmp.getPaymentStatus());
-                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCruizeId());
-                    if (guests_tmp != null) {
+            if (cruizeId != -1) {
+                arrCabinTemp = databaseManager.cabinTempList(cruizeId);
+                if (arrCabinTemp != null) {
+                    for (Cabins_TMP cabins_tmp : arrCabinTemp) {
+                        CabinModel cabinModel = new CabinModel();
+                        cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
+                        cabinModel.setPeople(cabins_tmp.getOccupancy());
+                        cabinModel.setStatus(cabins_tmp.getPaymentStatus());
+                        Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCruizeId());
+                        if (guests_tmp != null) {
 
-                        cabinModel.setFName(guests_tmp.getFname());
-                        cabinModel.setLName(guests_tmp.getLName());
-                    } else {
-                        cabinModel.setFName("");
-                        cabinModel.setLName("");
-                    }
+                            cabinModel.setFName(guests_tmp.getFname());
+                            cabinModel.setLName(guests_tmp.getLName());
+                        } else {
+                            cabinModel.setFName("");
+                            cabinModel.setLName("");
+                        }
 
-                    Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
-                    if (excursions_tmp != null) {
-                        cabinModel.setExcursionDate(excursions_tmp.getFrom());
-                        cabinModel.setExcursionPrice(excursions_tmp.getPrice());
-                        cabinModel.setExcursionName(excursions_tmp.getTitle());
-                    } else {
-                        cabinModel.setExcursionDate("");
-                        cabinModel.setExcursionPrice("");
-                        cabinModel.setExcursionName("");
+                        Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
+                        if (excursions_tmp != null) {
+                            cabinModel.setExcursionDate(excursions_tmp.getFrom());
+                            cabinModel.setExcursionPrice(excursions_tmp.getPrice());
+                            cabinModel.setExcursionName(excursions_tmp.getTitle());
+                        } else {
+                            cabinModel.setExcursionDate("");
+                            cabinModel.setExcursionPrice("");
+                            cabinModel.setExcursionName("");
+                        }
+                        arrCabinModel.add(cabinModel);
                     }
-                    arrCabinModel.add(cabinModel);
                 }
             }
             return null;

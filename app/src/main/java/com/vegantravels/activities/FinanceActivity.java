@@ -33,7 +33,7 @@ public class FinanceActivity extends BaseActivity implements View.OnClickListene
 
         databaseManager = new DatabaseManager(activity);
         cabinList = new ArrayList<>();
-        cabinList = databaseManager.cabinTempList();
+        cabinList = databaseManager.cabinTempList(1);
         findViewById();
     }
 
