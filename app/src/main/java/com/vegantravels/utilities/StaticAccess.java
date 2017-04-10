@@ -64,7 +64,6 @@ public class StaticAccess {
     public static final int CREDIT_CARD = 3;
     public static final int COMPLEMENTARY = 4;
 
-
     public static String getPaymentByName(int payment) {
         String paymentValue = "";
         switch (payment) {

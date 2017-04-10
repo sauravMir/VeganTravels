@@ -92,6 +92,7 @@
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.ExportExcursionActivity"></activity>
     </application>
 
 </manifest>

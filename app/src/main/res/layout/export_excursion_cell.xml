@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/two"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportExcursionDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="date"
+                android:textSize="@dimen/twelve" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportExcursionTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/two"
+                android:text="Time"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportExcursionName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportExcursionPPP"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportExcursionCruizeName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llbtnLst"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <ImageButton
+                android:id="@+id/ibtnExportExcursionView"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_add_excursion"
+                android:gravity="center"
+                android:src="@android:drawable/ic_menu_edit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+            <ImageButton
+                android:id="@+id/ibtnExportExcursionPrint"
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_edit"
+                android:gravity="center"
+                android:src="@android:drawable/ic_input_add"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
