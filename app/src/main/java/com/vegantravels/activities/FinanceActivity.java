@@ -153,13 +153,14 @@ public class FinanceActivity extends BaseActivity implements View.OnClickListene
                     finalmodel.setFName(m.getFName());
                     finalmodel.setLName(m.getLName());
                     finalmodel.setVTId(m.getVTId());
-                    if (!m.getExcursionName().equals("")) {
+                    if (!m.getExcursionName().equals("") && m.getStatus()!=-1) {
                         finalmodel.setExcursionName(m.getExcursionName());
                         finalmodel.setExcursionDate(m.getExcursionDate());
                         finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
+                        finalmodel.setPeople(m.getPeople());
+                        finalmodel.setStatus(m.getStatus());
                     }
-                    finalmodel.setPeople(m.getPeople());
-                    finalmodel.setStatus(m.getStatus());
+
                 }
 
                 finalList.add(finalmodel);
@@ -253,7 +254,7 @@ public class FinanceActivity extends BaseActivity implements View.OnClickListene
         ArrayList<CabinModelFinal> resultList=new ArrayList<>();
 
         for(CabinModelFinal model: list){
-            if(model.getExcursionName().size()>0)
+            if(model.getExcursionName().size()>0 )
                 resultList.add(model);
         }
         return  resultList;

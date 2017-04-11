@@ -83,30 +83,40 @@ public class FinanceAdapter extends BaseAdapter {
         String excursionPPl = "";
         String excursionTotal = "";
         String payment = "";
+        int grandTotal = 0;
+
+        // if (cabinList.get(i).getExcursionName().size() > 0) {
+        holder.tvFinanceCabinNo.setText(String.valueOf(cabinList.get(i).getCabinNum()));
+        holder.tvFinanceLastName.setText(String.valueOf(cabinList.get(i).getLName()));
+        holder.tvFinanceFirstName.setText(String.valueOf(cabinList.get(i).getFName()));
+        for (int j = 0; j < cabinList.get(i).getExcursionName().size(); j++) {
+            excursion += addspace(j + 1) + cabinList.get(i).getExcursionName().get(j) + "\n";
+            excursionDate += addspace(j + 1) + cabinList.get(i).getExcursionDate().get(j) + "\n";
+            excursionPPl += addspace(j + 1) + cabinList.get(i).getPeople().get(j) + "\n";
+            excursionTotal += addspace(j + 1) + cabinList.get(i).getPeople().get(j) * cabinList.get(i).getExcursionPrice().get(j) + "\n";
+            payment += addspace(j + 1) + StaticAccess.getPaymentByName(cabinList.get(i).getStatus().get(j)) + "\n";
+
+            grandTotal += cabinList.get(i).getExcursionPrice().get(j) * cabinList.get(i).getPeople().get(j);
+        }
 
 
-       // if (cabinList.get(i).getExcursionName().size() > 0) {
-            holder.tvFinanceCabinNo.setText(String.valueOf(cabinList.get(i).getCabinNum()));
-            holder.tvFinanceLastName.setText(String.valueOf(cabinList.get(i).getLName()));
-            holder.tvFinanceFirstName.setText(String.valueOf(cabinList.get(i).getFName()));
-            for (int j = 0; j < cabinList.get(i).getExcursionName().size(); j++) {
-                excursion += cabinList.get(i).getExcursionName().get(j) + "\n";
-                excursionDate += cabinList.get(i).getExcursionDate().get(j) + "\n";
-                excursionPPl += cabinList.get(i).getPeople().get(j) + "\n";
-                excursionTotal += cabinList.get(i).getPeople().get(j) * cabinList.get(i).getExcursionPrice().get(j) + "\n";
-                payment += StaticAccess.getPaymentByName(cabinList.get(i).getStatus().get(j)) + "\n";
-            }
+        // }
 
-
-       // }
-
-        holder.tvFinanceExcursionBooked.setText(String.valueOf(excursion));
+        holder.tvFinanceExcursionBooked.setText(String.valueOf(excursion) + "\n" +"Grand Total: "+ String.valueOf(grandTotal) + StaticAccess.CURRENCY);
         holder.tvFinanceExcursionDate.setText(String.valueOf(excursionDate));
         holder.tvFinancePPP.setText(String.valueOf(excursionPPl));
         holder.tvFinanceTotal.setText(String.valueOf(excursionTotal));
         holder.tvFinancePayment.setText(String.valueOf(payment));
 
         return convertView;
+    }
+
+
+    public String addspace(int i) {
+        String res = "";
+        res = String.valueOf(i) + ". ";
+        return res;
+
     }
 
 }

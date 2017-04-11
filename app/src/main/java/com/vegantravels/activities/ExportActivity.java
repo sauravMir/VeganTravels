@@ -139,11 +139,11 @@ public class ExportActivity extends BaseActivity {
                     //adding total info
                     Label GTotal = new Label(3, rowIndex, "Grand Total");
                     Label total = new Label(6, rowIndex, String.valueOf(grandTotal) + StaticAccess.CURRENCY);
-                    Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
+//                    Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
 
                     sheet.addCell(GTotal);
                     sheet.addCell(total);
-                    sheet.addCell(paymentname);
+//                    sheet.addCell(paymentname);
 
                     rowIndex++;
                 }
@@ -240,13 +240,14 @@ public class ExportActivity extends BaseActivity {
                     finalmodel.setFName(m.getFName());
                     finalmodel.setLName(m.getLName());
                     finalmodel.setVTId(m.getVTId());
-                    if (!m.getExcursionName().equals("")) {
+                    if (!m.getExcursionName().equals("")&& m.getStatus()!=-1) {
                         finalmodel.setExcursionName(m.getExcursionName());
                         finalmodel.setExcursionDate(m.getExcursionDate());
                         finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
+                        finalmodel.setPeople(m.getPeople());
+                        finalmodel.setStatus(m.getStatus());
                     }
-                    finalmodel.setPeople(m.getPeople());
-                    finalmodel.setStatus(m.getStatus());
+
                 }
 
                 finalList.add(finalmodel);

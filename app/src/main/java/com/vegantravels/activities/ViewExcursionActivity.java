@@ -188,6 +188,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         cabins_tmp.setGuestVT_Id(tempGuestV.getGuestVT_Id());
         cabins_tmp.setCabinNumber(tempGuestV.getCabinNumber());
         cabins_tmp.setPaymentStatus(paymentStatus);
+        cabins_tmp.setCabinUniqueId(System.currentTimeMillis());
         if (numOfGuest != -1) {
             cabins_tmp.setOccupancy(numOfGuest);
         }
