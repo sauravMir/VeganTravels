@@ -510,7 +510,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     // delete cabin_temp table where  vtId and ExcursionId
     @Override
-    public ArrayList<Cabins_TMP> cabinTempListByVTIdAnd(String VTID, long excursionId) {
+    public ArrayList<Cabins_TMP> deleteCabinByVTIdAndExcursionId(String VTID, long excursionId) {
         List<Cabins_TMP> cabins_tmpList = null;
         try {
             openReadableDb();
