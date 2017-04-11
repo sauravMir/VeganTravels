@@ -1,6 +1,8 @@
 package com.vegantravels.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -155,6 +157,7 @@ public class ExportActivity extends BaseActivity {
             sheet.addCell(m_idValue);
             sheet.addCell(m_idValue1);*/
             m_workbook.write();
+            share(directory.getAbsolutePath());
             Toast.makeText(activity, "XLS Generated Successfully", Toast.LENGTH_SHORT).show();
             m_workbook.close();
         } catch (Exception e) {
@@ -330,6 +333,24 @@ public class ExportActivity extends BaseActivity {
             sortCabin();
             hideProgressDialog();
             Toast.makeText(activity, String.valueOf(arrCabinModel.size()), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void share(String fileLocation) {
+
+        try {
+
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileLocation));
+            intent.putExtra(Intent.EXTRA_TEXT, " ");
+            intent.setData(Uri.parse("mailto:"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
+            activity.finish();
+        } catch (Exception e) {
+            System.out.println("is exception raises during sending mail" + e);
         }
     }
 }
