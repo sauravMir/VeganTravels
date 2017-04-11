@@ -10,10 +10,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.vegantravels.R;
-import com.vegantravels.activities.ExportActivity;
 import com.vegantravels.activities.FinanceActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.dao.Criuzes_TMP;
+import com.vegantravels.utilities.ExportXls;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -82,82 +82,83 @@ public class ExcursionManagementAdapter extends BaseAdapter {
         holder.tvManagementName.setText(cruisesManagementList.get(i).getName());
         holder.tvManagementShipName.setText(cruisesManagementList.get(i).getShipName());
         holder.tvManagementDate.setText(cruisesManagementList.get(i).getFrom() + "  -  " + cruisesManagementList.get(i).getTo());
-      if (flag) {
-          holder.tvManagementName.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
+        if (flag) {
+            holder.tvManagementName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
+                    intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    context.startActivity(intentExcursion2);
+                }
+            });
+            holder.tvManagementShipName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
+                    intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    context.startActivity(intentExcursion2);
+                }
+            });
+            holder.tvManagementDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
+                    intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    context.startActivity(intentExcursion2);
+                }
+            });
+            holder.btnFinance.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //// export finance xls
+                    ExportXls exportXls = new ExportXls(context, cruisesManagementList.get(i).getCruizeUniqueId());
+//                    exportXls.exportXls();
+                /*  Intent intentExcursion2 = new Intent(context, ExportActivity.class);
                   intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  context.startActivity(intentExcursion2);
-              }
-          });
-          holder.tvManagementShipName.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
-                  intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  context.startActivity(intentExcursion2);
-              }
-          });
-          holder.tvManagementDate.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
-                  intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  context.startActivity(intentExcursion2);
-              }
-          });
-          holder.btnFinance.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  Intent intentExcursion2 = new Intent(context, ExportActivity.class);
-                  intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  context.startActivity(intentExcursion2);
-              }
-          });
-      }else {
-          holder.tvManagementName.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-                  intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                  intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
-                  context.startActivity(intentGuest);
-              }
-          });
+                  context.startActivity(intentExcursion2);*/
+                }
+            });
+        } else {
+            holder.tvManagementName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
+                    context.startActivity(intentGuest);
+                }
+            });
 
-          holder.tvManagementShipName.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-                  intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                  intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
-                  context.startActivity(intentGuest);
-              }
-          });
-          holder.tvManagementDate.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                  Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-                  intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                  intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
-                  intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
-                  context.startActivity(intentGuest);
-              }
-          });
+            holder.tvManagementShipName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
+                    context.startActivity(intentGuest);
+                }
+            });
+            holder.tvManagementDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
+                    context.startActivity(intentGuest);
+                }
+            });
 
 
-      }
+        }
 
         return convertView;
     }
-
-
 
 
 }
