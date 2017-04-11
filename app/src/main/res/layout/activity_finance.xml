@@ -25,10 +25,11 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="Financial Status per cabin"
+                android:text="Financial Status Per Cabin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 
+            
             <ImageButton
                 android:id="@+id/ibtnAddExcursion"
                 android:layout_width="@dimen/fifty"
