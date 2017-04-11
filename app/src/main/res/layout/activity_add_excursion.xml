@@ -38,8 +38,7 @@
             android:gravity="left"
             android:hint="Excursion title"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/eighteen"
             android:textStyle="normal" />
 
 
@@ -52,7 +51,7 @@
             android:gravity="left|center"
             android:text="From Date"
             android:textAlignment="gravity"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/eighteen"
             android:textStyle="normal" />
 
         <TextView
@@ -64,7 +63,7 @@
             android:gravity="left|center"
             android:text="Time"
             android:textAlignment="gravity"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/eighteen"
             android:textStyle="normal" />
 
 
@@ -78,8 +77,7 @@
             android:hint="Price"
             android:inputType="number"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/eighteen"
             android:textStyle="normal" />
 
 
@@ -94,8 +92,7 @@
             android:inputType="number"
             android:hint="Max number of guest"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textSize="@dimen/eighteen"
             android:textStyle="normal" />
 
         <View
