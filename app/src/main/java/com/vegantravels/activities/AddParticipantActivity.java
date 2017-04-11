@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
@@ -112,6 +113,8 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
                         tempGuest.setLName(etLName.getText().toString());
                         tempGuest.setGuestVT_Id(etVTid.getText().toString());
                         tempGuest.setGuestUniqueId(cruizeUniqueID); /// cruize unique id
+
+
                         new GuestAsyncTask().execute();
 
                     }
@@ -177,10 +180,26 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 
         @Override
         protected Void doInBackground(Void... voids) {
+            
             //// insert new Data Here,
             if (tempGuest != null) {
+
                 /// update cruize
                 tempGuestV = databaseManager.insertGuestTemporary(tempGuest);
+                Cabins_TMP insertCabinPayment = new Cabins_TMP();
+
+                if (tempGuestV != null)
+                    insertCabinPayment.setCabinNumber(tempGuestV.getCabinNumber());
+                insertCabinPayment.setGuestVT_Id(tempGuestV.getGuestVT_Id());
+                insertCabinPayment.setOccupancy(1);
+//              insertCabinPayment.setNumberOfGuest(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
+                // here is CruiseId
+                insertCabinPayment.setCruizeId(tempGuestV.getGuestUniqueId());
+                insertCabinPayment.setExcursion(-1L);
+                insertCabinPayment.setPaymentStatus(-1);
+                insertCabinPayment.setCabinUniqueId(System.currentTimeMillis());
+
+                databaseManager.insertCabinTemp(insertCabinPayment);
 
             } else {
                /* // get cruize
