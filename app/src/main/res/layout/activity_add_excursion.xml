@@ -36,12 +36,13 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="Excursion title"
             android:textAlignment="gravity"
-            android:textSize="@dimen/eighteen"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
-
 
         <TextView
             android:id="@+id/tvExcursionFromDate"
@@ -49,10 +50,12 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left|center"
+            android:gravity="left|bottom"
             android:text="From Date"
             android:textAlignment="gravity"
-            android:textSize="@dimen/eighteen"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <TextView
@@ -61,10 +64,12 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left|center"
+            android:gravity="left|bottom"
             android:text="Time"
             android:textAlignment="gravity"
-            android:textSize="@dimen/eighteen"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
 
@@ -74,26 +79,29 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="Price"
             android:inputType="number"
             android:textAlignment="gravity"
-            android:textSize="@dimen/eighteen"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
 
-        
         <EditText
             android:id="@+id/edtMaxGuest"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".1"
-            android:gravity="left"
-            android:inputType="number"
+            android:gravity="left|bottom"
             android:hint="Max number of guest"
+            android:inputType="number"
             android:textAlignment="gravity"
-            android:textSize="@dimen/eighteen"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <View
@@ -109,9 +117,11 @@
             android:background="@drawable/bottom_cell"
             android:gravity="center"
             android:text="Done"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty" />
 
     </LinearLayout>
+
     <ImageButton
         android:id="@+id/ibtnBackExcursion"
         android:layout_width="@dimen/fifty"

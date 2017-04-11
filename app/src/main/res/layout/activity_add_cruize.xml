@@ -33,14 +33,14 @@
             android:id="@+id/edtCruzeName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
+            android:layout_marginLeft="@dimen/ten"
             android:gravity="left|bottom"
-            android:hint="Cruise Name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="@dimen/fifteen"
+            android:hint="Cruise Name"
             android:textStyle="normal" />
 
         <EditText
@@ -100,7 +100,6 @@
                 android:background="@color/transparent"
                 android:gravity="left|center"
                 android:text="Upload Cabin"
-                android:paddingLeft="@dimen/three"
                 android:textColor="@color/black"
                 android:textSize="@dimen/fifteen" />
 

@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="@dimen/three_hundred_twenty"
-        android:layout_height="@dimen/three_hundred_fifty"
+        android:layout_width="@dimen/four_hundred_fifty"
+        android:layout_height="@dimen/four_hundred_fifty"
         android:layout_centerInParent="true"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
@@ -22,8 +22,8 @@
             android:layout_weight=".2"
             android:gravity="center"
             android:text="New participent"
-            android:textSize="@dimen/twenty"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty" />
 
         <View
             android:layout_width="match_parent"
@@ -36,24 +36,27 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="Cabin no"
             android:inputType="number"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
+
         <EditText
             android:id="@+id/etFName"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="First name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
         <EditText
@@ -62,26 +65,27 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="Last name"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
+
         <EditText
             android:id="@+id/etVTid"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
             android:hint="@string/vt_id"
             android:textAlignment="gravity"
             android:textColor="@color/black"
-            android:textSize="@dimen/twenty"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
-
-
 
 
         <View
@@ -97,7 +101,8 @@
             android:background="@drawable/bottom_cell"
             android:gravity="center"
             android:text="Done"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty" />
 
     </LinearLayout>
 

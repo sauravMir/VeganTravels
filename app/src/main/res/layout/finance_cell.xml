@@ -100,7 +100,6 @@
                 android:text="Milan"
                 android:textSize="@dimen/twelve" />
 
-
         </LinearLayout>
 
         <LinearLayout
