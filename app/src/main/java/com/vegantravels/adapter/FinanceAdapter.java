@@ -94,7 +94,6 @@ public class FinanceAdapter extends BaseAdapter {
         holder.tvFinanceTotal.setText(String.valueOf(excursions_tmpsLst.get(i).));
         holder.tvFinancePayment.setText(String.valueOf(cabinList.get(i).getPaymentStatus()));*/
 
-        final int position = i;
 
         return convertView;
     }

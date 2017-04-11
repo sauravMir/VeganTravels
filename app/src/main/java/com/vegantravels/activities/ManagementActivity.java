@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vegantravels.R;
+import com.vegantravels.utilities.StaticAccess;
 
 public class ManagementActivity extends BaseActivity implements View.OnClickListener {
     TextView tvCruiseMngmnt, tvExcursionMngmnt, tvExport, tvFinancial;
@@ -43,16 +44,19 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.tvExcursionMngmnt:
                 Intent intentExcursion = new Intent(activity, ExcursionCruiseList.class);
+                intentExcursion.putExtra(StaticAccess.KEY_Activity_flag,1);
                 startActivity(intentExcursion);
                 finishTheActivity();
                 break;
             case R.id.tvExport:
-                Intent intent = new Intent(activity, ExportActivity.class);
+                Intent intent = new Intent(activity, ExportExcursionActivity.class);
                 startActivity(intent);
                 finishTheActivity();
                 break;
             case R.id.tvFinancial:
-                startActivity(new Intent(activity, ExportExcursionActivity.class));
+                Intent intentExcursion2 = new Intent(activity, ExcursionCruiseList.class);
+                intentExcursion2.putExtra(StaticAccess.KEY_Activity_flag,2);
+                startActivity(intentExcursion2);
                 finishTheActivity();
                 break;
 

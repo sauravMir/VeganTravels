@@ -22,7 +22,6 @@ import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
-import com.vegantravels.model.CabinModel;
 import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
@@ -46,8 +45,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     SpinnerCustomAdapter spinnerCustomAdapter;
 
     ArrayList<Excursions_TMP> arrExcursion;
-    private long cruizeUniqueID = -1;
-    private String fDate = "";
+    public long cruizeUniqueID = -1;
+    public String fDate = "";
     private Cabins_TMP cabins_tmp;
 
     @Override
@@ -103,14 +102,14 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private int numOfGuest = -1;
 
     private void fillGuestNumberData() {
-        String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
+        final String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
         final ArrayAdapter<String> adapterGuest = new ArrayAdapter<String>(activity, R.layout.spinner_item, GUEST_ARRAY);
         spnGuestNumber.setAdapter(adapterGuest);
         spnGuestNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i != 0)
-                    numOfGuest = Integer.parseInt(adapterGuest.getItem(i));
+                    numOfGuest = Integer.valueOf(GUEST_ARRAY[i]);
             }
 
             @Override
@@ -122,7 +121,6 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    
 
     private long excrusionId = -1;
 
@@ -160,6 +158,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             case R.id.btnConfirm:
                 allDialog.confirmDialog("Are you sure? You want to confirm", this);
                 break;
+
             case R.id.ibtnBack:
                 if (cruizeUniqueID != -1) {
                     Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
@@ -176,6 +175,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         cabins_tmp = new Cabins_TMP();
         cabins_tmp.setCruizeId(tempGuestV.getGuestUniqueId());
         cabins_tmp.setGuestVT_Id(tempGuestV.getGuestVT_Id());
+        cabins_tmp.setCabinNumber(tempGuestV.getCabinNumber());
         cabins_tmp.setPaymentStatus(paymentStatus);
         if (numOfGuest != -1) {
             cabins_tmp.setOccupancy(numOfGuest);
@@ -184,7 +184,11 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         if (excrusionId != -1) {
             cabins_tmp.setExcursion(excrusionId);
         }
-        new BookedExcursionGuestAsyncTask().execute();
+        if (numOfGuest != -1 && excrusionId != -1) {
+            new BookedExcursionGuestAsyncTask().execute();
+        } else {
+            Toast.makeText(activity, "Select an Excursion First", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -283,68 +287,23 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 Toast.makeText(activity, "update", Toast.LENGTH_SHORT).show();
             }
             if (insertedCabin_Tmp != null) {
-                Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
-    }
+                //Toast.makeText(activity, "Excursion Booked", Toast.LENGTH_SHORT).show();
 
 
-    /// for cabinModel 
-    ArrayList<CabinModel> arrCabinModel = new ArrayList<>();
-    ArrayList<Cabins_TMP> arrCabinTemp;
+                if (cruizeUniqueID != -1) {
+                    allDialog.paymentCompletionDialog("Do you want to add another excursion to cabin?", activity);
 
-    class CabinSetupAsyncTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            showProgressDialog();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            //// insert new Data Here,
-            arrCabinTemp = databaseManager.cabinTempList();
-            if (arrCabinTemp != null) {
-                for (Cabins_TMP cabins_tmp : arrCabinTemp) {
-                    CabinModel cabinModel = new CabinModel();
-                    cabinModel.setCabinNum(cabins_tmp.getCabinNumber());
-                    cabinModel.setPeople(cabins_tmp.getOccupancy());
-                    cabinModel.setStatus(cabins_tmp.getPaymentStatus());
-                    Guests_TMP guests_tmp = databaseManager.guestTempFromCabin(cabins_tmp.getGuestVT_Id(), cabins_tmp.getCabinUniqueId());
-                    if (guests_tmp != null) {
-
-                        cabinModel.setFName(guests_tmp.getFname());
-                        cabinModel.setLName(guests_tmp.getLName());
-                    } else {
-                        cabinModel.setFName("");
-                        cabinModel.setLName("");
-                    }
-
-                    Excursions_TMP excursions_tmp = databaseManager.getExcursionByExcursionUniqueId(cabins_tmp.getExcursion());
-                    if (excursions_tmp != null) {
-                        cabinModel.setExcursionDate(excursions_tmp.getFrom());
-                        cabinModel.setExcursionPrice(excursions_tmp.getPrice());
-                        cabinModel.setExcursionName(excursions_tmp.getTitle());
-                    } else {
-                        cabinModel.setExcursionDate("");
-                        cabinModel.setExcursionPrice("");
-                        cabinModel.setExcursionName("");
-                    }
-                    arrCabinModel.add(cabinModel);
+                  /*  Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
+                    guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                    startActivity(guestintent);
+                    finishTheActivity();*/
                 }
-            }
-            return null;
-        }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            hideProgressDialog();
-            Toast.makeText(activity, String.valueOf(arrCabinModel.size()), Toast.LENGTH_LONG).show();
+            }
+
         }
     }
+
 
 }

@@ -8,7 +8,7 @@ public class StaticAccess {
     //Root Url
     public static final String RootUrl = "http://dmaverick.com/cruize/public/";
 
-
+    public static final String CURRENCY = " EUR";
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
     public static final String KEY_INTENT_DATE = "date";
@@ -20,9 +20,11 @@ public class StaticAccess {
     public static final String KEY_DATE_FROM = "from";
     public static final String KEY_DATE_TO = "to";
     public static final String KEY_CRUISE_UNIQUE_ID = "uniq_id";
+    public static final String KEY_Activity_flag = "flag";
 
     public static final String CRIUZE_MANAGEMENT = "CruizeManagement";
     public static final String EXCURSION_MANAGEMENT = "ExcursionManagement";
+    public static final String FINANCE_MANAGEMENT = "ExcursionManagement";
 
     /// Date picker
     public static final String DATE_FROM = "Date from";
@@ -93,6 +95,19 @@ public class StaticAccess {
     public static final String KEY_PPL = "PPL";
     public static final String KEY_TOTAL = "TOTAL";
     public static final String KEY_PAYMENT = "PAYMENT";
+
+
+
+
+    //// FOR GENERATING GUSET LIST BY EXCURSION
+    public static final String KEY_VT_ID= "VT ID NO";
+    public static final String GUEST_LIST_PER_EXCURSION = "GUEST LIST PER EXCURSION";
+    public static final String NR_NO = "Nr.";
+    public static final String GUEST_IN_CABIN ="GUESTS IN CABIN" ;
+
+
+
+
 
 
 

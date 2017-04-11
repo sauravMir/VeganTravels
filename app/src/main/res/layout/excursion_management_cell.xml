@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/seventy"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/two"
+        android:weightSum="4">
+
+        <View
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_weight=".5" />
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvManagementName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="1066"
+                android:textSize="@dimen/twelve" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvManagementDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/two"
+                android:text="2-2-2017"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight="1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvManagementShipName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Milan"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnFinance"
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".5"
+            android:background="@drawable/btn_add_excursion"
+            android:gravity="center"
+            android:text=" Export" />
+
+    </LinearLayout>
+
+</RelativeLayout>

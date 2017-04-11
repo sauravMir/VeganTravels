@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.CruisesAdapter;
+import com.vegantravels.adapter.ExcursionManagementAdapter;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
@@ -34,9 +35,9 @@ import retrofit2.Response;
 
 public class ExcursionCruiseList extends BaseActivity {
     private ListView lvExcursionCruises;
-    private CruisesAdapter cruisesAdapter;
+    private ExcursionManagementAdapter excursionManagementAdapter;
     // Criuze model for dao class
-    private ArrayList<Criuzes_TMP> cruisesList;
+    private ArrayList<Criuzes_TMP> cruisesManagementList;
     ExcursionCruiseList activity;
     // retro Call back Interface
     APIInterface apiInterface;
@@ -44,7 +45,8 @@ public class ExcursionCruiseList extends BaseActivity {
     private ImageButton ibtnBack, ibtnAddCruize, ibtnSync;
     IDatabaseManager databaseManager;
     TextView tvBlank;
-
+    // if came from finance  = 2, excursion==1;
+    int flag = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class ExcursionCruiseList extends BaseActivity {
         lvExcursionCruises = (ListView) findViewById(R.id.lvExcursionCruises);
         ibtnBack = (ImageButton) findViewById(R.id.ibtnBack);
         tvBlank = (TextView) findViewById(R.id.tvBlank);
+        flag = getIntent().getIntExtra(StaticAccess.KEY_Activity_flag, 0);
+
 //        ibtnAddCruize = (ImageButton) findViewById(R.id.ibtnAddCruize);
 //        ibtnSync = (ImageButton) findViewById(R.id.ibtnSync);
         //Connection Https or http Instances
@@ -104,20 +108,25 @@ public class ExcursionCruiseList extends BaseActivity {
 
     //fill cruize data
     private void fillData() {
-        if (cruisesList != null && cruisesList.size() > 0) {
-            cruisesAdapter = new CruisesAdapter(this, cruisesList, StaticAccess.EXCURSION_MANAGEMENT);
-            lvExcursionCruises.setAdapter(cruisesAdapter);
+        if (cruisesManagementList != null && cruisesManagementList.size() > 0) {
+            if(flag==1)
+            excursionManagementAdapter = new ExcursionManagementAdapter(this, cruisesManagementList,false);
+            else
+                excursionManagementAdapter = new ExcursionManagementAdapter(this, cruisesManagementList,true);
+            lvExcursionCruises.setAdapter(excursionManagementAdapter);
         }
         lvExcursionCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);
-                intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesList.get(i).getId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesList.get(i).getCruizeUniqueId());
-                intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :"+cruisesList.get(i).getFrom()+ "\n To :"+cruisesList.get(i).getTo());
-                startActivity(intentGuest);
-                finishActivity();
+                if(flag==1) {
+                    Intent intentGuest = new Intent(activity, GuestListThreeActivity.class);
+                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + cruisesManagementList.get(i).getFrom() + "\n To :" + cruisesManagementList.get(i).getTo());
+                    startActivity(intentGuest);
+                    finishActivity();
+                }
             }
         });
 
@@ -144,8 +153,8 @@ public class ExcursionCruiseList extends BaseActivity {
 //            cruiseTble.addCruise();
 //            cruiseTble.parsingCruisesList();
 
-            cruisesList = new ArrayList<>();
-            cruisesList = databaseManager.listCriuzeTemporary();
+            cruisesManagementList = new ArrayList<>();
+            cruisesManagementList = databaseManager.listCriuzeTemporary();
             return null;
         }
 
@@ -162,7 +171,7 @@ public class ExcursionCruiseList extends BaseActivity {
 /////************** unused Method for future debugging ********************////////
 
     void parsingCruisesList() {
-        cruisesList = new ArrayList<>();
+        cruisesManagementList = new ArrayList<>();
         showProgressDialog();
         Call<CruiseJson> call = apiInterface.getCruizeList();
         call.enqueue(new Callback<CruiseJson>() {

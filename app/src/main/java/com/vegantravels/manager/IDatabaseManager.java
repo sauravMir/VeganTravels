@@ -68,23 +68,27 @@ public interface IDatabaseManager {
 
     Long updateGuest(Guests guests);
 
-    List<Guests_TMP> getSearchByNameCabin(String name, String cabin);
+    List<Guests_TMP> getSearchByNameCabin(String name, String cabin, long cruizeUniqID);
 
-    List<Guests_TMP> getSearchByName(String name);
+    List<Guests_TMP> getSearchByName(String name, long cruizeUniqID);
 
-    List<Guests_TMP> getSearchByCabin(String CabinNum);
+    List<Guests_TMP> getSearchByCabin(String CabinNum, long cruizeUniqID);
 
     Guests_TMP guestTempFromCabin(String vtId, long cruiseId);
+
+//    List<Guests_TMP> getGuestByVTCruizeID(String vtID, long cruizeID);
 //    ArrayList<Criuzes_TMP> tempCruiseList();
 
     ///***** CABIN TABLE METHOD **********//////
     Cabins_TMP insertCabinTemp(Cabins_TMP cabins_tmp);
 
-    ArrayList<Cabins_TMP> cabinTempList();
+    ArrayList<Cabins_TMP> cabinTempList(long uniqCruizeID);
 
     Cabins_TMP hasGuestExcursion(String guestVT_id);
 
     Long updateCabinTemp(Cabins_TMP cabins_tmp);
+
+    ArrayList<Cabins_TMP> getGuestDeatilByExcursionCruizeID(long excursionUniqId, long cruizeID);
 
     ///***** EXCURSION TABLE METHOD **********//////
     Excursions_TMP insertExcursionTemp(Excursions_TMP excursions_tmp);
@@ -97,9 +101,13 @@ public interface IDatabaseManager {
     Excursions_TMP getExcursionById(long id);
 
     Long updateExcursionTemp(Excursions_TMP excursions_tmp);
+
     //excurtion List by Excursion Unique Id
     ArrayList<Excursions_TMP> excursionTempListByExcursionId(long excursionId);
+
     Excursions_TMP getExcursionByExcursionUniqueId(long excursionId);
+
+    Criuzes_TMP getCruizeByCruizeUniqueID(long cruizeId);
 
     boolean isDeleteCruiseTemp(long cruise_uniqueId);
     boolean isDeleteGuestTemp(long cruise_uniqueId);

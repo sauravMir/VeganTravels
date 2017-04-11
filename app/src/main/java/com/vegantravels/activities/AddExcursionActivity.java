@@ -13,19 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
-import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Excursions_TMP;
-import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
-import com.vegantravels.model.CabinModel;
 import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestDetails;
 import com.vegantravels.retroapi.APIInterface;
 import com.vegantravels.utilities.StaticAccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -124,7 +120,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.ibtnBackExcursion:
-                Intent intent = new Intent(activity, ManagementActivity.class);
+                Intent intent = new Intent(activity, ExcursionListActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
                 startActivity(intent);
                 finishTheActivity();
                 break;
@@ -133,21 +130,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void finishTheActivity() {
-        findViewById();
+        finish();
     }
-
-
-
- /*   private void updateCruize() {
-        upCruize = new Criuzes_TMP();
-        upCruize.setId(cruizeID);
-        upCruize.setName(edtCruzeName.getText().toString());
-        upCruize.setShipName(edtShipName.getText().toString());
-        upCruize.setFrom(tvDateFrom.getText().toString());
-        upCruize.setCruizeUniqueId(cruizeUniqueID);
-        upCruize.setTo(tvDateTo.getText().toString());
-        new AddCruizeActivity.EditCruiseAsyncTask().execute();
-    }*/
 
 
     private void updateExcursion() {
@@ -283,8 +267,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            Toast.makeText(activity, "is excursion inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(activity, ExcursionListActivity.class));
+            Toast.makeText(activity, "Excursion Inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(activity, ExcursionListActivity.class);
+            intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+            startActivity(intent);
             finishTheActivity();
         }
     }
@@ -323,12 +309,6 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             if (!goForEdit) {
                 if (excursions_tmp != null) {
                     /// fill data for edit
-                  /*  edtCruzeName.setText(String.valueOf(criuzes_tmp.getName()));
-                    edtShipName.setText(String.valueOf(criuzes_tmp.getShipName()));
-                    tvDateFrom.setText(String.valueOf(criuzes_tmp.getFrom()));
-                    tvDateTo.setText(String.valueOf(criuzes_tmp.getTo()));
-                    tvCabinUpload.setText("");
-                    btnCabinUpload.setVisibility(View.GONE);*/
 
                     edtExcursionTitle.setText(String.valueOf(excursions_tmp.getTitle()));
                     tvExcursionFromDate.setText(String.valueOf(excursions_tmp.getFrom()));
@@ -339,8 +319,10 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
             } else {
                 hideProgressDialog();
-                Toast.makeText(activity, "is excursion inserted: ", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(activity, ExcursionListActivity.class));
+                Toast.makeText(activity, "Excursion Updated: ", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(activity, ExcursionListActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+                startActivity(intent);
                 finishTheActivity();
             }
         }

@@ -3,6 +3,7 @@ package com.vegantravels.dialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -12,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
@@ -56,6 +58,7 @@ public class AllDialog {
         guestListThreeActivity = activity;
         databaseManager = new DatabaseManager(activity);
     }
+
     public AllDialog(AddExcursionActivity activity) {
         addExcursionActivity = activity;
         databaseManager = new DatabaseManager(activity);
@@ -121,17 +124,21 @@ public class AllDialog {
                 int selectedId = rdGrp.getCheckedRadioButtonId();
                 if (selectedId == R.id.rbPaidAlReady) {
                     activity.bookedExcursion(StaticAccess.PAID_ALLREADY);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbCashOnBoard) {
                     activity.bookedExcursion(StaticAccess.CASH_ON_BOARD);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbCreditCard) {
                     activity.bookedExcursion(StaticAccess.CREDIT_CARD);
+                    dialog.dismiss();
 
                 } else if (selectedId == R.id.rbComplementary) {
                     activity.bookedExcursion(StaticAccess.COMPLEMENTARY);
-
-
+                    dialog.dismiss();
+                }else{
+                    Toast.makeText(activity, "Select Payment Method", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,7 +148,7 @@ public class AllDialog {
     }
 
 
-    public void dialogForSearch() {
+    public void dialogForSearch(final long cruizeUniqID) {
         final Dialog dialog = new Dialog(guestListThreeActivity, R.style.CustomAlertDialog);
         dialog.setContentView(R.layout.dialog_search);
         dialog.setCancelable(false);
@@ -166,14 +173,14 @@ public class AllDialog {
 
                 if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() > 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByNameCabin(edtCabinName.getText().toString(), edtCabinNumber.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByNameCabin(edtCabinName.getText().toString(), edtCabinNumber.getText().toString(),cruizeUniqID);
 
                 } else if (edtCabinNumber.getText().length() > 0 && edtCabinName.getText().length() <= 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByCabin(edtCabinNumber.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByCabin(edtCabinNumber.getText().toString(),cruizeUniqID);
                 } else if (edtCabinNumber.getText().length() <= 0 && edtCabinName.getText().length() > 0) {
                     guestListThreeActivity.guestList.clear();
-                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString());
+                    guestListThreeActivity.guestList = (ArrayList<Guests_TMP>) databaseManager.getSearchByName(edtCabinName.getText().toString(),cruizeUniqID);
                 } else {
                     guestListThreeActivity.guestList.clear();
                     guestListThreeActivity.guestList = databaseManager.listGuestByUniqueId(guestListThreeActivity.uniqueId);
@@ -194,7 +201,7 @@ public class AllDialog {
 
 
     ///payment success dialog
-    public void paymentCompletionDialog(String text) {
+    public void paymentCompletionDialog(String text, final ViewExcursionActivity activity) {
 
         final Dialog dialog = new Dialog(viewExcursionActivity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -209,6 +216,11 @@ public class AllDialog {
         btnCancelPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent guestintent = new Intent(activity, GuestListThreeActivity.class);
+                guestintent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, activity.cruizeUniqueID);
+                guestintent.putExtra(StaticAccess.KEY_INTENT_DATE, activity.fDate);
+                activity.startActivity(guestintent);
+                activity.finish();
                 dialog.dismiss();
             }
         });
@@ -267,9 +279,6 @@ public class AllDialog {
     }
 
 
-
-
-
     public void setCustomDateForEx(final TextView txt, final String flag) {
 
         final Calendar calendar = Calendar.getInstance();
@@ -313,5 +322,35 @@ public class AllDialog {
         DialogNavBarHide.navBarHide(addExcursionActivity, timePickerDialog);
     }
 
+
+    ///confirm dialog
+    /*public void deletePermissionDialog() {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText("Do you want to delete?");
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+
+    }
+*/
 
 }

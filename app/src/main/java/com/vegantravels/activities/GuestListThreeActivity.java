@@ -57,7 +57,8 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
         ibtnBack.setOnClickListener(this);
         ibtnAddGuest.setOnClickListener(this);
         databaseManager = new DatabaseManager(activity);
-        new GuestSyncAsyncTask().execute();
+        GuestListRefresh();
+
     }
 
     @Override
@@ -70,7 +71,7 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
                 finishTheActivity();
                 break;
             case R.id.ibtnSearch:
-                allDialog.dialogForSearch();
+                allDialog.dialogForSearch(uniqueId);
                 break;
             case R.id.ibtnAddGuest:
                 Intent intentadd = new Intent(activity, AddParticipantActivity.class);
@@ -133,7 +134,14 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
             progressDialog.dismiss();
     }
 
+
+    public void GuestListRefresh() {
+        new GuestSyncAsyncTask().execute();
+    }
+
     private void finishTheActivity() {
         finish();
     }
+
+
 }
