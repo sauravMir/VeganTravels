@@ -84,6 +84,8 @@ public interface IDatabaseManager {
 
     ArrayList<Cabins_TMP> cabinTempList(long uniqCruizeID);
 
+    void deleteCabinTemp(Cabins_TMP cabins_tmp);
+
     Cabins_TMP hasGuestExcursion(String guestVT_id);
 
     Long updateCabinTemp(Cabins_TMP cabins_tmp);
@@ -110,15 +112,20 @@ public interface IDatabaseManager {
     Criuzes_TMP getCruizeByCruizeUniqueID(long cruizeId);
 
     boolean isDeleteCruiseTemp(long cruise_uniqueId);
+
     boolean isDeleteGuestTemp(long cruise_uniqueId);
+
     boolean isDeleteExcursionTemp(long cruise_uniqueId);
+
     boolean isDeleteCabinTemp(long cruise_uniqueId);
 
     boolean isDeleteGuestCabinTemp(String Vtid, long cruise_uniqueId);
-    boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId);
-    // when excursion Delete you must need to update cabin Table excursionId -1
-    boolean isDeleteExcursionTempByCruiseAndExcursionId(long cruise_uniqueId,long excursionId);
 
-    ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId(long cruise_uniqueId,long excursionId);
+    boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId);
+
+    // when excursion Delete you must need to delete cabin Table
+    boolean isDeleteExcursionTempByCruiseAndExcursionId(long cruise_uniqueId, long excursionId);
+
+    ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId(long cruise_uniqueId, long excursionId);
 
 }
