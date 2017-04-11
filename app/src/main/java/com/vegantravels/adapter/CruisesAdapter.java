@@ -184,7 +184,7 @@ public class CruisesAdapter extends BaseAdapter {
                 if (cruisesList != null) {
                     databaseManager.isDeleteCruiseTemp(cruisesList.get(pos).getCruizeUniqueId());
                     mainActivity.listRefresh();
-                    notifyDataSetChanged();
+
                 }
 
                 dialog.dismiss();

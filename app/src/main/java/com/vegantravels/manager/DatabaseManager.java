@@ -742,7 +742,6 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
             if (cruiseTempList.size() > 0) {
                 for (Criuzes_TMP fLayerImage : cruiseTempList) {
                     criuzes_tmpDao.delete(fLayerImage);
-
                     isDeleteGuestTemp(cruise_uniqueId);
                     isDeleteExcursionTemp(cruise_uniqueId);
                     isDeleteCabinTemp(cruise_uniqueId);

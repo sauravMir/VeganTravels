@@ -97,9 +97,10 @@ public class MainActivity extends BaseActivity {
 
     //fill cruize data
     private void fillData() {
-        if (cruisesList != null && cruisesList.size() > 0) {
+        if (cruisesList != null ) {
             cruisesAdapter = new CruisesAdapter(this, cruisesList, StaticAccess.CRIUZE_MANAGEMENT);
             lvCruises.setAdapter(cruisesAdapter);
+            cruisesAdapter.notifyDataSetChanged();
         }
         lvCruises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -131,9 +132,6 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             //// insert new Data Here,
-//            CruiseTble cruiseTble = new CruiseTble(activity);
-//            cruiseTble.addCruise();
-//            cruiseTble.parsingCruisesList();
 
             cruisesList = new ArrayList<>();
             cruisesList = databaseManager.listCriuzeTemporary();
@@ -142,9 +140,10 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
             fillData();
             progressDialog.dismiss();
-            super.onPostExecute(aVoid);
+
         }
     }
     /////****************** sync asyctask end here ***********************///////
