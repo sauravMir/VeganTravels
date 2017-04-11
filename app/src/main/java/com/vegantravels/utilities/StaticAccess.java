@@ -11,6 +11,7 @@ public class StaticAccess {
     public static final String CURRENCY = " EUR";
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
+    public static final String KEY_EXCURSION_UNIQUE_ID = "excursion_id";
     public static final String KEY_INTENT_DATE = "date";
     public static final String KEY_INTENT_CRUISES_UNIQUE_ID = "UniqueId";
 

@@ -29,49 +29,49 @@ import java.util.ArrayList;
 
 public class GuestThreeAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Guests_TMP> guestList;
-    private LayoutInflater layoutInflater;
-    String fDate;
-    private IDatabaseManager databaseManager;
-    private GuestListThreeActivity activity;
-    private String vtID;
+private Context context;
+private ArrayList<Guests_TMP> guestList;
+private LayoutInflater layoutInflater;
+        String fDate;
+private IDatabaseManager databaseManager;
+private GuestListThreeActivity activity;
+private String vtID;
 
-    public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList, String fDate) {
+public GuestThreeAdapter(Context context, ArrayList<Guests_TMP> guestsList, String fDate) {
         this.context = context;
         this.guestList = guestsList;
         this.fDate = fDate;
         activity = (GuestListThreeActivity) context;
         databaseManager = new DatabaseManager(context);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
+        }
 
-    @Override
-    public int getCount() {
+@Override
+public int getCount() {
         return guestList.size();
-    }
+        }
 
-    @Override
-    public Object getItem(int i) {
+@Override
+public Object getItem(int i) {
         return guestList.get(i);
-    }
+        }
 
-    @Override
-    public long getItemId(int i) {
+@Override
+public long getItemId(int i) {
         return 0;
-    }
+        }
 
-    static class ViewHolder {
+static class ViewHolder {
 
-        TextView tvCabinNo;
-        TextView tvGuestName;
-        TextView tvFirstName;
-        TextView tvCruiseDate;
-        ImageButton ibtnEditGuest;
-        ImageButton ibtnAddGuest;
-        ImageButton ibtnDeleteGuest;
+    TextView tvCabinNo;
+    TextView tvGuestName;
+    TextView tvFirstName;
+    TextView tvCruiseDate;
+    ImageButton ibtnEditGuest;
+    ImageButton ibtnAddGuest;
+    ImageButton ibtnDeleteGuest;
 
-    }
+}
 
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {

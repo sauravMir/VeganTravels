@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_bg_blue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:background="@drawable/top_cell">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:padding="@dimen/ten"
+                android:text="Export Excursion Guest List"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twenty" />
+
+            <ImageButton
+                android:id="@+id/ibtnExportEcSearch"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/ten"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/hundred"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_search_circle"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/ibtnExportEcAddGuest"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/twenty"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_circular"
+                android:padding="@dimen/ten"
+                android:visibility="visible" />
+
+
+            <ImageButton
+                android:id="@+id/ibtnExportEcBack"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:padding="@dimen/ten"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_back" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_weight=".1"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Cabin No"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Last Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="First Name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Cruise Date"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+
+            <View
+                android:layout_width="@dimen/zero"
+                android:layout_height="match_parent"
+                android:layout_weight=".2" />
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lstExportEcGuest"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/two"
+            android:layout_weight=".8" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

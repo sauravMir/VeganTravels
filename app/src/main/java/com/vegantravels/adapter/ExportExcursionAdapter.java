@@ -3,6 +3,7 @@ package com.vegantravels.adapter;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.ExportExcursionGuestListActivity;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.dao.Excursions_TMP;
@@ -122,15 +124,12 @@ public class ExportExcursionAdapter extends BaseAdapter {
         holder.ibtnExportExcursionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (criuzes_tmp != null) {
-//                    Intent intentGuest = new Intent(context, GuestListThreeActivity.class);
-//                    intentGuest.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    intentGuest.putExtra(StaticAccess.KEY_CRUISES_ID, criuzes_tmp.getId());
-//                    intentGuest.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
-//                    intentGuest.putExtra(StaticAccess.KEY_INTENT_DATE, "From :" + criuzes_tmp.getFrom() + "\n To :" + criuzes_tmp.getTo());
-//                    context.startActivity(intentGuest);
-//                }
 
+                Intent intent = new Intent(context, ExportExcursionGuestListActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(StaticAccess.KEY_CRUISES_ID, excursionsTmpsList.get(position).getCruzeId());
+                intent.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, excursionsTmpsList.get(position).getExcursionUniqueId());
+                context.startActivity(intent);
             }
         });
         holder.ibtnExportExcursionPrint.setOnClickListener(new View.OnClickListener() {

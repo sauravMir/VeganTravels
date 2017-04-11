@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
+import com.vegantravels.activities.ExportExcursionGuestListActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
@@ -40,6 +41,7 @@ public class AllDialog {
     EditText edtCabinNumber, edtCabinName;
     IDatabaseManager databaseManager;
     GuestListThreeActivity guestListThreeActivity;
+    ExportExcursionGuestListActivity exportExcursionGuestListActivity;
     AddCruizeActivity addCruizeActivity;
     ViewExcursionActivity viewExcursionActivity;
     AddExcursionActivity addExcursionActivity;
@@ -56,6 +58,11 @@ public class AllDialog {
 
     public AllDialog(GuestListThreeActivity activity) {
         guestListThreeActivity = activity;
+        databaseManager = new DatabaseManager(activity);
+    }
+
+    public AllDialog(ExportExcursionGuestListActivity activity) {
+        exportExcursionGuestListActivity = activity;
         databaseManager = new DatabaseManager(activity);
     }
 
