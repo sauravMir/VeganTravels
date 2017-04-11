@@ -50,6 +50,10 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     public String fDate = "";
     private Cabins_TMP cabins_tmp;
     private int numOfGuest = -1;
+    private String txtData;
+    private int cabinNumber = 0;
+    private String txtDate;
+    private String txtTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
