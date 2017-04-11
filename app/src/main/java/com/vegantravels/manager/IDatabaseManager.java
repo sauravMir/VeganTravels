@@ -84,6 +84,8 @@ public interface IDatabaseManager {
 
     ArrayList<Cabins_TMP> cabinTempList(long uniqCruizeID);
 
+    ArrayList<Cabins_TMP> cabinTempListByVTIdAnd(String VTID, long excursionId);
+
     void deleteCabinTemp(Cabins_TMP cabins_tmp);
 
     Cabins_TMP hasGuestExcursion(String guestVT_id);

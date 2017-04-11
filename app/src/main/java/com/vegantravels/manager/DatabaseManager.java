@@ -508,6 +508,33 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         return null;
     }
 
+    // delete cabin_temp table where  vtId and ExcursionId
+    @Override
+    public ArrayList<Cabins_TMP> cabinTempListByVTIdAnd(String VTID, long excursionId) {
+        List<Cabins_TMP> cabins_tmpList = null;
+        try {
+            openReadableDb();
+            Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.GuestVT_Id.eq(VTID), Cabins_TMPDao.Properties.Excursion.eq(excursionId)).orderAsc(Cabins_TMPDao.Properties.Id);
+            cabins_tmpList = queryBuilder.list();
+            if (cabins_tmpList != null) {
+                for (Cabins_TMP cabins_tmp : cabins_tmpList) {
+//                            cabins_tmp.setExcursion(-1L);
+                    deleteCabinTemp(cabins_tmp);
+
+                }
+            }
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (cabins_tmpList != null) {
+            return new ArrayList<>(cabins_tmpList);
+        }
+        return null;
+    }
+
     @Override
     public Long updateCabinTemp(Cabins_TMP cabins_tmp) {
         Long cabinTempKay = null;
