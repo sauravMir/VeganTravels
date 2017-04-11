@@ -38,7 +38,7 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     public ExportExcursionGuestAdapter adapterExportEc;
     public ArrayList<Guests_TMP> guestListExportEc;
     private ExportExcursionGuestListActivity activity;
-    private ImageButton ibtnExportEcBack, ibtnExportEcSearch, ibtnExportEcAddGuest;
+    private ImageButton ibtnExportEcBack;
     private AllDialog allDialog;
     public long exUniqueId, cruiseId;
     public String date;
@@ -53,16 +53,12 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
         activity = this;
         lstExportEcGuest = (ListView) findViewById(R.id.lstExportEcGuest);
         allDialog = new AllDialog(activity);
-        ibtnExportEcSearch = (ImageButton) findViewById(R.id.ibtnExportEcSearch);
         ibtnExportEcBack = (ImageButton) findViewById(R.id.ibtnExportEcBack);
-        ibtnExportEcAddGuest = (ImageButton) findViewById(R.id.ibtnExportEcAddGuest);
 
         cruiseId = getIntent().getExtras().getLong(StaticAccess.KEY_CRUISES_ID);
         exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID);
 
-        ibtnExportEcSearch.setOnClickListener(this);
         ibtnExportEcBack.setOnClickListener(this);
-        ibtnExportEcAddGuest.setOnClickListener(this);
         databaseManager = new DatabaseManager(activity);
         GuestListRefresh();
 
@@ -73,19 +69,9 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
 
         switch (v.getId()) {
             case R.id.ibtnExportEcBack:
-                Intent intent = new Intent(activity, ManagementActivity.class);
+                Intent intent = new Intent(activity, ExportExcursionActivity.class);
                 startActivity(intent);
                 finishTheActivity();
-                break;
-            case R.id.ibtnExportEcSearch:
-//                allDialog.dialogForSearch(cr);
-                break;
-            case R.id.ibtnExportEcAddGuest:
-//                Intent intentadd = new Intent(activity, AddParticipantActivity.class);
-//                intentadd.putExtra(StaticAccess.KEY_CRUISES_ID, cruiseId);
-//                intentadd.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, uniqueId);
-//                startActivity(intentadd);
-//                finishTheActivity();
                 break;
 
         }
@@ -119,9 +105,6 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     private void finishTheActivity() {
         finish();
     }
-
-
-
 
     private ArrayList<Cabins_TMP> cabins_tmpsList;
 

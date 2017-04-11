@@ -116,9 +116,9 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/two"
                 android:layout_weight="1"
-                android:background="@drawable/btn_add_excursion"
+                android:background="@drawable/btn_edit"
                 android:gravity="center"
-                android:src="@android:drawable/ic_menu_edit"
+                android:src="@android:drawable/ic_menu_view"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twelve" />
 
@@ -128,7 +128,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="@dimen/two"
                 android:layout_weight="1"
-                android:background="@drawable/btn_edit"
+                android:background="@drawable/btn_add_excursion"
                 android:gravity="center"
                 android:src="@drawable/print"
                 android:textColor="@color/white"

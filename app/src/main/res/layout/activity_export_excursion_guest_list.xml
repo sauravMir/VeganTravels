@@ -23,37 +23,9 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="Export Excursion Guest List"
+                android:text="Guest List per Excursion "
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
-
-            <ImageButton
-                android:id="@+id/ibtnExportEcSearch"
-                android:layout_width="@dimen/fifty"
-                android:layout_height="@dimen/fifty"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/ten"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/hundred"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_search_circle"
-                android:visibility="visible" />
-
-            <ImageButton
-                android:id="@+id/ibtnExportEcAddGuest"
-                android:layout_width="@dimen/fifty"
-                android:layout_height="@dimen/fifty"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="@dimen/twenty"
-                android:background="@color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_add_circular"
-                android:padding="@dimen/ten"
-                android:visibility="visible" />
 
 
             <ImageButton
@@ -81,16 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:gravity="center|bottom"
-                android:text="Cabin No"
-                android:textColor="@color/white"
-                android:textSize="@dimen/eighteen" />
-
-            <TextView
-                android:layout_width="@dimen/zero"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2"
-                android:gravity="center|bottom"
-                android:text="Last Name"
+                android:text="VT Id No"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
@@ -108,15 +71,28 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:gravity="center|bottom"
-                android:text="Cruise Date"
+                android:text="Last Name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/eighteen" />
 
 
-            <View
+            <TextView
                 android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_weight=".2" />
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Cabin No"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
+
+            <TextView
+                android:layout_width="@dimen/zero"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:gravity="center|bottom"
+                android:text="Guest in Cabin"
+                android:textColor="@color/white"
+                android:textSize="@dimen/eighteen" />
 
         </LinearLayout>
 

@@ -20,29 +20,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvExportEcCabinNo"
+                android:id="@+id/tvExportEcCruiseVTID"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="1066"
-                android:textSize="@dimen/twelve" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="@dimen/zero"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/two"
-            android:layout_weight=".2"
-            android:background="@drawable/cell_bg_guest"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvExportEcGuestName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="@dimen/two"
-                android:text="Last Name"
+                android:text="VTID"
                 android:textSize="@dimen/twelve" />
 
         </LinearLayout>
@@ -75,11 +57,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvExportEcCruiseDate"
+                android:id="@+id/tvExportEcGuestName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Date"
+                android:padding="@dimen/two"
+                android:text="Last Name"
                 android:textSize="@dimen/twelve" />
 
         </LinearLayout>
@@ -89,49 +72,37 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
             android:layout_weight=".2"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/ibtnExportEcAddGuest"
-                android:layout_width="@dimen/zero"
+            <TextView
+                android:id="@+id/tvExportEcCabinNo"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/two"
-                android:layout_weight="1"
-                android:background="@drawable/btn_edit"
                 android:gravity="center"
-                android:src="@android:drawable/ic_input_add"
-                android:textColor="@color/white"
+                android:text="Cabin no"
                 android:textSize="@dimen/twelve" />
+        </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/ibtnExportEcEditGuest"
-                android:layout_width="@dimen/zero"
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".2"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExportEcCruiseGuestInTable"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/two"
-                android:layout_weight="1"
-                android:background="@drawable/btn_add_excursion"
                 android:gravity="center"
-                android:src="@android:drawable/ic_menu_edit"
-                android:textColor="@color/white"
+                android:text="Guest in Cabin"
                 android:textSize="@dimen/twelve" />
-
-
-
-            <ImageButton
-                android:id="@+id/ibtnExportEcDeleteGuest"
-                android:layout_width="@dimen/zero"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/two"
-                android:layout_weight="1"
-                android:background="@drawable/btn_edit"
-                android:gravity="center"
-                android:src="@android:drawable/ic_delete"
-                android:textColor="@color/white"
-                android:textSize="@dimen/twelve" />
-
 
         </LinearLayout>
+
+
 
 
     </LinearLayout>
