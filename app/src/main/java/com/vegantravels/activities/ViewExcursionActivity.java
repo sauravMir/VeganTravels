@@ -138,8 +138,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (arrExcursion != null) {
                     excrusionId = arrExcursion.get(i).getExcursionUniqueId();
-                     txtDate = arrExcursion.get(i).getFrom();
-                     txtTime = arrExcursion.get(i).getTime();
+                    txtDate = arrExcursion.get(i).getFrom();
+                    txtTime = arrExcursion.get(i).getTime();
                 }
             }
 
@@ -164,10 +164,14 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.btnConfirm:
-                cabinNumber = tempGuestV.getCabinNumber();
-                txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + ", "+ txtTime + " for " + String.valueOf(numOfGuest) + " persons?";
-                Log.d(txtData, "TxtMessage:");
-                allDialog.confirmDialog(txtData, this);
+                if (numOfGuest != -1) {
+                    cabinNumber = tempGuestV.getCabinNumber();
+                    txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + ", " + txtTime + " for " + String.valueOf(numOfGuest) + " persons?";
+                    Log.d(txtData, "TxtMessage:");
+                    allDialog.confirmDialog(txtData, this);
+                } else {
+                    Toast.makeText(activity, "Select Guest", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.ibtnBack:
