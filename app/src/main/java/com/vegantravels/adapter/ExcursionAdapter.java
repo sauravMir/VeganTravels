@@ -112,7 +112,7 @@ public class ExcursionAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
 
-                //deletePermissionDialog();
+                deletePermissionDialog(position);
             }
         });
 
@@ -120,7 +120,7 @@ public class ExcursionAdapter extends BaseAdapter {
         return convertView;
     }
 
-   /* private void deletePermissionDialog() {
+private void deletePermissionDialog(final int position) {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -142,7 +142,8 @@ public class ExcursionAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (excursionList != null) {
-                    databaseManager.isDeleteCruiseTemp(excursionList.get(position).getCruizeUniqueId());
+                    // when excursion Delete you must need to update cabin Table excursionId -1
+                    databaseManager.isDeleteExcursionTempByCruiseAndExcursionId(excursionList.get(position).getCruzeId(),excursionList.get(position).getExcursionUniqueId());
                     activity.ExcursionListRefresh();
                     notifyDataSetChanged();
                 }
@@ -151,6 +152,6 @@ public class ExcursionAdapter extends BaseAdapter {
             }
         });
         DialogNavBarHide.navBarHide(activity, dialog);
-    }*/
+    }
 
 }

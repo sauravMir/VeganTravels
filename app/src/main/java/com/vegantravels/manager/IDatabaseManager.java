@@ -116,6 +116,9 @@ public interface IDatabaseManager {
 
     boolean isDeleteGuestCabinTemp(String Vtid, long cruise_uniqueId);
     boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId);
+    // when excursion Delete you must need to update cabin Table excursionId -1
+    boolean isDeleteExcursionTempByCruiseAndExcursionId(long cruise_uniqueId,long excursionId);
 
+    ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId(long cruise_uniqueId,long excursionId);
 
 }
