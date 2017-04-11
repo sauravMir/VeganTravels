@@ -70,6 +70,7 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
         TextView tvExportEcGuestName;
         TextView tvExportEcCabinNo;
         TextView tvExportEcCruiseGuestInTable;
+        ImageButton ibtnExportEcDelete;
 
     }
 
@@ -85,6 +86,7 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
             holder.tvExportEcGuestName = (TextView) convertView.findViewById(R.id.tvExportEcGuestName);
             holder.tvExportEcCabinNo = (TextView) convertView.findViewById(R.id.tvExportEcCabinNo);
             holder.tvExportEcCruiseGuestInTable = (TextView) convertView.findViewById(R.id.tvExportEcCruiseGuestInTable);
+            holder.ibtnExportEcDelete = (ImageButton) convertView.findViewById(R.id.ibtnExportEcDelete);
 
             convertView.setTag(holder);
 
@@ -97,6 +99,12 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
         holder.tvExportEcGuestName.setText(guestListExportEc.get(position).getLastName());
         holder.tvExportEcCabinNo.setText(String.valueOf(guestListExportEc.get(position).getCabins_tmp().getCabinNumber()));
         holder.tvExportEcCruiseGuestInTable.setText(String.valueOf(guestListExportEc.get(position).getCabins_tmp().getOccupancy()));
+        holder.ibtnExportEcDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
         return convertView;
     }

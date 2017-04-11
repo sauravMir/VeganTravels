@@ -36,7 +36,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
     private AddCruizeActivity activity;
     private DatabaseManager databaseManager;
     private Button btnCabinUpload, btnDone;
-    private TextView tvCabinUpload;
+    private TextView tvCabinUpload, tvCruizeTitle;
     private EditText edtCruzeName, edtShipName;
     private TextView tvDateFrom, tvDateTo;
     private Criuzes_TMP aCruize, upCruize;
@@ -78,6 +78,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
         //button
         btnCabinUpload = (Button) findViewById(R.id.btnCabinUpload);
         tvCabinUpload = (TextView) findViewById(R.id.tvCabinUpload);
+        tvCruizeTitle = (TextView) findViewById(R.id.tvCruizeTitle);
         btnDone = (Button) findViewById(R.id.btnDone);
         //edtext
         edtCruzeName = (EditText) findViewById(R.id.edtCruzeName);
@@ -244,6 +245,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.setMessage("please wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
+
             DialogNavBarHide.navBarHide(activity, progressDialog);
         }
 
@@ -309,6 +311,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.setMessage("please wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
+            tvCruizeTitle.setText("Edit Cruize");
             DialogNavBarHide.navBarHide(activity, progressDialog);
         }
 

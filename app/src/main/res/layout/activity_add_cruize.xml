@@ -7,20 +7,20 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="@dimen/three_hundred_twenty"
-        android:layout_height="@dimen/three_hundred_fifty"
+        android:layout_width="@dimen/four_hundred_fifty"
+        android:layout_height="@dimen/four_hundred_fifty"
         android:layout_centerInParent="true"
         android:background="@drawable/rounded_bg"
         android:orientation="vertical"
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/btnAddExcursion"
+            android:id="@+id/tvCruizeTitle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
             android:layout_weight=".1"
             android:gravity="center"
-            android:text="New Cruise"
+            android:text="New Cruize"
             android:textColor="@color/black"
             android:textSize="@dimen/twenty" />
 
@@ -35,10 +35,11 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="Cruise Name"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -48,10 +49,11 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|bottom"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:hint="Ship name"
             android:textAlignment="gravity"
-            android:textColor="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -61,7 +63,8 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|center"
+            android:textColor="@color/black"
             android:text="Date From"
             android:textAlignment="gravity"
             android:textSize="@dimen/fifteen"
@@ -73,7 +76,9 @@
             android:layout_height="@dimen/zero"
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
-            android:gravity="left"
+            android:gravity="left|center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:text="Date To"
             android:textAlignment="gravity"
             android:textSize="@dimen/fifteen"

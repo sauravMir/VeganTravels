@@ -9,7 +9,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="@dimen/two"
-        android:weightSum="1">
+        android:weightSum="1.1">
 
         <LinearLayout
             android:layout_width="@dimen/zero"
@@ -102,7 +102,27 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="@dimen/zero"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/two"
+            android:layout_weight=".1"
+            android:background="@drawable/cell_bg_guest"
+            android:orientation="vertical">
 
+            <ImageButton
+                android:id="@+id/ibtnExportEcDelete"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/two"
+                android:layout_weight="1"
+                android:background="@drawable/btn_edit"
+                android:gravity="center"
+                android:src="@android:drawable/ic_delete"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twelve" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
