@@ -2,7 +2,6 @@ package com.vegantravels.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.vegantravels.R;
-import com.vegantravels.activities.AddParticipantActivity;
 import com.vegantravels.activities.ExportExcursionGuestListActivity;
-import com.vegantravels.activities.ViewExcursionActivity;
-import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.model.GuestExport;
-import com.vegantravels.utilities.StaticAccess;
 
 import java.util.ArrayList;
 
@@ -102,12 +97,44 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
         holder.ibtnExportEcDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                deletePermissionDialog(position);
+
             }
         });
 
         return convertView;
     }
 
+    private void deletePermissionDialog(final int pos) {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
+        tvPermission.setText(R.string.delete_permission);
+
+        btnCancelPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (guestListExportEc != null) {
+                    databaseManager.deleteCabinByVTIdAndExcursionId(guestListExportEc.get(pos).getCabins_tmp().getGuestVT_Id(), guestListExportEc.get(pos).getCabins_tmp().getExcursion());
+                    activity.GuestListRefresh();
+                }
+
+                dialog.dismiss();
+            }
+        });
+        DialogNavBarHide.navBarHide(activity, dialog);
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.vegantravels.activities;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,25 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.vegantravels.R;
-import com.vegantravels.adapter.ExportExcursionAdapter;
 import com.vegantravels.adapter.ExportExcursionGuestAdapter;
-import com.vegantravels.adapter.GuestThreeAdapter;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Guests_TMP;
 import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
-import com.vegantravels.model.Guest;
 import com.vegantravels.model.GuestExport;
 import com.vegantravels.utilities.StaticAccess;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Rakib on 4/6/2017.
@@ -44,7 +37,7 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     public String date;
     ProgressDialog progressDialog;
     private IDatabaseManager databaseManager;
-    private ArrayList<GuestExport> guestListExport = new ArrayList<>();
+    private ArrayList<GuestExport> guestListExport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +71,11 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     }
 
     private void lvGuestLoad() {
-        if (guestListExport != null)
+        if (guestListExport != null) {
             adapterExportEc = new ExportExcursionGuestAdapter(activity, guestListExport);
-        lstExportEcGuest.setAdapter(adapterExportEc);
+            lstExportEcGuest.setAdapter(adapterExportEc);
+            adapterExportEc.notifyDataSetChanged();
+        }
 
     }
 
@@ -118,9 +113,11 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
 
         @Override
         protected Void doInBackground(Void... voids) {
+
             cabins_tmpsList = new ArrayList<>();
             if (cruiseId != -1) {
 //                guestList = databaseManager.listGuestByUniqueId(cruizeUniqID);
+                guestListExport = new ArrayList<>();
                 cabins_tmpsList = databaseManager.getGuestDeatilByExcursionCruizeID(exUniqueId, cruiseId);
                 if (cabins_tmpsList != null) {
                     for (int i = 0; i < cabins_tmpsList.size(); i++) {
@@ -146,9 +143,9 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
-            lvGuestLoad();
             hideProgressDialog();
+            lvGuestLoad();
+
 
 
         }
