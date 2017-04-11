@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,6 +49,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     public long cruizeUniqueID = -1;
     public String fDate = "";
     private Cabins_TMP cabins_tmp;
+    private int numOfGuest = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         arrExcursion = new ArrayList<>();
         fillGuestNumberData();
 
+
     }
 
 
@@ -99,7 +102,6 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             progressDialog.dismiss();
     }
 
-    private int numOfGuest = -1;
 
     private void fillGuestNumberData() {
         final String[] GUEST_ARRAY = getResources().getStringArray(R.array.noOfGuest);
@@ -132,6 +134,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (arrExcursion != null) {
                     excrusionId = arrExcursion.get(i).getExcursionUniqueId();
+                     txtDate = arrExcursion.get(i).getFrom();
+                     txtTime = arrExcursion.get(i).getTime();
                 }
             }
 
@@ -156,7 +160,10 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 break;
 
             case R.id.btnConfirm:
-                allDialog.confirmDialog("Are you sure? You want to confirm", this);
+                cabinNumber = tempGuestV.getCabinNumber();
+                txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + " and "+ txtTime + " for " + String.valueOf(numOfGuest) + " person?";
+                Log.d(txtData, "TxtMessage:");
+                allDialog.confirmDialog(txtData, this);
                 break;
 
             case R.id.ibtnBack:
@@ -190,6 +197,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
             Toast.makeText(activity, "Select an Excursion First", Toast.LENGTH_SHORT).show();
         }
 
+
     }
 
 
@@ -218,6 +226,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                 tempGuestV = databaseManager.getGuestTempById(getGuestId);
                 if (tempGuestV != null)
                     arrExcursion = databaseManager.excursionTempListByCruiseUniqueId(tempGuestV.getGuestUniqueId());
+
 
             } else {
                /* // get cruize
