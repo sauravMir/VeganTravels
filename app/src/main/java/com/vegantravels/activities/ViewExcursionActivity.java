@@ -165,7 +165,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
             case R.id.btnConfirm:
                 cabinNumber = tempGuestV.getCabinNumber();
-                txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + " and "+ txtTime + " for " + String.valueOf(numOfGuest) + " person?";
+                txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + ", "+ txtTime + " for " + String.valueOf(numOfGuest) + " persons?";
                 Log.d(txtData, "TxtMessage:");
                 allDialog.confirmDialog(txtData, this);
                 break;
