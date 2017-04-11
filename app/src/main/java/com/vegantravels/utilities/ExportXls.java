@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.vegantravels.R;
@@ -77,10 +78,10 @@ public class ExportXls {
     }
 
     public void exportXls() {
-        final String fileName =  getDate()+"_PAYMENT_STATUS_PER_CABIN.xls";
+        final String fileName = getDate() + "_PAYMENT_STATUS_PER_CABIN.xls";
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File(sdCard.getAbsolutePath() + "/veganT");
+        File directory = new File(sdCard.getAbsolutePath() + "/VeganTravel");
 
         //create directory if not exist
         if (!directory.isDirectory()) {
@@ -168,7 +169,7 @@ public class ExportXls {
             sheet.addCell(m_idValue);
             sheet.addCell(m_idValue1);*/
             m_workbook.write();
-            share(directory.getAbsolutePath()+"/"+fileName);
+            share(directory.getAbsolutePath() + "/" + fileName);
             Toast.makeText(context, "XLS Generated Successfully", Toast.LENGTH_SHORT).show();
             m_workbook.close();
         } catch (Exception e) {
@@ -350,11 +351,11 @@ public class ExportXls {
     void share(String fileLocation) {
 
         try {
-
+            Log.e("papth:",fileLocation);
             Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setType("excel");
+            intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse( fileLocation));
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileLocation));
             intent.putExtra(Intent.EXTRA_TEXT, " ");
             intent.setData(Uri.parse("mailto:"));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -238,7 +240,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
         final String fileName = xlsName + ".xls";
         //Saving file in external storage
         File sdCard = Environment.getExternalStorageDirectory();
-        File directory = new File(sdCard.getAbsolutePath() + "/veganT");
+        File directory = new File(sdCard.getAbsolutePath() + "/VeganTravel");
 
         //create directory if not exist
         if (!directory.isDirectory()) {
@@ -298,6 +300,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
             m_workbook.close();
             nrCount = 0;
             isxlsGenerated = true;
+            share(directory.getAbsolutePath() + "/" + fileName);
         } catch (Exception e) {
 
         }
@@ -305,4 +308,20 @@ public class ExportExcursionAdapter extends BaseAdapter {
 
     }
 
+    void share(String fileLocation) {
+
+        try {
+            Log.e("papth:", fileLocation);
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setType("message/rfc822");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileLocation));
+            intent.putExtra(Intent.EXTRA_TEXT, " ");
+            intent.setData(Uri.parse("mailto:"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+            System.out.println("is exception raises during sending mail" + e);
+        }
+    }
 }
