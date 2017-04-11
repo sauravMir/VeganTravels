@@ -25,7 +25,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:padding="@dimen/ten"
-                android:text="Excursion list"
+                android:text="Financial Status per cabin"
                 android:textColor="@color/white"
                 android:textSize="@dimen/twenty" />
 

@@ -13,6 +13,7 @@ import com.vegantravels.R;
 
 import com.vegantravels.activities.ExcursionCruiseList;
 import com.vegantravels.activities.ExportActivity;
+import com.vegantravels.activities.FinanceActivity;
 import com.vegantravels.activities.MainActivity;
 import com.vegantravels.dao.Criuzes_TMP;
 import com.vegantravels.manager.DatabaseManager;
@@ -85,7 +86,14 @@ public class ExcursionManagementAdapter extends BaseAdapter {
         holder.tvManagementName.setText(cruisesManagementList.get(i).getName());
         holder.tvManagementShipName.setText(cruisesManagementList.get(i).getShipName());
         holder.tvManagementDate.setText(cruisesManagementList.get(i).getFrom() + "  -  " + cruisesManagementList.get(i).getTo());
-
+        holder.tvManagementName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentExcursion2 = new Intent(context, FinanceActivity.class);
+                intentExcursion2.putExtra(StaticAccess.KEY_CRUISES_ID, cruisesManagementList.get(i).getCruizeUniqueId());
+                context.startActivity(intentExcursion2);
+            }
+        });
         holder.btnFinance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
