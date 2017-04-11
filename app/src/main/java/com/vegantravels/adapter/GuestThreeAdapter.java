@@ -104,7 +104,7 @@ static class ViewHolder {
             public void onClick(View view) {
                 Intent intentEdit = new Intent(context, AddParticipantActivity.class);
                 intentEdit.putExtra(StaticAccess.KEY_GUEST_ID, guestList.get(position).getId());
-                intentEdit.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, guestList.get(position).getGuestUniqueId());
+                intentEdit.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, guestList.get(position).getGuestUniqueId());
                 intentEdit.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 context.startActivity(intentEdit);
 

@@ -47,7 +47,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         //Connection Https or http Instances
 //        apiInterface =  APIClient.getClient().create(APIInterface.class);
         cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
-        cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
+        cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, -1);
         guestID = getIntent().getLongExtra(StaticAccess.KEY_GUEST_ID, -1);
         fDate = getIntent().getStringExtra(StaticAccess.KEY_INTENT_DATE);
         initialization();
@@ -122,6 +122,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
                 break;
             case R.id.ibtnBackGuest:
                 Intent intent = new Intent(activity, GuestListThreeActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
                 intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
                 intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 startActivity(intent);
@@ -259,6 +260,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
             } else {
                 Toast.makeText(activity, "Guest Edit Successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(activity, GuestListThreeActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
                 intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
                 intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 startActivity(intent);

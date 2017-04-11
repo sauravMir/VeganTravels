@@ -267,7 +267,6 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            Toast.makeText(activity, "Excursion Inserted: " + String.valueOf(isSuccess), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(activity, ExcursionListActivity.class);
             intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
             startActivity(intent);

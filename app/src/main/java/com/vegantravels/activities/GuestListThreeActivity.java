@@ -76,7 +76,9 @@ public class GuestListThreeActivity extends BaseActivity implements View.OnClick
             case R.id.ibtnAddGuest:
                 Intent intentadd = new Intent(activity, AddParticipantActivity.class);
                 intentadd.putExtra(StaticAccess.KEY_CRUISES_ID, cruiseId);
-                intentadd.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, uniqueId);
+                intentadd.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, uniqueId);
+                intentadd.putExtra(StaticAccess.KEY_INTENT_DATE,date);
+
                 startActivity(intentadd);
                 finishTheActivity();
                 break;

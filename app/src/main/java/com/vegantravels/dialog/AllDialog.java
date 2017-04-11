@@ -213,7 +213,7 @@ public class AllDialog {
         final Dialog dialog = new Dialog(viewExcursionActivity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.confirm_dialog);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
 
         final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission);
         ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission);
