@@ -78,7 +78,8 @@
             android:layout_weight=".5"
             android:background="@drawable/btn_add_excursion"
             android:gravity="center"
-            android:text=" Export" />
+            android:text=" Export"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
