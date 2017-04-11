@@ -37,7 +37,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     Button btnDone;
     boolean goForEdit = false;
     EditText edtExcursionTitle, edtPrice, edtMaxGuest;
-    TextView tvExcursionFromDate, tvExcursionTime;
+    TextView tvExcursionFromDate, tvExcursionTime, tvExcursionTitle;
     private AllDialog allDialog;
     private DatabaseManager databaseManager;
     private Excursions_TMP excursions_tmp, updateexcursions;
@@ -87,6 +87,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         edtMaxGuest = (EditText) findViewById(R.id.edtMaxGuest);
         tvExcursionFromDate = (TextView) findViewById(R.id.tvExcursionFromDate);
         tvExcursionTime = (TextView) findViewById(R.id.tvExcursionTime);
+        tvExcursionTitle = (TextView) findViewById(R.id.tvExcursionTitle);
         ibtnBackExcursion = (ImageButton) findViewById(R.id.ibtnBackExcursion);
 
         tvExcursionFromDate.setOnClickListener(this);
@@ -282,6 +283,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPreExecute() {
             super.onPreExecute();
             showProgressDialog();
+            tvExcursionTitle.setText("Edit Excursion");
         }
 
         @Override

@@ -36,10 +36,10 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left|bottom"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:hint="Cruise Name"
             android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -50,10 +50,10 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left|bottom"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:hint="Ship name"
             android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -64,9 +64,9 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left|center"
-            android:textColor="@color/black"
             android:text="Date From"
             android:textAlignment="gravity"
+            android:textColor="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -77,10 +77,10 @@
             android:layout_marginLeft="@dimen/ten"
             android:layout_weight=".15"
             android:gravity="left|center"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:text="Date To"
             android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
@@ -95,17 +95,20 @@
                 android:id="@+id/btnCabinUpload"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight=".4"
+                android:layout_marginLeft="@dimen/ten"
+                android:layout_weight=".3"
                 android:background="@color/transparent"
-                android:gravity="center"
+                android:gravity="left|center"
                 android:text="Upload Cabin"
+                android:paddingLeft="@dimen/three"
+                android:textColor="@color/black"
                 android:textSize="@dimen/fifteen" />
 
             <TextView
                 android:id="@+id/tvCabinUpload"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
-                android:layout_weight=".6"
+                android:layout_weight=".7"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/black"
@@ -122,6 +125,7 @@
             android:background="@drawable/bottom_cell"
             android:gravity="center"
             android:text="Done"
+            android:textSize="@dimen/twenty"
             android:textColor="@color/white" />
 
     </LinearLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
@@ -38,6 +39,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     public long guestID = -1;
     private String fDate = "";
     private ImageButton ibtnBackGuest;
+    private TextView tvParticipantTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,8 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         etLName = (EditText) findViewById(R.id.etLName);
         etLName = (EditText) findViewById(R.id.etLName);
         etVTid = (EditText) findViewById(R.id.etVTid);
+        tvParticipantTitle = (TextView) findViewById(R.id.tvParticipantTitle);
+
         ibtnBackGuest = (ImageButton) findViewById(R.id.ibtnBackGuest);
 
         databaseManager = new DatabaseManager(activity);
@@ -233,6 +237,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         protected void onPreExecute() {
             super.onPreExecute();
             showProgressDialog();
+            tvParticipantTitle.setText("Edit participent");
         }
 
         @Override
