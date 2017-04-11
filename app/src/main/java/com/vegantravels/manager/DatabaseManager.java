@@ -351,7 +351,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         try {
             openReadableDb();
             Guests_TMPDao guest_tmpDao = daoSession.getGuests_TMPDao();
-            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestVT_Id.eq(vtId),Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseId));
+            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestVT_Id.eq(vtId), Guests_TMPDao.Properties.GuestUniqueId.eq(cruiseId));
             guests_TMP = queryBuilder.list();
             for (Guests_TMP guests_tmp1 : guests_TMP) {
                 guests_tmp = guests_tmp1;
@@ -664,8 +664,6 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
     }
 
 
-
-
     @Override
     public ArrayList<Excursions_TMP> excursionTempListByExcursionId(long excursionId) {
         List<Excursions_TMP> excursions_tmpList = null;
@@ -742,17 +740,20 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
+
     @Override
     public boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId) {
         boolean isRemoved = false;
         try {
             openWritableDb();
             Guests_TMPDao guest_tmpDao = daoSession.getGuests_TMPDao();
-            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruise_uniqueId),Guests_TMPDao.Properties.GuestVT_Id.eq(VTId));
+            QueryBuilder<Guests_TMP> queryBuilder = guest_tmpDao.queryBuilder().where(Guests_TMPDao.Properties.GuestUniqueId.eq(cruise_uniqueId), Guests_TMPDao.Properties.GuestVT_Id.eq(VTId));
             List<Guests_TMP> guestTempList = queryBuilder.list();
             if (guestTempList.size() > 0) {
                 for (Guests_TMP guests_tmp : guestTempList) {
                     guest_tmpDao.delete(guests_tmp);
+                    isDeleteGuestCabinTemp(VTId,cruise_uniqueId);
+
                 }
                 isRemoved = true;
                 daoSession.clear();
@@ -765,6 +766,7 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
+
     // excursion delete
     @Override
     public boolean isDeleteExcursionTemp(long cruise_uniqueId) {
@@ -815,8 +817,29 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         }
         return isRemoved;
     }
+    @Override
+    public boolean isDeleteGuestCabinTemp(String Vtid, long cruise_uniqueId) {
+        boolean isRemoved = false;
+        try {
+            openWritableDb();
+            Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.GuestVT_Id.eq(Vtid), Cabins_TMPDao.Properties.CruizeId.eq(cruise_uniqueId));
+            List<Cabins_TMP> cabinsTempList = queryBuilder.list();
+            if (cabinsTempList.size() > 0) {
+                for (Cabins_TMP cabinds_tmp : cabinsTempList) {
+                    cabins_tmpDao.delete(cabinds_tmp);
+                }
+                isRemoved = true;
+                daoSession.clear();
+                Log.d(TAG, cabinsTempList.size() + " entry. ");
+            }
 
-
+        } catch (Exception e) {
+            isRemoved = false;
+            e.printStackTrace();
+        }
+        return isRemoved;
+    }
 
 
 }

@@ -102,14 +102,12 @@ public interface IDatabaseManager {
     Excursions_TMP getExcursionByExcursionUniqueId(long excursionId);
 
     boolean isDeleteCruiseTemp(long cruise_uniqueId);
-
-    boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId);
-
     boolean isDeleteGuestTemp(long cruise_uniqueId);
-
     boolean isDeleteExcursionTemp(long cruise_uniqueId);
-
     boolean isDeleteCabinTemp(long cruise_uniqueId);
+
+    boolean isDeleteGuestCabinTemp(String Vtid, long cruise_uniqueId);
+    boolean isDeleteSingleGuestTemp(long cruise_uniqueId, String VTId);
 
 
 }
