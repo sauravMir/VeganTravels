@@ -109,7 +109,48 @@ public class StaticAccess {
 
 
 
+    public String dateString(String date){
+        String res="";
+        if(date!=null){
+            String[] dateAr=new String[3];
 
+            dateAr=date.split("-");
+
+            String month=dateAr[1];
+
+            if(month!=null){
+                if(month.equals("00")){
+                    month="Jan";
+                }else if(month.equals("01")){
+                    month="Feb";
+                }else if(month.equals("02")){
+                    month="Mar";
+                }else if(month.equals("03")){
+                    month="Apr";
+                }else if(month.equals("04")){
+                    month="May";
+                }else if(month.equals("05")){
+                    month="Jun";
+                }else if(month.equals("06")){
+                    month="Jul";
+                }else if(month.equals("07")){
+                    month="Aug";
+                }else if(month.equals("08")){
+                    month="Sep";
+                }else if(month.equals("09")){
+                    month="Oct";
+                }else if(month.equals("10")){
+                    month="Nov";
+                }else if(month.equals("11")){
+                    month="Dec";
+                }
+
+                res= dateAr[0]+"-"+month+"-"+dateAr[1];
+            }
+        }
+
+        return  res;
+    }
 
 
 }
