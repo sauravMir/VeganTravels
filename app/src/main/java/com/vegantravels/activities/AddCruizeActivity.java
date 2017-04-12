@@ -315,7 +315,7 @@ public class AddCruizeActivity extends BaseActivity implements View.OnClickListe
             progressDialog.setMessage("please wait...");
             progressDialog.setCancelable(false);
             progressDialog.show();
-            tvCruizeTitle.setText("Edit Cruize");
+            tvCruizeTitle.setText("Edit Cruise");
             DialogNavBarHide.navBarHide(activity, progressDialog);
         }
 
