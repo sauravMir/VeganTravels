@@ -511,12 +511,12 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
 
     // delete cabin_temp table where  vtId and ExcursionId
     @Override
-    public ArrayList<Cabins_TMP> deleteCabinByVTIdAndExcursionId(String VTID, long excursionId) {
+    public ArrayList<Cabins_TMP> deleteCabinByVTIdAndExcursionId(long cabinId, long excursionId) {
         List<Cabins_TMP> cabins_tmpList = null;
         try {
             openReadableDb();
             Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
-            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.GuestVT_Id.eq(VTID), Cabins_TMPDao.Properties.Excursion.eq(excursionId)).orderAsc(Cabins_TMPDao.Properties.Id);
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.Id.eq(cabinId), Cabins_TMPDao.Properties.Excursion.eq(excursionId)).orderAsc(Cabins_TMPDao.Properties.Id);
             cabins_tmpList = queryBuilder.list();
             if (cabins_tmpList != null) {
                 for (Cabins_TMP cabins_tmp : cabins_tmpList) {
