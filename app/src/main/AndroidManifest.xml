@@ -101,7 +101,14 @@
             android:name=".activities.ExportExcursionGuestListActivity"
             android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity
+            android:name=".activities.LogActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden"/>
+
     </application>
 
 </manifest>

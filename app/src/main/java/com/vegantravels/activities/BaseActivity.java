@@ -6,6 +6,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import com.vegantravels.utilities.ApplicationMode;
+import com.vegantravels.utilities.ExceptionHandler;
+
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
@@ -25,9 +28,9 @@ public class BaseActivity extends Activity {
         UiChangeListener();
 
         //Custom Error log handeled by Mail
-       /* if (!ApplicationMode.devMode) {
+        if (!ApplicationMode.devMode) {
             Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
-        }*/
+        }
     }
 
     // for centrally handled String type by Rokan

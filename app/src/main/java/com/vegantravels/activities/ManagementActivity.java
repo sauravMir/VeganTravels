@@ -44,7 +44,7 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.tvExcursionMngmnt:
                 Intent intentExcursion = new Intent(activity, ExcursionCruiseList.class);
-                intentExcursion.putExtra(StaticAccess.KEY_Activity_flag,1);
+                intentExcursion.putExtra(StaticAccess.KEY_Activity_flag, 1);
                 startActivity(intentExcursion);
                 finishTheActivity();
                 break;
@@ -55,7 +55,7 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
                 break;
             case R.id.tvFinancial:
                 Intent intentExcursion2 = new Intent(activity, ExcursionCruiseList.class);
-                intentExcursion2.putExtra(StaticAccess.KEY_Activity_flag,2);
+                intentExcursion2.putExtra(StaticAccess.KEY_Activity_flag, 2);
                 startActivity(intentExcursion2);
                 finishTheActivity();
                 break;
