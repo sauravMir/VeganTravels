@@ -128,7 +128,7 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
 
         final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.payment_dialog);
+        dialog.setContentView(R.layout.excursion_booked_edit);
         dialog.setCancelable(true);
 
        final GuestExport guestExport = guestListExportEc.get(position);
@@ -188,7 +188,7 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
                 if(paymentStatus!=-1)
                 guestExport.getCabins_tmp().setPaymentStatus(paymentStatus);
                 databaseManager.updateCabinTemp(guestExport.getCabins_tmp());
-
+                activity.GuestListRefresh();
                 dialog.dismiss();
 
             }
