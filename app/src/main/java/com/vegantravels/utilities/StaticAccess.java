@@ -109,7 +109,7 @@ public class StaticAccess {
 
 
 
-    public String dateString(String date){
+    public static String dateString(String date){
         String res="";
         if(date!=null){
             String[] dateAr=new String[3];
@@ -119,25 +119,25 @@ public class StaticAccess {
             String month=dateAr[1];
 
             if(month!=null){
-                if(month.equals("00")){
+                if(month.equals("0")){
                     month="Jan";
-                }else if(month.equals("01")){
+                }else if(month.equals("1")){
                     month="Feb";
-                }else if(month.equals("02")){
+                }else if(month.equals("2")){
                     month="Mar";
-                }else if(month.equals("03")){
+                }else if(month.equals("3")){
                     month="Apr";
-                }else if(month.equals("04")){
+                }else if(month.equals("4")){
                     month="May";
-                }else if(month.equals("05")){
+                }else if(month.equals("5")){
                     month="Jun";
-                }else if(month.equals("06")){
+                }else if(month.equals("6")){
                     month="Jul";
-                }else if(month.equals("07")){
+                }else if(month.equals("7")){
                     month="Aug";
-                }else if(month.equals("08")){
+                }else if(month.equals("8")){
                     month="Sep";
-                }else if(month.equals("09")){
+                }else if(month.equals("9")){
                     month="Oct";
                 }else if(month.equals("10")){
                     month="Nov";
@@ -145,7 +145,7 @@ public class StaticAccess {
                     month="Dec";
                 }
 
-                res= dateAr[0]+"-"+month+"-"+dateAr[1];
+                res= dateAr[0]+"-"+month+"-"+dateAr[2];
             }
         }
 

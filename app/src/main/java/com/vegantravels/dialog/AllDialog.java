@@ -253,11 +253,11 @@ public class AllDialog {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
-                long time = calendar.getTimeInMillis();
+
                 if (flag == StaticAccess.DATE_FROM) {
-                    txt.setText(date);
+                    txt.setText(StaticAccess.dateString(date));
                 } else if (flag == StaticAccess.DATE_TO) {
-                    txt.setText(date);
+                    txt.setText(StaticAccess.dateString(date));
                 }
             }
         }, yy, mm, dd);
@@ -299,9 +299,9 @@ public class AllDialog {
                 String date = String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear) + "-" + String.valueOf(year);
                 long time = calendar.getTimeInMillis();
                 if (flag == StaticAccess.DATE_FROM) {
-                    txt.setText(date);
+                    txt.setText(StaticAccess.dateString(date));
                 } else if (flag == StaticAccess.DATE_TO) {
-                    txt.setText(date);
+                    txt.setText(StaticAccess.dateString(date));
                 }
             }
         }, yy, mm, dd);
