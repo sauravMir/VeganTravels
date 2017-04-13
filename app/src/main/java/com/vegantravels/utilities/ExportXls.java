@@ -131,7 +131,7 @@ public class ExportXls {
                     sheet.addCell(m_idValue1);
                     sheet.addCell(m_idValue2);
                     sheet.addCell(m_idValue3);
-                    int grandTotal = 0;
+                    float grandTotal = 0;
                     for (int j = 0; j < finalList.get(i).getExcursionName().size(); j++) {
 
                         Label excursionName = new Label(3, rowIndex, finalList.get(i).getExcursionName().get(j));
@@ -189,7 +189,7 @@ public class ExportXls {
         }
     };
 
-    HashMap<Integer, Integer> cabinWiseCalculationmap = new HashMap<>();
+    HashMap<Integer, Float> cabinWiseCalculationmap = new HashMap<>();
 
 
     //step2
@@ -198,13 +198,13 @@ public class ExportXls {
         for (int i = 0; i < cabinList.size(); i++) {
             if (cabinList.get(i).getCabinNum() == cabin) {
                 result.add(cabinList.get(i));
-                int calculation = 0;
+                float calculation = 0;
                 //if multiple rows
                 if (cabinWiseCalculationmap.containsKey(cabin)) {
                     calculation = cabinWiseCalculationmap.get(cabin);
                 }
                 if (!cabinList.get(i).getExcursionPrice().equals("")) {
-                    calculation = calculation + Integer.valueOf(cabinList.get(i).getExcursionPrice().trim())
+                    calculation = calculation + Float.parseFloat(cabinList.get(i).getExcursionPrice().trim())
                             * cabinList.get(i).getPeople();
                 }
                 cabinWiseCalculationmap.put(cabin, calculation);
@@ -258,7 +258,7 @@ public class ExportXls {
                     if (!m.getExcursionName().equals("") && m.getStatus() != -1) {
                         finalmodel.setExcursionName(m.getExcursionName());
                         finalmodel.setExcursionDate(m.getExcursionDate());
-                        finalmodel.setExcursionPrice(Integer.parseInt(m.getExcursionPrice().trim()));
+                        finalmodel.setExcursionPrice(Float.parseFloat(m.getExcursionPrice().trim()));
                         finalmodel.setPeople(m.getPeople());
                         finalmodel.setStatus(m.getStatus());
                     }
@@ -351,11 +351,11 @@ public class ExportXls {
     void share(String fileLocation) {
 
         try {
-            Log.e("papth:",fileLocation);
+            Log.e("papth:", fileLocation);
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+fileLocation));
+            intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://" + fileLocation));
             intent.putExtra(Intent.EXTRA_TEXT, " ");
             intent.setData(Uri.parse("mailto:"));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

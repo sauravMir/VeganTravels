@@ -83,7 +83,7 @@ public class FinanceAdapter extends BaseAdapter {
         String excursionPPl = "";
         String excursionTotal = "";
         String payment = "";
-        int grandTotal = 0;
+        float grandTotal = 0;
 
         // if (cabinList.get(i).getExcursionName().size() > 0) {
         holder.tvFinanceCabinNo.setText(String.valueOf(cabinList.get(i).getCabinNum()));

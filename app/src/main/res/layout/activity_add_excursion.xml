@@ -81,7 +81,7 @@
             android:layout_weight=".1"
             android:gravity="left|bottom"
             android:hint="Price"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textColorHint="@color/black"

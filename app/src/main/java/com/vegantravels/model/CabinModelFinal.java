@@ -12,16 +12,16 @@ public class CabinModelFinal {
     String LName;
     ArrayList<String> ExcursionName=new ArrayList<>();
     ArrayList<String> ExcursionDate=new ArrayList<>();
-    ArrayList<Integer>  ExcursionPrice=new ArrayList<>();
+    ArrayList<Float>  ExcursionPrice=new ArrayList<>();
     ArrayList<Integer> People=new ArrayList<>();
     ArrayList<Integer>  Status=new ArrayList<>();
     String VTId;
 
 
-    public ArrayList<Integer>  getExcursionPrice() {
+    public ArrayList<Float>  getExcursionPrice() {
         return ExcursionPrice;
     }
-    public void setExcursionPrice(int excursionPrice) {
+    public void setExcursionPrice(Float excursionPrice) {
         ExcursionPrice.add(excursionPrice);
     }
     public String getVTId() {
