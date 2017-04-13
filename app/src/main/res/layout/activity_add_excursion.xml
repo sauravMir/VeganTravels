@@ -72,7 +72,6 @@
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
 
-
         <EditText
             android:id="@+id/edtPrice"
             android:layout_width="match_parent"
@@ -87,7 +86,6 @@
             android:textColorHint="@color/black"
             android:textSize="@dimen/fifteen"
             android:textStyle="normal" />
-
 
         <EditText
             android:id="@+id/edtMaxGuest"
