@@ -5,32 +5,36 @@
     android:background="@drawable/dialog_bg">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/two_hundred_fifty"
+        android:layout_width="@dimen/four_hundred_fifty"
+        android:layout_height="@dimen/four_hundred_fifty"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:weightSum="1.50">
+        android:weightSum="1">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".50"
+            android:layout_weight=".2"
             android:orientation="horizontal"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/fifteen"
                 android:layout_weight=".50"
+                android:gravity="center_vertical"
                 android:text="Number of Guest: "
-                android:gravity="center_vertical"/>
+                android:textColor="@color/black"
+                android:textSize="@dimen/fifteen" />
 
             <Spinner
-                android:layout_weight=".50"
+                android:id="@+id/spnGuestNo"
                 android:layout_width="@dimen/zero"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center_vertical"
-                android:id="@+id/spnGuestNo">
+                android:layout_weight=".50"
+                android:gravity="center_vertical">
 
             </Spinner>
         </LinearLayout>
@@ -38,14 +42,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".8"
+            android:layout_weight=".65"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/fifteen"
                 android:text="Payment"
                 android:textColor="@color/black"
                 android:textSize="@dimen/twenty" />
@@ -56,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true">
+                android:layout_centerVertical="true">
 
                 <RadioButton
                     android:id="@+id/rbPaidAlReady"
@@ -90,7 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero"
-            android:layout_weight=".2"
+            android:layout_weight=".15"
             android:background="@drawable/bottom_cell"
             android:orientation="horizontal"
             android:weightSum="2">
