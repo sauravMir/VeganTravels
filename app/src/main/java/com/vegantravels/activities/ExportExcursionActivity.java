@@ -16,13 +16,18 @@ import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ExportExcursionActivity extends BaseActivity implements View.OnClickListener {
 
     ExportExcursionActivity activity;
     private ListView lstExportExcursion;
-    private ImageButton ibtnBackExportExcursion;
+    private ImageButton ibtnBackExportExcursion, ibtnAddExportExcursion;
     private ExportExcursionAdapter exportExcursionAdapter;
     private IDatabaseManager databaseManager;
     private ProgressDialog progressDialog;
@@ -41,6 +46,8 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
         lstExportExcursion = (ListView) findViewById(R.id.lstExportExcursion);
         ibtnBackExportExcursion = (ImageButton) findViewById(R.id.ibtnBackExportExcursion);
         ibtnBackExportExcursion.setOnClickListener(this);
+        ibtnAddExportExcursion = (ImageButton) findViewById(R.id.ibtnAddExportExcursion);
+        ibtnAddExportExcursion.setOnClickListener(this);
         new ExportExcursionAsync().execute();
     }
 
@@ -51,9 +58,34 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
                 startActivity(new Intent(activity, ManagementActivity.class));
                 finishTheActivity();
                 break;
+            case R.id.ibtnAddExportExcursion:
+                startActivity(new Intent(activity, MainActivity.class));
+                finishTheActivity();
+                break;
         }
     }
-    
+
+    public ArrayList<Excursions_TMP> sortIt(ArrayList<Excursions_TMP> list) {
+       // for(Excursions_TMP temp:list)
+        Collections.sort(list, new Comparator<Excursions_TMP>() {
+            DateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+            @Override
+            public int compare(Excursions_TMP o1, Excursions_TMP o2) {
+                try {
+                    String date1=o1.getFrom();
+                    String date2=o2.getFrom();
+
+                    return f.parse(date1).compareTo(f.parse(date2));
+                } catch (ParseException e) {
+                    //throw new IllegalArgumentException(e);
+                    return 0;
+                }
+            }
+        });
+
+        return (ArrayList<Excursions_TMP>) list.clone();
+
+}
 
     class ExportExcursionAsync extends AsyncTask<Void, Void, Void> {
 
@@ -67,6 +99,7 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
         protected Void doInBackground(Void... params) {
             excursionsTmpsLst = new ArrayList<>();
             excursionsTmpsLst = databaseManager.excursionTempList();
+            Excursions_TMP e=new Excursions_TMP();
             return null;
         }
 
@@ -74,6 +107,7 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (excursionsTmpsLst != null) {
+                excursionsTmpsLst= sortIt(excursionsTmpsLst);
                 exportExcursionAdapter = new ExportExcursionAdapter(activity, excursionsTmpsLst);
                 lstExportExcursion.setAdapter(exportExcursionAdapter);
             }
