@@ -3,7 +3,9 @@ package com.vegantravels.dialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
@@ -220,6 +222,8 @@ public class AllDialog {
         ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission);
         tvPermission.setText(text);
 
+        tvPermission.setMovementMethod(new ScrollingMovementMethod());
+
         btnCancelPermission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -238,6 +242,32 @@ public class AllDialog {
             }
         });
         DialogNavBarHide.navBarHide(viewExcursionActivity, dialog);
+
+    }
+
+
+    ///payment success dialog
+    public static void infoShowDialog(String body, Context activity) {
+
+        final Dialog dialog = new Dialog(activity, R.style.CustomAlertDialog);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.confirm_dialog2);
+        dialog.setCancelable(true);
+
+        final TextView tvPermission = (TextView) dialog.findViewById(R.id.tvPermission2);
+        ImageButton btnCancelPermission = (ImageButton) dialog.findViewById(R.id.btnCancelPermission2);
+        ImageButton btnOkPermission = (ImageButton) dialog.findViewById(R.id.btnOkPermission2);
+        tvPermission.setText(body);
+
+        btnCancelPermission.setVisibility(View.INVISIBLE);
+        btnOkPermission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //DialogNavBarHide.navBarHide(activity, dialog);
+        dialog.show();
 
     }
 

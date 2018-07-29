@@ -12,6 +12,7 @@
         android:weightSum="7">
 
         <LinearLayout
+            android:id="@+id/tvFinanceCabinNoln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -29,6 +30,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinanceLastNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -48,6 +50,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinanceFirstNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -66,6 +69,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinanceExcursionBookedln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -84,6 +88,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinanceExcursionDateln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -103,6 +108,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinancePPPln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -122,6 +128,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinanceTotalln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -141,6 +148,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvFinancePaymentln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"

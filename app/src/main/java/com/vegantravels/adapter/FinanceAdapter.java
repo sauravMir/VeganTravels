@@ -1,13 +1,17 @@
 package com.vegantravels.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.itextpdf.text.pdf.parser.Line;
 import com.vegantravels.R;
+import com.vegantravels.dialog.AllDialog;
 import com.vegantravels.model.CabinModelFinal;
 import com.vegantravels.utilities.StaticAccess;
 
@@ -54,6 +58,17 @@ public class FinanceAdapter extends BaseAdapter {
         TextView tvFinanceTotal;
         TextView tvFinancePayment;
 
+
+        LinearLayout tvFinanceCabinNoln;
+        LinearLayout tvFinanceLastNameln;
+        LinearLayout tvFinanceFirstNameln;
+        LinearLayout tvFinanceExcursionBookedln;
+        LinearLayout tvFinanceExcursionDateln;
+        LinearLayout tvFinancePPPln;
+        LinearLayout tvFinanceTotalln;
+        LinearLayout tvFinancePaymentln;
+
+
     }
 
     @Override
@@ -72,6 +87,16 @@ public class FinanceAdapter extends BaseAdapter {
             holder.tvFinanceTotal = (TextView) convertView.findViewById(R.id.tvFinanceTotal);
             holder.tvFinancePayment = (TextView) convertView.findViewById(R.id.tvFinancePayment);
 
+
+            holder.tvFinanceCabinNoln = (LinearLayout) convertView.findViewById(R.id.tvFinanceCabinNoln);
+            holder.tvFinanceLastNameln = (LinearLayout) convertView.findViewById(R.id.tvFinanceLastNameln);
+            holder.tvFinanceFirstNameln = (LinearLayout) convertView.findViewById(R.id.tvFinanceFirstNameln);
+            holder.tvFinanceExcursionBookedln = (LinearLayout) convertView.findViewById(R.id.tvFinanceExcursionBookedln);
+            holder.tvFinanceExcursionDateln = (LinearLayout) convertView.findViewById(R.id.tvFinanceExcursionDateln);
+            holder.tvFinancePPPln = (LinearLayout) convertView.findViewById(R.id.tvFinancePPPln);
+            holder.tvFinanceTotalln = (LinearLayout) convertView.findViewById(R.id.tvFinanceTotalln);
+            holder.tvFinancePaymentln = (LinearLayout) convertView.findViewById(R.id.tvFinancePaymentln);
+
             convertView.setTag(holder);
 
         } else {
@@ -86,6 +111,13 @@ public class FinanceAdapter extends BaseAdapter {
         float grandTotal = 0;
 
         // if (cabinList.get(i).getExcursionName().size() > 0) {
+        final String cabinNum=String.valueOf(cabinList.get(i).getCabinNum());
+        final String Lname=String.valueOf(cabinList.get(i).getLName());
+        final String Fname=String.valueOf(cabinList.get(i).getFName());
+
+
+
+
         holder.tvFinanceCabinNo.setText(String.valueOf(cabinList.get(i).getCabinNum()));
         holder.tvFinanceLastName.setText(String.valueOf(cabinList.get(i).getLName()));
         holder.tvFinanceFirstName.setText(String.valueOf(cabinList.get(i).getFName()));
@@ -100,13 +132,69 @@ public class FinanceAdapter extends BaseAdapter {
         }
 
 
-        // }
+        final String grandTotalStr=String.valueOf(excursion) + "\n" +"Grand Total: "+
+                String.valueOf(grandTotal) + StaticAccess.CURRENCY;
+        final String excdate=String.valueOf(excursionDate);
+        final String excppl=String.valueOf(excursionPPl);
+        final String excTotal=String.valueOf(excursionTotal);
+        final String paymentstr=String.valueOf(payment);
 
-        holder.tvFinanceExcursionBooked.setText(String.valueOf(excursion) + "\n" +"Grand Total: "+ String.valueOf(grandTotal) + StaticAccess.CURRENCY);
+        holder.tvFinanceExcursionBooked.setText(String.valueOf(excursion) + "\n" +"Grand Total: "+
+                        String.valueOf(grandTotal) + StaticAccess.CURRENCY);
         holder.tvFinanceExcursionDate.setText(String.valueOf(excursionDate));
         holder.tvFinancePPP.setText(String.valueOf(excursionPPl));
         holder.tvFinanceTotal.setText(String.valueOf(excursionTotal));
         holder.tvFinancePayment.setText(String.valueOf(payment));
+
+        holder.tvFinanceCabinNoln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            AllDialog.infoShowDialog("Cabin Number"+"\n\n"+cabinNum,context);
+            }
+        });
+        holder.tvFinanceLastNameln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("Last name"+"\n\n"+Lname,context);
+            }
+        });
+        holder.tvFinanceFirstNameln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("First name"+"\n\n"+Fname,context);
+            }
+        });
+        holder.tvFinanceExcursionBookedln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("Exc Booked"+"\n\n"+grandTotalStr,context);
+            }
+        });
+        holder.tvFinanceExcursionDateln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("Exc Date"+"\n\n"+excdate,context);
+            }
+        });
+        holder.tvFinancePPPln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("PPP"+"\n\n"+excppl,context);
+            }
+        });
+        holder.tvFinanceTotalln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("Total"+"\n\n"+excTotal,context);
+            }
+        }); holder.tvFinancePaymentln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AllDialog.infoShowDialog("Payment"+"\n\n"+paymentstr,context);
+            }
+        });
+
+
 
         return convertView;
     }
