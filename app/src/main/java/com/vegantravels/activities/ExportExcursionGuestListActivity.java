@@ -31,7 +31,7 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     public ExportExcursionGuestAdapter adapterExportEc;
     public ArrayList<Guests_TMP> guestListExportEc;
     private ExportExcursionGuestListActivity activity;
-    private ImageButton ibtnExportEcBack;
+    private ImageButton ibtnExportEcBack,ibtnAddGuestPerExc;
     private AllDialog allDialog;
     public long exUniqueId, cruiseId;
     public String date;
@@ -47,11 +47,13 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
         lstExportEcGuest = (ListView) findViewById(R.id.lstExportEcGuest);
         allDialog = new AllDialog(activity);
         ibtnExportEcBack = (ImageButton) findViewById(R.id.ibtnExportEcBack);
+        ibtnAddGuestPerExc = (ImageButton) findViewById(R.id.ibtnAddGuestPerExc);
 
         cruiseId = getIntent().getExtras().getLong(StaticAccess.KEY_CRUISES_ID);
         exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID);
 
         ibtnExportEcBack.setOnClickListener(this);
+        ibtnAddGuestPerExc.setOnClickListener(this);
         databaseManager = new DatabaseManager(activity);
         GuestListRefresh();
 
@@ -64,6 +66,14 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
             case R.id.ibtnExportEcBack:
                 Intent intent = new Intent(activity, ExportExcursionActivity.class);
                 startActivity(intent);
+                finishTheActivity();
+                break;
+
+            case R.id.ibtnAddGuestPerExc:
+                Intent intent2 = new Intent(activity, AddParticipantActivity.class);
+                intent2.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruiseId);
+                intent2.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, exUniqueId);
+                startActivity(intent2);
                 finishTheActivity();
                 break;
 

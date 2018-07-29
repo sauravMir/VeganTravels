@@ -37,6 +37,20 @@
                 android:padding="@dimen/ten"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_back" />
+
+            <ImageButton
+                android:id="@+id/ibtnAddGuestPerExc"
+                android:layout_width="@dimen/fifty"
+                android:layout_height="@dimen/fifty"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/twenty"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_circular"
+                android:padding="@dimen/ten"
+                android:visibility="visible" />
         </RelativeLayout>
 
         <LinearLayout

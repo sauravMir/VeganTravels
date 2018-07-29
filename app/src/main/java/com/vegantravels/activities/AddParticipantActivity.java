@@ -35,7 +35,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
     IDatabaseManager databaseManager;
     Guests_TMP tempGuest, tempGuestEdit;
     private long cruizeID = -1;
-    private long cruizeUniqueID = -1;
+    private long cruizeUniqueID = -1,exUniqueId=-1;
     public long guestID = -1;
     private String fDate = "";
     private ImageButton ibtnBackGuest;
@@ -51,6 +51,8 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
         cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, -1);
         guestID = getIntent().getLongExtra(StaticAccess.KEY_GUEST_ID, -1);
+        exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID,-1);
+
         fDate = getIntent().getStringExtra(StaticAccess.KEY_INTENT_DATE);
         initialization();
 
@@ -125,11 +127,18 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
                 }
                 break;
             case R.id.ibtnBackGuest:
-                Intent intent = new Intent(activity, GuestListThreeActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
-                intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
-                intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
-                startActivity(intent);
+                if(exUniqueId!=-1) {
+                    Intent intent = new Intent(activity, ExportExcursionGuestListActivity.class);
+                    intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
+                    intent.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, exUniqueId);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(activity, GuestListThreeActivity.class);
+                    intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
+                    intent.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruizeUniqueID);
+                    intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
+                    startActivity(intent);
+                }
                 finishTheActivity();
                 break;
 
@@ -200,6 +209,8 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
 //              insertCabinPayment.setNumberOfGuest(Integer.valueOf(xlsDataList.get(i).getGuestInCabin()));
                 // here is CruiseId
                 insertCabinPayment.setCruizeId(tempGuestV.getGuestUniqueId());
+                if(exUniqueId!=-1) insertCabinPayment.setExcursion(exUniqueId);
+                else
                 insertCabinPayment.setExcursion(-1L);
                 insertCabinPayment.setPaymentStatus(-1);
                 insertCabinPayment.setCabinUniqueId(System.currentTimeMillis());
@@ -220,11 +231,20 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
-            if (tempGuestV != null) {
+            if (tempGuestV != null && exUniqueId==-1) {
                 Intent intent = new Intent(activity, ViewExcursionActivity.class);
                 intent.putExtra(StaticAccess.INTENT_GUEST_ID_KEY, tempGuestV.getId());
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_INTENT_DATE, fDate);
                 startActivity(intent);
                 finish();
+            }else if(tempGuestV != null && exUniqueId!=-1) {
+                Intent intent = new Intent(activity, ExportExcursionGuestListActivity.class);
+                intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeUniqueID);
+                intent.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, exUniqueId);
+                startActivity(intent);
+
+            finishTheActivity();
             }
         }
     }
