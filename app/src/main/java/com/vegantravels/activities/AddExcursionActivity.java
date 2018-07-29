@@ -43,6 +43,7 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
     private Excursions_TMP excursions_tmp, updateexcursions;
     private Long cruizeKey = -1L;
     private long excursionId = -1;
+    int camefromExportEXC=-1;
     private ImageButton ibtnBackExcursion;
 
     @Override
@@ -52,6 +53,8 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         activity = this;
         cruizeKey = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1L);
         excursionId = getIntent().getLongExtra(StaticAccess.KEY_EXCURSION_ID, -1);
+        camefromExportEXC= getIntent().getIntExtra("came", -1);
+
         databaseManager = new DatabaseManager(activity);
 //        Toast.makeText(activity, String.valueOf(databaseManager.excursionTempList().size()), Toast.LENGTH_SHORT).show();
         findViewById();
@@ -121,9 +124,14 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
                 }
                 break;
             case R.id.ibtnBackExcursion:
-                Intent intent = new Intent(activity, ExcursionListActivity.class);
-                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
-                startActivity(intent);
+                if(camefromExportEXC==-1) {
+                    Intent intent = new Intent(activity, ExcursionListActivity.class);
+                    intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(activity, ExportExcursionActivity.class);
+                    startActivity(intent);
+                }
                 finishTheActivity();
                 break;
 
@@ -268,9 +276,14 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             hideProgressDialog();
+            if(camefromExportEXC==-1){
             Intent intent = new Intent(activity, ExcursionListActivity.class);
             intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
             startActivity(intent);
+            }else{
+                Intent intent = new Intent(activity, ExportExcursionActivity.class);
+                startActivity(intent);
+            }
             finishTheActivity();
         }
     }
@@ -321,9 +334,14 @@ public class AddExcursionActivity extends BaseActivity implements View.OnClickLi
             } else {
                 hideProgressDialog();
                 Toast.makeText(activity, "Excursion Updated: ", Toast.LENGTH_SHORT).show();
+                if(camefromExportEXC==-1){
                 Intent intent = new Intent(activity, ExcursionListActivity.class);
                 intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruizeKey);
                 startActivity(intent);
+            }else{
+                Intent intent = new Intent(activity, ExportExcursionActivity.class);
+                startActivity(intent);
+            }
                 finishTheActivity();
             }
         }

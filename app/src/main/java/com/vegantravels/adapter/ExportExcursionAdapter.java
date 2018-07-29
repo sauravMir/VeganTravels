@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vegantravels.R;
+import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.ExportExcursionGuestListActivity;
 import com.vegantravels.dao.Cabins_TMP;
 import com.vegantravels.dao.Criuzes_TMP;
@@ -87,7 +88,8 @@ public class ExportExcursionAdapter extends BaseAdapter {
         TextView tvExportExcursionCruizeName;
         ImageButton ibtnExportExcursionView;
         ImageButton ibtnExportExcursionPrint;
-        ImageButton ibtnExportExcursionDelete;
+       // ImageButton ibtnExportExcursionDelete;
+        ImageButton ibtnExportExcursionEdit;
 
     }
 
@@ -105,8 +107,8 @@ public class ExportExcursionAdapter extends BaseAdapter {
             holder.tvExportExcursionCruizeName = (TextView) convertView.findViewById(R.id.tvExportExcursionCruizeName);
             holder.ibtnExportExcursionView = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionView);
             holder.ibtnExportExcursionPrint = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionPrint);
-            holder.ibtnExportExcursionDelete = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionDelete);
-
+           // holder.ibtnExportExcursionDelete = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionDelete);
+            holder.ibtnExportExcursionEdit = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionEdit);
             convertView.setTag(holder);
 
         } else {
@@ -141,10 +143,23 @@ public class ExportExcursionAdapter extends BaseAdapter {
                 guestSyncAsyncTask.execute();
             }
         });
-        holder.ibtnExportExcursionDelete.setOnClickListener(new View.OnClickListener() {
+//        holder.ibtnExportExcursionDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
+        holder.ibtnExportExcursionEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(context, AddExcursionActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //added in 2nd edition for editting from export
+                intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
+                intent.putExtra(StaticAccess.KEY_EXCURSION_ID, excursionsTmpsList.get(position).getId());
+                intent.putExtra("came",100);
+                context.startActivity(intent);
             }
         });
 
