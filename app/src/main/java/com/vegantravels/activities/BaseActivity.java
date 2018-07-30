@@ -2,10 +2,12 @@ package com.vegantravels.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import com.vegantravels.utilities.AppLocker;
 import com.vegantravels.utilities.ApplicationMode;
 import com.vegantravels.utilities.ExceptionHandler;
 
@@ -19,7 +21,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class BaseActivity extends Activity {
 
 
-
+ SharedPreferences sp;
+ SharedPreferences.Editor ed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +34,24 @@ public class BaseActivity extends Activity {
         if (!ApplicationMode.devMode) {
             Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
         }
+
+
+        if(AppLocker.TrialModeOn) {
+            sp = getSharedPreferences(AppLocker.PrefName, 0);
+            ed = sp.edit();
+
+            int stateLock = sp.getInt(AppLocker.ModeStartalarm, -1);
+
+            if (stateLock == -1) {
+                AppLocker.startAlarmForLockingApp(this, ed);
+            } else {
+                int appLock = sp.getInt(AppLocker.ModeStopApp, -1);
+
+                if (appLock == 1)
+                    finish();
+            }
+        }
+
     }
 
     // for centrally handled String type by Rokan
