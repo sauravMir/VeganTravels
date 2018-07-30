@@ -12,6 +12,7 @@
         android:weightSum="6">
 
         <LinearLayout
+            android:id="@+id/tvExportExcursionDateln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -29,6 +30,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvExportExcursionTimeln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -48,6 +50,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvExportExcursionNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -66,6 +69,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvExportExcursionPPPln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -84,6 +88,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvExportExcursionCruizeNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"

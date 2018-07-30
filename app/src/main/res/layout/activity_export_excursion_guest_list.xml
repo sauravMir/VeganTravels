@@ -17,6 +17,7 @@
             android:background="@drawable/top_cell">
 
             <TextView
+                android:id="@+id/ibtnExctitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

@@ -49,6 +49,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
         //Connection Https or http Instances
 //        apiInterface =  APIClient.getClient().create(APIInterface.class);
         cruizeID = getIntent().getLongExtra(StaticAccess.KEY_CRUISES_ID, -1);
+
         cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, -1);
         guestID = getIntent().getLongExtra(StaticAccess.KEY_GUEST_ID, -1);
         exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID,-1);
@@ -129,7 +130,7 @@ public class AddParticipantActivity extends BaseActivity implements View.OnClick
             case R.id.ibtnBackGuest:
                 if(exUniqueId!=-1) {
                     Intent intent = new Intent(activity, ExportExcursionGuestListActivity.class);
-                    intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeID);
+                    intent.putExtra(StaticAccess.KEY_CRUISES_ID, cruizeUniqueID);
                     intent.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, exUniqueId);
                     startActivity(intent);
                 }else{

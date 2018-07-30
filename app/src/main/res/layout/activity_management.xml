@@ -51,7 +51,7 @@
             android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
-            android:text="EXCURSION MANAGEMENT"
+            android:text="GUEST LIST"
             android:textSize="@dimen/twenty" />
 
         <View
@@ -66,7 +66,7 @@
             android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
-            android:text="EXPORT"
+            android:text="FINANCIALS"
             android:textSize="@dimen/twenty" />
 
         <View
@@ -81,7 +81,7 @@
             android:layout_weight=".1"
             android:background="@drawable/cell_bg"
             android:gravity="center"
-            android:text="FINANCIALS"
+            android:text="EXCURSIONS"
             android:textSize="@dimen/twenty" />
 
         <View

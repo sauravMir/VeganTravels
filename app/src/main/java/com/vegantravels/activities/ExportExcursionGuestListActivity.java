@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.adapter.ExportExcursionGuestAdapter;
@@ -38,7 +39,8 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     ProgressDialog progressDialog;
     private IDatabaseManager databaseManager;
     private ArrayList<GuestExport> guestListExport;
-
+    String excName="";
+    TextView excTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,9 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
         ibtnExportEcBack = (ImageButton) findViewById(R.id.ibtnExportEcBack);
         ibtnAddGuestPerExc = (ImageButton) findViewById(R.id.ibtnAddGuestPerExc);
 
+        excTitle=(TextView) findViewById(R.id.ibtnExctitle);
+
+        excName = getIntent().getExtras().getString(StaticAccess.KEY_EXCURSION_NAME,"Guest List per Excursion");
         cruiseId = getIntent().getExtras().getLong(StaticAccess.KEY_CRUISES_ID);
         exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID);
 
@@ -56,6 +61,8 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
         ibtnAddGuestPerExc.setOnClickListener(this);
         databaseManager = new DatabaseManager(activity);
         GuestListRefresh();
+
+        excTitle.setText(excName);
 
     }
 
@@ -82,6 +89,7 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
 
     private void lvGuestLoad() {
         if (guestListExport != null) {
+            excTitle.setText(String.valueOf(guestListExport.size())+" Guests in "+excName);
             adapterExportEc = new ExportExcursionGuestAdapter(activity, guestListExport);
             lstExportEcGuest.setAdapter(adapterExportEc);
             adapterExportEc.notifyDataSetChanged();

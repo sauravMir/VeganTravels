@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,6 +87,13 @@ public class ExportExcursionAdapter extends BaseAdapter {
         TextView tvExportExcursionName;
         TextView tvExportExcursionPPP;
         TextView tvExportExcursionCruizeName;
+
+        LinearLayout tvExportExcursionDateln;
+        LinearLayout tvExportExcursionTimeln;
+        LinearLayout tvExportExcursionNameln;
+        LinearLayout tvExportExcursionPPPln;
+        LinearLayout tvExportExcursionCruizeNameln;
+
         ImageButton ibtnExportExcursionView;
         ImageButton ibtnExportExcursionPrint;
        // ImageButton ibtnExportExcursionDelete;
@@ -105,6 +113,14 @@ public class ExportExcursionAdapter extends BaseAdapter {
             holder.tvExportExcursionName = (TextView) convertView.findViewById(R.id.tvExportExcursionName);
             holder.tvExportExcursionPPP = (TextView) convertView.findViewById(R.id.tvExportExcursionPPP);
             holder.tvExportExcursionCruizeName = (TextView) convertView.findViewById(R.id.tvExportExcursionCruizeName);
+
+            holder.tvExportExcursionDateln = (LinearLayout) convertView.findViewById(R.id.tvExportExcursionDateln);
+            holder.tvExportExcursionTimeln = (LinearLayout) convertView.findViewById(R.id.tvExportExcursionTimeln);
+            holder.tvExportExcursionNameln = (LinearLayout) convertView.findViewById(R.id.tvExportExcursionNameln);
+            holder.tvExportExcursionPPPln =  (LinearLayout) convertView.findViewById(R.id.tvExportExcursionPPPln);
+            holder.tvExportExcursionCruizeNameln = (LinearLayout) convertView.findViewById(R.id.tvExportExcursionCruizeNameln);
+
+
             holder.ibtnExportExcursionView = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionView);
             holder.ibtnExportExcursionPrint = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionPrint);
            // holder.ibtnExportExcursionDelete = (ImageButton) convertView.findViewById(R.id.ibtnExportExcursionDelete);
@@ -125,17 +141,29 @@ public class ExportExcursionAdapter extends BaseAdapter {
             holder.tvExportExcursionCruizeName.setText(String.valueOf(criuzes_tmp.getName()));
         }
 
-        holder.ibtnExportExcursionView.setOnClickListener(new View.OnClickListener() {
+        final View.OnClickListener listener=new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, ExportExcursionGuestListActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(StaticAccess.KEY_CRUISES_ID, excursionsTmpsList.get(position).getCruzeId());
+                intent.putExtra(StaticAccess.KEY_EXCURSION_NAME, excursionsTmpsList.get(position).getTitle());
                 intent.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, excursionsTmpsList.get(position).getExcursionUniqueId());
                 context.startActivity(intent);
             }
-        });
+        };
+
+        holder.tvExportExcursionDateln.setOnClickListener(listener);
+        holder.tvExportExcursionTimeln.setOnClickListener(listener);
+        holder.tvExportExcursionNameln.setOnClickListener(listener);
+        holder.tvExportExcursionPPPln.setOnClickListener(listener);
+        holder.tvExportExcursionCruizeNameln.setOnClickListener(listener);
+
+
+        holder.ibtnExportExcursionView.setOnClickListener(listener);
+
+
         holder.ibtnExportExcursionPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
