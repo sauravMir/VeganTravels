@@ -89,7 +89,12 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
 
     private void lvGuestLoad() {
         if (guestListExport != null) {
-            excTitle.setText(String.valueOf(guestListExport.size())+" Guests in "+excName);
+            int num=0;
+            for(GuestExport temp:guestListExport){
+                if(temp.getCabins_tmp()!=null)
+                num+=temp.getCabins_tmp().getOccupancy();
+            }
+            excTitle.setText(String.valueOf(num)+" Guests in "+excName);
             adapterExportEc = new ExportExcursionGuestAdapter(activity, guestListExport);
             lstExportEcGuest.setAdapter(adapterExportEc);
             adapterExportEc.notifyDataSetChanged();
