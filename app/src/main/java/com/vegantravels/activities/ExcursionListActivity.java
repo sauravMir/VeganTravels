@@ -16,7 +16,12 @@ import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
 import com.vegantravels.utilities.StaticAccess;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ExcursionListActivity extends BaseActivity implements View.OnClickListener {
     ExcursionListActivity activity;
@@ -103,11 +108,34 @@ public class ExcursionListActivity extends BaseActivity implements View.OnClickL
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (excursionLst != null) {
+                excursionLst= sortIt(excursionLst);
                 excursionAdapter = new ExcursionAdapter(activity, excursionLst, cruizeUniqueID);
                 lvExcursion.setAdapter(excursionAdapter);
             }
             hideProgressDialog();
         }
+    }
+
+    public ArrayList<Excursions_TMP> sortIt(ArrayList<Excursions_TMP> list) {
+        // for(Excursions_TMP temp:list)
+        Collections.sort(list, new Comparator<Excursions_TMP>() {
+            DateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+            @Override
+            public int compare(Excursions_TMP o1, Excursions_TMP o2) {
+                try {
+                    String date1=o1.getFrom();
+                    String date2=o2.getFrom();
+
+                    return f.parse(date1).compareTo(f.parse(date2));
+                } catch (ParseException e) {
+                    //throw new IllegalArgumentException(e);
+                    return 0;
+                }
+            }
+        });
+
+        return (ArrayList<Excursions_TMP>) list.clone();
+
     }
 
     public void ExcursionListRefresh() {
