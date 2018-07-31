@@ -117,7 +117,7 @@ public class AllDialog {
         final RadioGroup rdGrp = (RadioGroup) dialog.findViewById(R.id.myRadioGroup);
         RadioButton rbPaidAlReady = (RadioButton) dialog.findViewById(R.id.rbPaidAlReady);
         RadioButton rdCashBord = (RadioButton) dialog.findViewById(R.id.rbCashOnBoard);
-        RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rbCreditCard);
+        //RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rbCreditCard);
         RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rbComplementary);
 
 

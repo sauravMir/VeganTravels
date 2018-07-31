@@ -142,15 +142,17 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
         final RadioGroup rdGrp = (RadioGroup) dialog.findViewById(R.id.myRadioGroup);
         RadioButton rbPaidAlReady = (RadioButton) dialog.findViewById(R.id.rbPaidAlReady);
         RadioButton rdCashBord = (RadioButton) dialog.findViewById(R.id.rbCashOnBoard);
-        RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rbCreditCard);
+       // RadioButton rdCaditCard = (RadioButton) dialog.findViewById(R.id.rbCreditCard);
         RadioButton rdComplementary = (RadioButton) dialog.findViewById(R.id.rbComplementary);
         if (guestExport.getCabins_tmp().getPaymentStatus() == 1) {
             rdGrp.check(R.id.rbPaidAlReady);
         } else if (guestExport.getCabins_tmp().getPaymentStatus() == 2) {
             rdGrp.check(R.id.rbCashOnBoard);
-        } else if (guestExport.getCabins_tmp().getPaymentStatus() == 3) {
-            rdGrp.check(R.id.rbCreditCard);
-        } else if (guestExport.getCabins_tmp().getPaymentStatus() == 4) {
+        }
+//        else if (guestExport.getCabins_tmp().getPaymentStatus() == 3) {
+//            rdGrp.check(R.id.rbCreditCard);
+//        }
+        else if (guestExport.getCabins_tmp().getPaymentStatus() == 3) {
             rdGrp.check(R.id.rbComplementary);
         }
 

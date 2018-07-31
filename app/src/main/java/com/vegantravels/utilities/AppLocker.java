@@ -15,7 +15,7 @@ public class AppLocker {
     public static int ServiceCode=11;
     public static String ModeStartalarm="trialApp";
 
-    public static boolean TrialModeOn = true;
+    public static boolean TrialModeOn = false;
     //used from br
     public static String ModeStopApp="stopApp";
 
