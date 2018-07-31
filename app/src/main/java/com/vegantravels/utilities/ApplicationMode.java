@@ -8,6 +8,6 @@ package com.vegantravels.utilities;
 // Release Mode Flag should be false
 
 public class ApplicationMode {
-    public static boolean devMode = false;
+    public static boolean devMode = true;
 
 }

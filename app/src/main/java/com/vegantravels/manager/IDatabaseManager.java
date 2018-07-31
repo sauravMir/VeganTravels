@@ -129,5 +129,6 @@ public interface IDatabaseManager {
     boolean isDeleteExcursionTempByCruiseAndExcursionId(long cruise_uniqueId, long excursionId);
 
     ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId(long cruise_uniqueId, long excursionId);
+    ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId2(long cruise_uniqueId, long excursionId);
 
 }

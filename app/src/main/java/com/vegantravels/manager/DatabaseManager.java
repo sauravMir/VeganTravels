@@ -978,7 +978,27 @@ public class DatabaseManager implements IDatabaseManager, AsyncOperationListener
         try {
             openReadableDb();
             Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
-            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.CruizeId.eq(cruise_uniqueId), Cabins_TMPDao.Properties.Excursion.eq(cruise_uniqueId)).orderAsc(Excursions_TMPDao.Properties.Id);
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.CruizeId.eq(cruise_uniqueId), Cabins_TMPDao.Properties.Excursion.eq(excursionId));//.orderAsc(Excursions_TMPDao.Properties.Id);
+            cabin_tmpList = queryBuilder.list();
+            daoSession.clear();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (cabin_tmpList != null) {
+            return new ArrayList<>(cabin_tmpList);
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Cabins_TMP> cabinByCruiseAndExcursionId2(long cruise_uniqueId, long excursionId) {
+        List<Cabins_TMP> cabin_tmpList = null;
+        try {
+            openReadableDb();
+            Cabins_TMPDao cabins_tmpDao = daoSession.getCabins_TMPDao();
+            QueryBuilder<Cabins_TMP> queryBuilder = cabins_tmpDao.queryBuilder().where(Cabins_TMPDao.Properties.CruizeId.eq(cruise_uniqueId), Cabins_TMPDao.Properties.Excursion.eq(excursionId));//.orderAsc(Excursions_TMPDao.Properties.Id);
             cabin_tmpList = queryBuilder.list();
             daoSession.clear();
 

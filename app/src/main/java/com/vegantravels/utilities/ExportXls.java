@@ -134,6 +134,7 @@ public class ExportXls {
                     sheet.addCell(m_idValue3);
                     float grandTotal = 0;
 
+                    boolean foundVal=false;
                     //segmentizing with payment method
                     for(int pp=1; pp<4; pp++) {
                         for (int j = 0; j < finalList.get(i).getExcursionName().size(); j++) {
@@ -153,16 +154,21 @@ public class ExportXls {
                                 sheet.addCell(people);
                                 sheet.addCell(excursionPrice);
                                 sheet.addCell(payment);
-
+                                foundVal=true;
                                 rowIndex++;
                             }
-
                         }
-                        Label GTotal = new Label(3, rowIndex, "Grand Total for "+ StaticAccess.getPaymentByName(pp));
-                        Label total = new Label(6, rowIndex, "€"+String.valueOf(grandTotal));
-                        sheet.addCell(GTotal);
-                        sheet.addCell(total);
-                        rowIndex++;
+                        if(foundVal) {
+                            Label GTotal = new Label(3, rowIndex, "Grand Total for " + StaticAccess.getPaymentByName(pp));
+                            Label total = new Label(6, rowIndex, "€" + String.valueOf(grandTotal));
+                            sheet.addCell(GTotal);
+                            sheet.addCell(total);
+                            rowIndex++;
+                            foundVal=false;
+                            grandTotal=0;
+                        }
+
+
                     }
                     //adding total info
 //                    Label GTotal = new Label(3, rowIndex, "Grand Total");

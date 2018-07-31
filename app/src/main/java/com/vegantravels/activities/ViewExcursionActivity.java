@@ -223,8 +223,9 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
     private int isExcursionAvailable(int maxOccupancyPerExc){
         int res=-1;
         if(excrusionId!=-1) {
-            ArrayList<Cabins_TMP> cabins = databaseManager.cabinByCruiseAndExcursionId(cruizeUniqueID, excrusionId);
+            ArrayList<Cabins_TMP> cabins = databaseManager.cabinByCruiseAndExcursionId2(cruizeUniqueID, excrusionId);
             int occupancy=0;
+            if(cabins!=null)
             for(Cabins_TMP cab: cabins){
                 occupancy+=cab.getOccupancy();
             }
