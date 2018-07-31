@@ -72,6 +72,7 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         getGuestId = getIntent().getExtras().getLong(StaticAccess.INTENT_GUEST_ID_KEY, -1);
         cruizeUniqueID = getIntent().getLongExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, -1);
         fDate = getIntent().getStringExtra(StaticAccess.KEY_INTENT_DATE);
+
         btnAddExcursion = (Button) findViewById(R.id.btnAddExcursion);
         btnConfirm = (Button) findViewById(R.id.btnConfirm);
         tvGuestDetail = (TextView) findViewById(R.id.tvGuestDetail);
@@ -129,6 +130,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
 
 
     private long excrusionId = -1;
+    private int maxGuestleftinExc = -1;
+    private int maxGuestInExc = -1;
 
     private void fillExcursionData() {
         spinnerCustomAdapter = new SpinnerCustomAdapter(activity, arrExcursion);
@@ -140,6 +143,8 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                     excrusionId = arrExcursion.get(i).getExcursionUniqueId();
                     txtDate = arrExcursion.get(i).getFrom();
                     txtTime = arrExcursion.get(i).getTime();
+                    maxGuestInExc= arrExcursion.get(i).getMaxNumberOfGuest();
+                    maxGuestleftinExc=isExcursionAvailable(maxGuestInExc);
                 }
             }
 
@@ -168,7 +173,13 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
                     cabinNumber = tempGuestV.getCabinNumber();
                     txtData = "Cabin " + cabinNumber + " to book excursion " + txtDate + ", " + txtTime + " for " + String.valueOf(numOfGuest) + " persons?";
                     Log.d(txtData, "TxtMessage:");
-                    allDialog.confirmDialog(txtData, this);
+                    if(maxGuestleftinExc!=-1) {
+                        if (maxGuestleftinExc < numOfGuest)
+                            makeToast("You can only add " + String.valueOf(maxGuestleftinExc)+" more Guests" );
+                        else
+                        allDialog.confirmDialog(txtData, this);
+                    }else
+                        makeToast("This excursion is full.");
                 } else {
                     Toast.makeText(activity, "Select Guest", Toast.LENGTH_SHORT).show();
                 }
@@ -207,6 +218,29 @@ public class ViewExcursionActivity extends BaseActivity implements View.OnClickL
         }
 
 
+    }
+
+    private int isExcursionAvailable(int maxOccupancyPerExc){
+        int res=-1;
+        if(excrusionId!=-1) {
+            ArrayList<Cabins_TMP> cabins = databaseManager.cabinByCruiseAndExcursionId(cruizeUniqueID, excrusionId);
+            int occupancy=0;
+            for(Cabins_TMP cab: cabins){
+                occupancy+=cab.getOccupancy();
+            }
+
+            if(occupancy<maxOccupancyPerExc){
+                res=maxOccupancyPerExc-occupancy;
+            }else{
+                makeToast("This excursion is full, can't add more guests");
+            }
+        }
+
+        return res;
+    }
+
+    public void makeToast(String str){
+        Toast.makeText(ViewExcursionActivity.this, str,Toast.LENGTH_LONG).show();
     }
 
 

@@ -124,6 +124,7 @@ public class ExportXls {
 
             for (int i = 0; i < finalList.size(); i++) {
                 //if person did not add excursion then no calculations needed
+                ArrayList<ArrayList<CabinModelFinal>> totalSegmentedList=new ArrayList<>();
                 if (finalList.get(i).getExcursionName().size() > 0) {
                     Label m_idValue1 = new Label(0, rowIndex, String.valueOf(finalList.get(i).getCabinNum()));
                     Label m_idValue2 = new Label(1, rowIndex, finalList.get(i).getLName());
@@ -132,34 +133,47 @@ public class ExportXls {
                     sheet.addCell(m_idValue2);
                     sheet.addCell(m_idValue3);
                     float grandTotal = 0;
-                    for (int j = 0; j < finalList.get(i).getExcursionName().size(); j++) {
 
-                        Label excursionName = new Label(3, rowIndex, finalList.get(i).getExcursionName().get(j));
-                        Label excursionDate = new Label(4, rowIndex, finalList.get(i).getExcursionDate().get(j));
-                        Label people = new Label(5, rowIndex, finalList.get(i).getPeople().get(j).toString());
-                        Label excursionPrice = new Label(6, rowIndex, String.valueOf(("€"+finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j))));
-                        Label payment = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(j)));
+                    //segmentizing with payment method
+                    for(int pp=1; pp<4; pp++) {
+                        for (int j = 0; j < finalList.get(i).getExcursionName().size(); j++) {
+                            //there are only 4 payment method
+                            if(finalList.get(i).getStatus().get(j)==pp) {
+                                Label excursionName = new Label(3, rowIndex, finalList.get(i).getExcursionName().get(j));
+                                Label excursionDate = new Label(4, rowIndex, finalList.get(i).getExcursionDate().get(j));
+                                Label people = new Label(5, rowIndex, finalList.get(i).getPeople().get(j).toString());
+                                Label excursionPrice = new Label(6, rowIndex, String.valueOf(("€" + finalList.get(i).getExcursionPrice().get(j) *
+                                        finalList.get(i).getPeople().get(j))));
+                                Label payment = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(j)));
 
-                        grandTotal += finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j);
+                                grandTotal += finalList.get(i).getExcursionPrice().get(j) * finalList.get(i).getPeople().get(j);
 
-                        sheet.addCell(excursionName);
-                        sheet.addCell(excursionDate);
-                        sheet.addCell(people);
-                        sheet.addCell(excursionPrice);
-                        sheet.addCell(payment);
+                                sheet.addCell(excursionName);
+                                sheet.addCell(excursionDate);
+                                sheet.addCell(people);
+                                sheet.addCell(excursionPrice);
+                                sheet.addCell(payment);
 
+                                rowIndex++;
+                            }
+
+                        }
+                        Label GTotal = new Label(3, rowIndex, "Grand Total for "+ StaticAccess.getPaymentByName(pp));
+                        Label total = new Label(6, rowIndex, "€"+String.valueOf(grandTotal));
+                        sheet.addCell(GTotal);
+                        sheet.addCell(total);
                         rowIndex++;
                     }
                     //adding total info
-                    Label GTotal = new Label(3, rowIndex, "Grand Total");
-                    Label total = new Label(6, rowIndex, "€"+String.valueOf(grandTotal));
-//                    Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
-
-                    sheet.addCell(GTotal);
-                    sheet.addCell(total);
-//                    sheet.addCell(paymentname);
-
-                    rowIndex++;
+//                    Label GTotal = new Label(3, rowIndex, "Grand Total");
+//                    Label total = new Label(6, rowIndex, "€"+String.valueOf(grandTotal));
+////                    Label paymentname = new Label(7, rowIndex, StaticAccess.getPaymentByName(finalList.get(i).getStatus().get(0)));
+//
+//                    sheet.addCell(GTotal);
+//                    sheet.addCell(total);
+////                    sheet.addCell(paymentname);
+//
+//                    rowIndex++;
                 }
             }
 
@@ -250,6 +264,8 @@ public class ExportXls {
 
                 //this model contains same cabin and its multiple excursion
                 CabinModelFinal finalmodel = new CabinModelFinal();
+
+
                 for (CabinModel m : list) {
                     finalmodel.setCabinNum(m.getCabinNum());
                     finalmodel.setFName(m.getFName());
