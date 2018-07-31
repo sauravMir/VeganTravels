@@ -172,11 +172,13 @@ public class ExportExcursionGuestAdapter extends BaseAdapter {
                     paymentStatus = StaticAccess.CASH_ON_BOARD;
 
 
-                } else if (selectedId == R.id.rbCreditCard) {
-                    paymentStatus = StaticAccess.CREDIT_CARD;
-
-
-                } else if (selectedId == R.id.rbComplementary) {
+                }
+//                else if (selectedId == R.id.rbCreditCard) {
+//                    paymentStatus = StaticAccess.CREDIT_CARD;
+//
+//
+//                }
+                else if (selectedId == R.id.rbComplementary) {
                     paymentStatus = StaticAccess.COMPLEMENTARY;
 
                 } else {

@@ -139,11 +139,13 @@ public class AllDialog {
                     activity.bookedExcursion(StaticAccess.CASH_ON_BOARD);
                     dialog.dismiss();
 
-                } else if (selectedId == R.id.rbCreditCard) {
-                    activity.bookedExcursion(StaticAccess.CREDIT_CARD);
-                    dialog.dismiss();
-
-                } else if (selectedId == R.id.rbComplementary) {
+                }
+//                else if (selectedId == R.id.rbCreditCard) {
+//                    activity.bookedExcursion(StaticAccess.CREDIT_CARD);
+//                    dialog.dismiss();
+//
+//                }
+                else if (selectedId == R.id.rbComplementary) {
                     activity.bookedExcursion(StaticAccess.COMPLEMENTARY);
                     dialog.dismiss();
                 }else{

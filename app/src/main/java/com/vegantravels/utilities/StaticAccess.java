@@ -64,8 +64,8 @@ public class StaticAccess {
     public static final String KEY_PARTICIPANT_GUEST_LAST_NAME = "guestLName";
     public static final int PAID_ALLREADY = 1;
     public static final int CASH_ON_BOARD = 2;
-    public static final int CREDIT_CARD = 3;
-    public static final int COMPLEMENTARY = 4;
+   // public static final int CREDIT_CARD = 3;
+    public static final int COMPLEMENTARY = 3;
 
     public static String getPaymentByName(int payment) {
         String paymentValue = "";
@@ -76,11 +76,11 @@ public class StaticAccess {
             case CASH_ON_BOARD:
                 paymentValue = "Cash on Board";
                 break;
-            case CREDIT_CARD:
-                paymentValue = "Credit Card";
-                break;
+//            case CREDIT_CARD:
+//                paymentValue = "Credit Card";
+//                break;
             case COMPLEMENTARY:
-                paymentValue = "Complementary";
+                paymentValue = "Complimentary";
                 break;
         }
         return paymentValue;
