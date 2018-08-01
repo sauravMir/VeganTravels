@@ -15,6 +15,7 @@ import com.vegantravels.dao.Excursions_TMP;
 import com.vegantravels.dialog.DialogNavBarHide;
 import com.vegantravels.manager.DatabaseManager;
 import com.vegantravels.manager.IDatabaseManager;
+import com.vegantravels.utilities.StaticAccess;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -59,7 +60,9 @@ public class ExportExcursionActivity extends BaseActivity implements View.OnClic
                 finishTheActivity();
                 break;
             case R.id.ibtnAddExportExcursion:
-                startActivity(new Intent(activity, MainActivity.class));
+                Intent intentGuest = new Intent(ExportExcursionActivity.this, MainActivity.class);
+                intentGuest.putExtra(StaticAccess.CameFromExport, 1);
+                startActivity(intentGuest);
                 finishTheActivity();
                 break;
         }

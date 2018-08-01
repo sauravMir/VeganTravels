@@ -12,6 +12,7 @@
         android:weightSum="1">
 
         <LinearLayout
+            android:id="@+id/tvCruiseNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -29,6 +30,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvDateln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"
@@ -48,6 +50,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/tvShipNameln"
             android:layout_width="@dimen/zero"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/two"

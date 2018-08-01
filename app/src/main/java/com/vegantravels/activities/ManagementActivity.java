@@ -39,6 +39,7 @@ public class ManagementActivity extends BaseActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.tvCruiseMngmnt:
                 Intent intentGuest = new Intent(activity, MainActivity.class);
+                intentGuest.putExtra(StaticAccess.CameFromExport, 0);
                 startActivity(intentGuest);
                 finishTheActivity();
                 break;

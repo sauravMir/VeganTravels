@@ -11,11 +11,11 @@ import com.vegantravels.receivers.StopApp;
 
 public class AppLocker {
     public static int OneHour=3600000;
-    public static long Trialperiod= OneHour*6;
+    public static long Trialperiod= OneHour*3;
     public static int ServiceCode=11;
     public static String ModeStartalarm="trialApp";
 
-    public static boolean TrialModeOn = false;
+    public static boolean TrialModeOn = true;
     //used from br
     public static String ModeStopApp="stopApp";
 

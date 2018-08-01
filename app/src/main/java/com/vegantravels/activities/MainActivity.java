@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity {
     ProgressDialog progressDialog;
     private ImageButton ibtnBack, ibtnAddCruize, ibtnSync;
     IDatabaseManager databaseManager;
-
+    public int cameFromExport=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,16 +55,13 @@ public class MainActivity extends BaseActivity {
         databaseManager = new DatabaseManager(activity);
         listRefresh();
 
+        if(getIntent().getExtras()!=null)
+        cameFromExport = getIntent().getExtras().getInt(StaticAccess.CameFromExport,0);
 
-//        ibtnSync.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                CruiseTble cruiseTble = new CruiseTble(activity);
-////                cruiseTble.parsingCruisesList();
-////                fillDummmyData();
-//                new CruizeSyncAsyncTask().execute();
-//            }
-//        });
+        if(cameFromExport==1){
+            ibtnAddCruize.setVisibility(View.INVISIBLE);
+        }
+
         ibtnAddCruize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,9 +72,16 @@ public class MainActivity extends BaseActivity {
         ibtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, ManagementActivity.class);
-                startActivity(intent);
-                finishActivity();
+                if(cameFromExport==1){
+                    Intent intentGuest = new Intent(MainActivity.this, ExportExcursionActivity.class);
+                    intentGuest.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intentGuest);
+                    finish();
+                }else {
+                    Intent intent = new Intent(activity, ManagementActivity.class);
+                    startActivity(intent);
+                    finishActivity();
+                }
             }
         });
     }

@@ -189,6 +189,7 @@ public class ExportExcursionAdapter extends BaseAdapter {
                 intent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, excursionsTmpsList.get(position).getCruzeId());
                 intent.putExtra(StaticAccess.KEY_EXCURSION_ID, excursionsTmpsList.get(position).getId());
                 intent.putExtra("came",100);
+                intent.putExtra(StaticAccess.CameFromExport, 1);
                 context.startActivity(intent);
             }
         });

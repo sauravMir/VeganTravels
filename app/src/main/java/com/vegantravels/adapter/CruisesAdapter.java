@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
+import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.ExcursionListActivity;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.MainActivity;
@@ -66,6 +67,11 @@ public class CruisesAdapter extends BaseAdapter {
         TextView tvCruiseName;
         TextView tvShipName;
         TextView tvDate;
+
+        LinearLayout tvCruiseNameln;
+        LinearLayout tvShipNameln;
+        LinearLayout tvDateln;
+
         ImageButton btnEdit;
         ImageButton ibtnAddCruize;
         ImageButton btnExCursionManager;
@@ -83,6 +89,11 @@ public class CruisesAdapter extends BaseAdapter {
             holder.tvCruiseName = (TextView) convertView.findViewById(R.id.tvCruiseName);
             holder.tvShipName = (TextView) convertView.findViewById(R.id.tvShipName);
             holder.tvDate = (TextView) convertView.findViewById(R.id.tvDate);
+
+            holder.tvCruiseNameln = (LinearLayout) convertView.findViewById(R.id.tvCruiseNameln);
+            holder.tvShipNameln = (LinearLayout) convertView.findViewById(R.id.tvShipNameln);
+            holder.tvDateln = (LinearLayout) convertView.findViewById(R.id.tvDateln);
+
             holder.btnEdit = (ImageButton) convertView.findViewById(R.id.btnEdit);
             holder.ibtnAddCruize = (ImageButton) convertView.findViewById(R.id.ibtnAddCruize);
             holder.btnExCursionManager = (ImageButton) convertView.findViewById(R.id.btnExCursionManager);
@@ -154,6 +165,45 @@ public class CruisesAdapter extends BaseAdapter {
 
             }
         });
+
+        if(mainActivity.cameFromExport==1){
+            holder.btnEdit.setVisibility(View.INVISIBLE);
+            holder.ibtnAddCruize.setVisibility(View.INVISIBLE);
+            holder.btnExCursionManager.setVisibility(View.INVISIBLE);
+            holder.btnExCursionDelete.setVisibility(View.INVISIBLE);
+
+            holder.tvCruiseNameln.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent exIntent = new Intent(mainActivity, AddExcursionActivity.class);
+                    exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                    exIntent.putExtra(StaticAccess.CameFromExport, 1);
+                    mainActivity.startActivity(exIntent);
+                    mainActivity.finish();
+                }
+            });
+            holder.tvShipNameln.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent exIntent = new Intent(mainActivity, AddExcursionActivity.class);
+                    exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                    exIntent.putExtra(StaticAccess.CameFromExport, 1);
+                    mainActivity.startActivity(exIntent);
+                    mainActivity.finish();
+                }
+            });
+            holder.tvDateln.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent exIntent = new Intent(mainActivity, AddExcursionActivity.class);
+                    exIntent.putExtra(StaticAccess.KEY_CRUISE_UNIQUE_ID, cruisesList.get(position).getCruizeUniqueId());
+                    exIntent.putExtra(StaticAccess.CameFromExport, 1);
+                    mainActivity.startActivity(exIntent);
+                    mainActivity.finish();
+                }
+            });
+
+        }
 
 
         return convertView;

@@ -9,6 +9,7 @@ public class StaticAccess {
     public static final String RootUrl = "http://dmaverick.com/cruize/public/";
 
     public static final String CURRENCY = " EUR";
+    public static final String CameFromExport = " export";
     // Cruises Keys
     public static final String KEY_CRUISES_ID = "id";
     public static final String KEY_EXCURSION_UNIQUE_ID = "excursion_id";
