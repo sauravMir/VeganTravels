@@ -21,6 +21,7 @@ import com.vegantravels.R;
 import com.vegantravels.activities.AddCruizeActivity;
 import com.vegantravels.activities.AddExcursionActivity;
 import com.vegantravels.activities.ExportExcursionGuestListActivity;
+import com.vegantravels.activities.GuestListFromExport;
 import com.vegantravels.activities.GuestListThreeActivity;
 import com.vegantravels.activities.ViewExcursionActivity;
 import com.vegantravels.adapter.GuestThreeAdapter;
@@ -43,10 +44,16 @@ public class AllDialog {
     EditText edtCabinNumber, edtCabinName;
     IDatabaseManager databaseManager;
     GuestListThreeActivity guestListThreeActivity;
+    GuestListFromExport guestListExportActivity;
     ExportExcursionGuestListActivity exportExcursionGuestListActivity;
     AddCruizeActivity addCruizeActivity;
     ViewExcursionActivity viewExcursionActivity;
     AddExcursionActivity addExcursionActivity;
+
+    public AllDialog(GuestListFromExport activity) {
+        guestListExportActivity = activity;
+        databaseManager = new DatabaseManager(activity);
+    }
 
     public AllDialog(AddCruizeActivity activity) {
         addCruizeActivity = activity;

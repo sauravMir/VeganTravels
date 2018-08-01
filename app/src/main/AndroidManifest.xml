@@ -111,6 +111,12 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:windowSoftInputMode="stateHidden"/>
 
+        <activity
+            android:name=".activities.GuestListFromExport"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:windowSoftInputMode="stateHidden"/>
+
         <receiver android:name=".receivers.StopApp"></receiver>
         <receiver android:name=".receivers.OnBoot">
             <intent-filter>

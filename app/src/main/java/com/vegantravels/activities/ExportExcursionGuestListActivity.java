@@ -41,6 +41,8 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
     private ArrayList<GuestExport> guestListExport;
     String excName="";
     TextView excTitle;
+    String dateOfExc="";
+    int maxguest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +55,12 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
 
         excTitle=(TextView) findViewById(R.id.ibtnExctitle);
 
-        excName = getIntent().getExtras().getString(StaticAccess.KEY_EXCURSION_NAME,"Guest List per Excursion");
+        excName = getIntent().getExtras().getString(StaticAccess.KEY_EXCURSION_NAME,
+                "Guest List per Excursion");
         cruiseId = getIntent().getExtras().getLong(StaticAccess.KEY_CRUISES_ID);
         exUniqueId = getIntent().getExtras().getLong(StaticAccess.KEY_EXCURSION_UNIQUE_ID);
+        dateOfExc=getIntent().getExtras().getString(StaticAccess.KEY_INTENT_DATE,"");
+        maxguest=getIntent().getExtras().getInt(StaticAccess.KEY_NUMBER_GUEST,0);
 
         ibtnExportEcBack.setOnClickListener(this);
         ibtnAddGuestPerExc.setOnClickListener(this);
@@ -77,9 +82,12 @@ public class ExportExcursionGuestListActivity extends BaseActivity implements Vi
                 break;
 
             case R.id.ibtnAddGuestPerExc:
-                Intent intent2 = new Intent(activity, AddParticipantActivity.class);
+                Intent intent2 = new Intent(activity, GuestListFromExport.class);
                 intent2.putExtra(StaticAccess.KEY_INTENT_CRUISES_UNIQUE_ID, cruiseId);
                 intent2.putExtra(StaticAccess.KEY_EXCURSION_UNIQUE_ID, exUniqueId);
+                intent2.putExtra(StaticAccess.KEY_INTENT_DATE, dateOfExc);
+                intent2.putExtra(StaticAccess.KEY_EXCURSION_NAME, excName);
+                intent2.putExtra(StaticAccess.KEY_NUMBER_GUEST, maxguest);
                 startActivity(intent2);
                 finishTheActivity();
                 break;
